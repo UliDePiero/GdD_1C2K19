@@ -10,11 +10,21 @@ using System.Windows.Forms;
 
 namespace FrbaCrucero.AbmRol
 {
-    public partial class Form1 : Form
+    public partial class ModificacionesROL : Form
     {
-        public Form1()
+        public ModificacionesROL()
         {
             InitializeComponent();
+        }
+
+        private void ModificacionesROL_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

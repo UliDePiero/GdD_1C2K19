@@ -62,11 +62,17 @@
     <Compile Include="AbmRecorrido\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmRol\Form1.cs">
+    <Compile Include="AbmRol\ABM_ROL.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmRol\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="AbmRol\ABM_ROL.Designer.cs">
+      <DependentUpon>ABM_ROL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmRol\ModificacionesROL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmRol\ModificacionesROL.Designer.cs">
+      <DependentUpon>ModificacionesROL.cs</DependentUpon>
     </Compile>
     <Compile Include="CompraReservaPasaje\Form1.cs">
       <SubType>Form</SubType>
@@ -74,17 +80,34 @@
     <Compile Include="CompraReservaPasaje\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="INICIO\INICIO.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="INICIO\INICIO.Designer.cs">
+      <DependentUpon>INICIO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INICIO\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INICIO\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GD1C2019DataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GD1C2019DataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="GeneracionViaje\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GeneracionViaje\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INICIO\Menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INICIO\Menu.Designer.cs">
+      <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
     <Compile Include="ListadoEstadistico\Form1.cs">
       <SubType>Form</SubType>
@@ -100,6 +123,21 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AbmRol\ABM_ROL.resx">
+      <DependentUpon>ABM_ROL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmRol\ModificacionesROL.resx">
+      <DependentUpon>ModificacionesROL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INICIO\INICIO.resx">
+      <DependentUpon>INICIO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INICIO\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INICIO\Menu.resx">
+      <DependentUpon>Menu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -108,7 +146,19 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="GD1C2019DataSet.xsc">
+      <DependentUpon>GD1C2019DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="GD1C2019DataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GD1C2019DataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GD1C2019DataSet.xss">
+      <DependentUpon>GD1C2019DataSet.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -121,6 +171,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Imagenes\INICIO.png" />
+    <Content Include="INICIO\INICIO.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

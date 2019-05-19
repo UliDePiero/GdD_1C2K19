@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FrbaCrucero.INICIO
+namespace FrbaCrucero
 {
     public partial class Menu : Form
     {

@@ -1,4 +1,4 @@
-﻿namespace FrbaCrucero.INICIO
+﻿namespace FrbaCrucero
 {
     partial class Menu
     {

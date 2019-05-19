@@ -30,9 +30,9 @@
         {
             this.bienvenido = new System.Windows.Forms.Label();
             this.funcionalidadesDisponibles = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.ejecutar = new System.Windows.Forms.Button();
             this.salir = new System.Windows.Forms.Button();
+            this.ejecutar = new System.Windows.Forms.Button();
+            this.comboBoxFuncionalidades = new System.Windows.Forms.ComboBox();
             this.rolActual = new System.Windows.Forms.Label();
             this.ROL = new System.Windows.Forms.Label();
             this.funcionalidadesDisponibles.SuspendLayout();
@@ -52,7 +52,7 @@
             // 
             this.funcionalidadesDisponibles.Controls.Add(this.salir);
             this.funcionalidadesDisponibles.Controls.Add(this.ejecutar);
-            this.funcionalidadesDisponibles.Controls.Add(this.comboBox1);
+            this.funcionalidadesDisponibles.Controls.Add(this.comboBoxFuncionalidades);
             this.funcionalidadesDisponibles.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.funcionalidadesDisponibles.Location = new System.Drawing.Point(12, 94);
             this.funcionalidadesDisponibles.Name = "funcionalidadesDisponibles";
@@ -61,14 +61,14 @@
             this.funcionalidadesDisponibles.TabStop = false;
             this.funcionalidadesDisponibles.Text = "Funcionalidades disponibles";
             // 
-            // comboBox1
+            // salir
             // 
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(7, 41);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(248, 33);
-            this.comboBox1.TabIndex = 0;
+            this.salir.Location = new System.Drawing.Point(144, 98);
+            this.salir.Name = "salir";
+            this.salir.Size = new System.Drawing.Size(110, 35);
+            this.salir.TabIndex = 1;
+            this.salir.Text = "Salir";
+            this.salir.UseVisualStyleBackColor = true;
             // 
             // ejecutar
             // 
@@ -79,14 +79,14 @@
             this.ejecutar.Text = "Ejecutar";
             this.ejecutar.UseVisualStyleBackColor = true;
             // 
-            // salir
+            // comboBoxFuncionalidades
             // 
-            this.salir.Location = new System.Drawing.Point(144, 98);
-            this.salir.Name = "salir";
-            this.salir.Size = new System.Drawing.Size(110, 35);
-            this.salir.TabIndex = 1;
-            this.salir.Text = "Salir";
-            this.salir.UseVisualStyleBackColor = true;
+            this.comboBoxFuncionalidades.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxFuncionalidades.FormattingEnabled = true;
+            this.comboBoxFuncionalidades.Location = new System.Drawing.Point(7, 41);
+            this.comboBoxFuncionalidades.Name = "comboBoxFuncionalidades";
+            this.comboBoxFuncionalidades.Size = new System.Drawing.Size(248, 33);
+            this.comboBoxFuncionalidades.TabIndex = 0;
             // 
             // rolActual
             // 
@@ -131,7 +131,7 @@
         private System.Windows.Forms.GroupBox funcionalidadesDisponibles;
         private System.Windows.Forms.Button salir;
         private System.Windows.Forms.Button ejecutar;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBoxFuncionalidades;
         private System.Windows.Forms.Label rolActual;
         private System.Windows.Forms.Label ROL;
     }

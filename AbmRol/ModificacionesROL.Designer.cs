@@ -28,14 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.nuevoROL = new System.Windows.Forms.Label();
             this.nombreNuevoROL = new System.Windows.Forms.Label();
             this.FuncionalidadesNuevoROL = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxNombreROL = new System.Windows.Forms.TextBox();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.aceptar = new System.Windows.Forms.Button();
             this.cancelar = new System.Windows.Forms.Button();
             this.modificarROL = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // nuevoROL
@@ -68,13 +71,13 @@
             this.FuncionalidadesNuevoROL.TabIndex = 0;
             this.FuncionalidadesNuevoROL.Text = "Funcionalidades";
             // 
-            // textBox1
+            // textBoxNombreROL
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(18, 103);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(382, 23);
-            this.textBox1.TabIndex = 1;
+            this.textBoxNombreROL.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxNombreROL.Location = new System.Drawing.Point(18, 103);
+            this.textBoxNombreROL.Name = "textBoxNombreROL";
+            this.textBoxNombreROL.Size = new System.Drawing.Size(382, 23);
+            this.textBoxNombreROL.TabIndex = 1;
             // 
             // checkedListBox1
             // 
@@ -124,6 +127,10 @@
             this.modificarROL.TabIndex = 0;
             this.modificarROL.Text = "Modificar ROL";
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // ModificacionesROL
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -132,14 +139,15 @@
             this.Controls.Add(this.cancelar);
             this.Controls.Add(this.aceptar);
             this.Controls.Add(this.checkedListBox1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBoxNombreROL);
             this.Controls.Add(this.FuncionalidadesNuevoROL);
             this.Controls.Add(this.nombreNuevoROL);
             this.Controls.Add(this.modificarROL);
             this.Controls.Add(this.nuevoROL);
             this.Name = "ModificacionesROL";
-            this.Text = "ModificacionesROL";
+            this.Text = "ROL | Modificaciones";
             this.Load += new System.EventHandler(this.ModificacionesROL_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -150,10 +158,11 @@
         private System.Windows.Forms.Label nuevoROL;
         private System.Windows.Forms.Label nombreNuevoROL;
         private System.Windows.Forms.Label FuncionalidadesNuevoROL;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxNombreROL;
         private System.Windows.Forms.CheckedListBox checkedListBox1;
         private System.Windows.Forms.Button aceptar;
         private System.Windows.Forms.Button cancelar;
         private System.Windows.Forms.Label modificarROL;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

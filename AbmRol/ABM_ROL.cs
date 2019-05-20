@@ -19,12 +19,16 @@ namespace FrbaCrucero.AbmRol
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            this.Close();
+            ModificacionesROL form = new ModificacionesROL();
+            form.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            this.Close();
+            ModificacionesROL form = new ModificacionesROL();
+            form.Show();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -40,8 +44,15 @@ namespace FrbaCrucero.AbmRol
         private void Form1_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'gD1C2019DataSet.Maestra' table. You can move, or remove it, as needed.
-            this.maestraTableAdapter.Fill(this.gD1C2019DataSet.Maestra);
+            //this.maestraTableAdapter.Fill(this.gD1C2019DataSet.Maestra);
 
+        }
+
+        private void atras_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Menu form = new Menu();
+            form.Show();
         }
 
         

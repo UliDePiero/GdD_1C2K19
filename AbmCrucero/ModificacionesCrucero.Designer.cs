@@ -47,9 +47,6 @@
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.tipoDeCabinas = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.gD1C2019DataSet = new FrbaCrucero.GD1C2019DataSet();
-            this.maestraBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.maestraTableAdapter = new FrbaCrucero.GD1C2019DataSetTableAdapters.MaestraTableAdapter();
             this.cLINOMBREDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cLIAPELLIDODataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cLIDNIDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -77,10 +74,13 @@
             this.rESERVACODIGODataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rESERVAFECHADataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.seleccionado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.maestraBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gD1C2019DataSet = new FrbaCrucero.GD1C2019DataSet();
+            this.maestraTableAdapter = new FrbaCrucero.GD1C2019DataSetTableAdapters.MaestraTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD1C2019DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maestraBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gD1C2019DataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // cancelar
@@ -91,6 +91,7 @@
             this.cancelar.TabIndex = 11;
             this.cancelar.Text = "Cancelar";
             this.cancelar.UseVisualStyleBackColor = true;
+            this.cancelar.Click += new System.EventHandler(this.cancelar_Click);
             // 
             // aceptar
             // 
@@ -100,6 +101,7 @@
             this.aceptar.TabIndex = 10;
             this.aceptar.Text = "Aceptar";
             this.aceptar.UseVisualStyleBackColor = true;
+            this.aceptar.Click += new System.EventHandler(this.aceptar_Click);
             // 
             // textBoxCrucero
             // 
@@ -279,20 +281,6 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(382, 150);
             this.dataGridView1.TabIndex = 19;
-            // 
-            // gD1C2019DataSet
-            // 
-            this.gD1C2019DataSet.DataSetName = "GD1C2019DataSet";
-            this.gD1C2019DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // maestraBindingSource
-            // 
-            this.maestraBindingSource.DataMember = "Maestra";
-            this.maestraBindingSource.DataSource = this.gD1C2019DataSet;
-            // 
-            // maestraTableAdapter
-            // 
-            this.maestraTableAdapter.ClearBeforeFill = true;
             // 
             // cLINOMBREDataGridViewTextBoxColumn
             // 
@@ -482,6 +470,20 @@
             this.seleccionado.Name = "seleccionado";
             this.seleccionado.ReadOnly = true;
             // 
+            // maestraBindingSource
+            // 
+            this.maestraBindingSource.DataMember = "Maestra";
+            this.maestraBindingSource.DataSource = this.gD1C2019DataSet;
+            // 
+            // gD1C2019DataSet
+            // 
+            this.gD1C2019DataSet.DataSetName = "GD1C2019DataSet";
+            this.gD1C2019DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // maestraTableAdapter
+            // 
+            this.maestraTableAdapter.ClearBeforeFill = true;
+            // 
             // ModificacionesCrucero
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -510,8 +512,8 @@
             this.Load += new System.EventHandler(this.ModificacionesCrucero_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD1C2019DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maestraBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gD1C2019DataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

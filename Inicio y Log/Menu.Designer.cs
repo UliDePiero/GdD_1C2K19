@@ -69,6 +69,7 @@
             this.salir.TabIndex = 1;
             this.salir.Text = "Salir";
             this.salir.UseVisualStyleBackColor = true;
+            this.salir.Click += new System.EventHandler(this.salir_Click);
             // 
             // ejecutar
             // 
@@ -78,6 +79,7 @@
             this.ejecutar.TabIndex = 1;
             this.ejecutar.Text = "Ejecutar";
             this.ejecutar.UseVisualStyleBackColor = true;
+            this.ejecutar.Click += new System.EventHandler(this.ejecutar_Click);
             // 
             // comboBoxFuncionalidades
             // 

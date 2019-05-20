@@ -16,5 +16,12 @@ namespace FrbaCrucero
         {
             InitializeComponent();
         }
+
+        private void ingresar_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Login form = new Login();
+            form.Show();
+        }
     }
 }

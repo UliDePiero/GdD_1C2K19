@@ -64,6 +64,7 @@
             this.iniciar.TabIndex = 2;
             this.iniciar.Text = "Iniciar";
             this.iniciar.UseVisualStyleBackColor = true;
+            this.iniciar.Click += new System.EventHandler(this.iniciar_Click);
             // 
             // textBoxContraseña
             // 

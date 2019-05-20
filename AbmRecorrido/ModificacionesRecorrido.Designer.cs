@@ -39,9 +39,6 @@
             this.textBoxPrecioRec = new System.Windows.Forms.TextBox();
             this.errorProviderCodigo = new System.Windows.Forms.ErrorProvider(this.components);
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.gD1C2019DataSet = new FrbaCrucero.GD1C2019DataSet();
-            this.maestraBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.maestraTableAdapter = new FrbaCrucero.GD1C2019DataSetTableAdapters.MaestraTableAdapter();
             this.cLINOMBREDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cLIAPELLIDODataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cLIDNIDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -68,14 +65,17 @@
             this.cRUFABRICANTEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rESERVACODIGODataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rESERVAFECHADataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tramosDelRecorrido = new System.Windows.Forms.Label();
             this.Seleccionado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.maestraBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gD1C2019DataSet = new FrbaCrucero.GD1C2019DataSet();
+            this.maestraTableAdapter = new FrbaCrucero.GD1C2019DataSetTableAdapters.MaestraTableAdapter();
+            this.tramosDelRecorrido = new System.Windows.Forms.Label();
             this.duracionRecorrido = new System.Windows.Forms.Label();
             this.textBoxDuracionRec = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderCodigo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD1C2019DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maestraBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gD1C2019DataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // nuevoRecorrido
@@ -125,6 +125,7 @@
             this.cancelar.TabIndex = 6;
             this.cancelar.Text = "Cancelar";
             this.cancelar.UseVisualStyleBackColor = true;
+            this.cancelar.Click += new System.EventHandler(this.cancelar_Click);
             // 
             // aceptar
             // 
@@ -134,6 +135,7 @@
             this.aceptar.TabIndex = 5;
             this.aceptar.Text = "Aceptar";
             this.aceptar.UseVisualStyleBackColor = true;
+            this.aceptar.Click += new System.EventHandler(this.aceptar_Click);
             // 
             // precioRecorrido
             // 
@@ -198,20 +200,6 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(520, 189);
             this.dataGridView1.TabIndex = 7;
-            // 
-            // gD1C2019DataSet
-            // 
-            this.gD1C2019DataSet.DataSetName = "GD1C2019DataSet";
-            this.gD1C2019DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // maestraBindingSource
-            // 
-            this.maestraBindingSource.DataMember = "Maestra";
-            this.maestraBindingSource.DataSource = this.gD1C2019DataSet;
-            // 
-            // maestraTableAdapter
-            // 
-            this.maestraTableAdapter.ClearBeforeFill = true;
             // 
             // cLINOMBREDataGridViewTextBoxColumn
             // 
@@ -395,6 +383,26 @@
             this.rESERVAFECHADataGridViewTextBoxColumn.Name = "rESERVAFECHADataGridViewTextBoxColumn";
             this.rESERVAFECHADataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // Seleccionado
+            // 
+            this.Seleccionado.HeaderText = "";
+            this.Seleccionado.Name = "Seleccionado";
+            this.Seleccionado.ReadOnly = true;
+            // 
+            // maestraBindingSource
+            // 
+            this.maestraBindingSource.DataMember = "Maestra";
+            this.maestraBindingSource.DataSource = this.gD1C2019DataSet;
+            // 
+            // gD1C2019DataSet
+            // 
+            this.gD1C2019DataSet.DataSetName = "GD1C2019DataSet";
+            this.gD1C2019DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // maestraTableAdapter
+            // 
+            this.maestraTableAdapter.ClearBeforeFill = true;
+            // 
             // tramosDelRecorrido
             // 
             this.tramosDelRecorrido.AutoSize = true;
@@ -404,12 +412,6 @@
             this.tramosDelRecorrido.Size = new System.Drawing.Size(145, 17);
             this.tramosDelRecorrido.TabIndex = 2;
             this.tramosDelRecorrido.Text = "Tramos del Recorrido";
-            // 
-            // Seleccionado
-            // 
-            this.Seleccionado.HeaderText = "";
-            this.Seleccionado.Name = "Seleccionado";
-            this.Seleccionado.ReadOnly = true;
             // 
             // duracionRecorrido
             // 
@@ -452,8 +454,8 @@
             this.Load += new System.EventHandler(this.ModificacionesRecorrido_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderCodigo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD1C2019DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maestraBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gD1C2019DataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

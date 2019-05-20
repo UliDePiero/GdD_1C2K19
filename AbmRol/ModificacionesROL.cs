@@ -26,5 +26,19 @@ namespace FrbaCrucero.AbmRol
         {
 
         }
+
+        private void aceptar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            ABM_ROL form = new ABM_ROL();
+            form.Show();
+        }
+
+        private void cancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            ABM_ROL form = new ABM_ROL();
+            form.Show();
+        }
     }
 }

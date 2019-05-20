@@ -57,6 +57,7 @@
             this.ingresar.TabIndex = 1;
             this.ingresar.Text = "Ingresar";
             this.ingresar.UseVisualStyleBackColor = true;
+            this.ingresar.Click += new System.EventHandler(this.ingresar_Click);
             // 
             // comboBoxRoles
             // 

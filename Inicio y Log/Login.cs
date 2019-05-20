@@ -16,5 +16,14 @@ namespace FrbaCrucero
         {
             InitializeComponent();
         }
+
+        private void iniciar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Menu form = new Menu();
+            form.Show();
+        }
+
+        
     }
 }

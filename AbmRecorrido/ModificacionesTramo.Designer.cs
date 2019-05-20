@@ -52,6 +52,7 @@
             this.cancelar.TabIndex = 9;
             this.cancelar.Text = "Cancelar";
             this.cancelar.UseVisualStyleBackColor = true;
+            this.cancelar.Click += new System.EventHandler(this.cancelar_Click);
             // 
             // aceptar
             // 
@@ -61,6 +62,7 @@
             this.aceptar.TabIndex = 8;
             this.aceptar.Text = "Aceptar";
             this.aceptar.UseVisualStyleBackColor = true;
+            this.aceptar.Click += new System.EventHandler(this.aceptar_Click);
             // 
             // nuevoTramo
             // 

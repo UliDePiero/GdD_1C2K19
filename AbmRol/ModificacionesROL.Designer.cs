@@ -107,6 +107,7 @@
             this.aceptar.TabIndex = 3;
             this.aceptar.Text = "Aceptar";
             this.aceptar.UseVisualStyleBackColor = true;
+            this.aceptar.Click += new System.EventHandler(this.aceptar_Click);
             // 
             // cancelar
             // 
@@ -116,6 +117,7 @@
             this.cancelar.TabIndex = 4;
             this.cancelar.Text = "Cancelar";
             this.cancelar.UseVisualStyleBackColor = true;
+            this.cancelar.Click += new System.EventHandler(this.cancelar_Click);
             // 
             // modificarROL
             // 

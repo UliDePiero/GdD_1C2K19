@@ -31,9 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.recorridosDisponibles = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.gD1C2019DataSet = new FrbaCrucero.GD1C2019DataSet();
-            this.maestraBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.maestraTableAdapter = new FrbaCrucero.GD1C2019DataSetTableAdapters.MaestraTableAdapter();
             this.cLINOMBREDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cLIAPELLIDODataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cLIDNIDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,16 +57,19 @@
             this.cRUFABRICANTEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rESERVACODIGODataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rESERVAFECHADataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Seleccionado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.maestraBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gD1C2019DataSet = new FrbaCrucero.GD1C2019DataSet();
+            this.maestraTableAdapter = new FrbaCrucero.GD1C2019DataSetTableAdapters.MaestraTableAdapter();
             this.atras = new System.Windows.Forms.Button();
             this.nuevoRecorrido = new System.Windows.Forms.Button();
             this.modificarRecorrido = new System.Windows.Forms.Button();
             this.eliminarRecorridos = new System.Windows.Forms.Button();
             this.funciones = new System.Windows.Forms.GroupBox();
-            this.Seleccionado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.editarTramos = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD1C2019DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maestraBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gD1C2019DataSet)).BeginInit();
             this.funciones.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -123,20 +123,6 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(525, 247);
             this.dataGridView1.TabIndex = 1;
-            // 
-            // gD1C2019DataSet
-            // 
-            this.gD1C2019DataSet.DataSetName = "GD1C2019DataSet";
-            this.gD1C2019DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // maestraBindingSource
-            // 
-            this.maestraBindingSource.DataMember = "Maestra";
-            this.maestraBindingSource.DataSource = this.gD1C2019DataSet;
-            // 
-            // maestraTableAdapter
-            // 
-            this.maestraTableAdapter.ClearBeforeFill = true;
             // 
             // cLINOMBREDataGridViewTextBoxColumn
             // 
@@ -320,6 +306,26 @@
             this.rESERVAFECHADataGridViewTextBoxColumn.Name = "rESERVAFECHADataGridViewTextBoxColumn";
             this.rESERVAFECHADataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // Seleccionado
+            // 
+            this.Seleccionado.HeaderText = "";
+            this.Seleccionado.Name = "Seleccionado";
+            this.Seleccionado.ReadOnly = true;
+            // 
+            // maestraBindingSource
+            // 
+            this.maestraBindingSource.DataMember = "Maestra";
+            this.maestraBindingSource.DataSource = this.gD1C2019DataSet;
+            // 
+            // gD1C2019DataSet
+            // 
+            this.gD1C2019DataSet.DataSetName = "GD1C2019DataSet";
+            this.gD1C2019DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // maestraTableAdapter
+            // 
+            this.maestraTableAdapter.ClearBeforeFill = true;
+            // 
             // atras
             // 
             this.atras.Location = new System.Drawing.Point(439, 363);
@@ -328,6 +334,7 @@
             this.atras.TabIndex = 7;
             this.atras.Text = "Atrás";
             this.atras.UseVisualStyleBackColor = true;
+            this.atras.Click += new System.EventHandler(this.atras_Click);
             // 
             // nuevoRecorrido
             // 
@@ -337,6 +344,7 @@
             this.nuevoRecorrido.TabIndex = 7;
             this.nuevoRecorrido.Text = "Nuevo Recorrido";
             this.nuevoRecorrido.UseVisualStyleBackColor = true;
+            this.nuevoRecorrido.Click += new System.EventHandler(this.nuevoRecorrido_Click);
             // 
             // modificarRecorrido
             // 
@@ -346,6 +354,7 @@
             this.modificarRecorrido.TabIndex = 7;
             this.modificarRecorrido.Text = "Modificar Recorrido";
             this.modificarRecorrido.UseVisualStyleBackColor = true;
+            this.modificarRecorrido.Click += new System.EventHandler(this.modificarRecorrido_Click);
             // 
             // eliminarRecorridos
             // 
@@ -369,12 +378,6 @@
             this.funciones.TabStop = false;
             this.funciones.Text = "Funciones";
             // 
-            // Seleccionado
-            // 
-            this.Seleccionado.HeaderText = "";
-            this.Seleccionado.Name = "Seleccionado";
-            this.Seleccionado.ReadOnly = true;
-            // 
             // editarTramos
             // 
             this.editarTramos.Location = new System.Drawing.Point(318, 33);
@@ -383,6 +386,7 @@
             this.editarTramos.TabIndex = 7;
             this.editarTramos.Text = "Editar Tramos";
             this.editarTramos.UseVisualStyleBackColor = true;
+            this.editarTramos.Click += new System.EventHandler(this.editarTramos_Click);
             // 
             // ABM_Recorrido
             // 
@@ -398,8 +402,8 @@
             this.Text = "Recorridos";
             this.Load += new System.EventHandler(this.ABM_Recorrido_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD1C2019DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maestraBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gD1C2019DataSet)).EndInit();
             this.funciones.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

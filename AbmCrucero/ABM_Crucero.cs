@@ -20,13 +20,34 @@ namespace FrbaCrucero.AbmCrucero
         private void ABM_Crucero_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'gD1C2019DataSet.Maestra' table. You can move, or remove it, as needed.
-            this.maestraTableAdapter.Fill(this.gD1C2019DataSet.Maestra);
+            //this.maestraTableAdapter.Fill(this.gD1C2019DataSet.Maestra);
 
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void nuevoCrucero_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ModificacionesCrucero form = new ModificacionesCrucero();
+            form.Show();
+        }
+
+        private void modificarCrucero_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ModificacionesCrucero form = new ModificacionesCrucero();
+            form.Show();
+        }
+
+        private void atras_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Menu form = new Menu();
+            form.Show();
         }
     }
 }

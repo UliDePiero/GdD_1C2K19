@@ -30,10 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.puertos = new System.Windows.Forms.Label();
-            this.gD1C2019DataSet = new FrbaCrucero.GD1C2019DataSet();
-            this.maestraBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.maestraTableAdapter = new FrbaCrucero.GD1C2019DataSetTableAdapters.MaestraTableAdapter();
             this.cLINOMBREDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cLIAPELLIDODataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cLIDNIDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,16 +56,18 @@
             this.cRUFABRICANTEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rESERVACODIGODataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rESERVAFECHADataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maestraBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gD1C2019DataSet = new FrbaCrucero.GD1C2019DataSet();
+            this.puertos = new System.Windows.Forms.Label();
+            this.maestraTableAdapter = new FrbaCrucero.GD1C2019DataSetTableAdapters.MaestraTableAdapter();
             this.atras = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD1C2019DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maestraBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gD1C2019DataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -102,33 +100,8 @@
             this.dataGridView1.DataSource = this.maestraBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(13, 50);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(259, 199);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // puertos
-            // 
-            this.puertos.AutoSize = true;
-            this.puertos.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.puertos.Location = new System.Drawing.Point(13, 13);
-            this.puertos.Name = "puertos";
-            this.puertos.Size = new System.Drawing.Size(108, 31);
-            this.puertos.TabIndex = 1;
-            this.puertos.Text = "Puertos";
-            // 
-            // gD1C2019DataSet
-            // 
-            this.gD1C2019DataSet.DataSetName = "GD1C2019DataSet";
-            this.gD1C2019DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // maestraBindingSource
-            // 
-            this.maestraBindingSource.DataMember = "Maestra";
-            this.maestraBindingSource.DataSource = this.gD1C2019DataSet;
-            // 
-            // maestraTableAdapter
-            // 
-            this.maestraTableAdapter.ClearBeforeFill = true;
             // 
             // cLINOMBREDataGridViewTextBoxColumn
             // 
@@ -312,6 +285,30 @@
             this.rESERVAFECHADataGridViewTextBoxColumn.Name = "rESERVAFECHADataGridViewTextBoxColumn";
             this.rESERVAFECHADataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // maestraBindingSource
+            // 
+            this.maestraBindingSource.DataMember = "Maestra";
+            this.maestraBindingSource.DataSource = this.gD1C2019DataSet;
+            // 
+            // gD1C2019DataSet
+            // 
+            this.gD1C2019DataSet.DataSetName = "GD1C2019DataSet";
+            this.gD1C2019DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // puertos
+            // 
+            this.puertos.AutoSize = true;
+            this.puertos.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.puertos.Location = new System.Drawing.Point(13, 13);
+            this.puertos.Name = "puertos";
+            this.puertos.Size = new System.Drawing.Size(108, 31);
+            this.puertos.TabIndex = 1;
+            this.puertos.Text = "Puertos";
+            // 
+            // maestraTableAdapter
+            // 
+            this.maestraTableAdapter.ClearBeforeFill = true;
+            // 
             // atras
             // 
             this.atras.Location = new System.Drawing.Point(291, 210);
@@ -320,6 +317,7 @@
             this.atras.TabIndex = 7;
             this.atras.Text = "Atrás";
             this.atras.UseVisualStyleBackColor = true;
+            this.atras.Click += new System.EventHandler(this.atras_Click);
             // 
             // ABM_Puerto
             // 
@@ -333,8 +331,8 @@
             this.Text = "Puertos";
             this.Load += new System.EventHandler(this.ABM_Puerto_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD1C2019DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maestraBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gD1C2019DataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

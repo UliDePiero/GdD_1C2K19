@@ -34,11 +34,6 @@
             this.eliminarTramo = new System.Windows.Forms.Button();
             this.modificarTramo = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.tramosDisponibles = new System.Windows.Forms.Label();
-            this.atras = new System.Windows.Forms.Button();
-            this.gD1C2019DataSet = new FrbaCrucero.GD1C2019DataSet();
-            this.maestraBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.maestraTableAdapter = new FrbaCrucero.GD1C2019DataSetTableAdapters.MaestraTableAdapter();
             this.cLINOMBREDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cLIAPELLIDODataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cLIDNIDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -66,10 +61,15 @@
             this.rESERVACODIGODataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rESERVAFECHADataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Seleccionado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.maestraBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gD1C2019DataSet = new FrbaCrucero.GD1C2019DataSet();
+            this.tramosDisponibles = new System.Windows.Forms.Label();
+            this.atras = new System.Windows.Forms.Button();
+            this.maestraTableAdapter = new FrbaCrucero.GD1C2019DataSetTableAdapters.MaestraTableAdapter();
             this.funciones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD1C2019DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maestraBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gD1C2019DataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // funciones
@@ -92,6 +92,7 @@
             this.nuevoTramo.TabIndex = 7;
             this.nuevoTramo.Text = "Nuevo Tramo";
             this.nuevoTramo.UseVisualStyleBackColor = true;
+            this.nuevoTramo.Click += new System.EventHandler(this.nuevoTramo_Click);
             // 
             // eliminarTramo
             // 
@@ -110,6 +111,7 @@
             this.modificarTramo.TabIndex = 7;
             this.modificarTramo.Text = "Modificar Tramo";
             this.modificarTramo.UseVisualStyleBackColor = true;
+            this.modificarTramo.Click += new System.EventHandler(this.modificarTramo_Click);
             // 
             // dataGridView1
             // 
@@ -151,39 +153,6 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(525, 247);
             this.dataGridView1.TabIndex = 10;
-            // 
-            // tramosDisponibles
-            // 
-            this.tramosDisponibles.AutoSize = true;
-            this.tramosDisponibles.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tramosDisponibles.Location = new System.Drawing.Point(12, 9);
-            this.tramosDisponibles.Name = "tramosDisponibles";
-            this.tramosDisponibles.Size = new System.Drawing.Size(249, 31);
-            this.tramosDisponibles.TabIndex = 9;
-            this.tramosDisponibles.Text = "Tramos disponibles";
-            // 
-            // atras
-            // 
-            this.atras.Location = new System.Drawing.Point(448, 363);
-            this.atras.Name = "atras";
-            this.atras.Size = new System.Drawing.Size(98, 39);
-            this.atras.TabIndex = 11;
-            this.atras.Text = "Atrás";
-            this.atras.UseVisualStyleBackColor = true;
-            // 
-            // gD1C2019DataSet
-            // 
-            this.gD1C2019DataSet.DataSetName = "GD1C2019DataSet";
-            this.gD1C2019DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // maestraBindingSource
-            // 
-            this.maestraBindingSource.DataMember = "Maestra";
-            this.maestraBindingSource.DataSource = this.gD1C2019DataSet;
-            // 
-            // maestraTableAdapter
-            // 
-            this.maestraTableAdapter.ClearBeforeFill = true;
             // 
             // cLINOMBREDataGridViewTextBoxColumn
             // 
@@ -373,6 +342,40 @@
             this.Seleccionado.Name = "Seleccionado";
             this.Seleccionado.ReadOnly = true;
             // 
+            // maestraBindingSource
+            // 
+            this.maestraBindingSource.DataMember = "Maestra";
+            this.maestraBindingSource.DataSource = this.gD1C2019DataSet;
+            // 
+            // gD1C2019DataSet
+            // 
+            this.gD1C2019DataSet.DataSetName = "GD1C2019DataSet";
+            this.gD1C2019DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tramosDisponibles
+            // 
+            this.tramosDisponibles.AutoSize = true;
+            this.tramosDisponibles.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tramosDisponibles.Location = new System.Drawing.Point(12, 9);
+            this.tramosDisponibles.Name = "tramosDisponibles";
+            this.tramosDisponibles.Size = new System.Drawing.Size(249, 31);
+            this.tramosDisponibles.TabIndex = 9;
+            this.tramosDisponibles.Text = "Tramos disponibles";
+            // 
+            // atras
+            // 
+            this.atras.Location = new System.Drawing.Point(448, 363);
+            this.atras.Name = "atras";
+            this.atras.Size = new System.Drawing.Size(98, 39);
+            this.atras.TabIndex = 11;
+            this.atras.Text = "Atrás";
+            this.atras.UseVisualStyleBackColor = true;
+            this.atras.Click += new System.EventHandler(this.atras_Click);
+            // 
+            // maestraTableAdapter
+            // 
+            this.maestraTableAdapter.ClearBeforeFill = true;
+            // 
             // ABM_Tramo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -387,8 +390,8 @@
             this.Load += new System.EventHandler(this.ABM_Tramo_Load);
             this.funciones.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD1C2019DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maestraBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gD1C2019DataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -36,13 +36,6 @@
             this.mostrar_ocuRol = new System.Windows.Forms.Button();
             this.atras = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.funcionalidades = new System.Windows.Forms.Label();
-            this.gD1C2019DataSet = new FrbaCrucero.GD1C2019DataSet();
-            this.maestraBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.maestraTableAdapter = new FrbaCrucero.GD1C2019DataSetTableAdapters.MaestraTableAdapter();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.maestraBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.cLINOMBREDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cLIAPELLIDODataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cLIDNIDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -69,6 +62,9 @@
             this.cRUFABRICANTEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rESERVACODIGODataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rESERVAFECHADataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maestraBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gD1C2019DataSet = new FrbaCrucero.GD1C2019DataSet();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.cLINOMBREDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cLIAPELLIDODataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cLIDNIDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -95,10 +91,14 @@
             this.cRUFABRICANTEDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rESERVACODIGODataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rESERVAFECHADataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.funcionalidades = new System.Windows.Forms.Label();
+            this.maestraTableAdapter = new FrbaCrucero.GD1C2019DataSetTableAdapters.MaestraTableAdapter();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.maestraBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD1C2019DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maestraBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gD1C2019DataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.maestraBindingSource1)).BeginInit();
             this.SuspendLayout();
@@ -161,6 +161,7 @@
             this.atras.TabIndex = 6;
             this.atras.Text = "Atrás";
             this.atras.UseVisualStyleBackColor = true;
+            this.atras.Click += new System.EventHandler(this.atras_Click);
             // 
             // dataGridView1
             // 
@@ -201,87 +202,6 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(240, 327);
             this.dataGridView1.TabIndex = 8;
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.AllowUserToAddRows = false;
-            this.dataGridView2.AllowUserToDeleteRows = false;
-            this.dataGridView2.AutoGenerateColumns = false;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cLINOMBREDataGridViewTextBoxColumn1,
-            this.cLIAPELLIDODataGridViewTextBoxColumn1,
-            this.cLIDNIDataGridViewTextBoxColumn1,
-            this.cLIDIRECCIONDataGridViewTextBoxColumn1,
-            this.cLITELEFONODataGridViewTextBoxColumn1,
-            this.cLIMAILDataGridViewTextBoxColumn1,
-            this.cLIFECHANACDataGridViewTextBoxColumn1,
-            this.pASAJECODIGODataGridViewTextBoxColumn1,
-            this.pASAJEPRECIODataGridViewTextBoxColumn1,
-            this.pASAJEFECHACOMPRADataGridViewTextBoxColumn1,
-            this.fECHASALIDADataGridViewTextBoxColumn1,
-            this.fECHALLEGADADataGridViewTextBoxColumn1,
-            this.fECHALLEGADAESTIMADADataGridViewTextBoxColumn1,
-            this.rECORRIDOCODIGODataGridViewTextBoxColumn1,
-            this.rECORRIDOPRECIOBASEDataGridViewTextBoxColumn1,
-            this.pUERTODESDEDataGridViewTextBoxColumn1,
-            this.pUERTOHASTADataGridViewTextBoxColumn1,
-            this.cABINANRODataGridViewTextBoxColumn1,
-            this.cABINAPISODataGridViewTextBoxColumn1,
-            this.cRUCEROMODELODataGridViewTextBoxColumn1,
-            this.cRUCEROIDENTIFICADORDataGridViewTextBoxColumn1,
-            this.cABINATIPODataGridViewTextBoxColumn1,
-            this.cABINATIPOPORCRECARGODataGridViewTextBoxColumn1,
-            this.cRUFABRICANTEDataGridViewTextBoxColumn1,
-            this.rESERVACODIGODataGridViewTextBoxColumn1,
-            this.rESERVAFECHADataGridViewTextBoxColumn1});
-            this.dataGridView2.DataSource = this.maestraBindingSource;
-            this.dataGridView2.Location = new System.Drawing.Point(496, 66);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.Size = new System.Drawing.Size(240, 327);
-            this.dataGridView2.TabIndex = 9;
-            // 
-            // funcionalidades
-            // 
-            this.funcionalidades.AutoSize = true;
-            this.funcionalidades.Font = new System.Drawing.Font("Microsoft Sans Serif", 23F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.funcionalidades.Location = new System.Drawing.Point(498, 11);
-            this.funcionalidades.Name = "funcionalidades";
-            this.funcionalidades.Size = new System.Drawing.Size(240, 35);
-            this.funcionalidades.TabIndex = 0;
-            this.funcionalidades.Text = "Funcionalidades";
-            // 
-            // gD1C2019DataSet
-            // 
-            this.gD1C2019DataSet.DataSetName = "GD1C2019DataSet";
-            this.gD1C2019DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // maestraBindingSource
-            // 
-            this.maestraBindingSource.DataMember = "Maestra";
-            this.maestraBindingSource.DataSource = this.gD1C2019DataSet;
-            // 
-            // maestraTableAdapter
-            // 
-            this.maestraTableAdapter.ClearBeforeFill = true;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.nuevoRol);
-            this.groupBox1.Controls.Add(this.modificarRol);
-            this.groupBox1.Controls.Add(this.habilitar_desRol);
-            this.groupBox1.Controls.Add(this.mostrar_ocuRol);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(189, 389);
-            this.groupBox1.TabIndex = 10;
-            this.groupBox1.TabStop = false;
-            // 
-            // maestraBindingSource1
-            // 
-            this.maestraBindingSource1.DataMember = "Maestra";
-            this.maestraBindingSource1.DataSource = this.gD1C2019DataSet;
             // 
             // cLINOMBREDataGridViewTextBoxColumn
             // 
@@ -465,6 +385,56 @@
             this.rESERVAFECHADataGridViewTextBoxColumn.Name = "rESERVAFECHADataGridViewTextBoxColumn";
             this.rESERVAFECHADataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // maestraBindingSource
+            // 
+            this.maestraBindingSource.DataMember = "Maestra";
+            this.maestraBindingSource.DataSource = this.gD1C2019DataSet;
+            // 
+            // gD1C2019DataSet
+            // 
+            this.gD1C2019DataSet.DataSetName = "GD1C2019DataSet";
+            this.gD1C2019DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.AllowUserToDeleteRows = false;
+            this.dataGridView2.AutoGenerateColumns = false;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.cLINOMBREDataGridViewTextBoxColumn1,
+            this.cLIAPELLIDODataGridViewTextBoxColumn1,
+            this.cLIDNIDataGridViewTextBoxColumn1,
+            this.cLIDIRECCIONDataGridViewTextBoxColumn1,
+            this.cLITELEFONODataGridViewTextBoxColumn1,
+            this.cLIMAILDataGridViewTextBoxColumn1,
+            this.cLIFECHANACDataGridViewTextBoxColumn1,
+            this.pASAJECODIGODataGridViewTextBoxColumn1,
+            this.pASAJEPRECIODataGridViewTextBoxColumn1,
+            this.pASAJEFECHACOMPRADataGridViewTextBoxColumn1,
+            this.fECHASALIDADataGridViewTextBoxColumn1,
+            this.fECHALLEGADADataGridViewTextBoxColumn1,
+            this.fECHALLEGADAESTIMADADataGridViewTextBoxColumn1,
+            this.rECORRIDOCODIGODataGridViewTextBoxColumn1,
+            this.rECORRIDOPRECIOBASEDataGridViewTextBoxColumn1,
+            this.pUERTODESDEDataGridViewTextBoxColumn1,
+            this.pUERTOHASTADataGridViewTextBoxColumn1,
+            this.cABINANRODataGridViewTextBoxColumn1,
+            this.cABINAPISODataGridViewTextBoxColumn1,
+            this.cRUCEROMODELODataGridViewTextBoxColumn1,
+            this.cRUCEROIDENTIFICADORDataGridViewTextBoxColumn1,
+            this.cABINATIPODataGridViewTextBoxColumn1,
+            this.cABINATIPOPORCRECARGODataGridViewTextBoxColumn1,
+            this.cRUFABRICANTEDataGridViewTextBoxColumn1,
+            this.rESERVACODIGODataGridViewTextBoxColumn1,
+            this.rESERVAFECHADataGridViewTextBoxColumn1});
+            this.dataGridView2.DataSource = this.maestraBindingSource;
+            this.dataGridView2.Location = new System.Drawing.Point(496, 66);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.ReadOnly = true;
+            this.dataGridView2.Size = new System.Drawing.Size(240, 327);
+            this.dataGridView2.TabIndex = 9;
+            // 
             // cLINOMBREDataGridViewTextBoxColumn1
             // 
             this.cLINOMBREDataGridViewTextBoxColumn1.DataPropertyName = "CLI_NOMBRE";
@@ -647,6 +617,37 @@
             this.rESERVAFECHADataGridViewTextBoxColumn1.Name = "rESERVAFECHADataGridViewTextBoxColumn1";
             this.rESERVAFECHADataGridViewTextBoxColumn1.ReadOnly = true;
             // 
+            // funcionalidades
+            // 
+            this.funcionalidades.AutoSize = true;
+            this.funcionalidades.Font = new System.Drawing.Font("Microsoft Sans Serif", 23F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.funcionalidades.Location = new System.Drawing.Point(498, 11);
+            this.funcionalidades.Name = "funcionalidades";
+            this.funcionalidades.Size = new System.Drawing.Size(240, 35);
+            this.funcionalidades.TabIndex = 0;
+            this.funcionalidades.Text = "Funcionalidades";
+            // 
+            // maestraTableAdapter
+            // 
+            this.maestraTableAdapter.ClearBeforeFill = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.nuevoRol);
+            this.groupBox1.Controls.Add(this.modificarRol);
+            this.groupBox1.Controls.Add(this.habilitar_desRol);
+            this.groupBox1.Controls.Add(this.mostrar_ocuRol);
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(189, 389);
+            this.groupBox1.TabIndex = 10;
+            this.groupBox1.TabStop = false;
+            // 
+            // maestraBindingSource1
+            // 
+            this.maestraBindingSource1.DataMember = "Maestra";
+            this.maestraBindingSource1.DataSource = this.gD1C2019DataSet;
+            // 
             // ABM_ROL
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -662,9 +663,9 @@
             this.Text = "ROL";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD1C2019DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maestraBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gD1C2019DataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.maestraBindingSource1)).EndInit();
             this.ResumeLayout(false);

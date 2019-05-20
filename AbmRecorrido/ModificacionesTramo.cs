@@ -16,5 +16,19 @@ namespace FrbaCrucero.AbmRecorrido
         {
             InitializeComponent();
         }
+
+        private void aceptar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            ABM_Tramo form = new ABM_Tramo();
+            form.Show();
+        }
+
+        private void cancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            ABM_Tramo form = new ABM_Tramo();
+            form.Show();
+        }
     }
 }

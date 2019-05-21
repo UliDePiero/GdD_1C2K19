@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FrbaCrucero.BD_y_Querys;
 
 namespace FrbaCrucero.AbmPuerto
 {
@@ -21,7 +22,7 @@ namespace FrbaCrucero.AbmPuerto
         {
             // TODO: This line of code loads data into the 'gD1C2019DataSet.Maestra' table. You can move, or remove it, as needed.
             //this.maestraTableAdapter.Fill(this.gD1C2019DataSet.Maestra);
-
+            ROL_BD.cargar_grilla_roles(dataGridView1, true);
         }
 
         private void atras_Click(object sender, EventArgs e)

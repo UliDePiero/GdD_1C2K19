@@ -33,6 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -98,6 +99,8 @@
     <Compile Include="AbmRol\ModificacionesROL.Designer.cs">
       <DependentUpon>ModificacionesROL.cs</DependentUpon>
     </Compile>
+    <Compile Include="BD y Querys\DBConnection.cs" />
+    <Compile Include="BD y Querys\ROL_BD.cs" />
     <Compile Include="CompraReservaPasaje\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -221,9 +224,7 @@
     <None Include="Imagenes\INICIO.png" />
     <Content Include="Inicio y Log\INICIO.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BD y Querys\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -132,7 +132,6 @@
             this.Seleccionado});
             this.dataGridView1.Location = new System.Drawing.Point(21, 62);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(675, 247);
             this.dataGridView1.TabIndex = 10;
             // 
@@ -140,7 +139,6 @@
             // 
             this.Seleccionado.HeaderText = "";
             this.Seleccionado.Name = "Seleccionado";
-            this.Seleccionado.ReadOnly = true;
             // 
             // maestraBindingSource
             // 

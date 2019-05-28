@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FrbaCrucero.BD_y_Querys;
 
 namespace FrbaCrucero.AbmCrucero
 {
@@ -19,9 +20,7 @@ namespace FrbaCrucero.AbmCrucero
 
         private void ABM_Crucero_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'gD1C2019DataSet.Maestra' table. You can move, or remove it, as needed.
-            //this.maestraTableAdapter.Fill(this.gD1C2019DataSet.Maestra);
-
+            Crucero_BD.cargar_grilla_cruceros(dataGridView1);
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)

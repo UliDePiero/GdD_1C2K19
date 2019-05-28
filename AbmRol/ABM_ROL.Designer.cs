@@ -36,35 +36,10 @@
             this.mostrar_ocuRol = new System.Windows.Forms.Button();
             this.atras = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.seleccionado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.maestraBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gD1C2019DataSet = new FrbaCrucero.GD1C2019DataSet();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.cLINOMBREDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cLIAPELLIDODataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cLIDNIDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cLIDIRECCIONDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cLITELEFONODataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cLIMAILDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cLIFECHANACDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pASAJECODIGODataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pASAJEPRECIODataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pASAJEFECHACOMPRADataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fECHASALIDADataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fECHALLEGADADataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fECHALLEGADAESTIMADADataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rECORRIDOCODIGODataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rECORRIDOPRECIOBASEDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pUERTODESDEDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pUERTOHASTADataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cABINANRODataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cABINAPISODataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cRUCEROMODELODataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cRUCEROIDENTIFICADORDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cABINATIPODataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cABINATIPOPORCRECARGODataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cRUFABRICANTEDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rESERVACODIGODataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rESERVAFECHADataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.funcionalidades = new System.Windows.Forms.Label();
             this.maestraTableAdapter = new FrbaCrucero.GD1C2019DataSetTableAdapters.MaestraTableAdapter();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -129,7 +104,7 @@
             // 
             // atras
             // 
-            this.atras.Location = new System.Drawing.Point(751, 354);
+            this.atras.Location = new System.Drawing.Point(978, 354);
             this.atras.Name = "atras";
             this.atras.Size = new System.Drawing.Size(98, 39);
             this.atras.TabIndex = 6;
@@ -142,11 +117,18 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.seleccionado});
             this.dataGridView1.Location = new System.Drawing.Point(216, 66);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(240, 327);
+            this.dataGridView1.Size = new System.Drawing.Size(442, 327);
             this.dataGridView1.TabIndex = 8;
+            // 
+            // seleccionado
+            // 
+            this.seleccionado.HeaderText = "";
+            this.seleccionado.Name = "seleccionado";
+            this.seleccionado.ReadOnly = true;
             // 
             // maestraBindingSource
             // 
@@ -162,229 +144,18 @@
             // 
             this.dataGridView2.AllowUserToAddRows = false;
             this.dataGridView2.AllowUserToDeleteRows = false;
-            this.dataGridView2.AutoGenerateColumns = false;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cLINOMBREDataGridViewTextBoxColumn1,
-            this.cLIAPELLIDODataGridViewTextBoxColumn1,
-            this.cLIDNIDataGridViewTextBoxColumn1,
-            this.cLIDIRECCIONDataGridViewTextBoxColumn1,
-            this.cLITELEFONODataGridViewTextBoxColumn1,
-            this.cLIMAILDataGridViewTextBoxColumn1,
-            this.cLIFECHANACDataGridViewTextBoxColumn1,
-            this.pASAJECODIGODataGridViewTextBoxColumn1,
-            this.pASAJEPRECIODataGridViewTextBoxColumn1,
-            this.pASAJEFECHACOMPRADataGridViewTextBoxColumn1,
-            this.fECHASALIDADataGridViewTextBoxColumn1,
-            this.fECHALLEGADADataGridViewTextBoxColumn1,
-            this.fECHALLEGADAESTIMADADataGridViewTextBoxColumn1,
-            this.rECORRIDOCODIGODataGridViewTextBoxColumn1,
-            this.rECORRIDOPRECIOBASEDataGridViewTextBoxColumn1,
-            this.pUERTODESDEDataGridViewTextBoxColumn1,
-            this.pUERTOHASTADataGridViewTextBoxColumn1,
-            this.cABINANRODataGridViewTextBoxColumn1,
-            this.cABINAPISODataGridViewTextBoxColumn1,
-            this.cRUCEROMODELODataGridViewTextBoxColumn1,
-            this.cRUCEROIDENTIFICADORDataGridViewTextBoxColumn1,
-            this.cABINATIPODataGridViewTextBoxColumn1,
-            this.cABINATIPOPORCRECARGODataGridViewTextBoxColumn1,
-            this.cRUFABRICANTEDataGridViewTextBoxColumn1,
-            this.rESERVACODIGODataGridViewTextBoxColumn1,
-            this.rESERVAFECHADataGridViewTextBoxColumn1});
-            this.dataGridView2.DataSource = this.maestraBindingSource;
-            this.dataGridView2.Location = new System.Drawing.Point(496, 66);
+            this.dataGridView2.Location = new System.Drawing.Point(682, 66);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.Size = new System.Drawing.Size(240, 327);
+            this.dataGridView2.Size = new System.Drawing.Size(290, 327);
             this.dataGridView2.TabIndex = 9;
-            // 
-            // cLINOMBREDataGridViewTextBoxColumn1
-            // 
-            this.cLINOMBREDataGridViewTextBoxColumn1.DataPropertyName = "CLI_NOMBRE";
-            this.cLINOMBREDataGridViewTextBoxColumn1.HeaderText = "CLI_NOMBRE";
-            this.cLINOMBREDataGridViewTextBoxColumn1.Name = "cLINOMBREDataGridViewTextBoxColumn1";
-            this.cLINOMBREDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // cLIAPELLIDODataGridViewTextBoxColumn1
-            // 
-            this.cLIAPELLIDODataGridViewTextBoxColumn1.DataPropertyName = "CLI_APELLIDO";
-            this.cLIAPELLIDODataGridViewTextBoxColumn1.HeaderText = "CLI_APELLIDO";
-            this.cLIAPELLIDODataGridViewTextBoxColumn1.Name = "cLIAPELLIDODataGridViewTextBoxColumn1";
-            this.cLIAPELLIDODataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // cLIDNIDataGridViewTextBoxColumn1
-            // 
-            this.cLIDNIDataGridViewTextBoxColumn1.DataPropertyName = "CLI_DNI";
-            this.cLIDNIDataGridViewTextBoxColumn1.HeaderText = "CLI_DNI";
-            this.cLIDNIDataGridViewTextBoxColumn1.Name = "cLIDNIDataGridViewTextBoxColumn1";
-            this.cLIDNIDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // cLIDIRECCIONDataGridViewTextBoxColumn1
-            // 
-            this.cLIDIRECCIONDataGridViewTextBoxColumn1.DataPropertyName = "CLI_DIRECCION";
-            this.cLIDIRECCIONDataGridViewTextBoxColumn1.HeaderText = "CLI_DIRECCION";
-            this.cLIDIRECCIONDataGridViewTextBoxColumn1.Name = "cLIDIRECCIONDataGridViewTextBoxColumn1";
-            this.cLIDIRECCIONDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // cLITELEFONODataGridViewTextBoxColumn1
-            // 
-            this.cLITELEFONODataGridViewTextBoxColumn1.DataPropertyName = "CLI_TELEFONO";
-            this.cLITELEFONODataGridViewTextBoxColumn1.HeaderText = "CLI_TELEFONO";
-            this.cLITELEFONODataGridViewTextBoxColumn1.Name = "cLITELEFONODataGridViewTextBoxColumn1";
-            this.cLITELEFONODataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // cLIMAILDataGridViewTextBoxColumn1
-            // 
-            this.cLIMAILDataGridViewTextBoxColumn1.DataPropertyName = "CLI_MAIL";
-            this.cLIMAILDataGridViewTextBoxColumn1.HeaderText = "CLI_MAIL";
-            this.cLIMAILDataGridViewTextBoxColumn1.Name = "cLIMAILDataGridViewTextBoxColumn1";
-            this.cLIMAILDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // cLIFECHANACDataGridViewTextBoxColumn1
-            // 
-            this.cLIFECHANACDataGridViewTextBoxColumn1.DataPropertyName = "CLI_FECHA_NAC";
-            this.cLIFECHANACDataGridViewTextBoxColumn1.HeaderText = "CLI_FECHA_NAC";
-            this.cLIFECHANACDataGridViewTextBoxColumn1.Name = "cLIFECHANACDataGridViewTextBoxColumn1";
-            this.cLIFECHANACDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // pASAJECODIGODataGridViewTextBoxColumn1
-            // 
-            this.pASAJECODIGODataGridViewTextBoxColumn1.DataPropertyName = "PASAJE_CODIGO";
-            this.pASAJECODIGODataGridViewTextBoxColumn1.HeaderText = "PASAJE_CODIGO";
-            this.pASAJECODIGODataGridViewTextBoxColumn1.Name = "pASAJECODIGODataGridViewTextBoxColumn1";
-            this.pASAJECODIGODataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // pASAJEPRECIODataGridViewTextBoxColumn1
-            // 
-            this.pASAJEPRECIODataGridViewTextBoxColumn1.DataPropertyName = "PASAJE_PRECIO";
-            this.pASAJEPRECIODataGridViewTextBoxColumn1.HeaderText = "PASAJE_PRECIO";
-            this.pASAJEPRECIODataGridViewTextBoxColumn1.Name = "pASAJEPRECIODataGridViewTextBoxColumn1";
-            this.pASAJEPRECIODataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // pASAJEFECHACOMPRADataGridViewTextBoxColumn1
-            // 
-            this.pASAJEFECHACOMPRADataGridViewTextBoxColumn1.DataPropertyName = "PASAJE_FECHA_COMPRA";
-            this.pASAJEFECHACOMPRADataGridViewTextBoxColumn1.HeaderText = "PASAJE_FECHA_COMPRA";
-            this.pASAJEFECHACOMPRADataGridViewTextBoxColumn1.Name = "pASAJEFECHACOMPRADataGridViewTextBoxColumn1";
-            this.pASAJEFECHACOMPRADataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // fECHASALIDADataGridViewTextBoxColumn1
-            // 
-            this.fECHASALIDADataGridViewTextBoxColumn1.DataPropertyName = "FECHA_SALIDA";
-            this.fECHASALIDADataGridViewTextBoxColumn1.HeaderText = "FECHA_SALIDA";
-            this.fECHASALIDADataGridViewTextBoxColumn1.Name = "fECHASALIDADataGridViewTextBoxColumn1";
-            this.fECHASALIDADataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // fECHALLEGADADataGridViewTextBoxColumn1
-            // 
-            this.fECHALLEGADADataGridViewTextBoxColumn1.DataPropertyName = "FECHA_LLEGADA";
-            this.fECHALLEGADADataGridViewTextBoxColumn1.HeaderText = "FECHA_LLEGADA";
-            this.fECHALLEGADADataGridViewTextBoxColumn1.Name = "fECHALLEGADADataGridViewTextBoxColumn1";
-            this.fECHALLEGADADataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // fECHALLEGADAESTIMADADataGridViewTextBoxColumn1
-            // 
-            this.fECHALLEGADAESTIMADADataGridViewTextBoxColumn1.DataPropertyName = "FECHA_LLEGADA_ESTIMADA";
-            this.fECHALLEGADAESTIMADADataGridViewTextBoxColumn1.HeaderText = "FECHA_LLEGADA_ESTIMADA";
-            this.fECHALLEGADAESTIMADADataGridViewTextBoxColumn1.Name = "fECHALLEGADAESTIMADADataGridViewTextBoxColumn1";
-            this.fECHALLEGADAESTIMADADataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // rECORRIDOCODIGODataGridViewTextBoxColumn1
-            // 
-            this.rECORRIDOCODIGODataGridViewTextBoxColumn1.DataPropertyName = "RECORRIDO_CODIGO";
-            this.rECORRIDOCODIGODataGridViewTextBoxColumn1.HeaderText = "RECORRIDO_CODIGO";
-            this.rECORRIDOCODIGODataGridViewTextBoxColumn1.Name = "rECORRIDOCODIGODataGridViewTextBoxColumn1";
-            this.rECORRIDOCODIGODataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // rECORRIDOPRECIOBASEDataGridViewTextBoxColumn1
-            // 
-            this.rECORRIDOPRECIOBASEDataGridViewTextBoxColumn1.DataPropertyName = "RECORRIDO_PRECIO_BASE";
-            this.rECORRIDOPRECIOBASEDataGridViewTextBoxColumn1.HeaderText = "RECORRIDO_PRECIO_BASE";
-            this.rECORRIDOPRECIOBASEDataGridViewTextBoxColumn1.Name = "rECORRIDOPRECIOBASEDataGridViewTextBoxColumn1";
-            this.rECORRIDOPRECIOBASEDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // pUERTODESDEDataGridViewTextBoxColumn1
-            // 
-            this.pUERTODESDEDataGridViewTextBoxColumn1.DataPropertyName = "PUERTO_DESDE";
-            this.pUERTODESDEDataGridViewTextBoxColumn1.HeaderText = "PUERTO_DESDE";
-            this.pUERTODESDEDataGridViewTextBoxColumn1.Name = "pUERTODESDEDataGridViewTextBoxColumn1";
-            this.pUERTODESDEDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // pUERTOHASTADataGridViewTextBoxColumn1
-            // 
-            this.pUERTOHASTADataGridViewTextBoxColumn1.DataPropertyName = "PUERTO_HASTA";
-            this.pUERTOHASTADataGridViewTextBoxColumn1.HeaderText = "PUERTO_HASTA";
-            this.pUERTOHASTADataGridViewTextBoxColumn1.Name = "pUERTOHASTADataGridViewTextBoxColumn1";
-            this.pUERTOHASTADataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // cABINANRODataGridViewTextBoxColumn1
-            // 
-            this.cABINANRODataGridViewTextBoxColumn1.DataPropertyName = "CABINA_NRO";
-            this.cABINANRODataGridViewTextBoxColumn1.HeaderText = "CABINA_NRO";
-            this.cABINANRODataGridViewTextBoxColumn1.Name = "cABINANRODataGridViewTextBoxColumn1";
-            this.cABINANRODataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // cABINAPISODataGridViewTextBoxColumn1
-            // 
-            this.cABINAPISODataGridViewTextBoxColumn1.DataPropertyName = "CABINA_PISO";
-            this.cABINAPISODataGridViewTextBoxColumn1.HeaderText = "CABINA_PISO";
-            this.cABINAPISODataGridViewTextBoxColumn1.Name = "cABINAPISODataGridViewTextBoxColumn1";
-            this.cABINAPISODataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // cRUCEROMODELODataGridViewTextBoxColumn1
-            // 
-            this.cRUCEROMODELODataGridViewTextBoxColumn1.DataPropertyName = "CRUCERO_MODELO";
-            this.cRUCEROMODELODataGridViewTextBoxColumn1.HeaderText = "CRUCERO_MODELO";
-            this.cRUCEROMODELODataGridViewTextBoxColumn1.Name = "cRUCEROMODELODataGridViewTextBoxColumn1";
-            this.cRUCEROMODELODataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // cRUCEROIDENTIFICADORDataGridViewTextBoxColumn1
-            // 
-            this.cRUCEROIDENTIFICADORDataGridViewTextBoxColumn1.DataPropertyName = "CRUCERO_IDENTIFICADOR";
-            this.cRUCEROIDENTIFICADORDataGridViewTextBoxColumn1.HeaderText = "CRUCERO_IDENTIFICADOR";
-            this.cRUCEROIDENTIFICADORDataGridViewTextBoxColumn1.Name = "cRUCEROIDENTIFICADORDataGridViewTextBoxColumn1";
-            this.cRUCEROIDENTIFICADORDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // cABINATIPODataGridViewTextBoxColumn1
-            // 
-            this.cABINATIPODataGridViewTextBoxColumn1.DataPropertyName = "CABINA_TIPO";
-            this.cABINATIPODataGridViewTextBoxColumn1.HeaderText = "CABINA_TIPO";
-            this.cABINATIPODataGridViewTextBoxColumn1.Name = "cABINATIPODataGridViewTextBoxColumn1";
-            this.cABINATIPODataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // cABINATIPOPORCRECARGODataGridViewTextBoxColumn1
-            // 
-            this.cABINATIPOPORCRECARGODataGridViewTextBoxColumn1.DataPropertyName = "CABINA_TIPO_PORC_RECARGO";
-            this.cABINATIPOPORCRECARGODataGridViewTextBoxColumn1.HeaderText = "CABINA_TIPO_PORC_RECARGO";
-            this.cABINATIPOPORCRECARGODataGridViewTextBoxColumn1.Name = "cABINATIPOPORCRECARGODataGridViewTextBoxColumn1";
-            this.cABINATIPOPORCRECARGODataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // cRUFABRICANTEDataGridViewTextBoxColumn1
-            // 
-            this.cRUFABRICANTEDataGridViewTextBoxColumn1.DataPropertyName = "CRU_FABRICANTE";
-            this.cRUFABRICANTEDataGridViewTextBoxColumn1.HeaderText = "CRU_FABRICANTE";
-            this.cRUFABRICANTEDataGridViewTextBoxColumn1.Name = "cRUFABRICANTEDataGridViewTextBoxColumn1";
-            this.cRUFABRICANTEDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // rESERVACODIGODataGridViewTextBoxColumn1
-            // 
-            this.rESERVACODIGODataGridViewTextBoxColumn1.DataPropertyName = "RESERVA_CODIGO";
-            this.rESERVACODIGODataGridViewTextBoxColumn1.HeaderText = "RESERVA_CODIGO";
-            this.rESERVACODIGODataGridViewTextBoxColumn1.Name = "rESERVACODIGODataGridViewTextBoxColumn1";
-            this.rESERVACODIGODataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // rESERVAFECHADataGridViewTextBoxColumn1
-            // 
-            this.rESERVAFECHADataGridViewTextBoxColumn1.DataPropertyName = "RESERVA_FECHA";
-            this.rESERVAFECHADataGridViewTextBoxColumn1.HeaderText = "RESERVA_FECHA";
-            this.rESERVAFECHADataGridViewTextBoxColumn1.Name = "rESERVAFECHADataGridViewTextBoxColumn1";
-            this.rESERVAFECHADataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // funcionalidades
             // 
             this.funcionalidades.AutoSize = true;
             this.funcionalidades.Font = new System.Drawing.Font("Microsoft Sans Serif", 23F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.funcionalidades.Location = new System.Drawing.Point(498, 11);
+            this.funcionalidades.Location = new System.Drawing.Point(707, 9);
             this.funcionalidades.Name = "funcionalidades";
             this.funcionalidades.Size = new System.Drawing.Size(240, 35);
             this.funcionalidades.TabIndex = 0;
@@ -415,7 +186,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(861, 413);
+            this.ClientSize = new System.Drawing.Size(1094, 413);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.dataGridView1);
@@ -451,33 +222,8 @@
         private System.Windows.Forms.BindingSource maestraBindingSource;
         private GD1C2019DataSetTableAdapters.MaestraTableAdapter maestraTableAdapter;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cLINOMBREDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cLIAPELLIDODataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cLIDNIDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cLIDIRECCIONDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cLITELEFONODataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cLIMAILDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cLIFECHANACDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pASAJECODIGODataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pASAJEPRECIODataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pASAJEFECHACOMPRADataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fECHASALIDADataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fECHALLEGADADataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fECHALLEGADAESTIMADADataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn rECORRIDOCODIGODataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn rECORRIDOPRECIOBASEDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pUERTODESDEDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pUERTOHASTADataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cABINANRODataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cABINAPISODataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cRUCEROMODELODataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cRUCEROIDENTIFICADORDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cABINATIPODataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cABINATIPOPORCRECARGODataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cRUFABRICANTEDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn rESERVACODIGODataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn rESERVAFECHADataGridViewTextBoxColumn1;
         private System.Windows.Forms.BindingSource maestraBindingSource1;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn seleccionado;
 
     }
 }

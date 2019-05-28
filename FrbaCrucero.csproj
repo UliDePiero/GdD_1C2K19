@@ -99,13 +99,22 @@
     <Compile Include="AbmRol\ModificacionesROL.Designer.cs">
       <DependentUpon>ModificacionesROL.cs</DependentUpon>
     </Compile>
+    <Compile Include="BD y Querys\Crucero_BD.cs" />
     <Compile Include="BD y Querys\DBConnection.cs" />
+    <Compile Include="BD y Querys\Puerto_BD.cs" />
+    <Compile Include="BD y Querys\Recorrido_BD.cs" />
     <Compile Include="BD y Querys\ROL_BD.cs" />
+    <Compile Include="BD y Querys\Tramo_BD.cs" />
     <Compile Include="CompraReservaPasaje\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CompraReservaPasaje\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GD1C2019DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GD1C2019DataSet1.xsd</DependentUpon>
     </Compile>
     <Compile Include="Inicio y Log\INICIO.cs">
       <SubType>Form</SubType>
@@ -206,6 +215,17 @@
     </None>
     <None Include="GD1C2019DataSet.xss">
       <DependentUpon>GD1C2019DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="GD1C2019DataSet1.xsc">
+      <DependentUpon>GD1C2019DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="GD1C2019DataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GD1C2019DataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GD1C2019DataSet1.xss">
+      <DependentUpon>GD1C2019DataSet1.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

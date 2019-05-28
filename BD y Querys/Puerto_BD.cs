@@ -10,14 +10,14 @@ using System.Data;
 
 namespace FrbaCrucero.BD_y_Querys
 {
-    public static class ROL_BD
+    public static class Puerto_BD
     {
-        public static void cargar_grilla_roles(DataGridView grillaRoles, bool habilitado)
+        public static void cargar_grilla_puertos(DataGridView grillaPuertos)
         {
-            string query = string.Format(@"SELECT rol_id as ID, rol_nombre as ROL
-                                           FROM PENSAMIENTO_LINEAL.ROL
+            string query = string.Format(@"SELECT puer_id as ID, puer_nombre as Puerto
+                                           FROM PENSAMIENTO_LINEAL.Puerto
                                            ORDER BY 1 ASC");
-            DBConnection.llenar_grilla(grillaRoles, query);
+            DBConnection.llenar_grilla(grillaPuertos, query);
         }
     }
 }

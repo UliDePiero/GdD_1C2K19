@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FrbaCrucero.BD_y_Querys;
 
 namespace FrbaCrucero.AbmRecorrido
 {
@@ -19,9 +20,7 @@ namespace FrbaCrucero.AbmRecorrido
 
         private void ABM_Recorrido_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'gD1C2019DataSet.Maestra' table. You can move, or remove it, as needed.
-            //this.maestraTableAdapter.Fill(this.gD1C2019DataSet.Maestra);
-
+            Recorrido_BD.cargar_grilla_recorridos(dataGridView1);
         }
 
         private void atras_Click(object sender, EventArgs e)

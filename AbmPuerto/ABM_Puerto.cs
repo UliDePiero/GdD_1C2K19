@@ -20,9 +20,7 @@ namespace FrbaCrucero.AbmPuerto
 
         private void ABM_Puerto_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'gD1C2019DataSet.Maestra' table. You can move, or remove it, as needed.
-            //this.maestraTableAdapter.Fill(this.gD1C2019DataSet.Maestra);
-            ROL_BD.cargar_grilla_roles(dataGridView1, true);
+            Puerto_BD.cargar_grilla_puertos(dataGridView1);
         }
 
         private void atras_Click(object sender, EventArgs e)

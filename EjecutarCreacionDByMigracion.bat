@@ -1,0 +1,1 @@
+sqlcmd -S localhost\SQLSERVER2012 -U gdCruceros2019 -P gd2019 -i CrearPS_y_Tablas.sql,MigracionDatos.sql  -a 32767 -o resultado_output.txt

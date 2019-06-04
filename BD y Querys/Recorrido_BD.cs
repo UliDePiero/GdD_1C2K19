@@ -14,7 +14,7 @@ namespace FrbaCrucero.BD_y_Querys
     {
         public static void cargar_grilla_recorridos(DataGridView grillaRecorridos)
         {
-            string query = string.Format(@"SELECT reco_id as ID, reco_codigo as Codigo, reco_primertramo as Puerto_origen
+            string query = string.Format(@"SELECT reco_codigo as Codigo, reco_primertramo as Puerto_origen
                                            FROM PENSAMIENTO_LINEAL.Recorrido
                                            ORDER BY 1 ASC");
             DBConnection.llenar_grilla(grillaRecorridos, query);

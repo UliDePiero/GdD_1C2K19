@@ -45,7 +45,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(13, 50);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(259, 429);
+            this.dataGridView1.Size = new System.Drawing.Size(190, 429);
             this.dataGridView1.TabIndex = 0;
             // 
             // maestraBindingSource
@@ -74,7 +74,7 @@
             // 
             // atras
             // 
-            this.atras.Location = new System.Drawing.Point(291, 440);
+            this.atras.Location = new System.Drawing.Point(224, 440);
             this.atras.Name = "atras";
             this.atras.Size = new System.Drawing.Size(98, 39);
             this.atras.TabIndex = 7;
@@ -86,7 +86,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(401, 491);
+            this.ClientSize = new System.Drawing.Size(333, 491);
             this.Controls.Add(this.atras);
             this.Controls.Add(this.puertos);
             this.Controls.Add(this.dataGridView1);

@@ -14,7 +14,7 @@ namespace FrbaCrucero.BD_y_Querys
     {
         public static void cargar_grilla_puertos(DataGridView grillaPuertos)
         {
-            string query = string.Format(@"SELECT puer_id as ID, puer_nombre as Puerto
+            string query = string.Format(@"SELECT puer_nombre as Puerto
                                            FROM PENSAMIENTO_LINEAL.Puerto
                                            ORDER BY 1 ASC");
             DBConnection.llenar_grilla(grillaPuertos, query);

@@ -82,17 +82,6 @@
             // checkedListBox1
             // 
             this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Items.AddRange(new object[] {
-            "ABM de Rol",
-            "ABM de Puerto",
-            "ABM de Recorrido",
-            "ABM de Crucero",
-            "Login y seguridad",
-            "Registro de Usuario",
-            "Generar Viaje",
-            "Compra y/o reserva de viaje",
-            "Pago Reserva",
-            "Listado Estadístico"});
             this.checkedListBox1.Location = new System.Drawing.Point(18, 159);
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.Size = new System.Drawing.Size(382, 154);
@@ -148,7 +137,6 @@
             this.Controls.Add(this.nuevoROL);
             this.Name = "ModificacionesROL";
             this.Text = "ROL | Modificaciones";
-            this.Load += new System.EventHandler(this.ModificacionesROL_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

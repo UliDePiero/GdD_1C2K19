@@ -36,7 +36,6 @@
             this.mostrar_ocuRol = new System.Windows.Forms.Button();
             this.atras = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.seleccionado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.maestraBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gD1C2019DataSet = new FrbaCrucero.GD1C2019DataSet();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
@@ -70,7 +69,7 @@
             this.nuevoRol.TabIndex = 2;
             this.nuevoRol.Text = "Nuevo ROL";
             this.nuevoRol.UseVisualStyleBackColor = true;
-            this.nuevoRol.Click += new System.EventHandler(this.button1_Click);
+            this.nuevoRol.Click += new System.EventHandler(this.nuevoRol_Click);
             // 
             // modificarRol
             // 
@@ -80,7 +79,7 @@
             this.modificarRol.TabIndex = 3;
             this.modificarRol.Text = "Modificar ROL";
             this.modificarRol.UseVisualStyleBackColor = true;
-            this.modificarRol.Click += new System.EventHandler(this.button2_Click);
+            this.modificarRol.Click += new System.EventHandler(this.modificarRol_Click);
             // 
             // habilitar_desRol
             // 
@@ -90,7 +89,7 @@
             this.habilitar_desRol.TabIndex = 4;
             this.habilitar_desRol.Text = "Habilitar/Deshabilitar ROL";
             this.habilitar_desRol.UseVisualStyleBackColor = true;
-            this.habilitar_desRol.Click += new System.EventHandler(this.button3_Click);
+            this.habilitar_desRol.Click += new System.EventHandler(this.habilitar_desRol_Click);
             // 
             // mostrar_ocuRol
             // 
@@ -100,7 +99,7 @@
             this.mostrar_ocuRol.TabIndex = 5;
             this.mostrar_ocuRol.Text = "Mostrar/Ocultar deshabilitados";
             this.mostrar_ocuRol.UseVisualStyleBackColor = true;
-            this.mostrar_ocuRol.Click += new System.EventHandler(this.button4_Click);
+            this.mostrar_ocuRol.Click += new System.EventHandler(this.mostrar_ocuRol_Click);
             // 
             // atras
             // 
@@ -116,19 +115,17 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.seleccionado});
+            this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dataGridView1.Location = new System.Drawing.Point(216, 66);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(442, 327);
-            this.dataGridView1.TabIndex = 8;
-            // 
-            // seleccionado
-            // 
-            this.seleccionado.HeaderText = "";
-            this.seleccionado.Name = "seleccionado";
-            this.seleccionado.ReadOnly = true;
+            this.dataGridView1.TabIndex = 3;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // maestraBindingSource
             // 
@@ -223,7 +220,6 @@
         private GD1C2019DataSetTableAdapters.MaestraTableAdapter maestraTableAdapter;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.BindingSource maestraBindingSource1;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn seleccionado;
 
     }
 }

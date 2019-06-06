@@ -49,3 +49,11 @@ select tram_id as ID, p1.puer_nombre as PUERTO_ORIGEN, p2.puer_nombre as PUERTO_
 from PENSAMIENTO_LINEAL.Tramo
 	join PENSAMIENTO_LINEAL.Puerto as p1 on (tram_origen = p1.puer_id)
 	join PENSAMIENTO_LINEAL.Puerto as p2 on (tram_destino = p2.puer_id)
+
+-- Todos los puertos en los que para un recorrido dado
+select puer_nombre as DESTINO
+from PENSAMIENTO_LINEAL.Recorrido
+	join PENSAMIENTO_LINEAL.Recorrido_tramo on (reco_id = reco_tram_recoid)
+	join PENSAMIENTO_LINEAL.Tramo on (reco_tram_tramid = tram_id)
+	join PENSAMIENTO_LINEAL.Puerto on (tram_destino = puer_id)
+where reco_id = 44 -- <-- Aca metes el id que corresponda

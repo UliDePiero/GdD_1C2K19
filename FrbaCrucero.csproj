@@ -105,6 +105,8 @@
     <Compile Include="BD y Querys\Recorrido_BD.cs" />
     <Compile Include="BD y Querys\ROL_BD.cs" />
     <Compile Include="BD y Querys\Tramo_BD.cs" />
+    <Compile Include="Clases\Funcionalidad.cs" />
+    <Compile Include="Clases\ROL.cs" />
     <Compile Include="CompraReservaPasaje\Form1.cs">
       <SubType>Form</SubType>
     </Compile>

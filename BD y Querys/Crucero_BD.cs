@@ -14,7 +14,7 @@ namespace FrbaCrucero.BD_y_Querys
     {
         public static void cargar_grilla_cruceros(DataGridView grillaCruceros)
         {
-            string query = string.Format(@"SELECT cruc_id as ID, cruc_identificador as Identificador, cruc_marca as Marca, cruc_modelo as Modelo
+            string query = string.Format(@"SELECT cruc_identificador as Identificador, cruc_marca as Marca, cruc_modelo as Modelo
                                            FROM PENSAMIENTO_LINEAL.Crucero
                                            ORDER BY 1 ASC");
             DBConnection.llenar_grilla(grillaCruceros, query);

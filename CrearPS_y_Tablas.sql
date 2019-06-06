@@ -13,6 +13,7 @@ GO
 CREATE TABLE [PENSAMIENTO_LINEAL].[Rol](
 	[rol_id] [int] IDENTITY(1,1) NOT NULL,
 	[rol_nombre] [nchar](50) NOT NULL,
+	[rol_habilitado] [bit] NOT NULL,
  CONSTRAINT [PK_Rol] PRIMARY KEY CLUSTERED 
 (
 	[rol_id] ASC

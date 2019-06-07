@@ -25,6 +25,13 @@ where cruc_identificador LIKE 'identificador del crucero a modificar'
 select serv_desc
 from PENSAMIENTO_LINEAL.Servicio
 
+-- Mostrar cruceros, sus cabinas y tipos
+select cruc_id as ID, cruc_identificador as IDENTIFICADOR, cabi_numero as NUMERO, cabi_piso as PISO, tipo_nombre as NOMBRE, tipo_porc_rec as RECARGO 
+from PENSAMIENTO_LINEAL.Crucero
+	join PENSAMIENTO_LINEAL.Cabina on (cruc_id = cabi_crucero)
+	join PENSAMIENTO_LINEAL.Tipo_cabina on (cabi_tipo = tipo_id)
+order by cruc_id desc
+
 ---------- ABM ROL ----------
 
 -- Mostrar todos los roles

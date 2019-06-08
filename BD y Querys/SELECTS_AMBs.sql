@@ -61,3 +61,20 @@ from PENSAMIENTO_LINEAL.Recorrido
 	join PENSAMIENTO_LINEAL.Tramo on (reco_tram_tramid = tram_id)
 	join PENSAMIENTO_LINEAL.Puerto on (tram_destino = puer_id)
 where reco_id = 44 -- <-- Aca metes el id que corresponda
+
+-- Mostrar todos los recorrido con su puerto de salid y su puerto final del recorrido
+select r1.reco_id as RECORRIDO, r1.reco_codigo as CODIGO, p1.puer_nombre as SALIDA, p2.puer_nombre as ULTIMO_DESTINO
+from PENSAMIENTO_LINEAL.Recorrido as r1
+	join PENSAMIENTO_LINEAL.Recorrido_tramo as rt on (r1.reco_id = rt.reco_tram_recoid)
+	join PENSAMIENTO_LINEAL.Tramo as t1 on (r1.reco_primertramo = t1.tram_id)
+	join PENSAMIENTO_LINEAL.Tramo as t2 on (rt.reco_tram_tramid = t2.tram_id)
+	join PENSAMIENTO_LINEAL.Puerto as p1 on (t1.tram_origen = p1.puer_id)
+	join PENSAMIENTO_LINEAL.Puerto as p2 on (t2.tram_destino = p2.puer_id)
+where t2.tram_destino NOT IN (
+							  select t3.tram_origen
+							  from PENSAMIENTO_LINEAL.Recorrido as r2
+							  	join PENSAMIENTO_LINEAL.Recorrido_tramo as rt2 on (r2.reco_id = rt2.reco_tram_recoid)
+							  	join PENSAMIENTO_LINEAL.Tramo as t3 on (rt2.reco_tram_tramid = t3.tram_id)
+							  where r1.reco_id = r2.reco_id
+							 )
+order by r1.reco_id

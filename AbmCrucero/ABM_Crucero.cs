@@ -16,10 +16,12 @@ namespace FrbaCrucero.AbmCrucero
     {
         private string operacion_fecha;
         private DateTime fecha_operacion;
+        private string rol_nombre;
 
-        public ABM_Crucero()
+        public ABM_Crucero(string rol)
         {
             InitializeComponent();
+            rol_nombre = rol;
         }
 
         private void ABM_Crucero_Load(object sender, EventArgs e)
@@ -47,7 +49,7 @@ namespace FrbaCrucero.AbmCrucero
         private void nuevoCrucero_Click(object sender, EventArgs e)
         {
             this.Close();
-            ModificacionesCrucero form = new ModificacionesCrucero("Nuevo", null);
+            ModificacionesCrucero form = new ModificacionesCrucero("Nuevo", null, rol_nombre);
             form.Show();
         }
 
@@ -58,7 +60,7 @@ namespace FrbaCrucero.AbmCrucero
             cruc_modif.servicios = Crucero_BD.obtener_servicios_con_crucero(cruc_modif.id);
             cruc_modif.estados = Crucero_BD.obtener_estados_con_crucero(cruc_modif.id);
             this.Close();
-            ModificacionesCrucero form = new ModificacionesCrucero("Modificar", cruc_modif);
+            ModificacionesCrucero form = new ModificacionesCrucero("Modificar", cruc_modif, rol_nombre);
             form.Show();
         }
 
@@ -157,7 +159,7 @@ namespace FrbaCrucero.AbmCrucero
         private void atras_Click(object sender, EventArgs e)
         {
             this.Close();
-            Menu form = new Menu();
+            Menu form = new Menu(rol_nombre);
             form.Show();
         }
     }

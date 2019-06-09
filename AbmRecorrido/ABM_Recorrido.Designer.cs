@@ -31,10 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.recorridosDisponibles = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Seleccionado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.maestraBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gD1C2019DataSet = new FrbaCrucero.GD1C2019DataSet();
-            this.maestraTableAdapter = new FrbaCrucero.GD1C2019DataSetTableAdapters.MaestraTableAdapter();
             this.atras = new System.Windows.Forms.Button();
             this.nuevoRecorrido = new System.Windows.Forms.Button();
             this.modificarRecorrido = new System.Windows.Forms.Button();
@@ -42,8 +38,6 @@
             this.funciones = new System.Windows.Forms.GroupBox();
             this.editarTramos = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.maestraBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD1C2019DataSet)).BeginInit();
             this.funciones.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,33 +56,13 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Seleccionado});
+            this.dataGridView1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dataGridView1.Location = new System.Drawing.Point(12, 62);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(525, 247);
             this.dataGridView1.TabIndex = 1;
-            // 
-            // Seleccionado
-            // 
-            this.Seleccionado.HeaderText = "";
-            this.Seleccionado.Name = "Seleccionado";
-            this.Seleccionado.ReadOnly = true;
-            // 
-            // maestraBindingSource
-            // 
-            this.maestraBindingSource.DataMember = "Maestra";
-            this.maestraBindingSource.DataSource = this.gD1C2019DataSet;
-            // 
-            // gD1C2019DataSet
-            // 
-            this.gD1C2019DataSet.DataSetName = "GD1C2019DataSet";
-            this.gD1C2019DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // maestraTableAdapter
-            // 
-            this.maestraTableAdapter.ClearBeforeFill = true;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // atras
             // 
@@ -166,8 +140,6 @@
             this.Text = "Recorridos";
             this.Load += new System.EventHandler(this.ABM_Recorrido_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.maestraBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD1C2019DataSet)).EndInit();
             this.funciones.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -178,15 +150,11 @@
 
         private System.Windows.Forms.Label recorridosDisponibles;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private GD1C2019DataSet gD1C2019DataSet;
-        private System.Windows.Forms.BindingSource maestraBindingSource;
-        private GD1C2019DataSetTableAdapters.MaestraTableAdapter maestraTableAdapter;
         private System.Windows.Forms.Button atras;
         private System.Windows.Forms.Button nuevoRecorrido;
         private System.Windows.Forms.Button modificarRecorrido;
         private System.Windows.Forms.Button eliminarRecorridos;
         private System.Windows.Forms.GroupBox funciones;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Seleccionado;
         private System.Windows.Forms.Button editarTramos;
     }
 }

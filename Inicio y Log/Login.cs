@@ -24,7 +24,7 @@ namespace FrbaCrucero
             //logins(textBoxUsuario.Text, textBoxContraseña.Text);
             
             this.Close();
-            Menu form = new Menu();
+            Menu form = new Menu("Administrador");
             form.Show();
         }
 
@@ -59,7 +59,7 @@ namespace FrbaCrucero
                             MessageBox.Show("Login exitoso.");
                             conexion.Close();
                             this.Close();
-                            Menu form = new Menu();
+                            Menu form = new Menu("Administrador");
                             form.Show();
                         }
                         else

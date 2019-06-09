@@ -33,5 +33,17 @@ namespace FrbaCrucero.Properties {
                 return ((string)(this["GD1C2019ConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2012")]
+        public decimal Inicio {
+            get {
+                return ((decimal)(this["Inicio"]));
+            }
+            set {
+                this["Inicio"] = value;
+            }
+        }
     }
 }

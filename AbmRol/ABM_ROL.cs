@@ -14,32 +14,35 @@ namespace FrbaCrucero.AbmRol
 {
     public partial class ABM_ROL : Form
     {
+        private string rol_nombre;
+        private bool mostrar;
 
-
-        public ABM_ROL()
+        public ABM_ROL(string rol)
         {
             InitializeComponent();
+            rol_nombre = rol;
+            mostrar = true;
         }
         
         private void Form1_Load(object sender, EventArgs e)
         {
             ROL_BD.cargar_grilla_roles(dataGridView1);
+            cargarGrillaFunc();
+        }
+        private void cargarGrillaFunc(){
             if (dataGridView1.RowCount != 0)
             {
                 ROL_BD.cargar_grilla_funcionalidades(dataGridView2, obtener_rol_seleccionado());
                 habilitar_desRol.Enabled = true;
-                modificarRol.Enabled = true;
-                mostrar_ocuRol.Enabled = true;
+                modificarRol.Enabled = true;              
             }
             else
             {
                 habilitar_desRol.Enabled = false;
                 modificarRol.Enabled = false;
-                mostrar_ocuRol.Enabled = false;
                 dataGridView2.DataSource = null;
             }
         }
-
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             ROL_BD.cargar_grilla_funcionalidades(dataGridView2, obtener_rol_seleccionado());
@@ -47,12 +50,11 @@ namespace FrbaCrucero.AbmRol
 
         private ROL obtener_rol_seleccionado()
         {
-            //bool rol_habilitado = bool.Parse(dataGridView1.SelectedCells[0].Value.ToString());
+            bool rol_habilitado = bool.Parse(dataGridView1.SelectedCells[2].Value.ToString());
             int rol_id = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());
             string rol_nombre = dataGridView1.SelectedCells[1].Value.ToString();            
 
-            //return new ROL(rol_id, rol_nombre, rol_habilitado);
-            return new ROL(rol_id, rol_nombre, true);
+            return new ROL(rol_id, rol_nombre, rol_habilitado);
         }
 
         private List<Funcionalidad> obtener_funcionalidades()
@@ -71,7 +73,7 @@ namespace FrbaCrucero.AbmRol
         private void nuevoRol_Click(object sender, EventArgs e)
         {
             this.Close();
-            ModificacionesROL form = new ModificacionesROL("Nuevo", null);
+            ModificacionesROL form = new ModificacionesROL("Nuevo", null, rol_nombre);
             form.Show();
         }
 
@@ -80,24 +82,41 @@ namespace FrbaCrucero.AbmRol
             ROL rol_modif = obtener_rol_seleccionado();
             rol_modif.funcionalidades = obtener_funcionalidades();
             this.Close();
-            ModificacionesROL form = new ModificacionesROL("Modificar", rol_modif);
+            ModificacionesROL form = new ModificacionesROL("Modificar", rol_modif, rol_nombre);
             form.Show();
         }
 
         private void habilitar_desRol_Click(object sender, EventArgs e)
         {
+            ROL rol=obtener_rol_seleccionado();
+            if (rol.habilitado == true)
+                ROL_BD.inhabilitar_rol(rol);
+            else
+                ROL_BD.habilitar_rol(rol);
 
+            mostrar = false;
+            ROL_BD.cargar_grilla_roles_habilitados(dataGridView1);
+            cargarGrillaFunc();
         }
 
         private void mostrar_ocuRol_Click(object sender, EventArgs e)
         {
-
+            if(mostrar == true){
+                mostrar = false;
+                ROL_BD.cargar_grilla_roles_habilitados(dataGridView1);
+                cargarGrillaFunc();
+            }
+            else{
+                mostrar = true;
+                ROL_BD.cargar_grilla_roles(dataGridView1);
+                cargarGrillaFunc();
+            }
         }
 
         private void atras_Click(object sender, EventArgs e)
         {
             this.Close();
-            Menu form = new Menu();
+            Menu form = new Menu(rol_nombre);
             form.Show();
         }
         

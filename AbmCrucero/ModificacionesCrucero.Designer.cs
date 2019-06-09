@@ -43,14 +43,9 @@
             this.cantidadDeCabinas = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.tipoDeCabinas = new System.Windows.Forms.Label();
-            this.maestraBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gD1C2019DataSet = new FrbaCrucero.GD1C2019DataSet();
-            this.maestraTableAdapter = new FrbaCrucero.GD1C2019DataSetTableAdapters.MaestraTableAdapter();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.checkedListBox2 = new System.Windows.Forms.CheckedListBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.maestraBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD1C2019DataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // cancelar
@@ -185,20 +180,6 @@
             this.tipoDeCabinas.TabIndex = 8;
             this.tipoDeCabinas.Text = "Tipo de cabinas";
             // 
-            // maestraBindingSource
-            // 
-            this.maestraBindingSource.DataMember = "Maestra";
-            this.maestraBindingSource.DataSource = this.gD1C2019DataSet;
-            // 
-            // gD1C2019DataSet
-            // 
-            this.gD1C2019DataSet.DataSetName = "GD1C2019DataSet";
-            this.gD1C2019DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // maestraTableAdapter
-            // 
-            this.maestraTableAdapter.ClearBeforeFill = true;
-            // 
             // checkedListBox1
             // 
             this.checkedListBox1.FormattingEnabled = true;
@@ -239,8 +220,6 @@
             this.Name = "ModificacionesCrucero";
             this.Text = "Cruceros | Modificaciones";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.maestraBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD1C2019DataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -262,9 +241,6 @@
         private System.Windows.Forms.Label cantidadDeCabinas;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label tipoDeCabinas;
-        private GD1C2019DataSet gD1C2019DataSet;
-        private System.Windows.Forms.BindingSource maestraBindingSource;
-        private GD1C2019DataSetTableAdapters.MaestraTableAdapter maestraTableAdapter;
         private System.Windows.Forms.CheckedListBox checkedListBox1;
         private System.Windows.Forms.CheckedListBox checkedListBox2;
     }

@@ -16,10 +16,12 @@ namespace FrbaCrucero.AbmCrucero
     {
         private string tipo_ingreso;
         private Crucero cruc_modificar;
+        private string rol_nombre;
 
-        public ModificacionesCrucero(String operacion, Crucero cruc_modif)
+        public ModificacionesCrucero(String operacion, Crucero cruc_modif, string rol)
         {
             InitializeComponent();
+            rol_nombre = rol;
             this.tipo_ingreso = operacion;
             this.cruc_modificar = cruc_modif;
             if (tipo_ingreso != "Modificar")
@@ -99,12 +101,12 @@ namespace FrbaCrucero.AbmCrucero
 
         private void nuevo_crucero()
         {
-            Crucero crucero_nuevo = new Crucero(textBoxCrucero.Text, Crucero_BD.obtener_marca_con_nombre(comboBoxMarcas.SelectedText), Crucero_BD.obtener_modelo_con_nombre(textBoxModelo.Text), obtener_cabinas_checkList(cruc_modificar.id), obtener_servicios_checkList(), int.Parse(numericUpDown1.Value.ToString()));
+            Crucero crucero_nuevo = new Crucero(textBoxCrucero.Text, Crucero_BD.obtener_marca_con_nombre(comboBoxMarcas.SelectedItem.ToString()), Crucero_BD.obtener_modelo_con_nombre(textBoxModelo.Text), obtener_cabinas_checkList(cruc_modificar.id), obtener_servicios_checkList(), int.Parse(numericUpDown1.Value.ToString()));
             if (Crucero_BD.agregar_crucero(crucero_nuevo))
             {
                 MessageBox.Show("Nuevo crucero creado.", tipo_ingreso, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
-                ABM_Crucero form = new ABM_Crucero();
+                ABM_Crucero form = new ABM_Crucero(rol_nombre);
                 form.Show();
             }
             else
@@ -115,13 +117,13 @@ namespace FrbaCrucero.AbmCrucero
 
         private void modificar_crucero()
         {
-            Crucero crucero_nuevo = new Crucero(textBoxCrucero.Text, Crucero_BD.obtener_marca_con_nombre(comboBoxMarcas.SelectedText), Crucero_BD.obtener_modelo_con_nombre(textBoxModelo.Text), obtener_cabinas_checkList(cruc_modificar.id), obtener_servicios_checkList(), int.Parse(numericUpDown1.Value.ToString()));
+            Crucero crucero_nuevo = new Crucero(textBoxCrucero.Text, Crucero_BD.obtener_marca_con_nombre(comboBoxMarcas.SelectedItem.ToString()), Crucero_BD.obtener_modelo_con_nombre(textBoxModelo.Text), obtener_cabinas_checkList(cruc_modificar.id), obtener_servicios_checkList(), int.Parse(numericUpDown1.Value.ToString()));
             crucero_nuevo.id = cruc_modificar.id;
             if (Crucero_BD.modificar_crucero(crucero_nuevo, crucero_nuevo.Cabinas, crucero_nuevo.servicios))
             {
                 MessageBox.Show("Crucero modificado.", tipo_ingreso, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
-                ABM_Crucero form = new ABM_Crucero();
+                ABM_Crucero form = new ABM_Crucero(rol_nombre);
                 form.Show();
             }
             else
@@ -145,8 +147,9 @@ namespace FrbaCrucero.AbmCrucero
         private void cancelar_Click(object sender, EventArgs e)
         {
             this.Close();
-            ABM_Crucero form = new ABM_Crucero();
+            ABM_Crucero form = new ABM_Crucero(rol_nombre);
             form.Show();
         }
+
     }
 }

@@ -37,7 +37,6 @@
             this.modificarCrucero = new System.Windows.Forms.Button();
             this.atras = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Seleccionado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.maestraBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gD1C2019DataSet = new FrbaCrucero.GD1C2019DataSet();
             this.crucerosDisponibles = new System.Windows.Forms.Label();
@@ -74,6 +73,7 @@
             this.bajaMomCrucero.TabIndex = 7;
             this.bajaMomCrucero.Text = "Dar de baja momentanea Crucero";
             this.bajaMomCrucero.UseVisualStyleBackColor = true;
+            this.bajaMomCrucero.Click += new System.EventHandler(this.bajaMomCrucero_Click);
             // 
             // altaCrucero
             // 
@@ -83,6 +83,7 @@
             this.altaCrucero.TabIndex = 8;
             this.altaCrucero.Text = "Dar de alta Crucero";
             this.altaCrucero.UseVisualStyleBackColor = true;
+            this.altaCrucero.Click += new System.EventHandler(this.altaCrucero_Click);
             // 
             // nuevoCrucero
             // 
@@ -102,6 +103,7 @@
             this.bajaDefCrucero.TabIndex = 7;
             this.bajaDefCrucero.Text = "Dar de baja definitiva Crucero";
             this.bajaDefCrucero.UseVisualStyleBackColor = true;
+            this.bajaDefCrucero.Click += new System.EventHandler(this.bajaDefCrucero_Click);
             // 
             // modificarCrucero
             // 
@@ -127,18 +129,16 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Seleccionado});
+            this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dataGridView1.Location = new System.Drawing.Point(21, 62);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(675, 247);
             this.dataGridView1.TabIndex = 10;
-            // 
-            // Seleccionado
-            // 
-            this.Seleccionado.HeaderText = "";
-            this.Seleccionado.Name = "Seleccionado";
             // 
             // maestraBindingSource
             // 
@@ -193,6 +193,7 @@
             this.aceptar.Text = "Aceptar";
             this.aceptar.UseVisualStyleBackColor = true;
             this.aceptar.Visible = false;
+            this.aceptar.Click += new System.EventHandler(this.aceptar_Click);
             // 
             // cancelar
             // 
@@ -203,6 +204,7 @@
             this.cancelar.Text = "Cancelar";
             this.cancelar.UseVisualStyleBackColor = true;
             this.cancelar.Visible = false;
+            this.cancelar.Click += new System.EventHandler(this.cancelar_Click);
             // 
             // ABM_Crucero
             // 
@@ -241,7 +243,6 @@
         private GD1C2019DataSet gD1C2019DataSet;
         private System.Windows.Forms.BindingSource maestraBindingSource;
         private GD1C2019DataSetTableAdapters.MaestraTableAdapter maestraTableAdapter;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Seleccionado;
         private System.Windows.Forms.Button bajaMomCrucero;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label fecha;

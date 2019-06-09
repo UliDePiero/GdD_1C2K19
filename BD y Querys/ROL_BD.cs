@@ -16,7 +16,7 @@ namespace FrbaCrucero.BD_y_Querys
     {
         public static void cargar_grilla_roles(DataGridView grillaRoles)
         {
-            string query = string.Format(@"SELECT rol_id as ID, rol_nombre as ROL
+            string query = string.Format(@"SELECT rol_id as ID, rol_nombre, rol_habilitado as ROL
                                            FROM PENSAMIENTO_LINEAL.ROL
                                            ORDER BY 1 ASC");           
             DBConnection.llenar_grilla(grillaRoles, query);
@@ -80,7 +80,7 @@ namespace FrbaCrucero.BD_y_Querys
         {
             try
             {
-                string query = string.Format(@"INSERT INTO PENSAMIENTO_LINEAL.Rol(rol_nombre) VALUES (@rol_nombre); SELECT SCOPE_IDENTITY()");
+                string query = string.Format(@"INSERT INTO PENSAMIENTO_LINEAL.Rol(rol_nombre, rol_habilitado) VALUES (@rol_nombre, 1); SELECT SCOPE_IDENTITY()");
                 SqlConnection conn = DBConnection.getConnection();
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@rol_nombre", rol.nombre);

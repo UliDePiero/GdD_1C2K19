@@ -104,9 +104,6 @@ namespace FrbaCrucero.AbmRol
             {
                 modificar_rol();
             }
-            this.Close();
-            ABM_ROL form = new ABM_ROL();
-            form.Show();
         }
 
         private void cancelar_Click(object sender, EventArgs e)

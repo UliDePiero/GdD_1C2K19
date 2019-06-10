@@ -34,8 +34,12 @@
             this.ejecutar = new System.Windows.Forms.Button();
             this.comboBoxFuncionalidades = new System.Windows.Forms.ComboBox();
             this.rolActual = new System.Windows.Forms.Label();
-            this.ROL = new System.Windows.Forms.Label();
+            this.RolLabel = new System.Windows.Forms.Label();
+            this.usuarioLabel = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBoxRoles = new System.Windows.Forms.ComboBox();
             this.funcionalidadesDisponibles.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // bienvenido
@@ -54,13 +58,12 @@
             this.funcionalidadesDisponibles.Controls.Add(this.ejecutar);
             this.funcionalidadesDisponibles.Controls.Add(this.comboBoxFuncionalidades);
             this.funcionalidadesDisponibles.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.funcionalidadesDisponibles.Location = new System.Drawing.Point(12, 94);
+            this.funcionalidadesDisponibles.Location = new System.Drawing.Point(12, 199);
             this.funcionalidadesDisponibles.Name = "funcionalidadesDisponibles";
             this.funcionalidadesDisponibles.Size = new System.Drawing.Size(260, 155);
             this.funcionalidadesDisponibles.TabIndex = 1;
             this.funcionalidadesDisponibles.TabStop = false;
             this.funcionalidadesDisponibles.Text = "Funcionalidades disponibles";
-            this.funcionalidadesDisponibles.Enter += new System.EventHandler(this.funcionalidadesDisponibles_Enter);
             // 
             // salir
             // 
@@ -68,7 +71,7 @@
             this.salir.Name = "salir";
             this.salir.Size = new System.Drawing.Size(110, 35);
             this.salir.TabIndex = 1;
-            this.salir.Text = "Salir";
+            this.salir.Text = "Cerrar sesión";
             this.salir.UseVisualStyleBackColor = true;
             this.salir.Click += new System.EventHandler(this.salir_Click);
             // 
@@ -90,7 +93,6 @@
             this.comboBoxFuncionalidades.Name = "comboBoxFuncionalidades";
             this.comboBoxFuncionalidades.Size = new System.Drawing.Size(248, 24);
             this.comboBoxFuncionalidades.TabIndex = 0;
-            this.comboBoxFuncionalidades.SelectedIndexChanged += new System.EventHandler(this.comboBoxFuncionalidades_SelectedIndexChanged);
             // 
             // rolActual
             // 
@@ -102,28 +104,62 @@
             this.rolActual.TabIndex = 2;
             this.rolActual.Text = "Rol actual: ";
             // 
-            // ROL
+            // RolLabel
             // 
-            this.ROL.AutoSize = true;
-            this.ROL.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ROL.Location = new System.Drawing.Point(153, 65);
-            this.ROL.Name = "ROL";
-            this.ROL.Size = new System.Drawing.Size(40, 17);
-            this.ROL.TabIndex = 2;
-            this.ROL.Text = "ROL";
+            this.RolLabel.AutoSize = true;
+            this.RolLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RolLabel.Location = new System.Drawing.Point(113, 65);
+            this.RolLabel.Name = "RolLabel";
+            this.RolLabel.Size = new System.Drawing.Size(14, 17);
+            this.RolLabel.TabIndex = 2;
+            this.RolLabel.Text = "-";
+            // 
+            // usuarioLabel
+            // 
+            this.usuarioLabel.AutoSize = true;
+            this.usuarioLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.usuarioLabel.Location = new System.Drawing.Point(166, 22);
+            this.usuarioLabel.Name = "usuarioLabel";
+            this.usuarioLabel.Size = new System.Drawing.Size(64, 17);
+            this.usuarioLabel.TabIndex = 3;
+            this.usuarioLabel.Text = "Usuario";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.comboBoxRoles);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(12, 109);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(260, 84);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Seleccione Rol";
+            // 
+            // comboBoxRoles
+            // 
+            this.comboBoxRoles.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxRoles.FormattingEnabled = true;
+            this.comboBoxRoles.Location = new System.Drawing.Point(7, 41);
+            this.comboBoxRoles.Name = "comboBoxRoles";
+            this.comboBoxRoles.Size = new System.Drawing.Size(248, 24);
+            this.comboBoxRoles.TabIndex = 0;
+            this.comboBoxRoles.SelectedIndexChanged += new System.EventHandler(this.comboBoxRoles_SelectedIndexChanged_1);
             // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Controls.Add(this.ROL);
+            this.ClientSize = new System.Drawing.Size(284, 366);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.usuarioLabel);
+            this.Controls.Add(this.RolLabel);
             this.Controls.Add(this.rolActual);
             this.Controls.Add(this.funcionalidadesDisponibles);
             this.Controls.Add(this.bienvenido);
             this.Name = "Menu";
-            this.Text = "Menu";
+            this.Text = "Administrador | Menu";
             this.funcionalidadesDisponibles.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -137,6 +173,9 @@
         private System.Windows.Forms.Button ejecutar;
         private System.Windows.Forms.ComboBox comboBoxFuncionalidades;
         private System.Windows.Forms.Label rolActual;
-        private System.Windows.Forms.Label ROL;
+        private System.Windows.Forms.Label RolLabel;
+        private System.Windows.Forms.Label usuarioLabel;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ComboBox comboBoxRoles;
     }
 }

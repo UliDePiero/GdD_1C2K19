@@ -118,6 +118,7 @@
     <Compile Include="Clases\ROL.cs" />
     <Compile Include="Clases\ServicioCrucero.cs" />
     <Compile Include="Clases\TipoCabina.cs" />
+    <Compile Include="Clases\UsuarioLogeado.cs" />
     <Compile Include="CompraReservaPasaje\Reservar.cs">
       <SubType>Form</SubType>
     </Compile>

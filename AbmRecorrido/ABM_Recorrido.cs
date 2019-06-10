@@ -29,8 +29,6 @@ namespace FrbaCrucero.AbmRecorrido
         private void atras_Click(object sender, EventArgs e)
         {
             this.Close();
-            Menu form = new Menu(rol_nombre);
-            form.Show();
         }
 
         private void editarTramos_Click(object sender, EventArgs e)

@@ -89,8 +89,33 @@ namespace FrbaCrucero.AbmRol
         private void habilitar_desRol_Click(object sender, EventArgs e)
         {
             ROL rol=obtener_rol_seleccionado();
-            if (rol.habilitado == true)
-                ROL_BD.inhabilitar_rol(rol);
+            if (rol.habilitado == true){
+                if(rol_nombre == rol.nombre){
+                    DialogResult dialogResult = MessageBox.Show("Se dehabilitará su rol actual y será cerrarán las ventanas abiertas, pudiendo perder acceso a ciertas funcionalidades del sistema, está seguro?", "Deshabilitar Rol", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        ROL_BD.inhabilitar_rol(rol);
+                        Menu menu = (Menu)Application.OpenForms["Menu"];
+                        menu.cargarMenu();
+                        List<Form> openForms = new List<Form>();
+
+                        foreach (Form f in Application.OpenForms)
+                            openForms.Add(f);
+
+                        foreach (Form f in openForms)
+                        {
+                            if (f.Name != "INICIO" && f.Name != "Menu")
+                                f.Close();
+                        }                        
+                    }
+                    else if (dialogResult == DialogResult.No)
+                    {
+                        return;
+                    }
+                }
+                else
+                    ROL_BD.inhabilitar_rol(rol);
+            }
             else
                 ROL_BD.habilitar_rol(rol);
 
@@ -116,8 +141,6 @@ namespace FrbaCrucero.AbmRol
         private void atras_Click(object sender, EventArgs e)
         {
             this.Close();
-            Menu form = new Menu(rol_nombre);
-            form.Show();
         }
         
     }

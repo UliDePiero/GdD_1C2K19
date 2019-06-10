@@ -452,7 +452,6 @@
         private System.Windows.Forms.ErrorProvider errorProviderCodigo;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.BindingSource maestraBindingSource;
-        private GD1C2019DataSetTableAdapters.MaestraTableAdapter maestraTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn cLINOMBREDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn cLIAPELLIDODataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn cLIDNIDataGridViewTextBoxColumn;

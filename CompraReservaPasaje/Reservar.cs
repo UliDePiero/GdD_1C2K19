@@ -8,18 +8,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FrbaCrucero.BD_y_Querys;
-using FrbaCrucero.CompraReservaPasaje;
 
-namespace FrbaCrucero.CompraPasaje
+namespace FrbaCrucero.CompraReservaPasaje
 {
-    public partial class Reserva : Form
+    public partial class Reservar : Form
     {
         private DateTime fecha_salida;
+        private string rol_nombre;
 
-        public Reserva()
+        public Reservar(string rol)
         {
             InitializeComponent();
-        }
+                rol_nombre = rol;
+                Reserva_DB.llenar_combox_puertos(comboBoxPuertoO);
+                Reserva_DB.llenar_combox_puertos(comboBoxPuertoD);
+       }
 
         private void Reserva_Load(object sender, EventArgs e)
         {
@@ -59,7 +62,7 @@ namespace FrbaCrucero.CompraPasaje
         private void cerrar_Click(object sender, EventArgs e)
         {
             this.Close();
-            Menu form = new Menu();
+            Menu form = new Menu(rol_nombre);
             form.Show();
         }
 
@@ -75,12 +78,12 @@ namespace FrbaCrucero.CompraPasaje
 
         private void comboBoxPuertoO_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Reserva_DB.llenar_combox_puertos(comboBoxPuertoO);
+
         }
 
         private void comboBoxPuertoD_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Reserva_DB.llenar_combox_puertos(comboBoxPuertoD);
+
         }
     }
 }

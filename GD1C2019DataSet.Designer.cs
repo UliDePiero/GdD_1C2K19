@@ -13351,16 +13351,16 @@ SELECT esta_id, esta_desc, esta_fechabaja, esta_fechaalta, esta_crucero FROM PEN
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [PENSAMIENTO_LINEAL].[Funcionalidad] ([func_nombre]) VALUES (@func_no" +
-                "mbre);\r\nSELECT func_id, func_nombre FROM PENSAMIENTO_LINEAL.Funcionalidad WHERE " +
-                "(func_id = SCOPE_IDENTITY())";
+                "mbre);\nSELECT func_id, func_nombre FROM PENSAMIENTO_LINEAL.Funcionalidad WHERE (" +
+                "func_id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@func_nombre", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "func_nombre", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = "UPDATE [PENSAMIENTO_LINEAL].[Funcionalidad] SET [func_nombre] = @func_nombre WHER" +
                 "E (([func_id] = @Original_func_id) AND ([func_nombre] = @Original_func_nombre));" +
-                "\r\nSELECT func_id, func_nombre FROM PENSAMIENTO_LINEAL.Funcionalidad WHERE (func_" +
-                "id = @func_id)";
+                "\nSELECT func_id, func_nombre FROM PENSAMIENTO_LINEAL.Funcionalidad WHERE (func_i" +
+                "d = @func_id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@func_nombre", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "func_nombre", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_func_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "func_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -14124,16 +14124,16 @@ SELECT esta_id, esta_desc, esta_fechabaja, esta_fechaalta, esta_crucero FROM PEN
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_marc_nombre", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "marc_nombre", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [PENSAMIENTO_LINEAL].[Marca] ([marc_nombre]) VALUES (@marc_nombre);\r\n" +
-                "SELECT marc_id, marc_nombre FROM PENSAMIENTO_LINEAL.Marca WHERE (marc_id = SCOPE" +
-                "_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [PENSAMIENTO_LINEAL].[Marca] ([marc_nombre]) VALUES (@marc_nombre);\nS" +
+                "ELECT marc_id, marc_nombre FROM PENSAMIENTO_LINEAL.Marca WHERE (marc_id = SCOPE_" +
+                "IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@marc_nombre", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "marc_nombre", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = "UPDATE [PENSAMIENTO_LINEAL].[Marca] SET [marc_nombre] = @marc_nombre WHERE (([mar" +
-                "c_id] = @Original_marc_id) AND ([marc_nombre] = @Original_marc_nombre));\r\nSELECT" +
-                " marc_id, marc_nombre FROM PENSAMIENTO_LINEAL.Marca WHERE (marc_id = @marc_id)";
+                "c_id] = @Original_marc_id) AND ([marc_nombre] = @Original_marc_nombre));\nSELECT " +
+                "marc_id, marc_nombre FROM PENSAMIENTO_LINEAL.Marca WHERE (marc_id = @marc_id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@marc_nombre", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "marc_nombre", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_marc_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "marc_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -14443,17 +14443,16 @@ SELECT esta_id, esta_desc, esta_fechabaja, esta_fechaalta, esta_crucero FROM PEN
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_mode_nombre", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "mode_nombre", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [PENSAMIENTO_LINEAL].[Modelo] ([mode_nombre]) VALUES (@mode_nombre);\r" +
-                "\nSELECT mode_id, mode_nombre FROM PENSAMIENTO_LINEAL.Modelo WHERE (mode_id = SCO" +
-                "PE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [PENSAMIENTO_LINEAL].[Modelo] ([mode_nombre]) VALUES (@mode_nombre);\n" +
+                "SELECT mode_id, mode_nombre FROM PENSAMIENTO_LINEAL.Modelo WHERE (mode_id = SCOP" +
+                "E_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@mode_nombre", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "mode_nombre", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = "UPDATE [PENSAMIENTO_LINEAL].[Modelo] SET [mode_nombre] = @mode_nombre WHERE (([mo" +
-                "de_id] = @Original_mode_id) AND ([mode_nombre] = @Original_mode_nombre));\r\nSELEC" +
-                "T mode_id, mode_nombre FROM PENSAMIENTO_LINEAL.Modelo WHERE (mode_id = @mode_id)" +
-                "";
+                "de_id] = @Original_mode_id) AND ([mode_nombre] = @Original_mode_nombre));\nSELECT" +
+                " mode_id, mode_nombre FROM PENSAMIENTO_LINEAL.Modelo WHERE (mode_id = @mode_id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@mode_nombre", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "mode_nombre", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_mode_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "mode_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -15150,17 +15149,16 @@ SELECT pasa_id, pasa_codigo, pasa_fecha, pasa_precio, pasa_cliente, pasa_crucero
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_puer_nombre", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "puer_nombre", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [PENSAMIENTO_LINEAL].[Puerto] ([puer_nombre]) VALUES (@puer_nombre);\r" +
-                "\nSELECT puer_id, puer_nombre FROM PENSAMIENTO_LINEAL.Puerto WHERE (puer_id = SCO" +
-                "PE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [PENSAMIENTO_LINEAL].[Puerto] ([puer_nombre]) VALUES (@puer_nombre);\n" +
+                "SELECT puer_id, puer_nombre FROM PENSAMIENTO_LINEAL.Puerto WHERE (puer_id = SCOP" +
+                "E_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@puer_nombre", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "puer_nombre", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = "UPDATE [PENSAMIENTO_LINEAL].[Puerto] SET [puer_nombre] = @puer_nombre WHERE (([pu" +
-                "er_id] = @Original_puer_id) AND ([puer_nombre] = @Original_puer_nombre));\r\nSELEC" +
-                "T puer_id, puer_nombre FROM PENSAMIENTO_LINEAL.Puerto WHERE (puer_id = @puer_id)" +
-                "";
+                "er_id] = @Original_puer_id) AND ([puer_nombre] = @Original_puer_nombre));\nSELECT" +
+                " puer_id, puer_nombre FROM PENSAMIENTO_LINEAL.Puerto WHERE (puer_id = @puer_id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@puer_nombre", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "puer_nombre", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_puer_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "puer_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -15474,8 +15472,8 @@ SELECT pasa_id, pasa_codigo, pasa_fecha, pasa_precio, pasa_cliente, pasa_crucero
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [PENSAMIENTO_LINEAL].[Recorrido] ([reco_codigo], [reco_primertramo]) " +
-                "VALUES (@reco_codigo, @reco_primertramo);\r\nSELECT reco_id, reco_codigo, reco_pri" +
-                "mertramo FROM PENSAMIENTO_LINEAL.Recorrido WHERE (reco_id = SCOPE_IDENTITY())";
+                "VALUES (@reco_codigo, @reco_primertramo);\nSELECT reco_id, reco_codigo, reco_prim" +
+                "ertramo FROM PENSAMIENTO_LINEAL.Recorrido WHERE (reco_id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@reco_codigo", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reco_codigo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@reco_primertramo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reco_primertramo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -16627,8 +16625,8 @@ SELECT rese_id, rese_codigo, rese_fecha, rese_cliente, rese_crucero, rese_recorr
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [PENSAMIENTO_LINEAL].[Rol] ([rol_nombre], [rol_habilitado]) VALUES (@" +
-                "rol_nombre, @rol_habilitado);\r\nSELECT rol_id, rol_nombre, rol_habilitado FROM PE" +
-                "NSAMIENTO_LINEAL.Rol WHERE (rol_id = SCOPE_IDENTITY())";
+                "rol_nombre, @rol_habilitado);\nSELECT rol_id, rol_nombre, rol_habilitado FROM PEN" +
+                "SAMIENTO_LINEAL.Rol WHERE (rol_id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@rol_nombre", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "rol_nombre", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@rol_habilitado", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "rol_habilitado", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -17406,16 +17404,16 @@ SELECT rol_id, rol_nombre, rol_habilitado FROM PENSAMIENTO_LINEAL.Rol WHERE (rol
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_serv_desc", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "serv_desc", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [PENSAMIENTO_LINEAL].[Servicio] ([serv_desc]) VALUES (@serv_desc);\r\nS" +
-                "ELECT serv_id, serv_desc FROM PENSAMIENTO_LINEAL.Servicio WHERE (serv_id = SCOPE" +
-                "_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [PENSAMIENTO_LINEAL].[Servicio] ([serv_desc]) VALUES (@serv_desc);\nSE" +
+                "LECT serv_id, serv_desc FROM PENSAMIENTO_LINEAL.Servicio WHERE (serv_id = SCOPE_" +
+                "IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@serv_desc", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "serv_desc", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = "UPDATE [PENSAMIENTO_LINEAL].[Servicio] SET [serv_desc] = @serv_desc WHERE (([serv" +
-                "_id] = @Original_serv_id) AND ([serv_desc] = @Original_serv_desc));\r\nSELECT serv" +
-                "_id, serv_desc FROM PENSAMIENTO_LINEAL.Servicio WHERE (serv_id = @serv_id)";
+                "_id] = @Original_serv_id) AND ([serv_desc] = @Original_serv_desc));\nSELECT serv_" +
+                "id, serv_desc FROM PENSAMIENTO_LINEAL.Servicio WHERE (serv_id = @serv_id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@serv_desc", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "serv_desc", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_serv_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "serv_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -17729,8 +17727,8 @@ SELECT rol_id, rol_nombre, rol_habilitado FROM PENSAMIENTO_LINEAL.Rol WHERE (rol
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [PENSAMIENTO_LINEAL].[Tipo_cabina] ([tipo_nombre], [tipo_porc_rec]) V" +
-                "ALUES (@tipo_nombre, @tipo_porc_rec);\r\nSELECT tipo_id, tipo_nombre, tipo_porc_re" +
-                "c FROM PENSAMIENTO_LINEAL.Tipo_cabina WHERE (tipo_id = SCOPE_IDENTITY())";
+                "ALUES (@tipo_nombre, @tipo_porc_rec);\nSELECT tipo_id, tipo_nombre, tipo_porc_rec" +
+                " FROM PENSAMIENTO_LINEAL.Tipo_cabina WHERE (tipo_id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@tipo_nombre", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "tipo_nombre", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@tipo_porc_rec", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 4, 2, "tipo_porc_rec", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));

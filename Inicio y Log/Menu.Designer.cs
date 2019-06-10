@@ -60,6 +60,7 @@
             this.funcionalidadesDisponibles.TabIndex = 1;
             this.funcionalidadesDisponibles.TabStop = false;
             this.funcionalidadesDisponibles.Text = "Funcionalidades disponibles";
+            this.funcionalidadesDisponibles.Enter += new System.EventHandler(this.funcionalidadesDisponibles_Enter);
             // 
             // salir
             // 
@@ -89,6 +90,7 @@
             this.comboBoxFuncionalidades.Name = "comboBoxFuncionalidades";
             this.comboBoxFuncionalidades.Size = new System.Drawing.Size(248, 24);
             this.comboBoxFuncionalidades.TabIndex = 0;
+            this.comboBoxFuncionalidades.SelectedIndexChanged += new System.EventHandler(this.comboBoxFuncionalidades_SelectedIndexChanged);
             // 
             // rolActual
             // 

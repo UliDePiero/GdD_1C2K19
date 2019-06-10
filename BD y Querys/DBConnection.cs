@@ -19,20 +19,11 @@ namespace FrbaCrucero.BD_y_Querys
         public static SqlConnection getConnection()
         {
             SqlConnection conn = new SqlConnection();
-            conn.ConnectionString = "SERVER=" + server + "\\SQLSERVER2012; DATABASE = GD1C2019;UID=" + user + ";PASSWORD=" + password + ";";
+            conn.ConnectionString = "SERVER=" + server + "\\SQLSERVER2012; DATABASE = GD1C2019;UID=" + user + ";PASSWORD=" + "lalala231" + ";";
             conn.Open();
             return conn;
         }
-        public static void llenar_combox(ComboBox combox1, string query)
-        {
-        SqlConnection conn = DBConnection.getConnection();
-        SqlDataReader dr = new SqlCommand(query, conn).ExecuteReader();
-        while (dr.Read())
-        {
-            combox1.Items.Add(dr.GetValue(0).ToString());    
-        }
-        dr.Close();
-        }
+
 
         public static void llenar_grilla(DataGridView dataGridView, string consulta)
         {

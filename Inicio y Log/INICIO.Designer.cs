@@ -65,7 +65,8 @@
             this.comboBoxRoles.Location = new System.Drawing.Point(6, 44);
             this.comboBoxRoles.Name = "comboBoxRoles";
             this.comboBoxRoles.Size = new System.Drawing.Size(357, 33);
-            this.comboBoxRoles.TabIndex = 0;            
+            this.comboBoxRoles.TabIndex = 0;
+            this.comboBoxRoles.SelectedIndexChanged += new System.EventHandler(this.comboBoxRoles_SelectedIndexChanged);
             // 
             // label1
             // 

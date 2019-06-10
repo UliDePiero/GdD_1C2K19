@@ -45,5 +45,10 @@ namespace FrbaCrucero
             }
         }
 
+        private void comboBoxRoles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

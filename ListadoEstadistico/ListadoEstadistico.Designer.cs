@@ -63,7 +63,6 @@
             this.comboBoxFunciones.FormattingEnabled = true;
             this.comboBoxFunciones.Items.AddRange(new object[] {
             "Recorridos con más pasajes comprados",
-            "Clientes con más puntos acumulados a la fecha",
             "Recorridos con más cabinas libres en cada uno de los viajes realizados",
             "Cruceros con mayor cantidad de días fuera de servicio"});
             this.comboBoxFunciones.Location = new System.Drawing.Point(12, 294);

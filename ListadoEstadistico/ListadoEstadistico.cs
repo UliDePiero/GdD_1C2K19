@@ -22,8 +22,6 @@ namespace FrbaCrucero.ListadoEstadistico
         private void atras_Click(object sender, EventArgs e)
         {
             this.Close();
-            Menu form = new Menu(rol_nombre);
-            form.Show();
         }
 
         private void Listado_Estadistico_Load(object sender, EventArgs e)

@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FrbaCrucero.CompraPasaje
+namespace FrbaCrucero.GeneracionViaje
 {
-    public partial class Form1 : Form
+    public partial class GenerarViaje : Form
     {
-        public Form1()
+        public GenerarViaje()
         {
             InitializeComponent();
         }

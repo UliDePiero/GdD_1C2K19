@@ -15,7 +15,7 @@ using FrbaCrucero.AbmRol;
 using FrbaCrucero.CompraPasaje;
 using FrbaCrucero.GeneracionViaje;
 using FrbaCrucero.ListadoEstadistico;
-using FrbaCrucero.PagoReserva;
+using FrbaCrucero.CompraReservaPasaje;
 
 
 namespace FrbaCrucero
@@ -37,7 +37,9 @@ namespace FrbaCrucero
             ABM_Recorrido form2 = new ABM_Recorrido();
             form2.Show();
             ABM_ROL form3 = new ABM_ROL();
-            form3.Show();       
+            form3.Show();
+            PagarReserva form4 = new PagarReserva();
+            form4.Show();   
         }
 
         private void salir_Click(object sender, EventArgs e)

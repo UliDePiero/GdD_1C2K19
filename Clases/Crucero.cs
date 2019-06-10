@@ -19,7 +19,6 @@ namespace FrbaCrucero.Clases
         public List<EstadoCrucero> estados;
         private string p1;
         private object p2;
-        private ModeloCrucero modeloCrucero;
         private List<Cabina> list1;
         private List<ServicioCrucero> list2;
         private decimal p3;

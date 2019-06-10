@@ -103,6 +103,7 @@
     <Compile Include="BD y Querys\DBConnection.cs" />
     <Compile Include="BD y Querys\Puerto_BD.cs" />
     <Compile Include="BD y Querys\Recorrido_BD.cs" />
+    <Compile Include="BD y Querys\Reserva_DB.cs" />
     <Compile Include="BD y Querys\ROL_BD.cs" />
     <Compile Include="BD y Querys\Tramo_BD.cs" />
     <Compile Include="Clases\Cabina.cs" />
@@ -111,14 +112,21 @@
     <Compile Include="Clases\Funcionalidad.cs" />
     <Compile Include="Clases\MarcaCrucero.cs" />
     <Compile Include="Clases\ModeloCrucero.cs" />
+    <Compile Include="Clases\Reserva.cs" />
     <Compile Include="Clases\ROL.cs" />
     <Compile Include="Clases\ServicioCrucero.cs" />
     <Compile Include="Clases\TipoCabina.cs" />
-    <Compile Include="CompraReservaPasaje\Form1.cs">
+    <Compile Include="CompraReservaPasaje\Reservar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CompraReservaPasaje\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="CompraReservaPasaje\Reservar.Designer.cs">
+      <DependentUpon>Reservar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CompraReservaPasaje\PagarReserva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CompraReservaPasaje\PagarReserva.Designer.cs">
+      <DependentUpon>PagarReserva.cs</DependentUpon>
     </Compile>
     <Compile Include="GD1C2019DataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -147,11 +155,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GD1C2019DataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="GeneracionViaje\Form1.cs">
+    <Compile Include="GeneracionViaje\GenerarViaje.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GeneracionViaje\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="GeneracionViaje\GenerarViaje.Designer.cs">
+      <DependentUpon>GenerarViaje.cs</DependentUpon>
     </Compile>
     <Compile Include="Inicio y Log\Menu.cs">
       <SubType>Form</SubType>
@@ -163,12 +171,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ListadoEstadistico\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PagoReserva\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PagoReserva\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -199,6 +201,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmRol\ModificacionesROL.resx">
       <DependentUpon>ModificacionesROL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CompraReservaPasaje\Reservar.resx">
+      <DependentUpon>Reservar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GeneracionViaje\GenerarViaje.resx">
+      <DependentUpon>GenerarViaje.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inicio y Log\INICIO.resx">
       <DependentUpon>INICIO.cs</DependentUpon>

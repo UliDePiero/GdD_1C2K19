@@ -101,6 +101,7 @@
     </Compile>
     <Compile Include="BD y Querys\Crucero_BD.cs" />
     <Compile Include="BD y Querys\DBConnection.cs" />
+    <Compile Include="BD y Querys\Estadistica_BD.cs" />
     <Compile Include="BD y Querys\Puerto_BD.cs" />
     <Compile Include="BD y Querys\Recorrido_BD.cs" />
     <Compile Include="BD y Querys\Reserva_DB.cs" />

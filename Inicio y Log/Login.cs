@@ -21,7 +21,7 @@ namespace FrbaCrucero
 
         private void iniciar_Click(object sender, EventArgs e)
         {
-            //logins(textBoxUsuario.Text, textBoxContraseña.Text);
+            logins(textBoxUsuario.Text, textBoxContraseña.Text);
             
             this.Close();
             Menu form = new Menu("Administrador");

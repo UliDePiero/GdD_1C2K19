@@ -37,18 +37,13 @@
             this.modificarCrucero = new System.Windows.Forms.Button();
             this.atras = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.maestraBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gD1C2019DataSet = new FrbaCrucero.GD1C2019DataSet();
             this.crucerosDisponibles = new System.Windows.Forms.Label();
-            this.maestraTableAdapter = new FrbaCrucero.GD1C2019DataSetTableAdapters.MaestraTableAdapter();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.fecha = new System.Windows.Forms.Label();
             this.aceptar = new System.Windows.Forms.Button();
             this.cancelar = new System.Windows.Forms.Button();
             this.funciones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.maestraBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD1C2019DataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // funciones
@@ -132,6 +127,7 @@
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dataGridView1.Location = new System.Drawing.Point(21, 62);
             this.dataGridView1.Name = "dataGridView1";
@@ -139,16 +135,6 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(675, 247);
             this.dataGridView1.TabIndex = 10;
-            // 
-            // maestraBindingSource
-            // 
-            this.maestraBindingSource.DataMember = "Maestra";
-            this.maestraBindingSource.DataSource = this.gD1C2019DataSet;
-            // 
-            // gD1C2019DataSet
-            // 
-            this.gD1C2019DataSet.DataSetName = "GD1C2019DataSet";
-            this.gD1C2019DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // crucerosDisponibles
             // 
@@ -159,10 +145,6 @@
             this.crucerosDisponibles.Size = new System.Drawing.Size(268, 31);
             this.crucerosDisponibles.TabIndex = 9;
             this.crucerosDisponibles.Text = "Cruceros disponibles";
-            // 
-            // maestraTableAdapter
-            // 
-            this.maestraTableAdapter.ClearBeforeFill = true;
             // 
             // dateTimePicker1
             // 
@@ -224,8 +206,6 @@
             this.Load += new System.EventHandler(this.ABM_Crucero_Load);
             this.funciones.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.maestraBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD1C2019DataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -240,9 +220,6 @@
         private System.Windows.Forms.Button atras;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label crucerosDisponibles;
-        private GD1C2019DataSet gD1C2019DataSet;
-        private System.Windows.Forms.BindingSource maestraBindingSource;
-        private GD1C2019DataSetTableAdapters.MaestraTableAdapter maestraTableAdapter;
         private System.Windows.Forms.Button bajaMomCrucero;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label fecha;

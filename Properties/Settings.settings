@@ -10,5 +10,8 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=GGM-PC\SQLSERVER2012;Initial Catalog=GD1C2019;Persist Security Info=True;User ID=gdCruceros2019</Value>
     </Setting>
+    <Setting Name="Inicio" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">2012</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

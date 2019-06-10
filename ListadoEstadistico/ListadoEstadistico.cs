@@ -8,29 +8,33 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FrbaCrucero.AbmRecorrido
+namespace FrbaCrucero.ListadoEstadistico
 {
-    public partial class ModificacionesTramo : Form
+    public partial class Listado_Estadistico : Form
     {
         private string rol_nombre;
-        public ModificacionesTramo(string rol)
+        public Listado_Estadistico(string rol)
         {
             InitializeComponent();
             rol_nombre = rol;
         }
 
-        private void aceptar_Click(object sender, EventArgs e)
+        private void atras_Click(object sender, EventArgs e)
         {
             this.Close();
-            ABM_Tramo form = new ABM_Tramo(rol_nombre);
+            Menu form = new Menu(rol_nombre);
             form.Show();
         }
 
-        private void cancelar_Click(object sender, EventArgs e)
+        private void Listado_Estadistico_Load(object sender, EventArgs e)
         {
-            this.Close();
-            ABM_Tramo form = new ABM_Tramo(rol_nombre);
-            form.Show();
+
         }
+
+        private void visualizarListado_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

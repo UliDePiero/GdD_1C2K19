@@ -16,10 +16,41 @@ namespace FrbaCrucero.BD_y_Querys
     {
         public static void cargar_grilla_roles(DataGridView grillaRoles)
         {
-            string query = string.Format(@"SELECT rol_id as ID, rol_nombre, rol_habilitado as ROL
-                                           FROM PENSAMIENTO_LINEAL.ROL
-                                           ORDER BY 1 ASC");           
+            string query = string.Format(@"SELECT rol_id as ID, rol_nombre as Nombre, rol_habilitado as ROL
+                                           FROM PENSAMIENTO_LINEAL.ROL");           
             DBConnection.llenar_grilla(grillaRoles, query);
+        }
+        public static void cargar_grilla_roles_habilitados(DataGridView grillaRoles)
+        {
+            string query = string.Format(@"SELECT rol_id as ID, rol_nombre as Nombre, rol_habilitado as ROL
+                                           FROM PENSAMIENTO_LINEAL.ROL
+                                            WHERE rol_habilitado=1");
+            DBConnection.llenar_grilla(grillaRoles, query);
+        }
+        public static void inhabilitar_rol(ROL rol){
+            string query = string.Format(@"UPDATE PENSAMIENTO_LINEAL.Rol SET rol_habilitado=0 WHERE rol_id=@rol_id");
+                SqlConnection conn = DBConnection.getConnection();
+                SqlCommand cmd = new SqlCommand(query, conn);                
+                cmd.Parameters.AddWithValue("@rol_id", rol.id);
+
+                cmd.ExecuteNonQuery();            
+
+                cmd.Dispose();
+                conn.Close();
+                conn.Dispose();
+        }
+        public static void habilitar_rol(ROL rol)
+        {
+            string query = string.Format(@"UPDATE PENSAMIENTO_LINEAL.Rol SET rol_habilitado=1 WHERE rol_id=@rol_id");
+            SqlConnection conn = DBConnection.getConnection();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@rol_id", rol.id);
+
+            cmd.ExecuteNonQuery();
+
+            cmd.Dispose();
+            conn.Close();
+            conn.Dispose();
         }
         public static List<Funcionalidad> obtener_todas_funcionalidades()
         {
@@ -43,15 +74,14 @@ namespace FrbaCrucero.BD_y_Querys
             conn.Dispose();
             return funcionalidades;
         }
-        public static void cargar_funcionalidades_asignadas(ROL rol)
+        public static List<Funcionalidad> obtener_funcionalidades_asignadas(ROL rol)
         {
-            /*rol.funcionalidades = new List<Funcionalidad>();
-            string query = string.Format(@"SELECT * FROM PENSAMIENTO_LINEAL.fn_get_funcionalidades_rol(@rol_id)");
-
+            List<Funcionalidad> funcionalidades = new List<Funcionalidad>();
+            string query = string.Format(@" SELECT func_id, func_nombre FROM PENSAMIENTO_LINEAL.Funcionalidad 
+                                    JOIN PENSAMIENTO_LINEAL.Rol_Funcion ON (func_id = rol_func_funcid )
+                                    WHERE rol_func_rolid = '" + rol.id + "' ");
             SqlConnection conn = DBConnection.getConnection();
             SqlCommand cmd = new SqlCommand(query, conn);
-            cmd.Parameters.AddWithValue("@rol_id", rol.id);
-
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
@@ -59,13 +89,14 @@ namespace FrbaCrucero.BD_y_Querys
                 string nombre = reader["func_nombre"].ToString();
 
                 Funcionalidad func = new Funcionalidad(id, nombre);
-                rol.funcionalidades.Add(func);
+                funcionalidades.Add(func);
             }
             reader.Close();
             reader.Dispose();
             cmd.Dispose();
             conn.Close();
-            conn.Dispose();*/
+            conn.Dispose();
+            return funcionalidades;
         }
 
         public static void cargar_grilla_funcionalidades(DataGridView grillaFuncionalidades, ROL rol)
@@ -181,6 +212,31 @@ namespace FrbaCrucero.BD_y_Querys
                 MessageBox.Show(ex.Message, "Error al modificar Rol", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return false;
+        }
+
+        public static List<ROL> obtener_todos_roles()
+        {
+            List<ROL> roles = new List<ROL>();
+            string query = string.Format(@"SELECT rol_id, rol_nombre, rol_habilitado FROM PENSAMIENTO_LINEAL.ROL");
+            SqlConnection conn = DBConnection.getConnection();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                int id = int.Parse(reader["rol_id"].ToString());
+                string nombre = reader["rol_nombre"].ToString();
+                bool habilitado = reader.GetBoolean(reader.GetOrdinal("rol_habilitado"));
+
+                ROL rol = new ROL(id, nombre, habilitado);
+                if (rol.habilitado == true)
+                    roles.Add(rol);
+            }
+            reader.Close();
+            reader.Dispose();
+            cmd.Dispose();
+            conn.Close();
+            conn.Dispose();
+            return roles;
         }
     }
 }

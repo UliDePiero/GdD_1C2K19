@@ -36,19 +36,12 @@
             this.mostrar_ocuRol = new System.Windows.Forms.Button();
             this.atras = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.maestraBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gD1C2019DataSet = new FrbaCrucero.GD1C2019DataSet();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.funcionalidades = new System.Windows.Forms.Label();
-            this.maestraTableAdapter = new FrbaCrucero.GD1C2019DataSetTableAdapters.MaestraTableAdapter();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.maestraBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.maestraBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD1C2019DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.maestraBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // roles
@@ -118,6 +111,7 @@
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dataGridView1.Location = new System.Drawing.Point(216, 66);
             this.dataGridView1.Name = "dataGridView1";
@@ -126,16 +120,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(442, 327);
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // maestraBindingSource
-            // 
-            this.maestraBindingSource.DataMember = "Maestra";
-            this.maestraBindingSource.DataSource = this.gD1C2019DataSet;
-            // 
-            // gD1C2019DataSet
-            // 
-            this.gD1C2019DataSet.DataSetName = "GD1C2019DataSet";
-            this.gD1C2019DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // dataGridView2
             // 
@@ -161,10 +145,6 @@
             this.funcionalidades.TabIndex = 0;
             this.funcionalidades.Text = "Funcionalidades";
             // 
-            // maestraTableAdapter
-            // 
-            this.maestraTableAdapter.ClearBeforeFill = true;
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.nuevoRol);
@@ -176,11 +156,6 @@
             this.groupBox1.Size = new System.Drawing.Size(189, 389);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
-            // 
-            // maestraBindingSource1
-            // 
-            this.maestraBindingSource1.DataMember = "Maestra";
-            this.maestraBindingSource1.DataSource = this.gD1C2019DataSet;
             // 
             // ABM_ROL
             // 
@@ -197,11 +172,8 @@
             this.Text = "ROL";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.maestraBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD1C2019DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.maestraBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -218,11 +190,7 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Label funcionalidades;
-        private GD1C2019DataSet gD1C2019DataSet;
-        private System.Windows.Forms.BindingSource maestraBindingSource;
-        private GD1C2019DataSetTableAdapters.MaestraTableAdapter maestraTableAdapter;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.BindingSource maestraBindingSource1;
 
     }
 }

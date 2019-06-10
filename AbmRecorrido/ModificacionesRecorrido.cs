@@ -12,9 +12,11 @@ namespace FrbaCrucero.AbmRecorrido
 {
     public partial class ModificacionesRecorrido : Form
     {
-        public ModificacionesRecorrido()
+        private string rol_nombre;
+        public ModificacionesRecorrido(string rol)
         {
             InitializeComponent();
+            rol_nombre = rol;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -32,14 +34,14 @@ namespace FrbaCrucero.AbmRecorrido
         private void aceptar_Click(object sender, EventArgs e)
         {
             this.Close();
-            ABM_Recorrido form = new ABM_Recorrido();
+            ABM_Recorrido form = new ABM_Recorrido(rol_nombre);
             form.Show();
         }
 
         private void cancelar_Click(object sender, EventArgs e)
         {
             this.Close();
-            ABM_Recorrido form = new ABM_Recorrido();
+            ABM_Recorrido form = new ABM_Recorrido(rol_nombre);
             form.Show();
         }
     }

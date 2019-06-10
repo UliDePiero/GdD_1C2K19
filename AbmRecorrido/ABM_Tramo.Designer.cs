@@ -34,16 +34,10 @@
             this.eliminarTramo = new System.Windows.Forms.Button();
             this.modificarTramo = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.maestraBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gD1C2019DataSet = new FrbaCrucero.GD1C2019DataSet();
             this.tramosDisponibles = new System.Windows.Forms.Label();
             this.atras = new System.Windows.Forms.Button();
-            this.maestraTableAdapter = new FrbaCrucero.GD1C2019DataSetTableAdapters.MaestraTableAdapter();
-            this.seleccionado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.funciones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.maestraBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD1C2019DataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // funciones
@@ -92,22 +86,12 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.seleccionado});
+            this.dataGridView1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dataGridView1.Location = new System.Drawing.Point(21, 62);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(712, 247);
             this.dataGridView1.TabIndex = 10;
-            // 
-            // maestraBindingSource
-            // 
-            this.maestraBindingSource.DataMember = "Maestra";
-            this.maestraBindingSource.DataSource = this.gD1C2019DataSet;
-            // 
-            // gD1C2019DataSet
-            // 
-            this.gD1C2019DataSet.DataSetName = "GD1C2019DataSet";
-            this.gD1C2019DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // tramosDisponibles
             // 
@@ -129,16 +113,6 @@
             this.atras.UseVisualStyleBackColor = true;
             this.atras.Click += new System.EventHandler(this.atras_Click);
             // 
-            // maestraTableAdapter
-            // 
-            this.maestraTableAdapter.ClearBeforeFill = true;
-            // 
-            // seleccionado
-            // 
-            this.seleccionado.HeaderText = "";
-            this.seleccionado.Name = "seleccionado";
-            this.seleccionado.ReadOnly = true;
-            // 
             // ABM_Tramo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -153,8 +127,6 @@
             this.Load += new System.EventHandler(this.ABM_Tramo_Load);
             this.funciones.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.maestraBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD1C2019DataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -169,9 +141,5 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label tramosDisponibles;
         private System.Windows.Forms.Button atras;
-        private GD1C2019DataSet gD1C2019DataSet;
-        private System.Windows.Forms.BindingSource maestraBindingSource;
-        private GD1C2019DataSetTableAdapters.MaestraTableAdapter maestraTableAdapter;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn seleccionado;
     }
 }

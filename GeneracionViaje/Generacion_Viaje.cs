@@ -8,21 +8,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FrbaCrucero.BD_y_Querys;
+using FrbaCrucero.Clases;
 
-namespace FrbaCrucero.AbmPuerto
+namespace FrbaCrucero.GeneracionViaje
 {
-    public partial class ABM_Puerto : Form
+    public partial class Generacion_Viaje : Form
     {
         private string rol_nombre;
-        public ABM_Puerto(string rol)
+        public Generacion_Viaje(string rol)
         {
             InitializeComponent();
             rol_nombre = rol;
-        }
-
-        private void ABM_Puerto_Load(object sender, EventArgs e)
-        {
-            Puerto_BD.cargar_grilla_puertos(dataGridView1);
         }
 
         private void atras_Click(object sender, EventArgs e)
@@ -30,6 +26,14 @@ namespace FrbaCrucero.AbmPuerto
             this.Close();
             Menu form = new Menu(rol_nombre);
             form.Show();
+        }
+
+        private void Generacion_Viaje_Load(object sender, EventArgs e)
+        {
+            Crucero_BD.cargar_grilla_cruceros(dataGridView1);
+            Recorrido_BD.cargar_grilla_recorridos(dataGridView2);
+            if (dataGridView1.RowCount == 0 || dataGridView2.RowCount == 0)            
+                generarViaje.Enabled = false; 
         }
     }
 }

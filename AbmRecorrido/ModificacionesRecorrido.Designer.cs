@@ -66,16 +66,11 @@
             this.rESERVACODIGODataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rESERVAFECHADataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Seleccionado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.maestraBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gD1C2019DataSet = new FrbaCrucero.GD1C2019DataSet();
-            this.maestraTableAdapter = new FrbaCrucero.GD1C2019DataSetTableAdapters.MaestraTableAdapter();
             this.tramosDelRecorrido = new System.Windows.Forms.Label();
             this.duracionRecorrido = new System.Windows.Forms.Label();
             this.textBoxDuracionRec = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderCodigo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.maestraBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD1C2019DataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // nuevoRecorrido
@@ -194,7 +189,6 @@
             this.rESERVACODIGODataGridViewTextBoxColumn,
             this.rESERVAFECHADataGridViewTextBoxColumn,
             this.Seleccionado});
-            this.dataGridView1.DataSource = this.maestraBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(12, 280);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -389,20 +383,6 @@
             this.Seleccionado.Name = "Seleccionado";
             this.Seleccionado.ReadOnly = true;
             // 
-            // maestraBindingSource
-            // 
-            this.maestraBindingSource.DataMember = "Maestra";
-            this.maestraBindingSource.DataSource = this.gD1C2019DataSet;
-            // 
-            // gD1C2019DataSet
-            // 
-            this.gD1C2019DataSet.DataSetName = "GD1C2019DataSet";
-            this.gD1C2019DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // maestraTableAdapter
-            // 
-            this.maestraTableAdapter.ClearBeforeFill = true;
-            // 
             // tramosDelRecorrido
             // 
             this.tramosDelRecorrido.AutoSize = true;
@@ -454,8 +434,6 @@
             this.Load += new System.EventHandler(this.ModificacionesRecorrido_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderCodigo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.maestraBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD1C2019DataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -473,7 +451,6 @@
         private System.Windows.Forms.Label precioRecorrido;
         private System.Windows.Forms.ErrorProvider errorProviderCodigo;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private GD1C2019DataSet gD1C2019DataSet;
         private System.Windows.Forms.BindingSource maestraBindingSource;
         private GD1C2019DataSetTableAdapters.MaestraTableAdapter maestraTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn cLINOMBREDataGridViewTextBoxColumn;

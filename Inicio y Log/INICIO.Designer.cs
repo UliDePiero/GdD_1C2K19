@@ -51,7 +51,7 @@
             // 
             // ingresar
             // 
-            this.ingresar.Location = new System.Drawing.Point(369, 44);
+            this.ingresar.Location = new System.Drawing.Point(393, 44);
             this.ingresar.Name = "ingresar";
             this.ingresar.Size = new System.Drawing.Size(173, 33);
             this.ingresar.TabIndex = 1;
@@ -62,13 +62,10 @@
             // comboBoxRoles
             // 
             this.comboBoxRoles.FormattingEnabled = true;
-            this.comboBoxRoles.Items.AddRange(new object[] {
-            "Administrador",
-            "Cliente"});
             this.comboBoxRoles.Location = new System.Drawing.Point(6, 44);
             this.comboBoxRoles.Name = "comboBoxRoles";
-            this.comboBoxRoles.Size = new System.Drawing.Size(240, 33);
-            this.comboBoxRoles.TabIndex = 0;
+            this.comboBoxRoles.Size = new System.Drawing.Size(357, 33);
+            this.comboBoxRoles.TabIndex = 0;            
             // 
             // label1
             // 

@@ -13,9 +13,11 @@ namespace FrbaCrucero.AbmRecorrido
 {
     public partial class ABM_Tramo : Form
     {
-        public ABM_Tramo()
+        private string rol_nombre;
+        public ABM_Tramo(string rol)
         {
             InitializeComponent();
+            rol_nombre = rol;
         }
 
         private void ABM_Tramo_Load(object sender, EventArgs e)
@@ -26,21 +28,21 @@ namespace FrbaCrucero.AbmRecorrido
         private void atras_Click(object sender, EventArgs e)
         {
             this.Close();
-            ABM_Recorrido form = new ABM_Recorrido();
+            ABM_Recorrido form = new ABM_Recorrido(rol_nombre);
             form.Show();
         }
 
         private void nuevoTramo_Click(object sender, EventArgs e)
         {
             this.Close();
-            ModificacionesTramo form = new ModificacionesTramo();
+            ModificacionesTramo form = new ModificacionesTramo(rol_nombre);
             form.Show();
         }
 
         private void modificarTramo_Click(object sender, EventArgs e)
         {
             this.Close();
-            ModificacionesTramo form = new ModificacionesTramo();
+            ModificacionesTramo form = new ModificacionesTramo(rol_nombre);
             form.Show();
         }
     }

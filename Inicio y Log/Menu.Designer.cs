@@ -83,11 +83,11 @@
             // 
             // comboBoxFuncionalidades
             // 
-            this.comboBoxFuncionalidades.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxFuncionalidades.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxFuncionalidades.FormattingEnabled = true;
             this.comboBoxFuncionalidades.Location = new System.Drawing.Point(7, 41);
             this.comboBoxFuncionalidades.Name = "comboBoxFuncionalidades";
-            this.comboBoxFuncionalidades.Size = new System.Drawing.Size(248, 33);
+            this.comboBoxFuncionalidades.Size = new System.Drawing.Size(248, 24);
             this.comboBoxFuncionalidades.TabIndex = 0;
             // 
             // rolActual

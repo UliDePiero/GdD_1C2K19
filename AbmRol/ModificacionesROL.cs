@@ -16,10 +16,12 @@ namespace FrbaCrucero.AbmRol
     {
         private string tipo_ingreso;
         private ROL rol_modificar;
+        private string rol_nombre;
 
-        public ModificacionesROL(String operacion, ROL rol_modif)
+        public ModificacionesROL(String operacion, ROL rol_modif, string rol)
         {
             InitializeComponent();
+            rol_nombre = rol;
             this.tipo_ingreso = operacion;
             this.rol_modificar = rol_modif;           
             if (tipo_ingreso != "Modificar")
@@ -44,11 +46,6 @@ namespace FrbaCrucero.AbmRol
             }
         }
 
-        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private List<Funcionalidad> obtener_funcionalidades_checkList()
         {
             List<Funcionalidad> funcionalidades = new List<Funcionalidad>();
@@ -66,7 +63,7 @@ namespace FrbaCrucero.AbmRol
             {
                 MessageBox.Show("Nuevo ROL creado.", tipo_ingreso, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
-                ABM_ROL form = new ABM_ROL();
+                ABM_ROL form = new ABM_ROL(rol_nombre);
                 form.Show();
             }
             else
@@ -84,7 +81,7 @@ namespace FrbaCrucero.AbmRol
             {
                 MessageBox.Show("ROL modificado.", tipo_ingreso, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
-                ABM_ROL form = new ABM_ROL();
+                ABM_ROL form = new ABM_ROL(rol_nombre);
                 form.Show();
             }
             else
@@ -109,7 +106,7 @@ namespace FrbaCrucero.AbmRol
         private void cancelar_Click(object sender, EventArgs e)
         {
             this.Close();
-            ABM_ROL form = new ABM_ROL();
+            ABM_ROL form = new ABM_ROL(rol_nombre);
             form.Show();
         }
     }

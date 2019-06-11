@@ -31,19 +31,10 @@ namespace FrbaCrucero
         }
 
         public void cargarMenu(){            
-            usuarioLabel.Text = UsuarioLogeado.Username;
+            usuarioLabel.Text = UsuarioLogeado.Username.ToUpper();
             rolesDelUsuario = new List<ROL>();
             funcionalidadesDelUsuario = new List<Funcionalidad>();
-            List<ROL> roles = ROL_BD.obtener_todos_roles();
-            List<int> ids = ROL_BD.obtener_todos_id_de_usuarios_con_username();
-            foreach (ROL r in roles)
-            {
-                foreach (int id in ids)
-                {
-                    if (r.id == id)
-                        rolesDelUsuario.Add(r);
-                }
-            }
+            rolesDelUsuario = ROL_BD.obtener_roles_con_username();
             foreach (ROL r in rolesDelUsuario)
             {
                 comboBoxRoles.Items.Add(r.nombre);
@@ -89,6 +80,8 @@ namespace FrbaCrucero
 
         private void comboBoxRoles_SelectedIndexChanged_1(object sender, EventArgs e)
         {
+            RolLabel.Text = comboBoxRoles.SelectedItem.ToString();
+            comboBoxFuncionalidades.Items.Clear();
             foreach (ROL r in rolesDelUsuario)
             {
                 if (comboBoxRoles.SelectedItem.ToString().StartsWith(r.nombre))

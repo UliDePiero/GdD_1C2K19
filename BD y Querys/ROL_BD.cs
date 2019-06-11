@@ -271,5 +271,32 @@ namespace FrbaCrucero.BD_y_Querys
             conn.Dispose();
             return rta;
         }
+
+        public static List<ROL> obtener_roles_con_username()
+        {
+            List<ROL> roles = new List<ROL>();
+            string query = string.Format(@"SELECT rol_id, rol_nombre, rol_habilitado FROM PENSAMIENTO_LINEAL.Rol JOIN PENSAMIENTO_LINEAL.Rol_Usuario ON(rol_id = rol_usuario_rolid) JOIN PENSAMIENTO_LINEAL.Usuario ON(rol_usuario_usuarioid = usua_id) WHERE usua_username = @usua_username");
+            SqlConnection conn = DBConnection.getConnection();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@usua_username", UsuarioLogeado.Username);
+            SqlDataReader reader = cmd.ExecuteReader();
+            reader.Read();
+            while (reader.Read())
+            {
+                int id = int.Parse(reader["rol_id"].ToString());
+                string nombre = reader["rol_nombre"].ToString();
+                bool habilitado = reader.GetBoolean(reader.GetOrdinal("rol_habilitado"));
+
+                ROL rol = new ROL(id, nombre, habilitado);
+                if (rol.habilitado == true)
+                    roles.Add(rol);
+            }
+            reader.Close();
+            reader.Dispose();
+            cmd.Dispose();
+            conn.Close();
+            conn.Dispose();
+            return roles;
+        }
     }
 }

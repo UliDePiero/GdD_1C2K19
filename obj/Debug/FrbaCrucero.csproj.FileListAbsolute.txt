@@ -44,27 +44,3 @@ C:\Users\Tomas\Documents\GitHub\GdD_1C2K19\obj\Debug\FrbaCrucero.pdb
 C:\Users\juanb\Desktop\MisProyectos\SQL\GDD\GdD_1C2K19\obj\Debug\FrbaCrucero.CompraReservaPasaje.Reservar.resources
 C:\Users\juanb\Desktop\MisProyectos\SQL\GDD\GdD_1C2K19\obj\Debug\FrbaCrucero.GeneracionViaje.Generacion_Viaje.resources
 C:\Users\juanb\Desktop\MisProyectos\SQL\GDD\GdD_1C2K19\obj\Debug\FrbaCrucero.ListadoEstadistico.Listado_Estadistico.resources
-C:\Users\GGM\Documents\TP Frba Crucero 1.0 - 1C 2019\GdD_1C2K19\bin\Debug\FrbaCrucero.exe.config
-C:\Users\GGM\Documents\TP Frba Crucero 1.0 - 1C 2019\GdD_1C2K19\bin\Debug\FrbaCrucero.exe
-C:\Users\GGM\Documents\TP Frba Crucero 1.0 - 1C 2019\GdD_1C2K19\bin\Debug\FrbaCrucero.pdb
-C:\Users\GGM\Documents\TP Frba Crucero 1.0 - 1C 2019\GdD_1C2K19\obj\Debug\FrbaCrucero.csprojResolveAssemblyReference.cache
-C:\Users\GGM\Documents\TP Frba Crucero 1.0 - 1C 2019\GdD_1C2K19\obj\Debug\FrbaCrucero.AbmCrucero.ABM_Crucero.resources
-C:\Users\GGM\Documents\TP Frba Crucero 1.0 - 1C 2019\GdD_1C2K19\obj\Debug\FrbaCrucero.AbmCrucero.ModificacionesCrucero.resources
-C:\Users\GGM\Documents\TP Frba Crucero 1.0 - 1C 2019\GdD_1C2K19\obj\Debug\FrbaCrucero.AbmPuerto.ABM_Puerto.resources
-C:\Users\GGM\Documents\TP Frba Crucero 1.0 - 1C 2019\GdD_1C2K19\obj\Debug\FrbaCrucero.AbmRecorrido.ABM_Recorrido.resources
-C:\Users\GGM\Documents\TP Frba Crucero 1.0 - 1C 2019\GdD_1C2K19\obj\Debug\FrbaCrucero.AbmRecorrido.ABM_Tramo.resources
-C:\Users\GGM\Documents\TP Frba Crucero 1.0 - 1C 2019\GdD_1C2K19\obj\Debug\FrbaCrucero.AbmRecorrido.ModificacionesRecorrido.resources
-C:\Users\GGM\Documents\TP Frba Crucero 1.0 - 1C 2019\GdD_1C2K19\obj\Debug\FrbaCrucero.AbmRecorrido.ModificacionesTramo.resources
-C:\Users\GGM\Documents\TP Frba Crucero 1.0 - 1C 2019\GdD_1C2K19\obj\Debug\FrbaCrucero.AbmRol.ABM_ROL.resources
-C:\Users\GGM\Documents\TP Frba Crucero 1.0 - 1C 2019\GdD_1C2K19\obj\Debug\FrbaCrucero.AbmRol.ModificacionesROL.resources
-C:\Users\GGM\Documents\TP Frba Crucero 1.0 - 1C 2019\GdD_1C2K19\obj\Debug\FrbaCrucero.CompraReservaPasaje.IngresarDatosCliente.resources
-C:\Users\GGM\Documents\TP Frba Crucero 1.0 - 1C 2019\GdD_1C2K19\obj\Debug\FrbaCrucero.CompraReservaPasaje.ReservaForm.resources
-C:\Users\GGM\Documents\TP Frba Crucero 1.0 - 1C 2019\GdD_1C2K19\obj\Debug\FrbaCrucero.GeneracionViaje.Generacion_Viaje.resources
-C:\Users\GGM\Documents\TP Frba Crucero 1.0 - 1C 2019\GdD_1C2K19\obj\Debug\FrbaCrucero.INICIO.resources
-C:\Users\GGM\Documents\TP Frba Crucero 1.0 - 1C 2019\GdD_1C2K19\obj\Debug\FrbaCrucero.Login.resources
-C:\Users\GGM\Documents\TP Frba Crucero 1.0 - 1C 2019\GdD_1C2K19\obj\Debug\FrbaCrucero.Menu.resources
-C:\Users\GGM\Documents\TP Frba Crucero 1.0 - 1C 2019\GdD_1C2K19\obj\Debug\FrbaCrucero.ListadoEstadistico.Listado_Estadistico.resources
-C:\Users\GGM\Documents\TP Frba Crucero 1.0 - 1C 2019\GdD_1C2K19\obj\Debug\FrbaCrucero.Properties.Resources.resources
-C:\Users\GGM\Documents\TP Frba Crucero 1.0 - 1C 2019\GdD_1C2K19\obj\Debug\FrbaCrucero.csproj.GenerateResource.Cache
-C:\Users\GGM\Documents\TP Frba Crucero 1.0 - 1C 2019\GdD_1C2K19\obj\Debug\FrbaCrucero.exe
-C:\Users\GGM\Documents\TP Frba Crucero 1.0 - 1C 2019\GdD_1C2K19\obj\Debug\FrbaCrucero.pdb

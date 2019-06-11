@@ -33,8 +33,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.compraReserva = new System.Windows.Forms.Button();
             this.pagoReserva = new System.Windows.Forms.Button();
+            this.compraReserva = new System.Windows.Forms.Button();
             this.seleccionROL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -54,9 +54,9 @@
             // ingresar
             // 
             this.ingresar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ingresar.Location = new System.Drawing.Point(6, 32);
+            this.ingresar.Location = new System.Drawing.Point(23, 40);
             this.ingresar.Name = "ingresar";
-            this.ingresar.Size = new System.Drawing.Size(177, 55);
+            this.ingresar.Size = new System.Drawing.Size(145, 38);
             this.ingresar.TabIndex = 1;
             this.ingresar.Text = "Ingresar";
             this.ingresar.UseVisualStyleBackColor = true;
@@ -95,27 +95,27 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cliente";
             // 
-            // compraReserva
-            // 
-            this.compraReserva.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.compraReserva.Location = new System.Drawing.Point(6, 32);
-            this.compraReserva.Name = "compraReserva";
-            this.compraReserva.Size = new System.Drawing.Size(198, 55);
-            this.compraReserva.TabIndex = 1;
-            this.compraReserva.Text = "Comprar o Reservar pasaje";
-            this.compraReserva.UseVisualStyleBackColor = true;
-            this.compraReserva.Click += new System.EventHandler(this.compraReserva_Click);
-            // 
             // pagoReserva
             // 
             this.pagoReserva.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pagoReserva.Location = new System.Drawing.Point(210, 32);
+            this.pagoReserva.Location = new System.Drawing.Point(210, 40);
             this.pagoReserva.Name = "pagoReserva";
-            this.pagoReserva.Size = new System.Drawing.Size(173, 55);
+            this.pagoReserva.Size = new System.Drawing.Size(173, 38);
             this.pagoReserva.TabIndex = 2;
             this.pagoReserva.Text = "Pagar reserva de pasaje";
             this.pagoReserva.UseVisualStyleBackColor = true;
             this.pagoReserva.Click += new System.EventHandler(this.pagoReserva_Click);
+            // 
+            // compraReserva
+            // 
+            this.compraReserva.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.compraReserva.Location = new System.Drawing.Point(6, 40);
+            this.compraReserva.Name = "compraReserva";
+            this.compraReserva.Size = new System.Drawing.Size(198, 38);
+            this.compraReserva.TabIndex = 1;
+            this.compraReserva.Text = "Comprar o Reservar pasaje";
+            this.compraReserva.UseVisualStyleBackColor = true;
+            this.compraReserva.Click += new System.EventHandler(this.compraReserva_Click);
             // 
             // INICIO
             // 

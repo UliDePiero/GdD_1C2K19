@@ -114,16 +114,24 @@
     <Compile Include="Clases\Funcionalidad.cs" />
     <Compile Include="Clases\MarcaCrucero.cs" />
     <Compile Include="Clases\ModeloCrucero.cs" />
+    <Compile Include="Clases\Recorrido.cs" />
     <Compile Include="Clases\Reserva.cs" />
     <Compile Include="Clases\ROL.cs" />
     <Compile Include="Clases\ServicioCrucero.cs" />
     <Compile Include="Clases\TipoCabina.cs" />
+    <Compile Include="Clases\Tramo.cs" />
     <Compile Include="Clases\UsuarioLogeado.cs" />
-    <Compile Include="CompraReservaPasaje\Reservar.cs">
+    <Compile Include="CompraReservaPasaje\IngresarDatosCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CompraReservaPasaje\Reservar.Designer.cs">
-      <DependentUpon>Reservar.cs</DependentUpon>
+    <Compile Include="CompraReservaPasaje\IngresarDatosCliente.Designer.cs">
+      <DependentUpon>IngresarDatosCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CompraReservaPasaje\Reserva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CompraReservaPasaje\Reserva.Designer.cs">
+      <DependentUpon>Reserva.cs</DependentUpon>
     </Compile>
     <Compile Include="CompraReservaPasaje\PagarReserva.cs">
       <SubType>Form</SubType>
@@ -195,8 +203,11 @@
     <EmbeddedResource Include="AbmRol\ModificacionesROL.resx">
       <DependentUpon>ModificacionesROL.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CompraReservaPasaje\Reservar.resx">
-      <DependentUpon>Reservar.cs</DependentUpon>
+    <EmbeddedResource Include="CompraReservaPasaje\IngresarDatosCliente.resx">
+      <DependentUpon>IngresarDatosCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CompraReservaPasaje\Reserva.resx">
+      <DependentUpon>Reserva.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GeneracionViaje\Generacion_Viaje.resx">
       <DependentUpon>Generacion_Viaje.cs</DependentUpon>

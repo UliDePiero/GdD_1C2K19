@@ -21,17 +21,27 @@ namespace FrbaCrucero.GeneracionViaje
             rol_nombre = rol;
         }
 
-        private void atras_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void Generacion_Viaje_Load(object sender, EventArgs e)
         {
             Crucero_BD.cargar_grilla_cruceros(dataGridView1);
             Recorrido_BD.cargar_grilla_recorridos(dataGridView2);
             if (dataGridView1.RowCount == 0 || dataGridView2.RowCount == 0)            
                 generarViaje.Enabled = false; 
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            //textBoxFinalizacion.Text = calcular_fecha_finalizacion();
+        }
+
+        private void generarViaje_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void atras_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -12,11 +12,16 @@ namespace FrbaCrucero.Clases
         public string codigo { get; set; }
         public DateTime fecha { get; set; }
         public int cliente { get; set; }
-        public int crucero { get; set; }
-        public int recorrido { get; set; }
+        public int viaje { get; set; }
         public int cabina { get; set; }
 
-        public Reserva() { }
+        public Reserva(string _codigo,int _viaje, int _cabina) 
+        {
+            codigo = _codigo;
+            fecha = DateTime.Now;
+            viaje = _viaje;
+            cabina = _cabina;
+        }
 
     }
 

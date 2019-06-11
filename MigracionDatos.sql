@@ -76,10 +76,10 @@ join PENSAMIENTO_LINEAL.puerto e on d.tram_origen=e.puer_id
 join PENSAMIENTO_LINEAL.puerto f on d.tram_destino=f.puer_id
 join gd_esquema.Maestra a on e.puer_nombre=a.PUERTO_DESDE and f.puer_nombre=a.PUERTO_HASTA
 join PENSAMIENTO_LINEAL.Crucero c on c.cruc_identificador=a.CRUCERO_IDENTIFICADOR
-group by b.reco_id, c.cruc_id, a.FECHA_SALIDA, a.FECHA_LLEGADA
+group by b.reco_id, c.cruc_id, a.FECHA_SALIDA,a.FECHA_LLEGADA_ESTIMADA, a.FECHA_LLEGADA
 
-INSERT INTO PENSAMIENTO_LINEAL.Pasaje (pasa_codigo,pasa_fecha,pasa_precio,pasa_cliente,pasa_crucero,pasa_recorrido,pasa_cabina)
-select a.PASAJE_CODIGO,a.PASAJE_FECHA_COMPRA,a.PASAJE_PRECIO, c.usua_id,d.cruc_id,e.reco_id,h.cabi_id
+INSERT INTO PENSAMIENTO_LINEAL.Pasaje (pasa_codigo,pasa_fecha,pasa_precio,pasa_cliente,pasa_viaje,pasa_cabina)
+select a.PASAJE_CODIGO,a.PASAJE_FECHA_COMPRA,a.PASAJE_PRECIO, c.usua_id,j.reco_cruc_crucid,h.cabi_id
 from gd_esquema.Maestra a
 join PENSAMIENTO_LINEAL.Crucero d on d.cruc_identificador=CRUCERO_IDENTIFICADOR
 join PENSAMIENTO_LINEAL.Usuario c on c.usua_apellido=a.CLI_APELLIDO and c.usua_nombre=a.CLI_NOMBRE and c.usua_documento=a.CLI_DNI
@@ -87,11 +87,12 @@ join PENSAMIENTO_LINEAL.Recorrido e on e.reco_codigo=a.RECORRIDO_CODIGO
 join PENSAMIENTO_LINEAL.Tramo f on f.tram_id=e.reco_primertramo
 join PENSAMIENTO_LINEAL.Puerto i on i.puer_id=f.tram_origen and i.puer_nombre=a.PUERTO_DESDE
 join PENSAMIENTO_LINEAL.Cabina h on h.cabi_numero = a.CABINA_NRO and h.cabi_piso=a.CABINA_PISO and h.cabi_crucero=d.cruc_id
+join PENSAMIENTO_LINEAL.Recorrido_crucero j on j.reco_cruc_recoid = e.reco_id and j.reco_cruc_crucid = d.cruc_id and j.reco_cruc_salida=a.FECHA_SALIDA
 where RESERVA_CODIGO is null
-group by a.PASAJE_CODIGO,a.PASAJE_FECHA_COMPRA,a.PASAJE_PRECIO,c.usua_id,d.cruc_id,e.reco_id,h.cabi_id
+group by a.PASAJE_CODIGO,a.PASAJE_FECHA_COMPRA,a.PASAJE_PRECIO,c.usua_id,d.cruc_id,e.reco_id,j.reco_cruc_crucid,h.cabi_id
 
-INSERT INTO PENSAMIENTO_LINEAL.Reserva (rese_codigo,rese_fecha,rese_cliente,rese_crucero,rese_recorrido,rese_cabina)
-select a.RESERVA_CODIGO,a.RESERVA_FECHA, c.usua_id,d.cruc_id,e.reco_id,h.cabi_id
+INSERT INTO PENSAMIENTO_LINEAL.Reserva (rese_codigo,rese_fecha,rese_cliente,rese_viaje,rese_cabina)
+select a.RESERVA_CODIGO,a.RESERVA_FECHA, c.usua_id,j.reco_cruc_crucid,h.cabi_id
 from gd_esquema.Maestra a
 join PENSAMIENTO_LINEAL.Crucero d on d.cruc_identificador=CRUCERO_IDENTIFICADOR
 join PENSAMIENTO_LINEAL.Usuario c on c.usua_apellido=a.CLI_APELLIDO and c.usua_nombre=a.CLI_NOMBRE and c.usua_documento=a.CLI_DNI
@@ -99,8 +100,9 @@ join PENSAMIENTO_LINEAL.Recorrido e on e.reco_codigo=a.RECORRIDO_CODIGO
 join PENSAMIENTO_LINEAL.Tramo f on f.tram_id=e.reco_primertramo
 join PENSAMIENTO_LINEAL.Puerto i on i.puer_id=f.tram_origen and i.puer_nombre=a.PUERTO_DESDE
 join PENSAMIENTO_LINEAL.Cabina h on h.cabi_numero = a.CABINA_NRO and h.cabi_piso=a.CABINA_PISO and h.cabi_crucero=d.cruc_id
+join PENSAMIENTO_LINEAL.Recorrido_crucero j on j.reco_cruc_recoid = e.reco_id and j.reco_cruc_crucid = d.cruc_id and j.reco_cruc_salida=a.FECHA_SALIDA
 where PASAJE_CODIGO is null
-group by a.RESERVA_CODIGO,a.RESERVA_FECHA, c.usua_id,d.cruc_id,e.reco_id,h.cabi_id
+group by a.RESERVA_CODIGO,a.RESERVA_FECHA, c.usua_id,d.cruc_id,e.reco_id,h.cabi_id,j.reco_cruc_crucid
 
 GO
 

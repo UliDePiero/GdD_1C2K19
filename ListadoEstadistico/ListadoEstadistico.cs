@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FrbaCrucero.BD_y_Querys;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -31,7 +32,22 @@ namespace FrbaCrucero.ListadoEstadistico
 
         private void visualizarListado_Click(object sender, EventArgs e)
         {
+            Estadistica seleccion = 0;
+            string semestre = "<= 6";
 
+            if (comboBoxSemestre.Text == "Primer semestre (Enero - Junio)")
+                semestre = "<= 6";
+            else if (comboBoxSemestre.Text == "Segundo semestre(Julio - Diciembre)")
+                semestre = "> 6";
+
+            if (comboBoxFunciones.Text == "Recorridos con más pasajes comprados")
+                seleccion = Estadistica.RECORRIDOS_CON_MAS_PASAJES;
+            else if (comboBoxFunciones.Text == "Recorridos con más cabinas libres en cada uno de los viajes realizados")
+                seleccion = Estadistica.RECORRIDOS_CON_MAS_CABINAS_LIBRES;
+            else if (comboBoxFunciones.Text == "Cruceros con mayor cantidad de días fuera de servicio")
+                seleccion = Estadistica.CRUCEROS_CON_MAS_DIAS_INHABILES;
+
+            Estadistica_BD.cargar_grilla_estadisticas(dataGridView1, semestre, (int)numericUpDown1.Value, seleccion);
         }
 
     }

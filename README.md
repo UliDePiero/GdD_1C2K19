@@ -15,3 +15,7 @@ TP Gestión de Datos 1º Cuatrimestre 2019
 4º Ejecutar "MigracionDatos"
 
 5º Ejecutar "crearRolesYFuncionalidades"
+
+6º Ejecutar "TriggerCodificarContra"
+
+7º Ejecutar "Insertar gente"

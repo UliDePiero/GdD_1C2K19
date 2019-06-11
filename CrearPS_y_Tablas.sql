@@ -60,6 +60,7 @@ CREATE TABLE [PENSAMIENTO_LINEAL].[Usuario](
 	[usua_apellido] [char](50) NOT NULL,
 	[usua_direccion] [char](100) NOT NULL,
 	[usua_mail] [char](100) NOT NULL,
+	[usua_username] [char](100) NULL,
 	[usua_password] [char](100) NULL,
 	[usua_telefono] [char](40) NOT NULL,
 	[usua_documento] [char](20) NOT NULL,
@@ -312,15 +313,42 @@ GO
 ALTER TABLE [PENSAMIENTO_LINEAL].[Recorrido_tramo] CHECK CONSTRAINT [FK_Recorrido_tramo_tramid]
 GO
 
+CREATE TABLE [PENSAMIENTO_LINEAL].[Recorrido_crucero](
+	[reco_cruc_id] [int] IDENTITY(1,1) NOT NULL,
+	[reco_cruc_recoid] [int] NOT NULL,
+	[reco_cruc_crucid] [int] NOT NULL,
+	[reco_cruc_salida] [smalldatetime] NOT NULL,
+	[reco_cruc_llegada_est] [smalldatetime] NOT NULL,
+	[reco_cruc_llegada_real] [smalldatetime] NOT NULL
+CONSTRAINT [PK_Recorrido_crucero] PRIMARY KEY CLUSTERED 
+(
+	[reco_cruc_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [PENSAMIENTO_LINEAL].[Recorrido_crucero]  WITH CHECK ADD  CONSTRAINT [FK_Reco_Cruc_cruc_id] FOREIGN KEY([reco_cruc_crucid])
+REFERENCES [PENSAMIENTO_LINEAL].[Crucero] ([cruc_id])
+GO
+
+ALTER TABLE [PENSAMIENTO_LINEAL].[Recorrido_crucero] CHECK CONSTRAINT [FK_Reco_Cruc_cruc_id]
+GO
+
+ALTER TABLE [PENSAMIENTO_LINEAL].[Recorrido_crucero]  WITH CHECK ADD  CONSTRAINT [FK_Reco_Cruc_recoid] FOREIGN KEY([reco_cruc_recoid])
+REFERENCES [PENSAMIENTO_LINEAL].[Recorrido] ([reco_id])
+GO
+
+ALTER TABLE [PENSAMIENTO_LINEAL].[Recorrido_crucero] CHECK CONSTRAINT [FK_Reco_Cruc_recoid]
+GO
 
 CREATE TABLE [PENSAMIENTO_LINEAL].[Pasaje](
 	[pasa_id] [int] IDENTITY(1,1) NOT NULL,
 	[pasa_codigo] [char](50) NOT NULL,
 	[pasa_fecha] [smalldatetime] NOT NULL,
 	[pasa_precio] [numeric](8, 4) NOT NULL,
+	[pasa_viaje] [int] NOT NULL,
 	[pasa_cliente] [int] NOT NULL,
-	[pasa_crucero] [int] NOT NULL,
-	[pasa_recorrido] [int] NOT NULL,
 	[pasa_cabina] [int] NOT NULL,
 CONSTRAINT [PK_Pasaje] PRIMARY KEY CLUSTERED 
 (
@@ -344,27 +372,20 @@ GO
 ALTER TABLE [PENSAMIENTO_LINEAL].[Pasaje] CHECK CONSTRAINT [FK_Pasaje_Cliente]
 GO
 
-ALTER TABLE [PENSAMIENTO_LINEAL].[Pasaje]  WITH CHECK ADD  CONSTRAINT [FK_Pasaje_Crucero] FOREIGN KEY([pasa_crucero])
-REFERENCES [PENSAMIENTO_LINEAL].[Crucero] ([cruc_id])
+ALTER TABLE [PENSAMIENTO_LINEAL].[Pasaje]  WITH CHECK ADD  CONSTRAINT [FK_Pasaje_Recorrido_Crucero] FOREIGN KEY([pasa_viaje])
+REFERENCES [PENSAMIENTO_LINEAL].[Recorrido_crucero] ([reco_cruc_id])
 GO
 
-ALTER TABLE [PENSAMIENTO_LINEAL].[Pasaje] CHECK CONSTRAINT [FK_Pasaje_Crucero]
+ALTER TABLE [PENSAMIENTO_LINEAL].[Pasaje] CHECK CONSTRAINT [FK_Pasaje_Recorrido_Crucero]
 GO
 
-ALTER TABLE [PENSAMIENTO_LINEAL].[Pasaje]  WITH CHECK ADD  CONSTRAINT [FK_Pasaje_Recorrido] FOREIGN KEY([pasa_recorrido])
-REFERENCES [PENSAMIENTO_LINEAL].[Recorrido] ([reco_id])
-GO
-
-ALTER TABLE [PENSAMIENTO_LINEAL].[Pasaje] CHECK CONSTRAINT [FK_Pasaje_Recorrido]
-GO
 
 CREATE TABLE [PENSAMIENTO_LINEAL].[Reserva](
 	[rese_id] [int] IDENTITY(1,1) NOT NULL,
 	[rese_codigo] [char](50) NOT NULL,
 	[rese_fecha] [smalldatetime] NOT NULL,
 	[rese_cliente] [int] NOT NULL,
-	[rese_crucero] [int] NOT NULL,
-	[rese_recorrido] [int] NOT NULL,
+	[rese_viaje] [int] NOT NULL,
 	[rese_cabina] [int] NOT NULL,
 CONSTRAINT [PK_Reserva] PRIMARY KEY CLUSTERED 
 (
@@ -388,42 +409,13 @@ GO
 ALTER TABLE [PENSAMIENTO_LINEAL].[Reserva] CHECK CONSTRAINT [FK_Reserva_Cliente]
 GO
 
-ALTER TABLE [PENSAMIENTO_LINEAL].[Reserva]  WITH CHECK ADD  CONSTRAINT [FK_Reserva_Crucero] FOREIGN KEY([rese_crucero])
-REFERENCES [PENSAMIENTO_LINEAL].[Crucero] ([cruc_id])
+ALTER TABLE [PENSAMIENTO_LINEAL].[Reserva]  WITH CHECK ADD  CONSTRAINT [FK_Reserva_Recorrido_crucero] FOREIGN KEY([rese_viaje])
+REFERENCES [PENSAMIENTO_LINEAL].[Recorrido_crucero] ([reco_cruc_id])
 GO
 
-ALTER TABLE [PENSAMIENTO_LINEAL].[Reserva] CHECK CONSTRAINT [FK_Reserva_Crucero]
+ALTER TABLE [PENSAMIENTO_LINEAL].[Reserva] CHECK CONSTRAINT [FK_Reserva_Recorrido_crucero]
 GO
 
-ALTER TABLE [PENSAMIENTO_LINEAL].[Reserva]  WITH CHECK ADD  CONSTRAINT [FK_Reserva_Recorrido] FOREIGN KEY([rese_recorrido])
-REFERENCES [PENSAMIENTO_LINEAL].[Recorrido] ([reco_id])
-GO
-
-ALTER TABLE [PENSAMIENTO_LINEAL].[Reserva] CHECK CONSTRAINT [FK_Reserva_Recorrido]
-GO
-
-CREATE TABLE [PENSAMIENTO_LINEAL].[Recorrido_crucero](
-	[reco_cruc_recoid] [int] NOT NULL,
-	[reco_cruc_crucid] [int] NOT NULL,
-	[reco_cruc_salida] [smalldatetime] NOT NULL,
-	[reco_cruc_llegada_real] [smalldatetime] NOT NULL
-) ON [PRIMARY]
-
-GO
-
-ALTER TABLE [PENSAMIENTO_LINEAL].[Recorrido_crucero]  WITH CHECK ADD  CONSTRAINT [FK_Reco_Cruc_cruc_id] FOREIGN KEY([reco_cruc_crucid])
-REFERENCES [PENSAMIENTO_LINEAL].[Crucero] ([cruc_id])
-GO
-
-ALTER TABLE [PENSAMIENTO_LINEAL].[Recorrido_crucero] CHECK CONSTRAINT [FK_Reco_Cruc_cruc_id]
-GO
-
-ALTER TABLE [PENSAMIENTO_LINEAL].[Recorrido_crucero]  WITH CHECK ADD  CONSTRAINT [FK_Reco_Cruc_recoid] FOREIGN KEY([reco_cruc_recoid])
-REFERENCES [PENSAMIENTO_LINEAL].[Recorrido] ([reco_id])
-GO
-
-ALTER TABLE [PENSAMIENTO_LINEAL].[Recorrido_crucero] CHECK CONSTRAINT [FK_Reco_Cruc_recoid]
-GO
 
 CREATE TABLE [PENSAMIENTO_LINEAL].[Cancelaciones_log](
 	[canc_log_id] [int] IDENTITY(1,1) NOT NULL,

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FrbaCrucero.BD_y_Querys;
+using FrbaCrucero.Clases;
 
 namespace FrbaCrucero.AbmRecorrido
 {
@@ -26,37 +27,42 @@ namespace FrbaCrucero.AbmRecorrido
             Recorrido_BD.cargar_grilla_recorridos(dataGridView1);
         }
 
-        private void atras_Click(object sender, EventArgs e)
+        private Recorrido obtener_recorrido_seleccionado()
         {
-            this.Close();
-            Menu form = new Menu(rol_nombre);
-            form.Show();
+            int recorrido_id = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());
+            string recorrido_codigo = dataGridView1.SelectedCells[1].Value.ToString();
+            Tramo primerTramo = Recorrido_BD.obtener_primer_tramo(recorrido_id);
+
+            return new Recorrido(recorrido_id, recorrido_codigo, primerTramo);
         }
 
         private void editarTramos_Click(object sender, EventArgs e)
-        {
-            this.Close();
+        {            
             ABM_Tramo form = new ABM_Tramo(rol_nombre);
             form.Show();
+            this.Close();
         }
 
         private void nuevoRecorrido_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            ModificacionesRecorrido form = new ModificacionesRecorrido(rol_nombre);
+        {            
+            ModificacionesRecorrido form = new ModificacionesRecorrido(rol_nombre, null, "Nuevo");
             form.Show();
+            this.Close();
         }
 
         private void modificarRecorrido_Click(object sender, EventArgs e)
         {
-            this.Close();
-            ModificacionesRecorrido form = new ModificacionesRecorrido(rol_nombre);
+            Recorrido recorrido_modif = obtener_recorrido_seleccionado();
+            recorrido_modif.tramosSiguientes = Recorrido_BD.obtener_tramos_siguientes(recorrido_modif);
+            ModificacionesRecorrido form = new ModificacionesRecorrido(rol_nombre, recorrido_modif, "Modificar");
             form.Show();
+            this.Close();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void atras_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
+
     }
 }

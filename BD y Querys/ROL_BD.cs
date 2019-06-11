@@ -238,5 +238,38 @@ namespace FrbaCrucero.BD_y_Querys
             conn.Dispose();
             return roles;
         }
+
+        public static List<int> obtener_todos_id_de_usuarios_con_username()
+        {
+            List<int> ids = new List<int>();
+            string query = string.Format(@"SELECT usua_id FROM PENSAMIENTO_LINEAL.Usuario WHERE usua_username IS NOT NULL");
+            SqlConnection conn = DBConnection.getConnection();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                int id = int.Parse(reader["usua_id"].ToString());
+
+                    ids.Add(id);
+            }
+            reader.Close();
+            reader.Dispose();
+            cmd.Dispose();
+            conn.Close();
+            conn.Dispose();
+            return ids;
+        }
+        public static bool validar_nombre(string nombre)
+        {
+            string query = string.Format(@"SELECT * FROM PENSAMIENTO_LINEAL.Rol WHERE rol_nombre=@nombre");
+            SqlConnection conn = DBConnection.getConnection();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@nombre", nombre);
+            bool rta = cmd.ExecuteScalar() == null;
+            cmd.Dispose();
+            conn.Close();
+            conn.Dispose();
+            return rta;
+        }
     }
 }

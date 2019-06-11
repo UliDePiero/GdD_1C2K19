@@ -9,11 +9,16 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
 using System.Data.SqlClient;
+using FrbaCrucero.Clases;
 
 namespace FrbaCrucero
 {
     public partial class Login : Form
     {
+        private static string server = ConfigurationManager.AppSettings["server"].ToString();
+        private static string user = ConfigurationManager.AppSettings["user"].ToString();
+        private static string password = ConfigurationManager.AppSettings["password"].ToString();
+
         public Login()
         {
             InitializeComponent();
@@ -21,17 +26,12 @@ namespace FrbaCrucero
 
         private void iniciar_Click(object sender, EventArgs e)
         {
-            logins(textBoxUsuario.Text, textBoxContraseña.Text);
-            
-            this.Close();
-            Menu form = new Menu("Administrador");
-            form.Show();
+            if(logins(textBoxUsuario.Text, textBoxContraseña.Text)){
+                this.Close();
+                Menu form = new Menu();
+                form.Show();
+            }
         }
-
-
-        private static string server = ConfigurationManager.AppSettings["server"].ToString();
-        private static string user = ConfigurationManager.AppSettings["user"].ToString();
-        private static string password = ConfigurationManager.AppSettings["password"].ToString();
 
         public static SqlConnection getConnection()
         {
@@ -42,40 +42,37 @@ namespace FrbaCrucero
         }
 
 
-        void logins(string usua, string contra)
+        private bool logins(string usua, string contra)
         {
             try
             {
                 using (SqlConnection conexion = getConnection())
                 {
-                    //string comando = "SELECT usua_nombre, usua_password FROM PENSAMIENTO_LINEAL.Usuario WHERE usua_nombre = '" + usua + "' AND  usua_password = HASHBYTES('SHA2_256','" + contra + "')";
-
-                    string comando = "SELECT usua_nombre, usua_password FROM PENSAMIENTO_LINEAL.Usuario WHERE usua_nombre = '" + usua + "' AND  usua_password = HASHBYTES('SHA2_256','" + contra + "')";
+                    string comando = "SELECT usua_username, usua_password FROM PENSAMIENTO_LINEAL.Usuario WHERE usua_nombre = '" + usua + "' AND  usua_password = HASHBYTES('SHA2_256','" + contra + "')";
                     using (SqlCommand cmd = new SqlCommand(comando, conexion))
                     {
                         SqlDataReader dr = cmd.ExecuteReader();
                         if (dr.Read())
-                        {
-                            MessageBox.Show("Login exitoso.");
+                        {                            
+                            MessageBox.Show("Inicio de sesión exitoso.", "Login", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            UsuarioLogeado.Username = usua;
                             conexion.Close();
-                            this.Close();
-                            Menu form = new Menu("Administrador");
-                            form.Show();
+                            return true;
                         }
                         else
                         {
-                            MessageBox.Show("Datos incorrectos.");
+                            MessageBox.Show("Datos incorrectos.", "Login", MessageBoxButtons.OK, MessageBoxIcon.Error);                            
+                            conexion.Close();
+                            return false;
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("no funca");
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("Error: " + ex.ToString(), "Login", MessageBoxButtons.OK, MessageBoxIcon.Error);                                            
+                return false;
             }
-
         }
-
     }
 }

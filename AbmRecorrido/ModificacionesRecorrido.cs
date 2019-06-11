@@ -7,35 +7,76 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using FrbaCrucero.Clases;
+using FrbaCrucero.BD_y_Querys;
 namespace FrbaCrucero.AbmRecorrido
 {
     public partial class ModificacionesRecorrido : Form
     {
         private string rol_nombre;
-        public ModificacionesRecorrido(string rol)
+        private string tipo_ingreso;
+        private Recorrido recorrido_modificar;        
+        public ModificacionesRecorrido(string rol, Recorrido recorrido_modif, String operacion)
         {
             InitializeComponent();
             rol_nombre = rol;
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
+            tipo_ingreso = operacion;
+            recorrido_modificar = recorrido_modif;            
+            if (tipo_ingreso != "Modificar")
+                modificarRecorrido.Visible = false;
+            List<Tramo> tramos = Recorrido_BD.obtener_todos_tramos();
+            foreach (Tramo tra in tramos)
+            {
+                if (recorrido_modificar != null && recorrido_modificar.tramos.Any(t => t.id == tra.id))
+                {
+                    checkedListBoxTramos.Items.Add(tra, CheckState.Checked);
+                }
+                else
+                {
+                    checkedListBoxTramos.Items.Add(tra, CheckState.Unchecked);
+                }
+                checkedListBoxTramos.DisplayMember = "id";
+                checkedListBoxTramos.ValueMember = "id";
+            }
+            if (recorrido_modificar != null)
+            {
+                textBoxCodigoRec.Text = recorrido_modificar.codigo;
+                //textBoxPrecioRec.Text = calcular_precio_total();
+                //textBoxDuracionRec.Text = calcular_duracion_total();
+            }
         }
 
         private void ModificacionesRecorrido_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'gD1C2019DataSet.Maestra' table. You can move, or remove it, as needed.
-            //this.maestraTableAdapter.Fill(this.gD1C2019DataSet.Maestra);
-
+            Recorrido_BD.cargar_grilla_tramos(dataGridView1);
         }
 
         private void aceptar_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if (recorrido_modificar == null)
+            {
+                nuevo_recorrido();
+            }
+            else
+            {
+                modificar_recorrido();
+            }            
+        }
+
+        private void modificar_recorrido()
+        {
+            throw new NotImplementedException();
+            /*this.Close();
             ABM_Recorrido form = new ABM_Recorrido(rol_nombre);
-            form.Show();
+            form.Show();*/
+        }
+
+        private void nuevo_recorrido()
+        {
+            throw new NotImplementedException();
+            /*this.Close();
+            ABM_Recorrido form = new ABM_Recorrido(rol_nombre);
+            form.Show();*/
         }
 
         private void cancelar_Click(object sender, EventArgs e)

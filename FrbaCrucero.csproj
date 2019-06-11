@@ -101,6 +101,7 @@
     </Compile>
     <Compile Include="BD y Querys\Crucero_BD.cs" />
     <Compile Include="BD y Querys\DBConnection.cs" />
+    <Compile Include="BD y Querys\Estadistica_BD.cs" />
     <Compile Include="BD y Querys\Puerto_BD.cs" />
     <Compile Include="BD y Querys\Recorrido_BD.cs" />
     <Compile Include="BD y Querys\Reserva_DB.cs" />
@@ -113,11 +114,18 @@
     <Compile Include="Clases\Funcionalidad.cs" />
     <Compile Include="Clases\MarcaCrucero.cs" />
     <Compile Include="Clases\ModeloCrucero.cs" />
+    <Compile Include="Clases\Recorrido.cs" />
     <Compile Include="Clases\Reserva.cs" />
     <Compile Include="Clases\ROL.cs" />
     <Compile Include="Clases\ServicioCrucero.cs" />
     <Compile Include="Clases\TipoCabina.cs" />
+<<<<<<< HEAD
     <Compile Include="CompraReservaPasaje\EmitirReserva.cs">
+=======
+    <Compile Include="Clases\Tramo.cs" />
+    <Compile Include="Clases\UsuarioLogeado.cs" />
+    <Compile Include="CompraReservaPasaje\Reservar.cs">
+>>>>>>> 6251f19e75de7fa812a7f4b832a29f5be08a5c12
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CompraReservaPasaje\EmitirReserva.Designer.cs">

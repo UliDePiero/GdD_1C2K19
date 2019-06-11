@@ -45,13 +45,27 @@ namespace FrbaCrucero.BD_y_Querys
            DBConnection.llenar_grilla_command(dataGrid1, cmd);
 
        }
-       public static int obtener_viaje(DateTime rese_fSalida, string rese_cru_identificador); //devuelve la pk de recorrido crucero
+       public static int obtener_viaje(DateTime rese_fSalida, string rese_cru_identificador)
+       {
+           string query = string.Format(@"select reco_cruc_id 
+                                          from PENSAMIENTO_LINEAL.Recorrido_crucero 
+                                          join PENSAMIENTO_LINEAL.Crucero on reco_cruc_crucid = cruc_id
+                                          where cruc_identificador = $cruIdentificador and reco_cruc_salida = $fechaSalida");
+           SqlConnection conn = DBConnection.getConnection();
+           SqlCommand cmd = new SqlCommand(query, conn);
+           cmd.Parameters.AddWithValue("$fechaSalida", rese_fSalida);
+           cmd.Parameters.AddWithValue("$cruIdentificador", rese_cru_identificador);
+           SqlDataReader reader = cmd.ExecuteReader();
+
+           return int.Parse(reader["reco_cruc_id"].ToString());
+
+       } //devuelve la pk de recorrido crucero
        
        public static int obtener_cabina_id(string rese_cru_identificador, int rese_cabi_tipo);//devuelve la pk de la cabina q este disponible de ese tipo para ese crucero
 
        public static string ultimoCodigoReserva()
        {
-           string query = string.Format(@"select Top 1 rese_codigo from PENSAMIENTO_LINEAL.Reserva order by rese_codigo DESC");
+           string query = string.Format(@"select max(rese_codigo) from PENSAMIENTO_LINEAL.Reserva");
            SqlConnection conn = DBConnection.getConnection();
            SqlCommand cmd = new SqlCommand(query, conn);
            SqlDataReader reader = cmd.ExecuteReader();

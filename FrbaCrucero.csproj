@@ -123,6 +123,12 @@
     <Compile Include="CompraReservaPasaje\EmitirReserva.Designer.cs">
       <DependentUpon>EmitirReserva.cs</DependentUpon>
     </Compile>
+    <Compile Include="CompraReservaPasaje\IngresarDatosCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CompraReservaPasaje\IngresarDatosCliente.Designer.cs">
+      <DependentUpon>IngresarDatosCliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="CompraReservaPasaje\Reserva.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -201,6 +207,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CompraReservaPasaje\EmitirReserva.resx">
       <DependentUpon>EmitirReserva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CompraReservaPasaje\IngresarDatosCliente.resx">
+      <DependentUpon>IngresarDatosCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CompraReservaPasaje\Reserva.resx">
       <DependentUpon>Reserva.cs</DependentUpon>

@@ -15,8 +15,9 @@ namespace FrbaCrucero.Clases
         public int viaje { get; set; }
         public int cabina { get; set; }
 
-        public Reserva(int _viaje, int _cabina) 
+        public Reserva(string _codigo,int _viaje, int _cabina) 
         {
+            codigo = _codigo;
             fecha = DateTime.Now;
             viaje = _viaje;
             cabina = _cabina;

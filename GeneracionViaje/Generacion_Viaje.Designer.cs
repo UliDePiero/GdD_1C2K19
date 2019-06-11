@@ -33,11 +33,11 @@
             this.recorridosDisponibles = new System.Windows.Forms.Label();
             this.crucerosDisponibles = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.generarViaje = new System.Windows.Forms.Button();
             this.atras = new System.Windows.Forms.Button();
             this.fechaInicio = new System.Windows.Forms.Label();
             this.fechaFinalizacion = new System.Windows.Forms.Label();
+            this.textBoxFinalizacion = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -100,13 +100,7 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(202, 20);
             this.dateTimePicker1.TabIndex = 15;
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(543, 440);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(202, 20);
-            this.dateTimePicker2.TabIndex = 16;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // generarViaje
             // 
@@ -117,6 +111,7 @@
             this.generarViaje.TabIndex = 26;
             this.generarViaje.Text = "Generar Viaje";
             this.generarViaje.UseVisualStyleBackColor = true;
+            this.generarViaje.Click += new System.EventHandler(this.generarViaje_Click);
             // 
             // atras
             // 
@@ -149,16 +144,24 @@
             this.fechaFinalizacion.TabIndex = 29;
             this.fechaFinalizacion.Text = "Fecha de finalizacion";
             // 
+            // textBoxFinalizacion
+            // 
+            this.textBoxFinalizacion.Location = new System.Drawing.Point(543, 449);
+            this.textBoxFinalizacion.Name = "textBoxFinalizacion";
+            this.textBoxFinalizacion.ReadOnly = true;
+            this.textBoxFinalizacion.Size = new System.Drawing.Size(202, 20);
+            this.textBoxFinalizacion.TabIndex = 30;
+            // 
             // Generacion_Viaje
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(759, 615);
+            this.Controls.Add(this.textBoxFinalizacion);
             this.Controls.Add(this.fechaFinalizacion);
             this.Controls.Add(this.fechaInicio);
             this.Controls.Add(this.generarViaje);
             this.Controls.Add(this.atras);
-            this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.crucerosDisponibles);
             this.Controls.Add(this.recorridosDisponibles);
@@ -181,10 +184,10 @@
         private System.Windows.Forms.Label recorridosDisponibles;
         private System.Windows.Forms.Label crucerosDisponibles;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.Button generarViaje;
         private System.Windows.Forms.Button atras;
         private System.Windows.Forms.Label fechaInicio;
         private System.Windows.Forms.Label fechaFinalizacion;
+        private System.Windows.Forms.TextBox textBoxFinalizacion;
     }
 }

@@ -114,10 +114,12 @@
     <Compile Include="Clases\Funcionalidad.cs" />
     <Compile Include="Clases\MarcaCrucero.cs" />
     <Compile Include="Clases\ModeloCrucero.cs" />
+    <Compile Include="Clases\Recorrido.cs" />
     <Compile Include="Clases\Reserva.cs" />
     <Compile Include="Clases\ROL.cs" />
     <Compile Include="Clases\ServicioCrucero.cs" />
     <Compile Include="Clases\TipoCabina.cs" />
+    <Compile Include="Clases\Tramo.cs" />
     <Compile Include="Clases\UsuarioLogeado.cs" />
     <Compile Include="CompraReservaPasaje\Reservar.cs">
       <SubType>Form</SubType>

@@ -26,7 +26,8 @@ namespace FrbaCrucero
 
         private void iniciar_Click(object sender, EventArgs e)
         {
-            if(logins(textBoxUsuario.Text, textBoxContraseña.Text)){
+            if (logins(textBoxUsuario.Text, textBoxContraseña.Text))
+            {
                 this.Close();
                 Menu form = new Menu();
                 form.Show();
@@ -48,20 +49,22 @@ namespace FrbaCrucero
             {
                 using (SqlConnection conexion = getConnection())
                 {
-                    string comando = "SELECT usua_username, usua_password FROM PENSAMIENTO_LINEAL.Usuario WHERE usua_nombre = '" + usua + "' AND  usua_password = HASHBYTES('SHA2_256','" + contra + "')";
+                    string comando = "SELECT usua_username, usua_password FROM PENSAMIENTO_LINEAL.Usuario WHERE usua_username = @usua AND usua_password = dbo.codificarSHA256(@contra)";
                     using (SqlCommand cmd = new SqlCommand(comando, conexion))
                     {
+                        cmd.Parameters.AddWithValue("@usua", usua);
+                        cmd.Parameters.AddWithValue("@contra", contra);
                         SqlDataReader dr = cmd.ExecuteReader();
                         if (dr.Read())
                         {                            
-                            MessageBox.Show("Inicio de sesión exitoso.", "Login", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            MessageBox.Show("Inicio de sesión exitoso.", "Login", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             UsuarioLogeado.Username = usua;
                             conexion.Close();
                             return true;
                         }
                         else
                         {
-                            MessageBox.Show("Datos incorrectos.", "Login", MessageBoxButtons.OK, MessageBoxIcon.Error);                            
+                            MessageBox.Show("Datos incorrectos.", "Login", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);                            
                             conexion.Close();
                             return false;
                         }

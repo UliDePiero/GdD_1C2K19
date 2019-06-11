@@ -31,8 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.inicioDeSesion = new System.Windows.Forms.GroupBox();
             this.iniciar = new System.Windows.Forms.Button();
-            this.textBoxContraseña = new System.Windows.Forms.TextBox();
             this.textBoxUsuario = new System.Windows.Forms.TextBox();
+            this.textBoxContraseña = new System.Windows.Forms.TextBox();
             this.contraseña = new System.Windows.Forms.Label();
             this.usuario = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
@@ -43,8 +43,8 @@
             // inicioDeSesion
             // 
             this.inicioDeSesion.Controls.Add(this.iniciar);
-            this.inicioDeSesion.Controls.Add(this.textBoxContraseña);
             this.inicioDeSesion.Controls.Add(this.textBoxUsuario);
+            this.inicioDeSesion.Controls.Add(this.textBoxContraseña);
             this.inicioDeSesion.Controls.Add(this.contraseña);
             this.inicioDeSesion.Controls.Add(this.usuario);
             this.inicioDeSesion.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -66,6 +66,14 @@
             this.iniciar.UseVisualStyleBackColor = true;
             this.iniciar.Click += new System.EventHandler(this.iniciar_Click);
             // 
+            // textBoxUsuario
+            // 
+            this.textBoxUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxUsuario.Location = new System.Drawing.Point(6, 91);
+            this.textBoxUsuario.Name = "textBoxUsuario";
+            this.textBoxUsuario.Size = new System.Drawing.Size(248, 30);
+            this.textBoxUsuario.TabIndex = 1;
+            // 
             // textBoxContraseña
             // 
             this.textBoxContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -74,14 +82,6 @@
             this.textBoxContraseña.PasswordChar = '*';
             this.textBoxContraseña.Size = new System.Drawing.Size(248, 30);
             this.textBoxContraseña.TabIndex = 1;
-            // 
-            // textBoxUsuario
-            // 
-            this.textBoxUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxUsuario.Location = new System.Drawing.Point(6, 91);
-            this.textBoxUsuario.Name = "textBoxUsuario";
-            this.textBoxUsuario.Size = new System.Drawing.Size(248, 30);
-            this.textBoxUsuario.TabIndex = 1;
             // 
             // contraseña
             // 
@@ -127,8 +127,8 @@
         private System.Windows.Forms.GroupBox inicioDeSesion;
         private System.Windows.Forms.Label contraseña;
         private System.Windows.Forms.Label usuario;
-        private System.Windows.Forms.TextBox textBoxContraseña;
         private System.Windows.Forms.TextBox textBoxUsuario;
+        private System.Windows.Forms.TextBox textBoxContraseña;
         private System.Windows.Forms.Button iniciar;
         private System.Windows.Forms.ErrorProvider errorProvider1;
 

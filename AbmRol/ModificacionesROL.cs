@@ -58,37 +58,45 @@ namespace FrbaCrucero.AbmRol
 
         private void nuevo_rol()
         {
-            ROL rol_nuevo = new ROL(textBoxNombreROL.Text, obtener_funcionalidades_checkList());
-            if (ROL_BD.agregar_rol(rol_nuevo))
-            {
-                MessageBox.Show("Nuevo ROL creado.", tipo_ingreso, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
-                ABM_ROL form = new ABM_ROL(rol_nombre);
-                form.Show();
+            ROL rol_nuevo = new ROL(textBoxNombreROL.Text.Trim(), obtener_funcionalidades_checkList());
+            if(ROL_BD.validar_nombre(rol_nuevo.nombre)){
+                MessageBox.Show("El nombre ya existe.", "ROL", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else
-            {
-                MessageBox.Show("Hubo un error proceso " + tipo_ingreso, " ROL", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            else{
+                if (ROL_BD.agregar_rol(rol_nuevo))
+                {
+                    MessageBox.Show("Nuevo ROL creado.", tipo_ingreso, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                    ABM_ROL form = new ABM_ROL(rol_nombre);
+                    form.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Hubo un error proceso " + tipo_ingreso +" ROL.", "ROL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }    
         }
 
         private void modificar_rol()
         {
-            ROL rol_nuevo = new ROL(textBoxNombreROL.Text, obtener_funcionalidades_checkList());
+            ROL rol_nuevo = new ROL(textBoxNombreROL.Text.Trim(), obtener_funcionalidades_checkList());
             rol_nuevo.id = rol_modificar.id;
-
-            if (ROL_BD.modificar_rol(rol_nuevo, rol_modificar.funcionalidades))
-            {
-                MessageBox.Show("ROL modificado.", tipo_ingreso, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
-                ABM_ROL form = new ABM_ROL(rol_nombre);
-                form.Show();
+            if(ROL_BD.validar_nombre(rol_nuevo.nombre)){
+                MessageBox.Show("El nombre ya existe.", " ROL", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else
-            {
-                MessageBox.Show("Hubo un error proceso " + tipo_ingreso, " ROL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else{
+                if (ROL_BD.modificar_rol(rol_nuevo, rol_modificar.funcionalidades))
+                {
+                    MessageBox.Show("ROL modificado.", tipo_ingreso, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                    ABM_ROL form = new ABM_ROL(rol_nombre);
+                    form.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Hubo un error proceso " + tipo_ingreso + " ROL.", " ROL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-
         }
 
         private void aceptar_Click(object sender, EventArgs e)

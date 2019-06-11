@@ -259,5 +259,17 @@ namespace FrbaCrucero.BD_y_Querys
             conn.Dispose();
             return ids;
         }
+        public static bool validar_nombre(string nombre)
+        {
+            string query = string.Format(@"SELECT * FROM PENSAMIENTO_LINEAL.Rol WHERE rol_nombre=@nombre");
+            SqlConnection conn = DBConnection.getConnection();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@nombre", nombre);
+            bool rta = cmd.ExecuteScalar() == null;
+            cmd.Dispose();
+            conn.Close();
+            conn.Dispose();
+            return rta;
+        }
     }
 }

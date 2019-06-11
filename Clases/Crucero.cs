@@ -30,14 +30,13 @@ namespace FrbaCrucero.Clases
             this.estados = new List<EstadoCrucero>();
         }
 
-        public Crucero(string _identificador,  MarcaCrucero _marca, ModeloCrucero _modelo, List<Cabina> _cabinas, List<ServicioCrucero> _servicios, int _cantCabinas)
+        public Crucero(string _identificador,  MarcaCrucero _marca, ModeloCrucero _modelo, List<Cabina> _cabinas, List<ServicioCrucero> _servicios)
         {
             this.identificador = _identificador;
             this.marca = _marca;
             this.modelo = _modelo;
-            this.cabinas = _cantCabinas;
-            this.servicios = _servicios;
-            this.Cabinas = _cabinas;      
+            this.Cabinas = _cabinas;
+            this.servicios = _servicios;  
         }
 
     }

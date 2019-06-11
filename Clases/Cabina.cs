@@ -30,5 +30,11 @@ namespace FrbaCrucero.Clases
             this.tCab = tCab;
             this.cruc_id = cruc_id;
         }
+
+        public Cabina(int _piso, TipoCabina _tipo)
+        {
+            this.piso = _piso;
+            this.tipo = _tipo;
+        }
     }
 }

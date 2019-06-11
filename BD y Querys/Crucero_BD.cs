@@ -367,10 +367,11 @@ namespace FrbaCrucero.BD_y_Querys
 
                 foreach (Cabina cab in crucero_nuevo.Cabinas)
                 {
-                    cmd = new SqlCommand("INSERT INTO PENSAMIENTO_LINEAL.Cabina (cabi_piso, cabi_numero, cabi_crucero, cabi_tipo) VALUES (1, 1, @cabi_crucero_id, @cabi_tipo)", conn); //HARDCODEADO PISO Y NUMERO
+                    cmd = new SqlCommand("INSERT INTO PENSAMIENTO_LINEAL.Cabina (cabi_piso, cabi_numero, cabi_crucero, cabi_tipo) VALUES (@cabi_piso, 1, @cabi_crucero_id, @cabi_tipo)", conn); //HARDCODEADO NUMERO
 
+                    cmd.Parameters.AddWithValue("@cabi_piso", cab.piso);
                     cmd.Parameters.AddWithValue("@cabi_crucero_id", cruc_cod_generado);
-                    cmd.Parameters.AddWithValue("@cabi_tipo", cab.tipo.id);
+                    cmd.Parameters.AddWithValue("@cabi_tipo", cab.tipo.id);                   
 
                     cmd.ExecuteNonQuery();
                 }
@@ -414,7 +415,8 @@ namespace FrbaCrucero.BD_y_Querys
                 cmd.ExecuteNonQuery();
                 foreach (Cabina cab in cabinas_nuevas)
                 {
-                    cmd = new SqlCommand("INSERT INTO PENSAMIENTO_LINEAL.Cabina (cabi_piso, cabi_numero, cabi_crucero, cabi_tipo) VALUES (1, 1, @cabi_crucero_id, @cabi_tipo)", conn); //HARDCODEADO PISO Y NUMERO
+                    cmd = new SqlCommand("INSERT INTO PENSAMIENTO_LINEAL.Cabina (cabi_piso, cabi_numero, cabi_crucero, cabi_tipo) VALUES (@cabi_piso, 1, @cabi_crucero_id, @cabi_tipo)", conn); //HARDCODEADO NUMERO
+                    cmd.Parameters.AddWithValue("@cabi_piso", cab.piso);
                     cmd.Parameters.AddWithValue("@cabi_crucero_id", crucero_nuevo.id);
                     cmd.Parameters.AddWithValue("@cabi_tipo", cab.tipo.id);
                     
@@ -525,6 +527,85 @@ namespace FrbaCrucero.BD_y_Querys
             {
                 return false;
             }
+        }
+
+        public static TipoCabina obtener_tipoCabina_con_nombre(string nom)
+        {
+            string query = string.Format(@"SELECT * FROM PENSAMIENTO_LINEAL.Tipo_cabina WHERE tipo_nombre=@nombre");
+            SqlConnection conn = DBConnection.getConnection();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@nombre", nom);
+            SqlDataReader reader = cmd.ExecuteReader();
+            reader.Read();
+            int id = int.Parse(reader["tipo_id"].ToString());
+            string nombre = reader["tipo_nombre"].ToString();
+            double porcentaje = double.Parse(reader["tipo_porc_rec"].ToString());
+
+            TipoCabina tipo = new TipoCabina(id, nombre, porcentaje);
+
+            reader.Close();
+            reader.Dispose();
+            cmd.Dispose();
+            conn.Close();
+            conn.Dispose();
+            return tipo;
+        }
+
+        public static int obtener_cantidad_de_cabinas_por_idTipo(int crucero_id, int tipo_id)
+        {
+            string query = string.Format(@"SELECT COUNT(*) as CANTIDAD FROM PENSAMIENTO_LINEAL.Cabina JOIN PENSAMIENTO_LINEAL.Tipo_cabina ON(tipo_id=cabi_tipo) WHERE cabi_crucero=@crucero_id AND cabi_tipo=@tipo_id");
+            SqlConnection conn = DBConnection.getConnection();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@crucero_id", crucero_id);
+            cmd.Parameters.AddWithValue("@tipo_id", tipo_id);
+            SqlDataReader reader = cmd.ExecuteReader();
+            reader.Read();
+            int cantidad = int.Parse(reader["CANTIDAD"].ToString());            
+
+            reader.Close();
+            reader.Dispose();
+            cmd.Dispose();
+            conn.Close();
+            conn.Dispose();
+            return cantidad;
+        }
+
+        internal static Cabina obtener_cabina_por_tipo_ID(int crucero_id, int tipo_id)
+        {
+            string query = string.Format(@"SELECT * FROM PENSAMIENTO_LINEAL.Cabina JOIN PENSAMIENTO_LINEAL.Tipo_cabina ON(cabi_tipo=tipo_id) WHERE cabi_crucero=@crucero_id AND cabi_tipo=@tipo_id");
+            SqlConnection conn = DBConnection.getConnection();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@crucero_id", crucero_id);
+            cmd.Parameters.AddWithValue("@tipo_id", tipo_id);
+            SqlDataReader reader = cmd.ExecuteReader();
+            reader.Read();
+            int id = int.Parse(reader["cabi_id"].ToString());
+            int piso = int.Parse(reader["cabi_piso"].ToString());
+            int numero = int.Parse(reader["cabi_numero"].ToString());
+            TipoCabina tipo = obtener_tipoCabina_con_ID(int.Parse(reader["cabi_tipo"].ToString()));
+            Crucero crucero = obtener_crucero_con_ID(int.Parse(reader["cabi_crucero"].ToString()));;
+
+            Cabina cabina = new Cabina(id, piso, numero, tipo, crucero);
+
+            reader.Close();
+            reader.Dispose();
+            cmd.Dispose();
+            conn.Close();
+            conn.Dispose();
+            return cabina;
+        }
+
+        public static bool validar_identificador(string identificador)
+        {
+            string query = string.Format(@"SELECT * FROM PENSAMIENTO_LINEAL.Crucero WHERE cruc_identificador=@cruc_identificador");
+            SqlConnection conn = DBConnection.getConnection();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@cruc_identificador", identificador);
+            bool rta = cmd.ExecuteScalar() == null;
+            cmd.Dispose();
+            conn.Close();
+            conn.Dispose();
+            return rta;
         }
     }
 }

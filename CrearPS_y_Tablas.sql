@@ -318,8 +318,7 @@ CREATE TABLE [PENSAMIENTO_LINEAL].[Recorrido_crucero](
 	[reco_cruc_recoid] [int] NOT NULL,
 	[reco_cruc_crucid] [int] NOT NULL,
 	[reco_cruc_salida] [smalldatetime] NOT NULL,
-	[reco_cruc_llegada_est] [smalldatetime] NOT NULL,
-	[reco_cruc_llegada_real] [smalldatetime] NOT NULL
+	[reco_cruc_llegada_real] [smalldatetime] NULL
 CONSTRAINT [PK_Recorrido_crucero] PRIMARY KEY CLUSTERED 
 (
 	[reco_cruc_id] ASC

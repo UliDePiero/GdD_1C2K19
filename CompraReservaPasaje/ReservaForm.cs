@@ -62,7 +62,7 @@ namespace FrbaCrucero.CompraReservaPasaje
             }
             if (fecha_salida < DateTime.Now)
             {
-                MessageBox.Show("Debe seleccionar el puerto destino", "Buscar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Debe seleccionar una fecha de salida en el futuro", "Buscar", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
             Reserva_DB.llenar_grilla_reservas_disp(dataGridView1, fecha_salida, puertoOrigen.ToString(), puertoDestino.ToString());
@@ -83,6 +83,7 @@ namespace FrbaCrucero.CompraReservaPasaje
 
         private void reservar_Click(object sender, EventArgs e)
         {
+            this.Hide();
             Reserva r = obtener_reserva_seleccionada();
             IngresarDatosCliente form = new IngresarDatosCliente(r);
             form.Show();
@@ -94,7 +95,7 @@ namespace FrbaCrucero.CompraReservaPasaje
             DateTime rese_fSalida = DateTime.Parse(dataGridView1.SelectedCells[1].Value.ToString());
             string rese_cabi_tipo = dataGridView1.SelectedCells[2].Value.ToString();
             var viaje = Reserva_DB.obtener_viaje(rese_fSalida, rese_cru_identificador);
-            return new Reserva(Reserva_DB.ultimoCodigoReserva(), viaje, Reserva_DB.obtener_cabina_id(rese_cabi_tipo, viaje));
+            return new Reserva(viaje, Reserva_DB.obtener_cabina_id(rese_cabi_tipo, viaje));
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -129,7 +130,19 @@ namespace FrbaCrucero.CompraReservaPasaje
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            Pasaje p = obtener_pasaje_seleccionado();
+            IngresarDatosCliente form = new IngresarDatosCliente(p);
+            form.Show();
+        }
+        private Pasaje obtener_pasaje_seleccionado()
+        {
+            string rese_cru_identificador = dataGridView1.SelectedCells[0].Value.ToString();
+            DateTime rese_fSalida = DateTime.Parse(dataGridView1.SelectedCells[1].Value.ToString());
+            string rese_cabi_tipo = dataGridView1.SelectedCells[2].Value.ToString();
+            float pasa_precio = float.Parse(dataGridView1.SelectedCells[6].Value.ToString());
+            var viaje = Reserva_DB.obtener_viaje(rese_fSalida, rese_cru_identificador);
+            return new Pasaje(viaje, Reserva_DB.obtener_cabina_id(rese_cabi_tipo, viaje),pasa_precio);
         }
     }
 }

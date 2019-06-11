@@ -71,7 +71,17 @@ namespace FrbaCrucero.BD_y_Querys
            SqlConnection conn = DBConnection.getConnection();
            SqlCommand cmd = new SqlCommand(query, conn);
            SqlDataReader reader = cmd.ExecuteReader();
-           var num = System.Convert.ToDecimal(reader.GetValue(0).ToString()) + 1;
+           var num = System.Convert.ToInt32(reader.GetValue(0).ToString()) + 1;
+           return System.Convert.ToString(num);
+       }
+
+       public static string ultimoCodigoPasaje()
+       {
+           string query = string.Format(@"select max(pasa_codigo) from PENSAMIENTO_LINEAL.Pasaje");
+           SqlConnection conn = DBConnection.getConnection();
+           SqlCommand cmd = new SqlCommand(query, conn);
+           SqlDataReader reader = cmd.ExecuteReader();
+           var num = System.Convert.ToInt32(reader.GetValue(0).ToString()) + 1;
            return System.Convert.ToString(num);
        }
 

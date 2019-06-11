@@ -7,16 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FrbaCrucero.Clases;
 
 namespace FrbaCrucero.CompraReservaPasaje
 {
-    public partial class EmitirReserva : Form
+    public partial class EmitirPago : Form
     {
-        string codigo;
-        public EmitirReserva(string _cod)
+        private Pasaje pasaje;
+        public EmitirPago(Pasaje _pasa)
         {
             InitializeComponent();
-            codigo = _cod;
+            pasaje = _pasa;
         }
     }
 }

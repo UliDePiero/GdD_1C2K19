@@ -19,3 +19,5 @@ TP Gestión de Datos 1º Cuatrimestre 2019
 6º Ejecutar "TriggerCodificarContra"
 
 7º Ejecutar "Insertar gente"
+
+7º Ejecutar "AsignarRolesAdministradores"

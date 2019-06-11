@@ -61,8 +61,10 @@ namespace FrbaCrucero.BD_y_Querys
 
        } //devuelve la pk de recorrido crucero
        
-       public static int obtener_cabina_id(string rese_cru_identificador, int rese_cabi_tipo);//devuelve la pk de la cabina q este disponible de ese tipo para ese crucero
-
+       public static int obtener_cabina_id(string rese_cru_identificador, int rese_cabi_tipo){
+           //devuelve la pk de la cabina q este disponible de ese tipo para ese crucero
+           return 0;
+       }
        public static string ultimoCodigoReserva()
        {
            string query = string.Format(@"select max(rese_codigo) from PENSAMIENTO_LINEAL.Reserva");

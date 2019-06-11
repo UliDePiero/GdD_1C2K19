@@ -121,9 +121,6 @@
     <Compile Include="Clases\TipoCabina.cs" />
     <Compile Include="Clases\Tramo.cs" />
     <Compile Include="Clases\UsuarioLogeado.cs" />
-    <Compile Include="CompraReservaPasaje\EmitirReserva.Designer.cs">
-      <DependentUpon>EmitirReserva.cs</DependentUpon>
-    </Compile>
     <Compile Include="CompraReservaPasaje\IngresarDatosCliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -205,9 +202,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmRol\ModificacionesROL.resx">
       <DependentUpon>ModificacionesROL.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CompraReservaPasaje\EmitirReserva.resx">
-      <DependentUpon>EmitirReserva.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CompraReservaPasaje\IngresarDatosCliente.resx">
       <DependentUpon>IngresarDatosCliente.cs</DependentUpon>

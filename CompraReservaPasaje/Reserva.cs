@@ -70,10 +70,15 @@ namespace FrbaCrucero.CompraReservaPasaje
         }
 
         private void cerrar_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            Menu form = new Menu(rol_nombre);
-            form.Show();
+        {            
+            if(rol_nombre == "Cliente" ){
+                INICIO inicio = (INICIO)Application.OpenForms["INICIO"];
+                inicio.Show();
+                this.Close();
+            }
+            else{
+                this.Close();
+            }
         }
 
         private void reservar_Click(object sender, EventArgs e)

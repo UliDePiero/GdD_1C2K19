@@ -30,7 +30,7 @@ namespace FrbaCrucero
         private void compraReserva_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Reservar form6 = new Reservar("Cliente");
+            ReservaForm form6 = new ReservaForm("Cliente");
             form6.Show();
         }
 

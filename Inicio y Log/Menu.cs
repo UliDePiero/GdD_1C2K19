@@ -75,8 +75,8 @@ namespace FrbaCrucero
                                     Generacion_Viaje form5 = new Generacion_Viaje(comboBoxRoles.SelectedItem.ToString());
                                         form5.Show(); 
                                     }
-                                    else if (comboBoxFuncionalidades.SelectedItem.ToString().StartsWith("Reserva de pasaje")){                                         
-                                         Reservar form6 = new Reservar(comboBoxRoles.SelectedItem.ToString());                 
+                                    else if (comboBoxFuncionalidades.SelectedItem.ToString().StartsWith("Reserva de pasaje")){
+                                        ReservaForm form6 = new ReservaForm(comboBoxRoles.SelectedItem.ToString());                 
                                             form6.Show();
                                         }
                                         else if (comboBoxFuncionalidades.SelectedItem.ToString().StartsWith("Pago de pasaje")){                                            

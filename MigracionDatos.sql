@@ -68,8 +68,8 @@ join PENSAMIENTO_LINEAL.Tramo b on c.puer_id=b.tram_origen and d.puer_id=b.tram_
 join PENSAMIENTO_LINEAL.Recorrido e on e.reco_primertramo=b.tram_id
 group by e.reco_id, b.tram_id
 
-INSERT INTO PENSAMIENTO_LINEAL.Recorrido_crucero (reco_cruc_recoid,reco_cruc_crucid,reco_cruc_salida,reco_cruc_llegada_est,reco_cruc_llegada_real)
-select b.reco_id, c.cruc_id, a.FECHA_SALIDA, a.FECHA_LLEGADA_ESTIMADA, a.FECHA_LLEGADA
+INSERT INTO PENSAMIENTO_LINEAL.Recorrido_crucero (reco_cruc_recoid,reco_cruc_crucid,reco_cruc_salida,reco_cruc_llegada_real)
+select b.reco_id, c.cruc_id, a.FECHA_SALIDA, a.FECHA_LLEGADA
 from PENSAMIENTO_LINEAL.recorrido b
 join PENSAMIENTO_LINEAL.tramo d on b.reco_primertramo=d.tram_id
 join PENSAMIENTO_LINEAL.puerto e on d.tram_origen=e.puer_id

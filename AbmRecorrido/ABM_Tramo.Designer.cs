@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.funciones = new System.Windows.Forms.GroupBox();
             this.nuevoTramo = new System.Windows.Forms.Button();
             this.eliminarTramo = new System.Windows.Forms.Button();
@@ -105,7 +104,7 @@
             // 
             // atras
             // 
-            this.atras.Location = new System.Drawing.Point(448, 363);
+            this.atras.Location = new System.Drawing.Point(635, 363);
             this.atras.Name = "atras";
             this.atras.Size = new System.Drawing.Size(98, 39);
             this.atras.TabIndex = 11;

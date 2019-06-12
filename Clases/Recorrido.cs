@@ -23,12 +23,12 @@ namespace FrbaCrucero.Clases
             this.tramos = new List<Tramo>();
         }
 
-        public Recorrido(string _codigo, List<Tramo> _tramosSiguientes)
+        public Recorrido(string _codigo, Tramo _primerTramo)
         {            
             this.codigo = _codigo;
-            this.tramosSiguientes = _tramosSiguientes;
-            this.tramos = this.tramosSiguientes;
-            this.tramos.Add(this.primerTramo);
+            this.primerTramo = _primerTramo;
+            this.tramosSiguientes = new List<Tramo>();
+            this.tramos = new List<Tramo>();
         }
     }
 }

@@ -47,10 +47,10 @@ namespace FrbaCrucero.AbmCrucero
         }
 
         private void nuevoCrucero_Click(object sender, EventArgs e)
-        {
-            this.Close();
+        {            
             ModificacionesCrucero form = new ModificacionesCrucero("Nuevo", null, rol_nombre);
             form.Show();
+            this.Close();
         }
 
         private void modificarCrucero_Click(object sender, EventArgs e)
@@ -58,10 +58,19 @@ namespace FrbaCrucero.AbmCrucero
             Crucero cruc_modif = obtener_crucero_seleccionado();
             cruc_modif.Cabinas = Crucero_BD.obtener_Cabinas_con_crucero(cruc_modif.id);
             cruc_modif.servicios = Crucero_BD.obtener_servicios_con_crucero(cruc_modif.id);
-            cruc_modif.estados = Crucero_BD.obtener_estados_con_crucero(cruc_modif.id);
-            this.Close();
+            cruc_modif.estados = Crucero_BD.obtener_estados_con_crucero(cruc_modif.id);            
             ModificacionesCrucero form = new ModificacionesCrucero("Modificar", cruc_modif, rol_nombre);
             form.Show();
+            this.Close();
+        }
+
+        private void modificarCabinas_Click(object sender, EventArgs e)
+        {
+            Crucero cruc_modif = obtener_crucero_seleccionado();
+            cruc_modif.Cabinas = Crucero_BD.obtener_Cabinas_con_crucero(cruc_modif.id);
+            ABM_Cabina form = new ABM_Cabina(cruc_modif, rol_nombre);
+            form.Show();
+            this.Close();
         }
 
         private void bajaDefCrucero_Click(object sender, EventArgs e)
@@ -160,5 +169,6 @@ namespace FrbaCrucero.AbmCrucero
         {
             this.Close();
         }
+        
     }
 }

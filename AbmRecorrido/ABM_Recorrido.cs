@@ -54,6 +54,9 @@ namespace FrbaCrucero.AbmRecorrido
         {
             Recorrido recorrido_modif = obtener_recorrido_seleccionado();
             recorrido_modif.tramosSiguientes = Recorrido_BD.obtener_tramos_siguientes(recorrido_modif);
+            recorrido_modif.tramos.Add(recorrido_modif.primerTramo);
+            foreach(Tramo t in recorrido_modif.tramosSiguientes)
+                    recorrido_modif.tramos.Add(t);            
             ModificacionesRecorrido form = new ModificacionesRecorrido(rol_nombre, recorrido_modif, "Modificar");
             form.Show();
             this.Close();

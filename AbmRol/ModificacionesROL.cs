@@ -59,7 +59,7 @@ namespace FrbaCrucero.AbmRol
         private void nuevo_rol()
         {
             ROL rol_nuevo = new ROL(textBoxNombreROL.Text.Trim(), obtener_funcionalidades_checkList());
-            if(ROL_BD.validar_nombre(rol_nuevo.nombre)){
+            if(!ROL_BD.validar_nombre(rol_nuevo.nombre)){
                 MessageBox.Show("El nombre ya existe.", "ROL", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else{

@@ -249,7 +249,7 @@ namespace FrbaCrucero.BD_y_Querys
 
 
 
-        public static List<TipoCabina> obtener_todas_cabinas()
+        public static List<TipoCabina> obtener_todas_tipoCabinas()
         {
             List<TipoCabina> cabinas = new List<TipoCabina>();
             string query = string.Format(@"SELECT tipo_id, tipo_nombre, tipo_porc_rec FROM PENSAMIENTO_LINEAL.Tipo_cabina");
@@ -327,7 +327,9 @@ namespace FrbaCrucero.BD_y_Querys
         public static List<Cabina> obtener_Cabinas_con_crucero(int cruc_id)
         {
             List<Cabina> cabinas = new List<Cabina>();
-            string query = string.Format(@"SELECT cabi_id, cabi_piso, cabi_numero, cabi_crucero, cabi_tipo FROM PENSAMIENTO_LINEAL.Cabina WHERE cabi_crucero=@id");
+            string query = string.Format(@"SELECT cabi_id, cabi_numero, cabi_piso, tipo_id, tipo_nombre, tipo_porc_rec
+                                            FROM PENSAMIENTO_LINEAL.Cabina JOIN PENSAMIENTO_LINEAL.Tipo_cabina ON(cabi_tipo=tipo_id)
+                                            WHERE cabi_crucero=@id");           
             SqlConnection conn = DBConnection.getConnection();
             SqlCommand cmd = new SqlCommand(query, conn);
             cmd.Parameters.AddWithValue("@id", cruc_id);
@@ -336,11 +338,14 @@ namespace FrbaCrucero.BD_y_Querys
             {
                 int cabi_id = int.Parse(reader["cabi_id"].ToString());
                 int cabi_piso = int.Parse(reader["cabi_piso"].ToString());
-                int cabi_numero = int.Parse(reader["cabi_numero"].ToString());
-                int cabi_crucero = int.Parse(reader["cabi_crucero"].ToString());
-                int cabi_tipo = int.Parse(reader["cabi_tipo"].ToString());
+                int cabi_numero = int.Parse(reader["cabi_numero"].ToString());                
 
-                Cabina Cab = new Cabina(cabi_id, cabi_piso, cabi_numero, obtener_tipoCabina_con_ID(cabi_tipo), obtener_crucero_con_ID(cabi_crucero));
+                int tipo_id = int.Parse(reader["tipo_id"].ToString());
+                string tipo_nombre = reader["tipo_nombre"].ToString();
+                double tipo_porc_rec = double.Parse(reader["tipo_porc_rec"].ToString());
+
+                TipoCabina tipo = new TipoCabina(tipo_id, tipo_nombre, tipo_porc_rec);
+                Cabina Cab = new Cabina(cabi_id, cabi_piso, cabi_numero, tipo, obtener_crucero_con_ID(cruc_id));
                 cabinas.Add(Cab);
             }
             reader.Close();
@@ -364,17 +369,7 @@ namespace FrbaCrucero.BD_y_Querys
                 cmd.Parameters.AddWithValue("@cruc_modelo", crucero_nuevo.modelo.id);
 
                 int cruc_cod_generado = Convert.ToInt32(cmd.ExecuteScalar());
-
-                foreach (Cabina cab in crucero_nuevo.Cabinas)
-                {
-                    cmd = new SqlCommand("INSERT INTO PENSAMIENTO_LINEAL.Cabina (cabi_piso, cabi_numero, cabi_crucero, cabi_tipo) VALUES (@cabi_piso, 1, @cabi_crucero_id, @cabi_tipo)", conn); //HARDCODEADO NUMERO
-
-                    cmd.Parameters.AddWithValue("@cabi_piso", cab.piso);
-                    cmd.Parameters.AddWithValue("@cabi_crucero_id", cruc_cod_generado);
-                    cmd.Parameters.AddWithValue("@cabi_tipo", cab.tipo.id);                   
-
-                    cmd.ExecuteNonQuery();
-                }
+                
                 foreach (ServicioCrucero serv in crucero_nuevo.servicios)
                 {
                     cmd = new SqlCommand("INSERT INTO PENSAMIENTO_LINEAL.Crucero_Servicio (cruc_serv_crucid, cruc_serv_servid) VALUES (@cruc_serv_crucid, @cruc_serv_servid)", conn);
@@ -396,12 +391,10 @@ namespace FrbaCrucero.BD_y_Querys
             return false;
         }
 
-        public static bool modificar_crucero(Crucero crucero_nuevo, List<Cabina> cabinas_anteriores, List<ServicioCrucero> servicios_anteriores)
+        public static bool modificar_crucero(Crucero crucero_nuevo, List<ServicioCrucero> servicios_anteriores)
         {
            try
-            {                
-                List<Cabina> cabinas_nuevas = crucero_nuevo.Cabinas.Where(cab_a => !cabinas_anteriores.Any(cab_b => cab_a.id == cab_b.id)).ToList();
-                List<Cabina> cabinas_quitadas = cabinas_anteriores.Where(cab_b => !crucero_nuevo.Cabinas.Any(cab_a => cab_b.id == cab_a.id)).ToList();
+            {
                 List<ServicioCrucero> servicios_nuevos = crucero_nuevo.servicios.Where(serv_a => !servicios_anteriores.Any(serv_b => serv_a.id == serv_b.id)).ToList();
                 List<ServicioCrucero> servicios_quitados = servicios_anteriores.Where(serv_b => !crucero_nuevo.servicios.Any(serv_a => serv_b.id == serv_a.id)).ToList();
                 string query = string.Format(@"UPDATE PENSAMIENTO_LINEAL.Crucero SET cruc_identificador=@cruc_identificador,cruc_marca=@cruc_marca,cruc_modelo=@cruc_modelo WHERE cruc_id=@cruc_id");
@@ -413,23 +406,7 @@ namespace FrbaCrucero.BD_y_Querys
                 cmd.Parameters.AddWithValue("@cruc_id", crucero_nuevo.id);
 
                 cmd.ExecuteNonQuery();
-                foreach (Cabina cab in cabinas_nuevas)
-                {
-                    cmd = new SqlCommand("INSERT INTO PENSAMIENTO_LINEAL.Cabina (cabi_piso, cabi_numero, cabi_crucero, cabi_tipo) VALUES (@cabi_piso, 1, @cabi_crucero_id, @cabi_tipo)", conn); //HARDCODEADO NUMERO
-                    cmd.Parameters.AddWithValue("@cabi_piso", cab.piso);
-                    cmd.Parameters.AddWithValue("@cabi_crucero_id", crucero_nuevo.id);
-                    cmd.Parameters.AddWithValue("@cabi_tipo", cab.tipo.id);
-                    
-                    cmd.ExecuteNonQuery();
-                }
-                foreach (Cabina cab in cabinas_quitadas)
-                {
-                    cmd = new SqlCommand("DELETE FROM PENSAMIENTO_LINEAL.Cabina WHERE cabi_crucero_id=@cabi_crucero_id AND cabi_tipo=@cabi_tipo", conn);
-                    cmd.Parameters.AddWithValue("@cabi_crucero_id", crucero_nuevo.id);
-                    cmd.Parameters.AddWithValue("@cabi_tipo", cab.id);
-
-                    cmd.ExecuteNonQuery();
-                }
+                 
                 foreach (ServicioCrucero serv in servicios_nuevos)
                 {
                     cmd = new SqlCommand("INSERT INTO PENSAMIENTO_LINEAL.Crucero_Servicio (cruc_serv_crucid, cruc_serv_servid) VALUES (@cruc_serv_crucid, @cruc_serv_servid)", conn);
@@ -570,7 +547,7 @@ namespace FrbaCrucero.BD_y_Querys
             return cantidad;
         }
 
-        internal static Cabina obtener_cabina_por_tipo_ID(int crucero_id, int tipo_id)
+        public static Cabina obtener_cabina_por_tipo_ID(int crucero_id, int tipo_id)
         {
             string query = string.Format(@"SELECT * FROM PENSAMIENTO_LINEAL.Cabina JOIN PENSAMIENTO_LINEAL.Tipo_cabina ON(cabi_tipo=tipo_id) WHERE cabi_crucero=@crucero_id AND cabi_tipo=@tipo_id");
             SqlConnection conn = DBConnection.getConnection();
@@ -606,6 +583,73 @@ namespace FrbaCrucero.BD_y_Querys
             conn.Close();
             conn.Dispose();
             return rta;
+        }
+
+        public static void cargar_grilla_cabinas(DataGridView grillaCabinas, Crucero cruc_modificar)
+        {
+            string query = string.Format(@"SELECT cabi_id as ID, cabi_numero as NUMERO, cabi_piso as PISO, tipo_id as TIPO_ID, tipo_nombre as TIPO, tipo_porc_rec as PORCENTAJE
+                                            FROM PENSAMIENTO_LINEAL.Cabina JOIN PENSAMIENTO_LINEAL.Tipo_cabina ON(cabi_tipo=tipo_id)
+                                            WHERE cabi_crucero=" + cruc_modificar.id.ToString());
+            
+            DBConnection.llenar_grilla(grillaCabinas, query);
+        }
+
+        public static bool validar_numero_cabina(int Numero, int Piso, Crucero cruc_modificar)
+        {
+            List<Cabina> cabinas = obtener_Cabinas_con_crucero(cruc_modificar.id);
+            foreach(Cabina c in cabinas){
+                if (c.numero == Numero && c.piso == Piso)
+                    return false;
+            }
+            return true;
+        }
+
+        public static bool insertar_cabina(Crucero cruc_modificar, int Numero, int Piso, TipoCabina tipoCabina)
+        {
+            try
+            {
+                string query = string.Format(@"INSERT INTO PENSAMIENTO_LINEAL.Cabina (cabi_piso,cabi_numero,cabi_crucero,cabi_tipo) VALUES (@cabi_piso,@cabi_numero,@cabi_crucero,@cabi_tipo)");
+                SqlConnection conn = DBConnection.getConnection();
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@cabi_piso", Piso);
+                cmd.Parameters.AddWithValue("@cabi_numero", Numero);
+                cmd.Parameters.AddWithValue("@cabi_crucero", cruc_modificar.id);
+                cmd.Parameters.AddWithValue("@cabi_tipo", tipoCabina.id);
+                
+                cmd.ExecuteNonQuery();
+
+                cmd.Dispose();
+                conn.Close();
+                conn.Dispose();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public static bool sacar_cabina(Crucero cruc_modificar, Cabina cabina)
+        {
+            try
+            {
+                string query = string.Format(@"DELETE FROM PENSAMIENTO_LINEAL.Cabina WHERE cabi_crucero_id=@cabi_crucero_id AND cabi_id=@cabi_id");
+                SqlConnection conn = DBConnection.getConnection();
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@cabi_crucero_id", cruc_modificar.id);
+                cmd.Parameters.AddWithValue("@cabi_id", cabina.id);
+
+                cmd.ExecuteNonQuery();
+
+                cmd.Dispose();
+                conn.Close();
+                conn.Dispose();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

@@ -81,32 +81,37 @@ order by r1.reco_id
 
 ----------- ESTADISTICAS ------------
 -- TOP 5 de los recorridos con mas pasajes comprados
-select TOP 5 reco_id as ID, reco_codigo as CODIGO, puer_nombre as CIUDAD_ORIGEN,
-(select p2.puer_nombre
-from PENSAMIENTO_LINEAL.Recorrido as r2
-	join PENSAMIENTO_LINEAL.Recorrido_tramo as rt1 on (r2.reco_id = rt1.reco_tram_recoid)
-	join PENSAMIENTO_LINEAL.Tramo as t2 on (rt1.reco_tram_tramid = t2.tram_id)
-	join PENSAMIENTO_LINEAL.Puerto as p2 on (t2.tram_destino = p2.puer_id)
-where t2.tram_destino NOT IN (
-								select t3.tram_origen
-								from PENSAMIENTO_LINEAL.Recorrido as r3
-									join PENSAMIENTO_LINEAL.Recorrido_tramo as rt2 on (r3.reco_id = rt2.reco_tram_recoid)
-									join PENSAMIENTO_LINEAL.Tramo as t3 on (rt2.reco_tram_tramid = t3.tram_id)
-								where r2.reco_id = r3.reco_id
-							 ) AND r2.reco_id = r1.reco_id) as ULTIMO_DESTINO, count(reco_id) as CANTIDAD_VENDIDOS, sum(pasa_precio) as INGRESOS
-
-from PENSAMIENTO_LINEAL.Recorrido as r1
-	join PENSAMIENTO_LINEAL.Pasaje on (reco_id = pasa_recorrido)
-	join PENSAMIENTO_LINEAL.Tramo on (reco_primertramo = tram_id)
-	join PENSAMIENTO_LINEAL.Puerto on (tram_origen = puer_id)
+select TOP 5 reco_cruc_recoid as ID, count(pasa_id) as CANTIDAD_VENDIDOS, sum(pasa_precio) as GANANCIA
+from PENSAMIENTO_LINEAL.Recorrido_crucero
+	join PENSAMIENTO_LINEAL.Pasaje on (reco_cruc_id = pasa_viaje)
 where month(pasa_fecha) <= 6 AND year(pasa_fecha) = 2018
-group by reco_id, reco_codigo, puer_nombre
-order by count(reco_id) desc
+group by reco_cruc_recoid
+order by 2 desc
 
 -- TOP 5 de los cruceros con mayor cantidad de dias fuera de servicio
-select TOP 5 cruc_id as ID, cruc_identificador as IDENTIFICADOR, sum(DATEDIFF(day, esta_fechabaja, esta_fechaalta)) as DIAS_FUERA_DE_SERVICIO
+select TOP 5 cruc_id as ID, cruc_identificador as IDENTIFICADOR, sum(dbo.diasFuera(2012, '<= 6', esta_fechabaja, esta_fechaalta)) as DIAS_FUERA_DE_SERVICIO
 from PENSAMIENTO_LINEAL.Crucero
 	join PENSAMIENTO_LINEAL.Estado_crucero on (cruc_id = esta_crucero)
-where month(esta_fechaalta) <= 6 AND year(esta_fechaalta) = 2018
+where month(esta_fechaalta) <= 6 AND year(esta_fechaalta) = 2012
 group by cruc_id, cruc_identificador
 order by 3 desc
+
+/* donde:
+
+create function dbo.diasFuera (@anio numeric(5), @semestre varchar(8), @fechabaja DateTime, @fechaalta DateTime)
+returns numeric(10)
+as
+begin
+	declare @retorno numeric(10)
+
+	set @retorno = DATEDIFF(day, @fechabaja, @fechaalta)
+
+	if (@semestre = '<= 6' AND (@fechaalta > concat(@anio, '-06-30 00:00:00')))
+		set @retorno = DATEDIFF(day, @fechabaja, concat(@anio, '-06-30 00:00:00'))
+	else if (@semestre = '> 6' and (@fechabaja < concat(@anio, '-06-30 00:00:00')))
+		set @retorno = DATEDIFF(day, concat(@anio, '-06-30 00:00:00'), @fechaalta)
+
+	return @retorno
+end
+
+*/

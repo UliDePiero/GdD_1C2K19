@@ -37,7 +37,7 @@ namespace FrbaCrucero.ListadoEstadistico
 
             if (comboBoxSemestre.Text == "Primer semestre (Enero - Junio)")
                 semestre = "<= 6";
-            else if (comboBoxSemestre.Text == "Segundo semestre(Julio - Diciembre)")
+            else if (comboBoxSemestre.Text == "Segundo semestre (Julio - Diciembre)")
                 semestre = "> 6";
 
             if (comboBoxFunciones.Text == "Recorridos con más pasajes comprados")

@@ -90,12 +90,15 @@ order by 2 desc
 
 -- TOP 5 de los cruceros con mayor cantidad de dias fuera de servicio
 select TOP 5 cruc_id as ID, cruc_identificador as IDENTIFICADOR, 
-sum(PENSAMIENTO_LINEAL.diasFuera(2012, '<= 6', esta_fechabaja, esta_fechaalta)) as DIAS_FUERA_DE_SERVICIO
+marc_nombre as MARCA, mode_nombre as MODELO,
+sum(PENSAMIENTO_LINEAL.diasFuera(2012, '> 6', esta_fechabaja, esta_fechaalta)) as DIAS_FUERA_DE_SERVICIO
 from PENSAMIENTO_LINEAL.Crucero
 	join PENSAMIENTO_LINEAL.Estado_crucero on (cruc_id = esta_crucero)
-where month(esta_fechaalta) <= 6 AND year(esta_fechaalta) = 2012
-group by cruc_id, cruc_identificador
-order by 3 desc
+	join PENSAMIENTO_LINEAL.Marca on (cruc_marca = marc_id)
+	join PENSAMIENTO_LINEAL.Modelo on (cruc_modelo = mode_id)
+where month(esta_fechaalta) > 6 AND year(esta_fechaalta) = 2012
+group by cruc_id, cruc_identificador, marc_nombre, mode_nombre
+order by 5 desc
 
 /* donde:
 
@@ -116,7 +119,7 @@ begin
 end
 
 */
-/*
+
 -- TOP 5 de los recorridos con mayor cantidad de cabinas libres en cada viaje
 select TOP 5 reco_cruc_recoid as RECORRIDO, reco_codigo as RECO_CODIGO, puer_nombre as ORIGEN,
 PENSAMIENTO_LINEAL.ultimoDestino(reco_id) as ULTIMO_DESTINO, reco_cruc_crucid as CRUCERO,
@@ -138,7 +141,7 @@ where month(reco_cruc_salida) <= 6 AND year(reco_cruc_salida) = 2018
 group by reco_cruc_recoid, reco_codigo, puer_nombre, PENSAMIENTO_LINEAL.ultimoDestino(reco_id),
 reco_cruc_crucid, marc_nombre, mode_nombre
 order by 8 desc
-*/
+
 -- Donde
 
 /*

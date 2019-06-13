@@ -18,12 +18,15 @@ namespace FrbaCrucero.BD_y_Querys
             {
                 case Estadistica.CRUCEROS_CON_MAS_DIAS_INHABILES:
                     query = string.Format(@"select TOP 5 cruc_id as ID, cruc_identificador as IDENTIFICADOR,
-                                            sum(PENSAMIENTO_LINEAL.diasFuera(" + anio + @", '"+ semestre +@"', esta_fechabaja, esta_fechaalta)) as DIAS_FUERA_DE_SERVICIO
+                                            marc_nombre as MARCA, mode_nombre as MODELO,
+                                            sum(PENSAMIENTO_LINEAL.diasFuera(" + anio + @", '"+ semestre + @"', esta_fechabaja, esta_fechaalta)) as DIAS_FUERA_DE_SERVICIO
                                             from PENSAMIENTO_LINEAL.Crucero
                                             	join PENSAMIENTO_LINEAL.Estado_crucero on (cruc_id = esta_crucero)
+                                                join PENSAMIENTO_LINEAL.Marca on (cruc_marca = marc_id)
+	                                            join PENSAMIENTO_LINEAL.Modelo on (cruc_modelo = mode_id)
                                             where month(esta_fechaalta) " + semestre + @" AND year(esta_fechaalta) = " + anio + @"
-                                            group by cruc_id, cruc_identificador
-                                            order by 3 desc");
+                                            group by cruc_id, cruc_identificador, marc_nombre, mode_nombre
+                                            order by 5 desc");
                     break;
                 case Estadistica.RECORRIDOS_CON_MAS_CABINAS_LIBRES:
                     query = string.Format(@"select TOP 5 reco_cruc_recoid as RECORRIDO, reco_codigo as RECO_CODIGO, puer_nombre as ORIGEN,

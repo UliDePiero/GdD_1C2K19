@@ -152,6 +152,30 @@ namespace FrbaCrucero.BD_y_Querys
             return tipo;
         }
 
+        public static List<Crucero> obtener_todos_cruceros()
+        {
+            List<Crucero> cruceros = new List<Crucero>();
+            string query = string.Format(@"SELECT * FROM PENSAMIENTO_LINEAL.Crucero");
+            SqlConnection conn = DBConnection.getConnection();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                int id = int.Parse(reader["cruc_id"].ToString());
+                string identificador = reader["cruc_identificador"].ToString();
+
+
+                Crucero crucero = new Crucero(id, identificador);
+                cruceros.Add(crucero);
+            }
+            reader.Close();
+            reader.Dispose();
+            cmd.Dispose();
+            conn.Close();
+            conn.Dispose();
+            return cruceros;
+        }
+
         public static List<MarcaCrucero> obtener_todos_marcas()
         {
             List<MarcaCrucero> marcas = new List<MarcaCrucero>();
@@ -650,6 +674,98 @@ namespace FrbaCrucero.BD_y_Querys
             {
                 return false;
             }
+        }
+
+        public static void cargar_grilla_cruceros_identificador(DataGridView grillaCruceros, string identificador)
+        {
+            string query = string.Format(@"select cruc_id as ID, cruc_identificador as IDENTIFICADOR, marc_nombre as MARCA, mode_nombre as MODELO, cruc_bajadef as BAJA_DEFINITIVA, esta_fechabaja as FECHA_BAJA_SERVICIO, esta_fechaalta as FECHA_ALTA_SERVICIO, count(cabi_id) as CABINAS
+                                            from PENSAMIENTO_LINEAL.Crucero 
+	                                            join PENSAMIENTO_LINEAL.Marca on (cruc_marca = marc_id) 
+	                                            join PENSAMIENTO_LINEAL.Modelo on (cruc_modelo = mode_id)
+	                                            left join PENSAMIENTO_LINEAL.Estado_crucero on (cruc_id = esta_crucero)
+	                                            join PENSAMIENTO_LINEAL.Cabina on (cruc_id = cabi_crucero)
+                                             where cruc_identificador = '" + identificador + "'" +
+                                            "group by cruc_id, cruc_identificador, marc_nombre, mode_nombre, cruc_bajadef, esta_fechabaja, esta_fechaalta");
+            DBConnection.llenar_grilla(grillaCruceros, query);
+        }
+
+        public static void cargar_grilla_cruceros_marca(DataGridView grillaCruceros, string marca)
+        {
+            string query = string.Format(@"select cruc_id as ID, cruc_identificador as IDENTIFICADOR, marc_nombre as MARCA, mode_nombre as MODELO, cruc_bajadef as BAJA_DEFINITIVA, esta_fechabaja as FECHA_BAJA_SERVICIO, esta_fechaalta as FECHA_ALTA_SERVICIO, count(cabi_id) as CABINAS
+                                            from PENSAMIENTO_LINEAL.Crucero 
+	                                            join PENSAMIENTO_LINEAL.Marca on (cruc_marca = marc_id) 
+	                                            join PENSAMIENTO_LINEAL.Modelo on (cruc_modelo = mode_id)
+	                                            left join PENSAMIENTO_LINEAL.Estado_crucero on (cruc_id = esta_crucero)
+	                                            join PENSAMIENTO_LINEAL.Cabina on (cruc_id = cabi_crucero)
+                                             where marc_nombre = '" + marca + "'" +
+                                            "group by cruc_id, cruc_identificador, marc_nombre, mode_nombre, cruc_bajadef, esta_fechabaja, esta_fechaalta");
+            DBConnection.llenar_grilla(grillaCruceros, query);
+        }
+
+        public static void cargar_grilla_cruceros(DataGridView grillaCruceros, string identificador, string marca)
+        {
+            string query = string.Format(@"select cruc_id as ID, cruc_identificador as IDENTIFICADOR, marc_nombre as MARCA, mode_nombre as MODELO, cruc_bajadef as BAJA_DEFINITIVA, esta_fechabaja as FECHA_BAJA_SERVICIO, esta_fechaalta as FECHA_ALTA_SERVICIO, count(cabi_id) as CABINAS
+                                            from PENSAMIENTO_LINEAL.Crucero 
+	                                            join PENSAMIENTO_LINEAL.Marca on (cruc_marca = marc_id) 
+	                                            join PENSAMIENTO_LINEAL.Modelo on (cruc_modelo = mode_id)
+	                                            left join PENSAMIENTO_LINEAL.Estado_crucero on (cruc_id = esta_crucero)
+	                                            join PENSAMIENTO_LINEAL.Cabina on (cruc_id = cabi_crucero)
+                                             where cruc_identificador = '" + identificador + "' AND marc_nombre = '" + marca + "'" +
+                                            "group by cruc_id, cruc_identificador, marc_nombre, mode_nombre, cruc_bajadef, esta_fechabaja, esta_fechaalta");
+            DBConnection.llenar_grilla(grillaCruceros, query);
+        }
+
+
+        public static void cargar_grilla_cruceros_con_alta(DataGridView grillaCruceros, DateTime alta)//SIN TERMINAR//SIN TERMINAR//SIN TERMINAR//SIN TERMINAR
+        {
+            string query = string.Format(@"select cruc_id as ID, cruc_identificador as IDENTIFICADOR, marc_nombre as MARCA, mode_nombre as MODELO, cruc_bajadef as BAJA_DEFINITIVA, esta_fechabaja as FECHA_BAJA_SERVICIO, esta_fechaalta as FECHA_ALTA_SERVICIO, count(cabi_id) as CABINAS
+                                            from PENSAMIENTO_LINEAL.Crucero 
+	                                            join PENSAMIENTO_LINEAL.Marca on (cruc_marca = marc_id) 
+	                                            join PENSAMIENTO_LINEAL.Modelo on (cruc_modelo = mode_id)
+	                                            left join PENSAMIENTO_LINEAL.Estado_crucero on (cruc_id = esta_crucero)
+	                                            join PENSAMIENTO_LINEAL.Cabina on (cruc_id = cabi_crucero)
+                                             where esta_fechaalta = '" + alta + "'" +
+                                            "group by cruc_id, cruc_identificador, marc_nombre, mode_nombre, cruc_bajadef, esta_fechabaja, esta_fechaalta");
+            DBConnection.llenar_grilla(grillaCruceros, query);
+        }
+
+        public static void cargar_grilla_cruceros_con_bajaM(DataGridView grillaCruceros, DateTime baja)//SIN TERMINAR//SIN TERMINAR//SIN TERMINAR//SIN TERMINAR
+        {
+            string query = string.Format(@"select cruc_id as ID, cruc_identificador as IDENTIFICADOR, marc_nombre as MARCA, mode_nombre as MODELO, cruc_bajadef as BAJA_DEFINITIVA, esta_fechabaja as FECHA_BAJA_SERVICIO, esta_fechaalta as FECHA_ALTA_SERVICIO, count(cabi_id) as CABINAS
+                                            from PENSAMIENTO_LINEAL.Crucero 
+	                                            join PENSAMIENTO_LINEAL.Marca on (cruc_marca = marc_id) 
+	                                            join PENSAMIENTO_LINEAL.Modelo on (cruc_modelo = mode_id)
+	                                            left join PENSAMIENTO_LINEAL.Estado_crucero on (cruc_id = esta_crucero)
+	                                            join PENSAMIENTO_LINEAL.Cabina on (cruc_id = cabi_crucero)
+                                             where esta_fechabaja = '" + baja + "'" + 
+                                            "group by cruc_id, cruc_identificador, marc_nombre, mode_nombre, cruc_bajadef, esta_fechabaja, esta_fechaalta");
+            DBConnection.llenar_grilla(grillaCruceros, query);
+        }
+
+        public static void cargar_grilla_cruceros_con_bajaD(DataGridView grillaCruceros, DateTime baja)//SIN TERMINAR//SIN TERMINAR//SIN TERMINAR//SIN TERMINAR
+        {
+            string query = string.Format(@"select cruc_id as ID, cruc_identificador as IDENTIFICADOR, marc_nombre as MARCA, mode_nombre as MODELO, cruc_bajadef as BAJA_DEFINITIVA, esta_fechabaja as FECHA_BAJA_SERVICIO, esta_fechaalta as FECHA_ALTA_SERVICIO, count(cabi_id) as CABINAS
+                                            from PENSAMIENTO_LINEAL.Crucero 
+	                                            join PENSAMIENTO_LINEAL.Marca on (cruc_marca = marc_id) 
+	                                            join PENSAMIENTO_LINEAL.Modelo on (cruc_modelo = mode_id)
+	                                            left join PENSAMIENTO_LINEAL.Estado_crucero on (cruc_id = esta_crucero)
+	                                            join PENSAMIENTO_LINEAL.Cabina on (cruc_id = cabi_crucero)
+                                             where cruc_bajadef = '" + baja + "'" +
+                                            "group by cruc_id, cruc_identificador, marc_nombre, mode_nombre, cruc_bajadef, esta_fechabaja, esta_fechaalta");
+            DBConnection.llenar_grilla(grillaCruceros, query);
+        }
+
+        public static void cargar_grilla_cruceros_con_bajaD(DataGridView grillaCruceros)
+        {
+            string query = string.Format(@"select cruc_id as ID, cruc_identificador as IDENTIFICADOR, marc_nombre as MARCA, mode_nombre as MODELO, cruc_bajadef as BAJA_DEFINITIVA, esta_fechabaja as FECHA_BAJA_SERVICIO, esta_fechaalta as FECHA_ALTA_SERVICIO, count(cabi_id) as CABINAS
+                                            from PENSAMIENTO_LINEAL.Crucero 
+	                                            join PENSAMIENTO_LINEAL.Marca on (cruc_marca = marc_id) 
+	                                            join PENSAMIENTO_LINEAL.Modelo on (cruc_modelo = mode_id)
+	                                            left join PENSAMIENTO_LINEAL.Estado_crucero on (cruc_id = esta_crucero)
+	                                            join PENSAMIENTO_LINEAL.Cabina on (cruc_id = cabi_crucero)
+                                             where cruc_bajadef IS NOT NULL
+                                             group by cruc_id, cruc_identificador, marc_nombre, mode_nombre, cruc_bajadef, esta_fechabaja, esta_fechaalta");
+            DBConnection.llenar_grilla(grillaCruceros, query);
         }
     }
 }

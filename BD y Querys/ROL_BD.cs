@@ -302,5 +302,13 @@ namespace FrbaCrucero.BD_y_Querys
             conn.Dispose();
             return roles;
         }
+
+        public static void cargar_grilla_roles_con_funcionalidad(DataGridView grillaRoles, string funcionalidad)
+        {
+            string query = string.Format(@"SELECT rol_id as ID, rol_nombre as Nombre, rol_habilitado as ROL
+                                            FROM PENSAMIENTO_LINEAL.Rol JOIN PENSAMIENTO_LINEAL.Rol_Funcion ON(rol_func_rolid=rol_id) JOIN PENSAMIENTO_LINEAL.Funcionalidad ON(rol_func_funcid=func_id)
+                                            WHERE func_nombre='"+funcionalidad+"'");
+            DBConnection.llenar_grilla(grillaRoles, query);
+        }
     }
 }

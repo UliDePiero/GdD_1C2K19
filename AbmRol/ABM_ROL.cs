@@ -26,6 +26,9 @@ namespace FrbaCrucero.AbmRol
         
         private void Form1_Load(object sender, EventArgs e)
         {
+            List<Funcionalidad> funcionalidades = ROL_BD.obtener_todas_funcionalidades();
+            foreach (Funcionalidad f in funcionalidades)
+                comboBoxFiltro.Items.Add(f.nombre);
             ROL_BD.cargar_grilla_roles(dataGridView1);
             cargarGrillaFunc();
         }
@@ -124,6 +127,26 @@ namespace FrbaCrucero.AbmRol
             cargarGrillaFunc();
         }
 
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (mostrar == true)
+            {
+                if (comboBoxFiltro.SelectedItem.ToString() == "Todas las funcionalidades")
+                    ROL_BD.cargar_grilla_roles_habilitados(dataGridView1);
+                else
+                    ROL_BD.cargar_grilla_roles_con_funcionalidad(dataGridView1,comboBoxFiltro.SelectedItem.ToString());
+                cargarGrillaFunc();
+            }
+            else
+            {
+                if(comboBoxFiltro.SelectedItem.ToString() == "Todas las funcionalidades")
+                    ROL_BD.cargar_grilla_roles(dataGridView1);
+                else
+                    ROL_BD.cargar_grilla_roles_con_funcionalidad(dataGridView1, comboBoxFiltro.SelectedItem.ToString());
+                cargarGrillaFunc();
+            }
+        }
+
         private void mostrar_ocuRol_Click(object sender, EventArgs e)
         {
             if(mostrar == true){
@@ -142,6 +165,7 @@ namespace FrbaCrucero.AbmRol
         {
             this.Close();
         }
+
         
     }
 }

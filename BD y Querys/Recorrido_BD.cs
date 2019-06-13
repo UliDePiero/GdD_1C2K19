@@ -290,5 +290,62 @@ namespace FrbaCrucero.BD_y_Querys
             conn.Close();
             conn.Dispose();
         }
+
+        public static void cargar_grilla_recorridos(DataGridView grillaRecorridos, bool _mostrar)
+        {
+            int mostrar;
+            if (_mostrar)
+                mostrar = 1;
+            else
+                mostrar = 0;
+            string query = string.Format(@"SELECT reco_id as ID, reco_codigo as Codigo, p1.puer_nombre as Puerto_origen, p2.puer_nombre as Puerto_destino
+                                            FROM PENSAMIENTO_LINEAL.Recorrido JOIN PENSAMIENTO_LINEAL.Recorrido_tramo ON(reco_tram_recoid=reco_id) JOIN PENSAMIENTO_LINEAL.Tramo ON(tram_id=reco_tram_tramid) JOIN PENSAMIENTO_LINEAL.Puerto p1 ON(p1.puer_id=tram_origen) JOIN PENSAMIENTO_LINEAL.Puerto p2 ON(p2.puer_id=tram_destino)
+                                            WHERE reco_habilitado = " + mostrar +
+                                            "ORDER BY 1");
+            DBConnection.llenar_grilla(grillaRecorridos, query);
+        }
+
+
+        public static void cargar_grilla_recorridos_origen(DataGridView grillaRecorridos, string puerto, bool _mostrar)
+        {
+            int mostrar;
+            if (_mostrar)
+                mostrar = 1;
+            else
+                mostrar = 0;
+            string query = string.Format(@"SELECT reco_id as ID, reco_codigo as Codigo, p1.puer_nombre as Puerto_origen, p2.puer_nombre as Puerto_destino
+                                            FROM PENSAMIENTO_LINEAL.Recorrido JOIN PENSAMIENTO_LINEAL.Recorrido_tramo ON(reco_tram_recoid=reco_id) JOIN PENSAMIENTO_LINEAL.Tramo ON(tram_id=reco_tram_tramid) JOIN PENSAMIENTO_LINEAL.Puerto p1 ON(p1.puer_id=tram_origen) JOIN PENSAMIENTO_LINEAL.Puerto p2 ON(p2.puer_id=tram_destino)
+                                            WHERE p1.puer_nombre='" + puerto + "'" + "AND reco_habilitado = " + mostrar +
+                                            "ORDER BY 1");
+            DBConnection.llenar_grilla(grillaRecorridos, query);
+        }
+
+        public static void cargar_grilla_recorridos_destino(DataGridView grillaRecorridos, string puerto, bool _mostrar)
+        {
+            int mostrar;
+            if (_mostrar)
+                mostrar = 1;
+            else
+                mostrar = 0;
+            string query = string.Format(@"SELECT reco_id as ID, reco_codigo as Codigo, p1.puer_nombre as Puerto_origen, p2.puer_nombre as Puerto_destino
+                                            FROM PENSAMIENTO_LINEAL.Recorrido JOIN PENSAMIENTO_LINEAL.Recorrido_tramo ON(reco_tram_recoid=reco_id) JOIN PENSAMIENTO_LINEAL.Tramo ON(tram_id=reco_tram_tramid) JOIN PENSAMIENTO_LINEAL.Puerto p1 ON(p1.puer_id=tram_origen) JOIN PENSAMIENTO_LINEAL.Puerto p2 ON(p2.puer_id=tram_destino)
+                                            WHERE p2.puer_nombre='" + puerto + "'" + "AND reco_habilitado = " + mostrar +
+                                            "ORDER BY 1");
+            DBConnection.llenar_grilla(grillaRecorridos, query);
+        }
+
+        public static void cargar_grilla_recorridos(DataGridView grillaRecorridos, string puerto_origen, string puerto_destino, bool _mostrar)
+        {
+            int mostrar;
+            if (_mostrar)
+                mostrar = 1;
+            else
+                mostrar = 0;
+            string query = string.Format(@"SELECT reco_id as ID, reco_codigo as Codigo, p1.puer_nombre as Puerto_origen, p2.puer_nombre as Puerto_destino
+                                            FROM PENSAMIENTO_LINEAL.Recorrido JOIN PENSAMIENTO_LINEAL.Recorrido_tramo ON(reco_tram_recoid=reco_id) JOIN PENSAMIENTO_LINEAL.Tramo ON(tram_id=reco_tram_tramid) JOIN PENSAMIENTO_LINEAL.Puerto p1 ON(p1.puer_id=tram_origen) JOIN PENSAMIENTO_LINEAL.Puerto p2 ON(p2.puer_id=tram_destino)
+                                            WHERE p1.puer_nombre='" + puerto_origen + "' AND p2.puer_nombre='" + puerto_destino + "'" + "AND reco_habilitado = " + mostrar +
+                                            "ORDER BY 1");
+            DBConnection.llenar_grilla(grillaRecorridos, query);
+        }
     }
 }

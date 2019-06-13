@@ -17,22 +17,33 @@ namespace FrbaCrucero.AbmCrucero
         private string operacion_fecha;
         private DateTime fecha_operacion;
         private string rol_nombre;
+        private bool inicio;
 
         public ABM_Crucero(string rol)
         {
             InitializeComponent();
             rol_nombre = rol;
+            inicio = true;
         }
 
         private void ABM_Crucero_Load(object sender, EventArgs e)
         {
             Crucero_BD.cargar_grilla_cruceros(dataGridView1);
+            comboBoxIdentificador.SelectedIndex = 0;
+            comboBoxMarca.SelectedIndex = 0;
              if (dataGridView1.RowCount == 0){
                  modificarCrucero.Enabled = false;
                  bajaDefCrucero.Enabled = false;
                  altaCrucero.Enabled = false;
                  bajaMomCrucero.Enabled = false;
              }
+             List<MarcaCrucero> marcas = Crucero_BD.obtener_todos_marcas();
+             List<Crucero> cruceros = Crucero_BD.obtener_todos_cruceros();
+             foreach (MarcaCrucero m in marcas)
+                 comboBoxMarca.Items.Add(m.nombre);
+             foreach (Crucero c in cruceros)
+                 comboBoxIdentificador.Items.Add(c.identificador);
+             inicio = false;
         }
 
         private Crucero obtener_crucero_seleccionado()
@@ -165,10 +176,67 @@ namespace FrbaCrucero.AbmCrucero
             cancelar.Visible = false;
         }
 
+        private void comboBoxIdentificador_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!inicio)
+                if (comboBoxIdentificador.SelectedIndex == 0 && comboBoxMarca.SelectedIndex == 0)
+                    Crucero_BD.cargar_grilla_cruceros(dataGridView1);
+                else
+                    if (comboBoxMarca.SelectedIndex == 0)
+                        Crucero_BD.cargar_grilla_cruceros_identificador(dataGridView1, comboBoxIdentificador.SelectedItem.ToString());
+                    else
+                        if (comboBoxIdentificador.SelectedIndex == 0)
+                            Crucero_BD.cargar_grilla_cruceros_marca(dataGridView1, comboBoxMarca.SelectedItem.ToString());
+                        else
+                            Crucero_BD.cargar_grilla_cruceros(dataGridView1, comboBoxIdentificador.SelectedItem.ToString(), comboBoxMarca.SelectedItem.ToString());
+        }
+
+        private void comboBoxMarca_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!inicio)
+                if (comboBoxIdentificador.SelectedIndex == 0 && comboBoxMarca.SelectedIndex == 0)
+                    Crucero_BD.cargar_grilla_cruceros(dataGridView1);
+                else
+                    if (comboBoxMarca.SelectedIndex == 0)
+                        Crucero_BD.cargar_grilla_cruceros_identificador(dataGridView1, comboBoxIdentificador.SelectedItem.ToString());
+                    else
+                        if (comboBoxIdentificador.SelectedIndex == 0)
+                            Crucero_BD.cargar_grilla_cruceros_marca(dataGridView1, comboBoxMarca.SelectedItem.ToString());
+                        else
+                            Crucero_BD.cargar_grilla_cruceros(dataGridView1, comboBoxIdentificador.SelectedItem.ToString(), comboBoxMarca.SelectedItem.ToString());
+        }
+
+        private void dateTimePickerAlta_ValueChanged(object sender, EventArgs e)
+        {
+            Crucero_BD.cargar_grilla_cruceros_con_alta(dataGridView1, dateTimePickerAlta.Value);//SIN TERMINAR//SIN TERMINAR//SIN TERMINAR
+        }
+
+        private void dateTimePickerBajaM_ValueChanged(object sender, EventArgs e)
+        {
+            Crucero_BD.cargar_grilla_cruceros_con_bajaM(dataGridView1, dateTimePickerBajaM.Value);//SIN TERMINAR//SIN TERMINAR//SIN TERMINAR
+        }
+
+        private void dateTimePickerBajaD_ValueChanged(object sender, EventArgs e)
+        {
+            Crucero_BD.cargar_grilla_cruceros_con_bajaD(dataGridView1, dateTimePickerBajaD.Value);//SIN TERMINAR//SIN TERMINAR//SIN TERMINAR
+        }
+
+        private void mostrarBajaDef_Click(object sender, EventArgs e)
+        {
+            Crucero_BD.cargar_grilla_cruceros_con_bajaD(dataGridView1);
+        }
+
+        private void limpiar_Click(object sender, EventArgs e)
+        {
+            Crucero_BD.cargar_grilla_cruceros(dataGridView1);
+            comboBoxIdentificador.SelectedIndex = 0;
+            comboBoxMarca.SelectedIndex = 0;            
+        }
+
         private void atras_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-        
+
     }
 }

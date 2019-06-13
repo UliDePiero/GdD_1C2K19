@@ -47,5 +47,11 @@ namespace FrbaCrucero.Clases
             this.servicios = _servicios;  
         }
 
+        public Crucero(int id1, string identificador1)
+        {
+            this.id = id1;
+            this.identificador = identificador1;
+        }
+
     }
 }

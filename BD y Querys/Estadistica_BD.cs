@@ -51,12 +51,17 @@ namespace FrbaCrucero.BD_y_Querys
                                             order by 8 desc");
                     break;
                 case Estadistica.RECORRIDOS_CON_MAS_PASAJES:
-                    query = string.Format(@"select TOP 5 reco_cruc_recoid as ID, count(pasa_id) as CANTIDAD_VENDIDOS, sum(pasa_precio) as GANANCIA
+                    query = string.Format(@"select TOP 5 reco_cruc_recoid as ID, reco_codigo as CODIGO, puer_nombre as ORIGEN,
+                                            PENSAMIENTO_LINEAL.ultimoDestino(reco_id) as ULTIMO_DESTINO,
+                                            count(pasa_id) as CANTIDAD_VENDIDOS, sum(pasa_precio) as GANANCIA
                                             from PENSAMIENTO_LINEAL.Recorrido_crucero
                                             	join PENSAMIENTO_LINEAL.Pasaje on (reco_cruc_id = pasa_viaje)
-                                            where month(pasa_fecha) " + semestre + " AND year(pasa_fecha) = " + anio + @"
-                                            group by reco_cruc_recoid
-                                            order by 2 desc");
+                                            	join PENSAMIENTO_LINEAL.Recorrido on (reco_cruc_recoid = reco_id)
+                                            	join PENSAMIENTO_LINEAL.Tramo on (reco_primertramo = tram_id)
+                                            	join PENSAMIENTO_LINEAL.Puerto on (tram_origen = puer_id)
+                                            where month(pasa_fecha) " + semestre + @" AND year(pasa_fecha) = "+ anio +@"
+                                            group by reco_cruc_recoid, reco_codigo, puer_nombre, PENSAMIENTO_LINEAL.ultimoDestino(reco_id)
+                                            order by 5 desc");
                     break;
             }
 

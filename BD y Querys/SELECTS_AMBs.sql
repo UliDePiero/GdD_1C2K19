@@ -81,12 +81,17 @@ order by r1.reco_id
 
 ----------- ESTADISTICAS ------------
 -- TOP 5 de los recorridos con mas pasajes comprados
-select TOP 5 reco_cruc_recoid as ID, count(pasa_id) as CANTIDAD_VENDIDOS, sum(pasa_precio) as GANANCIA
+select TOP 5 reco_cruc_recoid as ID, reco_codigo as CODIGO, puer_nombre as ORIGEN,
+PENSAMIENTO_LINEAL.ultimoDestino(reco_id) as ULTIMO_DESTINO,
+count(pasa_id) as CANTIDAD_VENDIDOS, sum(pasa_precio) as GANANCIA
 from PENSAMIENTO_LINEAL.Recorrido_crucero
 	join PENSAMIENTO_LINEAL.Pasaje on (reco_cruc_id = pasa_viaje)
+	join PENSAMIENTO_LINEAL.Recorrido on (reco_cruc_recoid = reco_id)
+	join PENSAMIENTO_LINEAL.Tramo on (reco_primertramo = tram_id)
+	join PENSAMIENTO_LINEAL.Puerto on (tram_origen = puer_id)
 where month(pasa_fecha) <= 6 AND year(pasa_fecha) = 2018
-group by reco_cruc_recoid
-order by 2 desc
+group by reco_cruc_recoid, reco_codigo, puer_nombre, PENSAMIENTO_LINEAL.ultimoDestino(reco_id)
+order by 5 desc
 
 -- TOP 5 de los cruceros con mayor cantidad de dias fuera de servicio
 select TOP 5 cruc_id as ID, cruc_identificador as IDENTIFICADOR, 

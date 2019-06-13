@@ -31,16 +31,11 @@ namespace FrbaCrucero.AbmRecorrido
         {
             int recorrido_id = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());
             string recorrido_codigo = dataGridView1.SelectedCells[1].Value.ToString();
+            //bool recorrido_habilitado = dataGridView1.SelectedCells[4].Value.ToString();
             Tramo primerTramo = Recorrido_BD.obtener_primer_tramo(recorrido_id);
-
+            
             return new Recorrido(recorrido_id, recorrido_codigo, primerTramo);
-        }
-
-        private void editarTramos_Click(object sender, EventArgs e)
-        {            
-            ABM_Tramo form = new ABM_Tramo(rol_nombre);
-            form.Show();
-            this.Close();
+            //return new Recorrido(recorrido_id, recorrido_codigo, primerTramo, recorrido_habilitado);
         }
 
         private void nuevoRecorrido_Click(object sender, EventArgs e)
@@ -53,10 +48,7 @@ namespace FrbaCrucero.AbmRecorrido
         private void modificarRecorrido_Click(object sender, EventArgs e)
         {
             Recorrido recorrido_modif = obtener_recorrido_seleccionado();
-            recorrido_modif.tramosSiguientes = Recorrido_BD.obtener_tramos_siguientes(recorrido_modif);
-            recorrido_modif.tramos.Add(recorrido_modif.primerTramo);
-            foreach(Tramo t in recorrido_modif.tramosSiguientes)
-                    recorrido_modif.tramos.Add(t);            
+            recorrido_modif.tramos = Recorrido_BD.obtener_tramos_recorrido(recorrido_modif);
             ModificacionesRecorrido form = new ModificacionesRecorrido(rol_nombre, recorrido_modif, "Modificar");
             form.Show();
             this.Close();
@@ -65,6 +57,15 @@ namespace FrbaCrucero.AbmRecorrido
         private void atras_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void eliminarRecorridos_Click(object sender, EventArgs e)
+        {
+            Recorrido recorrido_modif = obtener_recorrido_seleccionado();
+            /*if(recorrido_modif.habilitado == true)
+                Recorrido_BD.inhabilitar_recorrido(recorrido_modif);
+            else
+                Recorrido_BD.habilitar_recorrido(recorrido_modif);*/
         }
 
     }

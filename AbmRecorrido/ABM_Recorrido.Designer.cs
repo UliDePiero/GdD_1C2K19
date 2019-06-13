@@ -35,7 +35,6 @@
             this.modificarRecorrido = new System.Windows.Forms.Button();
             this.eliminarRecorridos = new System.Windows.Forms.Button();
             this.funciones = new System.Windows.Forms.GroupBox();
-            this.editarTramos = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.funciones.SuspendLayout();
             this.SuspendLayout();
@@ -100,33 +99,23 @@
             // 
             this.eliminarRecorridos.Location = new System.Drawing.Point(214, 33);
             this.eliminarRecorridos.Name = "eliminarRecorridos";
-            this.eliminarRecorridos.Size = new System.Drawing.Size(98, 39);
+            this.eliminarRecorridos.Size = new System.Drawing.Size(117, 39);
             this.eliminarRecorridos.TabIndex = 7;
-            this.eliminarRecorridos.Text = "Eliminar Recorridos";
+            this.eliminarRecorridos.Text = "Habilitar/Deshabilitar Recorrido";
             this.eliminarRecorridos.UseVisualStyleBackColor = true;
+            this.eliminarRecorridos.Click += new System.EventHandler(this.eliminarRecorridos_Click);
             // 
             // funciones
             // 
             this.funciones.Controls.Add(this.nuevoRecorrido);
-            this.funciones.Controls.Add(this.editarTramos);
             this.funciones.Controls.Add(this.eliminarRecorridos);
             this.funciones.Controls.Add(this.modificarRecorrido);
             this.funciones.Location = new System.Drawing.Point(9, 330);
             this.funciones.Name = "funciones";
-            this.funciones.Size = new System.Drawing.Size(424, 82);
+            this.funciones.Size = new System.Drawing.Size(340, 82);
             this.funciones.TabIndex = 8;
             this.funciones.TabStop = false;
             this.funciones.Text = "Funciones";
-            // 
-            // editarTramos
-            // 
-            this.editarTramos.Location = new System.Drawing.Point(318, 33);
-            this.editarTramos.Name = "editarTramos";
-            this.editarTramos.Size = new System.Drawing.Size(98, 39);
-            this.editarTramos.TabIndex = 7;
-            this.editarTramos.Text = "Editar Tramos";
-            this.editarTramos.UseVisualStyleBackColor = true;
-            this.editarTramos.Click += new System.EventHandler(this.editarTramos_Click);
             // 
             // ABM_Recorrido
             // 
@@ -157,6 +146,5 @@
         private System.Windows.Forms.Button modificarRecorrido;
         private System.Windows.Forms.Button eliminarRecorridos;
         private System.Windows.Forms.GroupBox funciones;
-        private System.Windows.Forms.Button editarTramos;
     }
 }

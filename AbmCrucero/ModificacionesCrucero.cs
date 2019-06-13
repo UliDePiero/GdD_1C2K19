@@ -72,7 +72,7 @@ namespace FrbaCrucero.AbmCrucero
         private void nuevo_crucero()
         {
             Crucero crucero_nuevo = new Crucero(textBoxCrucero.Text, Crucero_BD.obtener_marca_con_nombre(comboBoxMarcas.SelectedItem.ToString()), Crucero_BD.obtener_modelo_con_nombre(textBoxModelo.Text), obtener_servicios_checkList());
-            if (Crucero_BD.validar_identificador(crucero_nuevo.identificador))
+            if (!Crucero_BD.validar_identificador(crucero_nuevo.identificador))
             {
                 MessageBox.Show("El identificador ya existe.", " Crucero", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -95,7 +95,7 @@ namespace FrbaCrucero.AbmCrucero
         {
             Crucero crucero_nuevo = new Crucero(textBoxCrucero.Text, Crucero_BD.obtener_marca_con_nombre(comboBoxMarcas.SelectedItem.ToString()), Crucero_BD.obtener_modelo_con_nombre(textBoxModelo.Text), obtener_servicios_checkList());
             crucero_nuevo.id = cruc_modificar.id;
-            if (Crucero_BD.validar_identificador(crucero_nuevo.identificador))
+            if (cruc_modificar.identificador != crucero_nuevo.identificador && !Crucero_BD.validar_identificador(crucero_nuevo.identificador))
             {
                 MessageBox.Show("El identificador ya existe.", " Crucero", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

@@ -75,23 +75,11 @@
     <Compile Include="AbmRecorrido\ABM_Recorrido.Designer.cs">
       <DependentUpon>ABM_Recorrido.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmRecorrido\ABM_Tramo.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmRecorrido\ABM_Tramo.Designer.cs">
-      <DependentUpon>ABM_Tramo.cs</DependentUpon>
-    </Compile>
     <Compile Include="AbmRecorrido\ModificacionesRecorrido.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AbmRecorrido\ModificacionesRecorrido.Designer.cs">
       <DependentUpon>ModificacionesRecorrido.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AbmRecorrido\ModificacionesTramo.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmRecorrido\ModificacionesTramo.Designer.cs">
-      <DependentUpon>ModificacionesTramo.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmRol\ABM_ROL.cs">
       <SubType>Form</SubType>
@@ -106,7 +94,6 @@
       <DependentUpon>ModificacionesROL.cs</DependentUpon>
     </Compile>
     <Compile Include="BD y Querys\Crucero_BD.cs" />
-    <Compile Include="BD y Querys\DatosClientes_BD.cs" />
     <Compile Include="BD y Querys\DatosCliente_BD.cs" />
     <Compile Include="BD y Querys\DBConnection.cs" />
     <Compile Include="BD y Querys\Estadistica_BD.cs" />
@@ -214,14 +201,8 @@
     <EmbeddedResource Include="AbmRecorrido\ABM_Recorrido.resx">
       <DependentUpon>ABM_Recorrido.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AbmRecorrido\ABM_Tramo.resx">
-      <DependentUpon>ABM_Tramo.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="AbmRecorrido\ModificacionesRecorrido.resx">
       <DependentUpon>ModificacionesRecorrido.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AbmRecorrido\ModificacionesTramo.resx">
-      <DependentUpon>ModificacionesTramo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmRol\ABM_ROL.resx">
       <DependentUpon>ABM_ROL.cs</DependentUpon>

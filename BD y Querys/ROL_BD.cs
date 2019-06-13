@@ -28,13 +28,17 @@ namespace FrbaCrucero.BD_y_Querys
             DBConnection.llenar_grilla(grillaRoles, query);
         }
         public static void inhabilitar_rol(ROL rol){
-            string query = string.Format(@"UPDATE PENSAMIENTO_LINEAL.Rol SET rol_habilitado=0 WHERE rol_id=@rol_id");
+                string query = string.Format(@"UPDATE PENSAMIENTO_LINEAL.Rol SET rol_habilitado=0 WHERE rol_id=@rol_id");
                 SqlConnection conn = DBConnection.getConnection();
                 SqlCommand cmd = new SqlCommand(query, conn);                
                 cmd.Parameters.AddWithValue("@rol_id", rol.id);
 
-                cmd.ExecuteNonQuery();            
+                cmd.ExecuteNonQuery();
 
+                cmd = new SqlCommand("DELETE FROM PENSAMIENTO_LINEAL.Rol_Usuario WHERE rol_usuario_rolid=@rol_usuario_rolid", conn);
+                cmd.Parameters.AddWithValue("@rol_usuario_rolid", rol.id);
+
+                cmd.ExecuteNonQuery();
                 cmd.Dispose();
                 conn.Close();
                 conn.Dispose();

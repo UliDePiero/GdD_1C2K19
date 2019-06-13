@@ -15,8 +15,9 @@ namespace FrbaCrucero.BD_y_Querys
     {
         public static void cargar_grilla_recorridos(DataGridView grillaRecorridos)
         {
-            string query = string.Format(@"SELECT reco_id as ID, reco_codigo as Codigo, puer_nombre as Puerto_origen
-                                           FROM PENSAMIENTO_LINEAL.Recorrido JOIN PENSAMIENTO_LINEAL.Puerto ON(puer_id=reco_primertramo)");
+            string query = string.Format(@"SELECT reco_id as ID, reco_codigo as Codigo, p1.puer_nombre as Puerto_origen, p2.puer_nombre as Puerto_destino
+                                            FROM PENSAMIENTO_LINEAL.Recorrido JOIN PENSAMIENTO_LINEAL.Recorrido_tramo ON(reco_tram_recoid=reco_id) JOIN PENSAMIENTO_LINEAL.Tramo ON(tram_id=reco_tram_tramid) JOIN PENSAMIENTO_LINEAL.Puerto p1 ON(p1.puer_id=tram_origen) JOIN PENSAMIENTO_LINEAL.Puerto p2 ON(p2.puer_id=tram_destino)
+                                            ORDER BY 1");
             DBConnection.llenar_grilla(grillaRecorridos, query);
         }
 
@@ -37,16 +38,16 @@ namespace FrbaCrucero.BD_y_Querys
             reader.Read();
 
             int id = int.Parse(reader["tram_id"].ToString());
-            decimal precio = decimal.Parse(reader["tram_precio"].ToString());
+            decimal precio = decimal.Parse(reader["tram_precio"].ToString());            
             decimal duracion = decimal.Parse(reader["tram_duracion"].ToString());
             int origen = int.Parse(reader["tram_origen"].ToString());
             int destino = int.Parse(reader["tram_destino"].ToString());
 
             Puerto puerto_origen = obtener_puerto_con_ID(origen);
             Puerto puerto_destino = obtener_puerto_con_ID(destino);
-
+           
             Tramo tramo = new Tramo(id, precio, duracion, puerto_origen, puerto_destino);
-
+            
             reader.Close();
             reader.Dispose();
             cmd.Dispose();
@@ -80,12 +81,42 @@ namespace FrbaCrucero.BD_y_Querys
         public static List<Tramo> obtener_tramos_siguientes(Recorrido recorrido_modif)
         {
             List<Tramo> tramos = new List<Tramo>();
-            string query = string.Format(@"SELECT * FROM PENSAMIENTO_LINEAL.Tramo JOIN PENSAMIENTO_LINEAL.Recorrido ON (tram_id=reco_primertramo) WHERE reco_id=@recorrido_id AND reco_primertramo=@id_primertramo");
+            string query = string.Format(@"SELECT * FROM PENSAMIENTO_LINEAL.Tramo JOIN PENSAMIENTO_LINEAL.Recorrido ON (tram_id=reco_primertramo) WHERE reco_id=@recorrido_id AND reco_primertramo!=@id_primertramo");
             SqlConnection conn = DBConnection.getConnection();
             SqlCommand cmd = new SqlCommand(query, conn);
             cmd.Parameters.AddWithValue("@recorrido_id", recorrido_modif.id);
             cmd.Parameters.AddWithValue("@id_primertramo", recorrido_modif.primerTramo.id);
             SqlDataReader reader = cmd.ExecuteReader();            
+            while (reader.Read())
+            {
+                int id = int.Parse(reader["tram_id"].ToString());
+                decimal precio = decimal.Parse(reader["tram_precio"].ToString());
+                decimal duracion = decimal.Parse(reader["tram_duracion"].ToString());
+                int origen = int.Parse(reader["tram_origen"].ToString());
+                int destino = int.Parse(reader["tram_destino"].ToString());
+
+                Puerto puerto_origen = obtener_puerto_con_ID(origen);
+                Puerto puerto_destino = obtener_puerto_con_ID(destino);
+
+                Tramo tramo = new Tramo(id, precio, duracion, puerto_origen, puerto_destino);
+                tramos.Add(tramo);
+            }
+            reader.Close();
+            reader.Dispose();
+            cmd.Dispose();
+            conn.Close();
+            conn.Dispose();
+            return tramos;
+        }
+
+        public static List<Tramo> obtener_tramos_recorrido(Recorrido recorrido_modif)
+        {
+            List<Tramo> tramos = new List<Tramo>();
+            string query = string.Format(@"SELECT * FROM PENSAMIENTO_LINEAL.Tramo JOIN PENSAMIENTO_LINEAL.Recorrido_tramo ON (tram_id=reco_tram_tramid) WHERE reco_tram_recoid=@recorrido_id");
+            SqlConnection conn = DBConnection.getConnection();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@recorrido_id", recorrido_modif.id);
+            SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
                 int id = int.Parse(reader["tram_id"].ToString());
@@ -168,7 +199,6 @@ namespace FrbaCrucero.BD_y_Querys
 
                     cmd.Parameters.AddWithValue("@reco_tram_recoid", recorrido_cod_generado);
                     cmd.Parameters.AddWithValue("@reco_tram_tramid", tra.id);
-
                     cmd.ExecuteNonQuery();
                 }
                 cmd.Dispose();
@@ -186,7 +216,7 @@ namespace FrbaCrucero.BD_y_Querys
         public static bool modificar_recorrido(Recorrido recorrido_nuevo, int primerTramo, List<Tramo> tramos_anteriores)
         {
            try
-            {                
+            {
                 List<Tramo> tramos_nuevos = recorrido_nuevo.tramos.Where(tra_a => !tramos_anteriores.Any(tra_b => tra_a.id == tra_b.id)).ToList();
                 List<Tramo> tramos_quitados = tramos_anteriores.Where(tra_b => !recorrido_nuevo.tramos.Any(tra_a => tra_b.id == tra_a.id)).ToList();
                 string query = string.Format(@"UPDATE PENSAMIENTO_LINEAL.Recorrido SET reco_codigo=@reco_codigo,reco_primertramo=@reco_primertramo WHERE reco_id=@reco_id");
@@ -224,6 +254,41 @@ namespace FrbaCrucero.BD_y_Querys
                 MessageBox.Show(ex.Message, "Error al modificar recorrido.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return false;
+        }
+
+        public static void cargar_grilla_tramos(DataGridView grillaTramos, int id)
+        {
+            string query = string.Format(@"SELECT tram_id as ID, tram_precio as Precio, tram_duracion as Duracion, p1.puer_nombre as Puerto_Origen, p2.puer_nombre as Puerto_Destino
+                                           FROM PENSAMIENTO_LINEAL.Tramo JOIN PENSAMIENTO_LINEAL.Puerto p1 ON(p1.puer_id=tram_origen) JOIN PENSAMIENTO_LINEAL.Puerto p2 ON(p2.puer_id=tram_destino) WHERE p1.puer_id="+id.ToString());
+            DBConnection.llenar_grilla(grillaTramos, query);
+        }
+
+        public static void inhabilitar_recorrido(Recorrido recorrido)
+        {
+            string query = string.Format(@"UPDATE PENSAMIENTO_LINEAL.Recorrido SET reco_habilitado=0 WHERE reco_id=@reco_id");
+            SqlConnection conn = DBConnection.getConnection();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@reco_id", recorrido.id);
+
+            cmd.ExecuteNonQuery();
+
+            cmd.Dispose();
+            conn.Close();
+            conn.Dispose();
+        }
+
+        public static void habilitar_recorrido(Recorrido recorrido)
+        {
+            string query = string.Format(@"UPDATE PENSAMIENTO_LINEAL.Recorrido SET reco_habilitado=1 WHERE reco_id=@reco_id");
+            SqlConnection conn = DBConnection.getConnection();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@reco_id", recorrido.id);
+
+            cmd.ExecuteNonQuery();
+
+            cmd.Dispose();
+            conn.Close();
+            conn.Dispose();
         }
     }
 }

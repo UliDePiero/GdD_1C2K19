@@ -30,6 +30,14 @@ namespace FrbaCrucero.Clases
             this.estados = new List<EstadoCrucero>();
         }
 
+        public Crucero(string identificadorCrucero, MarcaCrucero marcaCrucero, ModeloCrucero modeloCrucero, List<ServicioCrucero> serviciosCrucero)
+        {
+            this.identificador = identificadorCrucero;
+            this.marca = marcaCrucero;
+            this.modelo = modeloCrucero;
+            this.servicios = serviciosCrucero;
+        }
+
         public Crucero(string _identificador,  MarcaCrucero _marca, ModeloCrucero _modelo, List<Cabina> _cabinas, List<ServicioCrucero> _servicios)
         {
             this.identificador = _identificador;
@@ -37,6 +45,12 @@ namespace FrbaCrucero.Clases
             this.modelo = _modelo;
             this.Cabinas = _cabinas;
             this.servicios = _servicios;  
+        }
+
+        public Crucero(int id1, string identificador1)
+        {
+            this.id = id1;
+            this.identificador = identificador1;
         }
 
     }

@@ -28,13 +28,17 @@ namespace FrbaCrucero.BD_y_Querys
             DBConnection.llenar_grilla(grillaRoles, query);
         }
         public static void inhabilitar_rol(ROL rol){
-            string query = string.Format(@"UPDATE PENSAMIENTO_LINEAL.Rol SET rol_habilitado=0 WHERE rol_id=@rol_id");
+                string query = string.Format(@"UPDATE PENSAMIENTO_LINEAL.Rol SET rol_habilitado=0 WHERE rol_id=@rol_id");
                 SqlConnection conn = DBConnection.getConnection();
                 SqlCommand cmd = new SqlCommand(query, conn);                
                 cmd.Parameters.AddWithValue("@rol_id", rol.id);
 
-                cmd.ExecuteNonQuery();            
+                cmd.ExecuteNonQuery();
 
+                cmd = new SqlCommand("DELETE FROM PENSAMIENTO_LINEAL.Rol_Usuario WHERE rol_usuario_rolid=@rol_usuario_rolid", conn);
+                cmd.Parameters.AddWithValue("@rol_usuario_rolid", rol.id);
+
+                cmd.ExecuteNonQuery();
                 cmd.Dispose();
                 conn.Close();
                 conn.Dispose();
@@ -297,6 +301,14 @@ namespace FrbaCrucero.BD_y_Querys
             conn.Close();
             conn.Dispose();
             return roles;
+        }
+
+        public static void cargar_grilla_roles_con_funcionalidad(DataGridView grillaRoles, string funcionalidad)
+        {
+            string query = string.Format(@"SELECT rol_id as ID, rol_nombre as Nombre, rol_habilitado as ROL
+                                            FROM PENSAMIENTO_LINEAL.Rol JOIN PENSAMIENTO_LINEAL.Rol_Funcion ON(rol_func_rolid=rol_id) JOIN PENSAMIENTO_LINEAL.Funcionalidad ON(rol_func_funcid=func_id)
+                                            WHERE func_nombre='"+funcionalidad+"'");
+            DBConnection.llenar_grilla(grillaRoles, query);
         }
     }
 }

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.roles = new System.Windows.Forms.Label();
             this.nuevoRol = new System.Windows.Forms.Button();
             this.modificarRol = new System.Windows.Forms.Button();
@@ -39,9 +38,13 @@
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.funcionalidades = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboBoxFiltro = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // roles
@@ -56,7 +59,7 @@
             // 
             // nuevoRol
             // 
-            this.nuevoRol.Location = new System.Drawing.Point(15, 19);
+            this.nuevoRol.Location = new System.Drawing.Point(15, 39);
             this.nuevoRol.Name = "nuevoRol";
             this.nuevoRol.Size = new System.Drawing.Size(160, 62);
             this.nuevoRol.TabIndex = 2;
@@ -66,7 +69,7 @@
             // 
             // modificarRol
             // 
-            this.modificarRol.Location = new System.Drawing.Point(15, 117);
+            this.modificarRol.Location = new System.Drawing.Point(15, 136);
             this.modificarRol.Name = "modificarRol";
             this.modificarRol.Size = new System.Drawing.Size(160, 62);
             this.modificarRol.TabIndex = 3;
@@ -76,7 +79,7 @@
             // 
             // habilitar_desRol
             // 
-            this.habilitar_desRol.Location = new System.Drawing.Point(15, 215);
+            this.habilitar_desRol.Location = new System.Drawing.Point(15, 242);
             this.habilitar_desRol.Name = "habilitar_desRol";
             this.habilitar_desRol.Size = new System.Drawing.Size(160, 62);
             this.habilitar_desRol.TabIndex = 4;
@@ -86,9 +89,9 @@
             // 
             // mostrar_ocuRol
             // 
-            this.mostrar_ocuRol.Location = new System.Drawing.Point(15, 319);
+            this.mostrar_ocuRol.Location = new System.Drawing.Point(313, 38);
             this.mostrar_ocuRol.Name = "mostrar_ocuRol";
-            this.mostrar_ocuRol.Size = new System.Drawing.Size(160, 62);
+            this.mostrar_ocuRol.Size = new System.Drawing.Size(105, 47);
             this.mostrar_ocuRol.TabIndex = 5;
             this.mostrar_ocuRol.Text = "Mostrar/Ocultar deshabilitados";
             this.mostrar_ocuRol.UseVisualStyleBackColor = true;
@@ -96,9 +99,10 @@
             // 
             // atras
             // 
-            this.atras.Location = new System.Drawing.Point(978, 354);
+            this.atras.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.atras.Location = new System.Drawing.Point(959, 433);
             this.atras.Name = "atras";
-            this.atras.Size = new System.Drawing.Size(98, 39);
+            this.atras.Size = new System.Drawing.Size(123, 65);
             this.atras.TabIndex = 6;
             this.atras.Text = "Atrás";
             this.atras.UseVisualStyleBackColor = true;
@@ -150,18 +154,52 @@
             this.groupBox1.Controls.Add(this.nuevoRol);
             this.groupBox1.Controls.Add(this.modificarRol);
             this.groupBox1.Controls.Add(this.habilitar_desRol);
-            this.groupBox1.Controls.Add(this.mostrar_ocuRol);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(12, 66);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(189, 389);
+            this.groupBox1.Size = new System.Drawing.Size(189, 327);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Funciones";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.comboBoxFiltro);
+            this.groupBox2.Controls.Add(this.mostrar_ocuRol);
+            this.groupBox2.Location = new System.Drawing.Point(216, 411);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(442, 100);
+            this.groupBox2.TabIndex = 11;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Filtros de búsqueda";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 31);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(280, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Mostrar solo los que tengan la funcionalidad seleccionada";
+            // 
+            // comboBoxFiltro
+            // 
+            this.comboBoxFiltro.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxFiltro.FormattingEnabled = true;
+            this.comboBoxFiltro.Items.AddRange(new object[] {
+            "Todas las funcionalidades"});
+            this.comboBoxFiltro.Location = new System.Drawing.Point(6, 57);
+            this.comboBoxFiltro.Name = "comboBoxFiltro";
+            this.comboBoxFiltro.Size = new System.Drawing.Size(280, 28);
+            this.comboBoxFiltro.TabIndex = 6;
+            this.comboBoxFiltro.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // ABM_ROL
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1094, 413);
+            this.ClientSize = new System.Drawing.Size(1094, 522);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.dataGridView1);
@@ -174,6 +212,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.groupBox1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -191,6 +231,9 @@
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Label funcionalidades;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboBoxFiltro;
 
     }
 }

@@ -17,7 +17,7 @@ namespace FrbaCrucero.Clases
         {
             this.id = _id;
             this.precio = _precio;
-            this.duracion = _precio;
+            this.duracion = _duracion;
             this.origen = _origen;
             this.destino = _destino;
         }

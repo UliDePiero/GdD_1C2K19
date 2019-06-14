@@ -13,6 +13,7 @@ namespace FrbaCrucero.Clases
         public Tramo primerTramo { get; set; }
         public List<Tramo> tramosSiguientes;
         public List<Tramo> tramos;
+        private bool habilitado;
 
         public Recorrido(int _id, string _codigo, Tramo _primerTramo)
         {
@@ -23,12 +24,21 @@ namespace FrbaCrucero.Clases
             this.tramos = new List<Tramo>();
         }
 
-        public Recorrido(string _codigo, List<Tramo> _tramosSiguientes)
+        public Recorrido(string _codigo, Tramo _primerTramo)
         {            
             this.codigo = _codigo;
-            this.tramosSiguientes = _tramosSiguientes;
-            this.tramos = this.tramosSiguientes;
-            this.tramos.Add(this.primerTramo);
+            this.primerTramo = _primerTramo;
+            this.tramosSiguientes = new List<Tramo>();
+            this.tramos = new List<Tramo>();
         }
+
+        public Recorrido(int recorrido_id, string recorrido_codigo, Tramo primerTramo1, bool recorrido_habilitado)
+        {
+            this.id = recorrido_id;
+            this.codigo = recorrido_codigo;
+            this.primerTramo = primerTramo1;
+            this.habilitado = recorrido_habilitado;
+        }
+
     }
 }

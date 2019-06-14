@@ -61,6 +61,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbmCrucero\ABM_Cabina.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmCrucero\ABM_Cabina.Designer.cs">
+      <DependentUpon>ABM_Cabina.cs</DependentUpon>
+    </Compile>
     <Compile Include="AbmCrucero\ABM_Crucero.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,23 +91,11 @@
     <Compile Include="AbmRecorrido\ABM_Recorrido.Designer.cs">
       <DependentUpon>ABM_Recorrido.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmRecorrido\ABM_Tramo.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmRecorrido\ABM_Tramo.Designer.cs">
-      <DependentUpon>ABM_Tramo.cs</DependentUpon>
-    </Compile>
     <Compile Include="AbmRecorrido\ModificacionesRecorrido.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AbmRecorrido\ModificacionesRecorrido.Designer.cs">
       <DependentUpon>ModificacionesRecorrido.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AbmRecorrido\ModificacionesTramo.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmRecorrido\ModificacionesTramo.Designer.cs">
-      <DependentUpon>ModificacionesTramo.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmRol\ABM_ROL.cs">
       <SubType>Form</SubType>
@@ -116,6 +110,7 @@
       <DependentUpon>ModificacionesROL.cs</DependentUpon>
     </Compile>
     <Compile Include="BD y Querys\Crucero_BD.cs" />
+    <Compile Include="BD y Querys\DatosCliente_BD.cs" />
     <Compile Include="BD y Querys\DBConnection.cs" />
     <Compile Include="BD y Querys\Estadistica_BD.cs" />
     <Compile Include="BD y Querys\Puerto_BD.cs" />
@@ -125,6 +120,8 @@
     <Compile Include="BD y Querys\ROL_BD.cs" />
     <Compile Include="BD y Querys\Tramo_BD.cs" />
     <Compile Include="Clases\Cabina.cs" />
+    <Compile Include="Clases\Datos.cs" />
+    <Compile Include="Clases\Pasaje.cs" />
     <Compile Include="Clases\Puerto.cs" />
     <Compile Include="Clases\Crucero.cs" />
     <Compile Include="Clases\EstadoCrucero.cs" />
@@ -138,18 +135,31 @@
     <Compile Include="Clases\ServicioCrucero.cs" />
     <Compile Include="Clases\TipoCabina.cs" />
     <Compile Include="Clases\Tramo.cs" />
+    <Compile Include="Clases\Usuario.cs" />
     <Compile Include="Clases\UsuarioLogeado.cs" />
+    <Compile Include="CompraReservaPasaje\EmitirPago.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CompraReservaPasaje\EmitirPago.Designer.cs">
+      <DependentUpon>EmitirPago.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CompraReservaPasaje\EmitirReserva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CompraReservaPasaje\EmitirReserva.Designer.cs">
+      <DependentUpon>EmitirReserva.cs</DependentUpon>
+    </Compile>
     <Compile Include="CompraReservaPasaje\IngresarDatosCliente.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CompraReservaPasaje\IngresarDatosCliente.Designer.cs">
       <DependentUpon>IngresarDatosCliente.cs</DependentUpon>
     </Compile>
-    <Compile Include="CompraReservaPasaje\Reserva.cs">
+    <Compile Include="CompraReservaPasaje\ReservaForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CompraReservaPasaje\Reserva.Designer.cs">
-      <DependentUpon>Reserva.cs</DependentUpon>
+    <Compile Include="CompraReservaPasaje\ReservaForm.Designer.cs">
+      <DependentUpon>ReservaForm.cs</DependentUpon>
     </Compile>
     <Compile Include="CompraReservaPasaje\PagarReserva.cs">
       <SubType>Form</SubType>
@@ -194,6 +204,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AbmCrucero\ABM_Cabina.resx">
+      <DependentUpon>ABM_Cabina.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AbmCrucero\ABM_Crucero.resx">
       <DependentUpon>ABM_Crucero.cs</DependentUpon>
     </EmbeddedResource>
@@ -206,14 +219,8 @@
     <EmbeddedResource Include="AbmRecorrido\ABM_Recorrido.resx">
       <DependentUpon>ABM_Recorrido.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AbmRecorrido\ABM_Tramo.resx">
-      <DependentUpon>ABM_Tramo.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="AbmRecorrido\ModificacionesRecorrido.resx">
       <DependentUpon>ModificacionesRecorrido.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AbmRecorrido\ModificacionesTramo.resx">
-      <DependentUpon>ModificacionesTramo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmRol\ABM_ROL.resx">
       <DependentUpon>ABM_ROL.cs</DependentUpon>
@@ -221,11 +228,14 @@
     <EmbeddedResource Include="AbmRol\ModificacionesROL.resx">
       <DependentUpon>ModificacionesROL.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CompraReservaPasaje\EmitirReserva.resx">
+      <DependentUpon>EmitirReserva.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CompraReservaPasaje\IngresarDatosCliente.resx">
       <DependentUpon>IngresarDatosCliente.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CompraReservaPasaje\Reserva.resx">
-      <DependentUpon>Reserva.cs</DependentUpon>
+    <EmbeddedResource Include="CompraReservaPasaje\ReservaForm.resx">
+      <DependentUpon>ReservaForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GeneracionViaje\Generacion_Viaje.resx">
       <DependentUpon>Generacion_Viaje.cs</DependentUpon>

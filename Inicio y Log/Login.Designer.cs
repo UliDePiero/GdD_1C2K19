@@ -48,9 +48,11 @@
             this.inicioDeSesion.Controls.Add(this.contraseña);
             this.inicioDeSesion.Controls.Add(this.usuario);
             this.inicioDeSesion.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.inicioDeSesion.Location = new System.Drawing.Point(12, 12);
+            this.inicioDeSesion.Location = new System.Drawing.Point(16, 15);
+            this.inicioDeSesion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.inicioDeSesion.Name = "inicioDeSesion";
-            this.inicioDeSesion.Size = new System.Drawing.Size(260, 300);
+            this.inicioDeSesion.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.inicioDeSesion.Size = new System.Drawing.Size(347, 369);
             this.inicioDeSesion.TabIndex = 0;
             this.inicioDeSesion.TabStop = false;
             this.inicioDeSesion.Text = "Inicio de sesión";
@@ -58,9 +60,10 @@
             // iniciar
             // 
             this.iniciar.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iniciar.Location = new System.Drawing.Point(49, 228);
+            this.iniciar.Location = new System.Drawing.Point(65, 281);
+            this.iniciar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.iniciar.Name = "iniciar";
-            this.iniciar.Size = new System.Drawing.Size(147, 46);
+            this.iniciar.Size = new System.Drawing.Size(196, 57);
             this.iniciar.TabIndex = 2;
             this.iniciar.Text = "Iniciar";
             this.iniciar.UseVisualStyleBackColor = true;
@@ -69,27 +72,30 @@
             // textBoxUsuario
             // 
             this.textBoxUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxUsuario.Location = new System.Drawing.Point(6, 91);
+            this.textBoxUsuario.Location = new System.Drawing.Point(8, 112);
+            this.textBoxUsuario.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxUsuario.Name = "textBoxUsuario";
-            this.textBoxUsuario.Size = new System.Drawing.Size(248, 30);
+            this.textBoxUsuario.Size = new System.Drawing.Size(329, 36);
             this.textBoxUsuario.TabIndex = 1;
             // 
             // textBoxContraseña
             // 
             this.textBoxContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxContraseña.Location = new System.Drawing.Point(6, 169);
+            this.textBoxContraseña.Location = new System.Drawing.Point(8, 208);
+            this.textBoxContraseña.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxContraseña.Name = "textBoxContraseña";
             this.textBoxContraseña.PasswordChar = '*';
-            this.textBoxContraseña.Size = new System.Drawing.Size(248, 30);
+            this.textBoxContraseña.Size = new System.Drawing.Size(329, 36);
             this.textBoxContraseña.TabIndex = 1;
             // 
             // contraseña
             // 
             this.contraseña.AutoSize = true;
             this.contraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.contraseña.Location = new System.Drawing.Point(64, 141);
+            this.contraseña.Location = new System.Drawing.Point(85, 174);
+            this.contraseña.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.contraseña.Name = "contraseña";
-            this.contraseña.Size = new System.Drawing.Size(114, 25);
+            this.contraseña.Size = new System.Drawing.Size(143, 29);
             this.contraseña.TabIndex = 0;
             this.contraseña.Text = "Contraseña";
             // 
@@ -97,9 +103,10 @@
             // 
             this.usuario.AutoSize = true;
             this.usuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.usuario.Location = new System.Drawing.Point(84, 63);
+            this.usuario.Location = new System.Drawing.Point(112, 78);
+            this.usuario.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.usuario.Name = "usuario";
-            this.usuario.Size = new System.Drawing.Size(79, 25);
+            this.usuario.Size = new System.Drawing.Size(100, 29);
             this.usuario.TabIndex = 0;
             this.usuario.Text = "Usuario";
             // 
@@ -109,12 +116,14 @@
             // 
             // Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 327);
+            this.ClientSize = new System.Drawing.Size(379, 402);
             this.Controls.Add(this.inicioDeSesion);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Login";
             this.Text = "Administrador | Login";
+            this.Load += new System.EventHandler(this.Login_Load);
             this.inicioDeSesion.ResumeLayout(false);
             this.inicioDeSesion.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();

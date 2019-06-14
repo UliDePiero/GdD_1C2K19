@@ -52,3 +52,5 @@ C:\Users\juanb\Desktop\MisProyectos\SQL\GDD\GdD_1C2K19\obj\Debug\FrbaCrucero.Com
 C:\Users\juanb\Desktop\MisProyectos\SQL\GDD\GdD_1C2K19\obj\Debug\FrbaCrucero.AbmCrucero.ABM_Cabina.resources
 C:\Users\juanb\Desktop\MisProyectos\SQL\GDD\GdD_1C2K19\obj\Debug\FrbaCrucero.CompraReservaPasaje.EmitirReserva.resources
 >>>>>>> 9e254853b67d283b5006118f83f8dfb30a3327eb
+C:\Users\Tomas\Documents\GitHub\GdD_1C2K19\obj\Debug\FrbaCrucero.AbmCrucero.ABM_Cabina.resources
+C:\Users\Tomas\Documents\GitHub\GdD_1C2K19\obj\Debug\FrbaCrucero.CompraReservaPasaje.EmitirReserva.resources

@@ -65,6 +65,7 @@ CREATE TABLE [PENSAMIENTO_LINEAL].[Usuario](
 	[usua_telefono] [char](40) NOT NULL,
 	[usua_documento] [char](20) NOT NULL,
 	[usua_fechanac] [smalldatetime] NOT NULL,
+	[usua_habilitado] [bit] NULL,
  CONSTRAINT [PK_Usuario] PRIMARY KEY CLUSTERED 
 (
 	[usua_id] ASC
@@ -277,6 +278,7 @@ CREATE TABLE [PENSAMIENTO_LINEAL].[Recorrido](
 	[reco_id] [int] IDENTITY(1,1) NOT NULL,
 	[reco_codigo] [char](20) NOT NULL,
 	[reco_primertramo] [int] NOT NULL,
+	[reco_habilitado] [bit] NULL,
  CONSTRAINT [PK_Recorrido] PRIMARY KEY CLUSTERED 
 (
 	[reco_id] ASC

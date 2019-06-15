@@ -84,9 +84,7 @@ namespace FrbaCrucero {
         
         private global::System.Data.DataRelation relationFK_Pasaje_Cliente;
         
-        private global::System.Data.DataRelation relationFK_Pasaje_Crucero;
-        
-        private global::System.Data.DataRelation relationFK_Pasaje_Recorrido;
+        private global::System.Data.DataRelation relationFK_Pasaje_Recorrido_Crucero;
         
         private global::System.Data.DataRelation relationFK_Recorrido_PrimerTramo;
         
@@ -102,9 +100,7 @@ namespace FrbaCrucero {
         
         private global::System.Data.DataRelation relationFK_Reserva_Cliente;
         
-        private global::System.Data.DataRelation relationFK_Reserva_Crucero;
-        
-        private global::System.Data.DataRelation relationFK_Reserva_Recorrido;
+        private global::System.Data.DataRelation relationFK_Reserva_Recorrido_crucero;
         
         private global::System.Data.DataRelation relationFK_Rol_Funcion_Funcionalidadid;
         
@@ -756,8 +752,7 @@ namespace FrbaCrucero {
             this.relationFK_Estado_crucero_CruceroId = this.Relations["FK_Estado_crucero_CruceroId"];
             this.relationFK_Pasaje_Cabina = this.Relations["FK_Pasaje_Cabina"];
             this.relationFK_Pasaje_Cliente = this.Relations["FK_Pasaje_Cliente"];
-            this.relationFK_Pasaje_Crucero = this.Relations["FK_Pasaje_Crucero"];
-            this.relationFK_Pasaje_Recorrido = this.Relations["FK_Pasaje_Recorrido"];
+            this.relationFK_Pasaje_Recorrido_Crucero = this.Relations["FK_Pasaje_Recorrido_Crucero"];
             this.relationFK_Recorrido_PrimerTramo = this.Relations["FK_Recorrido_PrimerTramo"];
             this.relationFK_Reco_Cruc_cruc_id = this.Relations["FK_Reco_Cruc_cruc_id"];
             this.relationFK_Reco_Cruc_recoid = this.Relations["FK_Reco_Cruc_recoid"];
@@ -765,8 +760,7 @@ namespace FrbaCrucero {
             this.relationFK_Recorrido_tramo_tramid = this.Relations["FK_Recorrido_tramo_tramid"];
             this.relationFK_Reserva_Cabina = this.Relations["FK_Reserva_Cabina"];
             this.relationFK_Reserva_Cliente = this.Relations["FK_Reserva_Cliente"];
-            this.relationFK_Reserva_Crucero = this.Relations["FK_Reserva_Crucero"];
-            this.relationFK_Reserva_Recorrido = this.Relations["FK_Reserva_Recorrido"];
+            this.relationFK_Reserva_Recorrido_crucero = this.Relations["FK_Reserva_Recorrido_crucero"];
             this.relationFK_Rol_Funcion_Funcionalidadid = this.Relations["FK_Rol_Funcion_Funcionalidadid"];
             this.relationFK_Rol_Funcion_Rolid = this.Relations["FK_Rol_Funcion_Rolid"];
             this.relationFK_Rol_Usuario_rolid = this.Relations["FK_Rol_Usuario_rolid"];
@@ -859,14 +853,10 @@ namespace FrbaCrucero {
                         this.tableUsuario.usua_idColumn}, new global::System.Data.DataColumn[] {
                         this.tablePasaje.pasa_clienteColumn}, false);
             this.Relations.Add(this.relationFK_Pasaje_Cliente);
-            this.relationFK_Pasaje_Crucero = new global::System.Data.DataRelation("FK_Pasaje_Crucero", new global::System.Data.DataColumn[] {
-                        this.tableCrucero.cruc_idColumn}, new global::System.Data.DataColumn[] {
-                        this.tablePasaje.pasa_cruceroColumn}, false);
-            this.Relations.Add(this.relationFK_Pasaje_Crucero);
-            this.relationFK_Pasaje_Recorrido = new global::System.Data.DataRelation("FK_Pasaje_Recorrido", new global::System.Data.DataColumn[] {
-                        this.tableRecorrido.reco_idColumn}, new global::System.Data.DataColumn[] {
-                        this.tablePasaje.pasa_recorridoColumn}, false);
-            this.Relations.Add(this.relationFK_Pasaje_Recorrido);
+            this.relationFK_Pasaje_Recorrido_Crucero = new global::System.Data.DataRelation("FK_Pasaje_Recorrido_Crucero", new global::System.Data.DataColumn[] {
+                        this.tableRecorrido_crucero.reco_cruc_idColumn}, new global::System.Data.DataColumn[] {
+                        this.tablePasaje.pasa_viajeColumn}, false);
+            this.Relations.Add(this.relationFK_Pasaje_Recorrido_Crucero);
             this.relationFK_Recorrido_PrimerTramo = new global::System.Data.DataRelation("FK_Recorrido_PrimerTramo", new global::System.Data.DataColumn[] {
                         this.tableTramo.tram_idColumn}, new global::System.Data.DataColumn[] {
                         this.tableRecorrido.reco_primertramoColumn}, false);
@@ -895,14 +885,10 @@ namespace FrbaCrucero {
                         this.tableUsuario.usua_idColumn}, new global::System.Data.DataColumn[] {
                         this.tableReserva.rese_clienteColumn}, false);
             this.Relations.Add(this.relationFK_Reserva_Cliente);
-            this.relationFK_Reserva_Crucero = new global::System.Data.DataRelation("FK_Reserva_Crucero", new global::System.Data.DataColumn[] {
-                        this.tableCrucero.cruc_idColumn}, new global::System.Data.DataColumn[] {
-                        this.tableReserva.rese_cruceroColumn}, false);
-            this.Relations.Add(this.relationFK_Reserva_Crucero);
-            this.relationFK_Reserva_Recorrido = new global::System.Data.DataRelation("FK_Reserva_Recorrido", new global::System.Data.DataColumn[] {
-                        this.tableRecorrido.reco_idColumn}, new global::System.Data.DataColumn[] {
-                        this.tableReserva.rese_recorridoColumn}, false);
-            this.Relations.Add(this.relationFK_Reserva_Recorrido);
+            this.relationFK_Reserva_Recorrido_crucero = new global::System.Data.DataRelation("FK_Reserva_Recorrido_crucero", new global::System.Data.DataColumn[] {
+                        this.tableRecorrido_crucero.reco_cruc_idColumn}, new global::System.Data.DataColumn[] {
+                        this.tableReserva.rese_viajeColumn}, false);
+            this.Relations.Add(this.relationFK_Reserva_Recorrido_crucero);
             this.relationFK_Rol_Funcion_Funcionalidadid = new global::System.Data.DataRelation("FK_Rol_Funcion_Funcionalidadid", new global::System.Data.DataColumn[] {
                         this.tableFuncionalidad.func_idColumn}, new global::System.Data.DataColumn[] {
                         this.tableRol_Funcion.rol_func_funcidColumn}, false);
@@ -4237,11 +4223,9 @@ namespace FrbaCrucero {
             
             private global::System.Data.DataColumn columnpasa_precio;
             
+            private global::System.Data.DataColumn columnpasa_viaje;
+            
             private global::System.Data.DataColumn columnpasa_cliente;
-            
-            private global::System.Data.DataColumn columnpasa_crucero;
-            
-            private global::System.Data.DataColumn columnpasa_recorrido;
             
             private global::System.Data.DataColumn columnpasa_cabina;
             
@@ -4312,25 +4296,17 @@ namespace FrbaCrucero {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn pasa_viajeColumn {
+                get {
+                    return this.columnpasa_viaje;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn pasa_clienteColumn {
                 get {
                     return this.columnpasa_cliente;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn pasa_cruceroColumn {
-                get {
-                    return this.columnpasa_crucero;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn pasa_recorridoColumn {
-                get {
-                    return this.columnpasa_recorrido;
                 }
             }
             
@@ -4379,7 +4355,7 @@ namespace FrbaCrucero {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PasajeRow AddPasajeRow(string pasa_codigo, System.DateTime pasa_fecha, decimal pasa_precio, UsuarioRow parentUsuarioRowByFK_Pasaje_Cliente, CruceroRow parentCruceroRowByFK_Pasaje_Crucero, RecorridoRow parentRecorridoRowByFK_Pasaje_Recorrido, CabinaRow parentCabinaRowByFK_Pasaje_Cabina) {
+            public PasajeRow AddPasajeRow(string pasa_codigo, System.DateTime pasa_fecha, decimal pasa_precio, Recorrido_cruceroRow parentRecorrido_cruceroRowByFK_Pasaje_Recorrido_Crucero, UsuarioRow parentUsuarioRowByFK_Pasaje_Cliente, CabinaRow parentCabinaRowByFK_Pasaje_Cabina) {
                 PasajeRow rowPasajeRow = ((PasajeRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -4388,19 +4364,15 @@ namespace FrbaCrucero {
                         pasa_precio,
                         null,
                         null,
-                        null,
                         null};
+                if ((parentRecorrido_cruceroRowByFK_Pasaje_Recorrido_Crucero != null)) {
+                    columnValuesArray[4] = parentRecorrido_cruceroRowByFK_Pasaje_Recorrido_Crucero[0];
+                }
                 if ((parentUsuarioRowByFK_Pasaje_Cliente != null)) {
-                    columnValuesArray[4] = parentUsuarioRowByFK_Pasaje_Cliente[0];
-                }
-                if ((parentCruceroRowByFK_Pasaje_Crucero != null)) {
-                    columnValuesArray[5] = parentCruceroRowByFK_Pasaje_Crucero[0];
-                }
-                if ((parentRecorridoRowByFK_Pasaje_Recorrido != null)) {
-                    columnValuesArray[6] = parentRecorridoRowByFK_Pasaje_Recorrido[0];
+                    columnValuesArray[5] = parentUsuarioRowByFK_Pasaje_Cliente[0];
                 }
                 if ((parentCabinaRowByFK_Pasaje_Cabina != null)) {
-                    columnValuesArray[7] = parentCabinaRowByFK_Pasaje_Cabina[0];
+                    columnValuesArray[6] = parentCabinaRowByFK_Pasaje_Cabina[0];
                 }
                 rowPasajeRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowPasajeRow);
@@ -4435,9 +4407,8 @@ namespace FrbaCrucero {
                 this.columnpasa_codigo = base.Columns["pasa_codigo"];
                 this.columnpasa_fecha = base.Columns["pasa_fecha"];
                 this.columnpasa_precio = base.Columns["pasa_precio"];
+                this.columnpasa_viaje = base.Columns["pasa_viaje"];
                 this.columnpasa_cliente = base.Columns["pasa_cliente"];
-                this.columnpasa_crucero = base.Columns["pasa_crucero"];
-                this.columnpasa_recorrido = base.Columns["pasa_recorrido"];
                 this.columnpasa_cabina = base.Columns["pasa_cabina"];
             }
             
@@ -4452,12 +4423,10 @@ namespace FrbaCrucero {
                 base.Columns.Add(this.columnpasa_fecha);
                 this.columnpasa_precio = new global::System.Data.DataColumn("pasa_precio", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnpasa_precio);
+                this.columnpasa_viaje = new global::System.Data.DataColumn("pasa_viaje", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnpasa_viaje);
                 this.columnpasa_cliente = new global::System.Data.DataColumn("pasa_cliente", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnpasa_cliente);
-                this.columnpasa_crucero = new global::System.Data.DataColumn("pasa_crucero", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnpasa_crucero);
-                this.columnpasa_recorrido = new global::System.Data.DataColumn("pasa_recorrido", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnpasa_recorrido);
                 this.columnpasa_cabina = new global::System.Data.DataColumn("pasa_cabina", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnpasa_cabina);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
@@ -4472,9 +4441,8 @@ namespace FrbaCrucero {
                 this.columnpasa_codigo.MaxLength = 50;
                 this.columnpasa_fecha.AllowDBNull = false;
                 this.columnpasa_precio.AllowDBNull = false;
+                this.columnpasa_viaje.AllowDBNull = false;
                 this.columnpasa_cliente.AllowDBNull = false;
-                this.columnpasa_crucero.AllowDBNull = false;
-                this.columnpasa_recorrido.AllowDBNull = false;
                 this.columnpasa_cabina.AllowDBNull = false;
             }
             
@@ -4893,6 +4861,8 @@ namespace FrbaCrucero {
             
             private global::System.Data.DataColumn columnreco_primertramo;
             
+            private global::System.Data.DataColumn columnreco_habilitado;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public RecorridoDataTable() {
@@ -4952,6 +4922,14 @@ namespace FrbaCrucero {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn reco_habilitadoColumn {
+                get {
+                    return this.columnreco_habilitado;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -4987,12 +4965,13 @@ namespace FrbaCrucero {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public RecorridoRow AddRecorridoRow(string reco_codigo, TramoRow parentTramoRowByFK_Recorrido_PrimerTramo) {
+            public RecorridoRow AddRecorridoRow(string reco_codigo, TramoRow parentTramoRowByFK_Recorrido_PrimerTramo, bool reco_habilitado) {
                 RecorridoRow rowRecorridoRow = ((RecorridoRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         reco_codigo,
-                        null};
+                        null,
+                        reco_habilitado};
                 if ((parentTramoRowByFK_Recorrido_PrimerTramo != null)) {
                     columnValuesArray[2] = parentTramoRowByFK_Recorrido_PrimerTramo[0];
                 }
@@ -5028,6 +5007,7 @@ namespace FrbaCrucero {
                 this.columnreco_id = base.Columns["reco_id"];
                 this.columnreco_codigo = base.Columns["reco_codigo"];
                 this.columnreco_primertramo = base.Columns["reco_primertramo"];
+                this.columnreco_habilitado = base.Columns["reco_habilitado"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5039,6 +5019,8 @@ namespace FrbaCrucero {
                 base.Columns.Add(this.columnreco_codigo);
                 this.columnreco_primertramo = new global::System.Data.DataColumn("reco_primertramo", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnreco_primertramo);
+                this.columnreco_habilitado = new global::System.Data.DataColumn("reco_habilitado", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnreco_habilitado);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnreco_id}, true));
                 this.columnreco_id.AutoIncrement = true;
@@ -5183,6 +5165,8 @@ namespace FrbaCrucero {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class Recorrido_cruceroDataTable : global::System.Data.TypedTableBase<Recorrido_cruceroRow> {
             
+            private global::System.Data.DataColumn columnreco_cruc_id;
+            
             private global::System.Data.DataColumn columnreco_cruc_recoid;
             
             private global::System.Data.DataColumn columnreco_cruc_crucid;
@@ -5222,6 +5206,14 @@ namespace FrbaCrucero {
             protected Recorrido_cruceroDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn reco_cruc_idColumn {
+                get {
+                    return this.columnreco_cruc_id;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5298,17 +5290,25 @@ namespace FrbaCrucero {
                 object[] columnValuesArray = new object[] {
                         null,
                         null,
+                        null,
                         reco_cruc_salida,
                         reco_cruc_llegada_real};
                 if ((parentRecorridoRowByFK_Reco_Cruc_recoid != null)) {
-                    columnValuesArray[0] = parentRecorridoRowByFK_Reco_Cruc_recoid[0];
+                    columnValuesArray[1] = parentRecorridoRowByFK_Reco_Cruc_recoid[0];
                 }
                 if ((parentCruceroRowByFK_Reco_Cruc_cruc_id != null)) {
-                    columnValuesArray[1] = parentCruceroRowByFK_Reco_Cruc_cruc_id[0];
+                    columnValuesArray[2] = parentCruceroRowByFK_Reco_Cruc_cruc_id[0];
                 }
                 rowRecorrido_cruceroRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowRecorrido_cruceroRow);
                 return rowRecorrido_cruceroRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public Recorrido_cruceroRow FindByreco_cruc_id(int reco_cruc_id) {
+                return ((Recorrido_cruceroRow)(this.Rows.Find(new object[] {
+                            reco_cruc_id})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5328,6 +5328,7 @@ namespace FrbaCrucero {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
+                this.columnreco_cruc_id = base.Columns["reco_cruc_id"];
                 this.columnreco_cruc_recoid = base.Columns["reco_cruc_recoid"];
                 this.columnreco_cruc_crucid = base.Columns["reco_cruc_crucid"];
                 this.columnreco_cruc_salida = base.Columns["reco_cruc_salida"];
@@ -5337,6 +5338,8 @@ namespace FrbaCrucero {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
+                this.columnreco_cruc_id = new global::System.Data.DataColumn("reco_cruc_id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnreco_cruc_id);
                 this.columnreco_cruc_recoid = new global::System.Data.DataColumn("reco_cruc_recoid", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnreco_cruc_recoid);
                 this.columnreco_cruc_crucid = new global::System.Data.DataColumn("reco_cruc_crucid", typeof(int), null, global::System.Data.MappingType.Element);
@@ -5345,10 +5348,17 @@ namespace FrbaCrucero {
                 base.Columns.Add(this.columnreco_cruc_salida);
                 this.columnreco_cruc_llegada_real = new global::System.Data.DataColumn("reco_cruc_llegada_real", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnreco_cruc_llegada_real);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnreco_cruc_id}, true));
+                this.columnreco_cruc_id.AutoIncrement = true;
+                this.columnreco_cruc_id.AutoIncrementSeed = -1;
+                this.columnreco_cruc_id.AutoIncrementStep = -1;
+                this.columnreco_cruc_id.AllowDBNull = false;
+                this.columnreco_cruc_id.ReadOnly = true;
+                this.columnreco_cruc_id.Unique = true;
                 this.columnreco_cruc_recoid.AllowDBNull = false;
                 this.columnreco_cruc_crucid.AllowDBNull = false;
                 this.columnreco_cruc_salida.AllowDBNull = false;
-                this.columnreco_cruc_llegada_real.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5759,9 +5769,7 @@ namespace FrbaCrucero {
             
             private global::System.Data.DataColumn columnrese_cliente;
             
-            private global::System.Data.DataColumn columnrese_crucero;
-            
-            private global::System.Data.DataColumn columnrese_recorrido;
+            private global::System.Data.DataColumn columnrese_viaje;
             
             private global::System.Data.DataColumn columnrese_cabina;
             
@@ -5832,17 +5840,9 @@ namespace FrbaCrucero {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn rese_cruceroColumn {
+            public global::System.Data.DataColumn rese_viajeColumn {
                 get {
-                    return this.columnrese_crucero;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn rese_recorridoColumn {
-                get {
-                    return this.columnrese_recorrido;
+                    return this.columnrese_viaje;
                 }
             }
             
@@ -5891,7 +5891,7 @@ namespace FrbaCrucero {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ReservaRow AddReservaRow(string rese_codigo, System.DateTime rese_fecha, UsuarioRow parentUsuarioRowByFK_Reserva_Cliente, CruceroRow parentCruceroRowByFK_Reserva_Crucero, RecorridoRow parentRecorridoRowByFK_Reserva_Recorrido, CabinaRow parentCabinaRowByFK_Reserva_Cabina) {
+            public ReservaRow AddReservaRow(string rese_codigo, System.DateTime rese_fecha, UsuarioRow parentUsuarioRowByFK_Reserva_Cliente, Recorrido_cruceroRow parentRecorrido_cruceroRowByFK_Reserva_Recorrido_crucero, CabinaRow parentCabinaRowByFK_Reserva_Cabina) {
                 ReservaRow rowReservaRow = ((ReservaRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -5899,19 +5899,15 @@ namespace FrbaCrucero {
                         rese_fecha,
                         null,
                         null,
-                        null,
                         null};
                 if ((parentUsuarioRowByFK_Reserva_Cliente != null)) {
                     columnValuesArray[3] = parentUsuarioRowByFK_Reserva_Cliente[0];
                 }
-                if ((parentCruceroRowByFK_Reserva_Crucero != null)) {
-                    columnValuesArray[4] = parentCruceroRowByFK_Reserva_Crucero[0];
-                }
-                if ((parentRecorridoRowByFK_Reserva_Recorrido != null)) {
-                    columnValuesArray[5] = parentRecorridoRowByFK_Reserva_Recorrido[0];
+                if ((parentRecorrido_cruceroRowByFK_Reserva_Recorrido_crucero != null)) {
+                    columnValuesArray[4] = parentRecorrido_cruceroRowByFK_Reserva_Recorrido_crucero[0];
                 }
                 if ((parentCabinaRowByFK_Reserva_Cabina != null)) {
-                    columnValuesArray[6] = parentCabinaRowByFK_Reserva_Cabina[0];
+                    columnValuesArray[5] = parentCabinaRowByFK_Reserva_Cabina[0];
                 }
                 rowReservaRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowReservaRow);
@@ -5946,8 +5942,7 @@ namespace FrbaCrucero {
                 this.columnrese_codigo = base.Columns["rese_codigo"];
                 this.columnrese_fecha = base.Columns["rese_fecha"];
                 this.columnrese_cliente = base.Columns["rese_cliente"];
-                this.columnrese_crucero = base.Columns["rese_crucero"];
-                this.columnrese_recorrido = base.Columns["rese_recorrido"];
+                this.columnrese_viaje = base.Columns["rese_viaje"];
                 this.columnrese_cabina = base.Columns["rese_cabina"];
             }
             
@@ -5962,10 +5957,8 @@ namespace FrbaCrucero {
                 base.Columns.Add(this.columnrese_fecha);
                 this.columnrese_cliente = new global::System.Data.DataColumn("rese_cliente", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnrese_cliente);
-                this.columnrese_crucero = new global::System.Data.DataColumn("rese_crucero", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnrese_crucero);
-                this.columnrese_recorrido = new global::System.Data.DataColumn("rese_recorrido", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnrese_recorrido);
+                this.columnrese_viaje = new global::System.Data.DataColumn("rese_viaje", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnrese_viaje);
                 this.columnrese_cabina = new global::System.Data.DataColumn("rese_cabina", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnrese_cabina);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
@@ -5980,8 +5973,7 @@ namespace FrbaCrucero {
                 this.columnrese_codigo.MaxLength = 50;
                 this.columnrese_fecha.AllowDBNull = false;
                 this.columnrese_cliente.AllowDBNull = false;
-                this.columnrese_crucero.AllowDBNull = false;
-                this.columnrese_recorrido.AllowDBNull = false;
+                this.columnrese_viaje.AllowDBNull = false;
                 this.columnrese_cabina.AllowDBNull = false;
             }
             
@@ -7856,6 +7848,8 @@ namespace FrbaCrucero {
             
             private global::System.Data.DataColumn columnusua_mail;
             
+            private global::System.Data.DataColumn columnusua_username;
+            
             private global::System.Data.DataColumn columnusua_password;
             
             private global::System.Data.DataColumn columnusua_telefono;
@@ -7863,6 +7857,8 @@ namespace FrbaCrucero {
             private global::System.Data.DataColumn columnusua_documento;
             
             private global::System.Data.DataColumn columnusua_fechanac;
+            
+            private global::System.Data.DataColumn columnusua_habilitado;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -7939,6 +7935,14 @@ namespace FrbaCrucero {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn usua_usernameColumn {
+                get {
+                    return this.columnusua_username;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn usua_passwordColumn {
                 get {
                     return this.columnusua_password;
@@ -7966,6 +7970,14 @@ namespace FrbaCrucero {
             public global::System.Data.DataColumn usua_fechanacColumn {
                 get {
                     return this.columnusua_fechanac;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn usua_habilitadoColumn {
+                get {
+                    return this.columnusua_habilitado;
                 }
             }
             
@@ -8006,7 +8018,7 @@ namespace FrbaCrucero {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public UsuarioRow AddUsuarioRow(string usua_nombre, string usua_apellido, string usua_direccion, string usua_mail, string usua_password, string usua_telefono, string usua_documento, System.DateTime usua_fechanac) {
+            public UsuarioRow AddUsuarioRow(string usua_nombre, string usua_apellido, string usua_direccion, string usua_mail, string usua_username, string usua_password, string usua_telefono, string usua_documento, System.DateTime usua_fechanac, bool usua_habilitado) {
                 UsuarioRow rowUsuarioRow = ((UsuarioRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -8014,10 +8026,12 @@ namespace FrbaCrucero {
                         usua_apellido,
                         usua_direccion,
                         usua_mail,
+                        usua_username,
                         usua_password,
                         usua_telefono,
                         usua_documento,
-                        usua_fechanac};
+                        usua_fechanac,
+                        usua_habilitado};
                 rowUsuarioRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowUsuarioRow);
                 return rowUsuarioRow;
@@ -8052,10 +8066,12 @@ namespace FrbaCrucero {
                 this.columnusua_apellido = base.Columns["usua_apellido"];
                 this.columnusua_direccion = base.Columns["usua_direccion"];
                 this.columnusua_mail = base.Columns["usua_mail"];
+                this.columnusua_username = base.Columns["usua_username"];
                 this.columnusua_password = base.Columns["usua_password"];
                 this.columnusua_telefono = base.Columns["usua_telefono"];
                 this.columnusua_documento = base.Columns["usua_documento"];
                 this.columnusua_fechanac = base.Columns["usua_fechanac"];
+                this.columnusua_habilitado = base.Columns["usua_habilitado"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8071,6 +8087,8 @@ namespace FrbaCrucero {
                 base.Columns.Add(this.columnusua_direccion);
                 this.columnusua_mail = new global::System.Data.DataColumn("usua_mail", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnusua_mail);
+                this.columnusua_username = new global::System.Data.DataColumn("usua_username", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnusua_username);
                 this.columnusua_password = new global::System.Data.DataColumn("usua_password", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnusua_password);
                 this.columnusua_telefono = new global::System.Data.DataColumn("usua_telefono", typeof(string), null, global::System.Data.MappingType.Element);
@@ -8079,6 +8097,8 @@ namespace FrbaCrucero {
                 base.Columns.Add(this.columnusua_documento);
                 this.columnusua_fechanac = new global::System.Data.DataColumn("usua_fechanac", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnusua_fechanac);
+                this.columnusua_habilitado = new global::System.Data.DataColumn("usua_habilitado", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnusua_habilitado);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnusua_id}, true));
                 this.columnusua_id.AutoIncrement = true;
@@ -8095,6 +8115,7 @@ namespace FrbaCrucero {
                 this.columnusua_direccion.MaxLength = 100;
                 this.columnusua_mail.AllowDBNull = false;
                 this.columnusua_mail.MaxLength = 100;
+                this.columnusua_username.MaxLength = 100;
                 this.columnusua_password.MaxLength = 100;
                 this.columnusua_telefono.AllowDBNull = false;
                 this.columnusua_telefono.MaxLength = 40;
@@ -8532,34 +8553,12 @@ namespace FrbaCrucero {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PasajeRow[] GetPasajeRows() {
-                if ((this.Table.ChildRelations["FK_Pasaje_Crucero"] == null)) {
-                    return new PasajeRow[0];
-                }
-                else {
-                    return ((PasajeRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Pasaje_Crucero"])));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public Recorrido_cruceroRow[] GetRecorrido_cruceroRows() {
                 if ((this.Table.ChildRelations["FK_Reco_Cruc_cruc_id"] == null)) {
                     return new Recorrido_cruceroRow[0];
                 }
                 else {
                     return ((Recorrido_cruceroRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Reco_Cruc_cruc_id"])));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ReservaRow[] GetReservaRows() {
-                if ((this.Table.ChildRelations["FK_Reserva_Crucero"] == null)) {
-                    return new ReservaRow[0];
-                }
-                else {
-                    return ((ReservaRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Reserva_Crucero"])));
                 }
             }
         }
@@ -9668,34 +9667,23 @@ namespace FrbaCrucero {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int pasa_viaje {
+                get {
+                    return ((int)(this[this.tablePasaje.pasa_viajeColumn]));
+                }
+                set {
+                    this[this.tablePasaje.pasa_viajeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int pasa_cliente {
                 get {
                     return ((int)(this[this.tablePasaje.pasa_clienteColumn]));
                 }
                 set {
                     this[this.tablePasaje.pasa_clienteColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int pasa_crucero {
-                get {
-                    return ((int)(this[this.tablePasaje.pasa_cruceroColumn]));
-                }
-                set {
-                    this[this.tablePasaje.pasa_cruceroColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int pasa_recorrido {
-                get {
-                    return ((int)(this[this.tablePasaje.pasa_recorridoColumn]));
-                }
-                set {
-                    this[this.tablePasaje.pasa_recorridoColumn] = value;
                 }
             }
             
@@ -9734,23 +9722,12 @@ namespace FrbaCrucero {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CruceroRow CruceroRow {
+            public Recorrido_cruceroRow Recorrido_cruceroRow {
                 get {
-                    return ((CruceroRow)(this.GetParentRow(this.Table.ParentRelations["FK_Pasaje_Crucero"])));
+                    return ((Recorrido_cruceroRow)(this.GetParentRow(this.Table.ParentRelations["FK_Pasaje_Recorrido_Crucero"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_Pasaje_Crucero"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public RecorridoRow RecorridoRow {
-                get {
-                    return ((RecorridoRow)(this.GetParentRow(this.Table.ParentRelations["FK_Pasaje_Recorrido"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_Pasaje_Recorrido"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_Pasaje_Recorrido_Crucero"]);
                 }
             }
         }
@@ -9863,6 +9840,22 @@ namespace FrbaCrucero {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool reco_habilitado {
+                get {
+                    try {
+                        return ((bool)(this[this.tableRecorrido.reco_habilitadoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'reco_habilitado\' in table \'Recorrido\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRecorrido.reco_habilitadoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public TramoRow TramoRow {
                 get {
                     return ((TramoRow)(this.GetParentRow(this.Table.ParentRelations["FK_Recorrido_PrimerTramo"])));
@@ -9874,13 +9867,14 @@ namespace FrbaCrucero {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PasajeRow[] GetPasajeRows() {
-                if ((this.Table.ChildRelations["FK_Pasaje_Recorrido"] == null)) {
-                    return new PasajeRow[0];
-                }
-                else {
-                    return ((PasajeRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Pasaje_Recorrido"])));
-                }
+            public bool Isreco_habilitadoNull() {
+                return this.IsNull(this.tableRecorrido.reco_habilitadoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setreco_habilitadoNull() {
+                this[this.tableRecorrido.reco_habilitadoColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -9904,17 +9898,6 @@ namespace FrbaCrucero {
                     return ((Recorrido_tramoRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Recorrido_tramo_recoid"])));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ReservaRow[] GetReservaRows() {
-                if ((this.Table.ChildRelations["FK_Reserva_Recorrido"] == null)) {
-                    return new ReservaRow[0];
-                }
-                else {
-                    return ((ReservaRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Reserva_Recorrido"])));
-                }
-            }
         }
         
         /// <summary>
@@ -9929,6 +9912,17 @@ namespace FrbaCrucero {
             internal Recorrido_cruceroRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
                 this.tableRecorrido_crucero = ((Recorrido_cruceroDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int reco_cruc_id {
+                get {
+                    return ((int)(this[this.tableRecorrido_crucero.reco_cruc_idColumn]));
+                }
+                set {
+                    this[this.tableRecorrido_crucero.reco_cruc_idColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -9968,7 +9962,13 @@ namespace FrbaCrucero {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public System.DateTime reco_cruc_llegada_real {
                 get {
-                    return ((global::System.DateTime)(this[this.tableRecorrido_crucero.reco_cruc_llegada_realColumn]));
+                    try {
+                        return ((global::System.DateTime)(this[this.tableRecorrido_crucero.reco_cruc_llegada_realColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'reco_cruc_llegada_real\' in table \'Recorrido_crucero\' is DBN" +
+                                "ull.", e);
+                    }
                 }
                 set {
                     this[this.tableRecorrido_crucero.reco_cruc_llegada_realColumn] = value;
@@ -9994,6 +9994,40 @@ namespace FrbaCrucero {
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_Reco_Cruc_recoid"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isreco_cruc_llegada_realNull() {
+                return this.IsNull(this.tableRecorrido_crucero.reco_cruc_llegada_realColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setreco_cruc_llegada_realNull() {
+                this[this.tableRecorrido_crucero.reco_cruc_llegada_realColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public PasajeRow[] GetPasajeRows() {
+                if ((this.Table.ChildRelations["FK_Pasaje_Recorrido_Crucero"] == null)) {
+                    return new PasajeRow[0];
+                }
+                else {
+                    return ((PasajeRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Pasaje_Recorrido_Crucero"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public ReservaRow[] GetReservaRows() {
+                if ((this.Table.ChildRelations["FK_Reserva_Recorrido_crucero"] == null)) {
+                    return new ReservaRow[0];
+                }
+                else {
+                    return ((ReservaRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Reserva_Recorrido_crucero"])));
                 }
             }
         }
@@ -10117,23 +10151,12 @@ namespace FrbaCrucero {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int rese_crucero {
+            public int rese_viaje {
                 get {
-                    return ((int)(this[this.tableReserva.rese_cruceroColumn]));
+                    return ((int)(this[this.tableReserva.rese_viajeColumn]));
                 }
                 set {
-                    this[this.tableReserva.rese_cruceroColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int rese_recorrido {
-                get {
-                    return ((int)(this[this.tableReserva.rese_recorridoColumn]));
-                }
-                set {
-                    this[this.tableReserva.rese_recorridoColumn] = value;
+                    this[this.tableReserva.rese_viajeColumn] = value;
                 }
             }
             
@@ -10172,23 +10195,12 @@ namespace FrbaCrucero {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CruceroRow CruceroRow {
+            public Recorrido_cruceroRow Recorrido_cruceroRow {
                 get {
-                    return ((CruceroRow)(this.GetParentRow(this.Table.ParentRelations["FK_Reserva_Crucero"])));
+                    return ((Recorrido_cruceroRow)(this.GetParentRow(this.Table.ParentRelations["FK_Reserva_Recorrido_crucero"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_Reserva_Crucero"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public RecorridoRow RecorridoRow {
-                get {
-                    return ((RecorridoRow)(this.GetParentRow(this.Table.ParentRelations["FK_Reserva_Recorrido"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_Reserva_Recorrido"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_Reserva_Recorrido_crucero"]);
                 }
             }
         }
@@ -10673,6 +10685,22 @@ namespace FrbaCrucero {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string usua_username {
+                get {
+                    try {
+                        return ((string)(this[this.tableUsuario.usua_usernameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'usua_username\' in table \'Usuario\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableUsuario.usua_usernameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string usua_password {
                 get {
                     try {
@@ -10722,6 +10750,34 @@ namespace FrbaCrucero {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool usua_habilitado {
+                get {
+                    try {
+                        return ((bool)(this[this.tableUsuario.usua_habilitadoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'usua_habilitado\' in table \'Usuario\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableUsuario.usua_habilitadoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isusua_usernameNull() {
+                return this.IsNull(this.tableUsuario.usua_usernameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setusua_usernameNull() {
+                this[this.tableUsuario.usua_usernameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool Isusua_passwordNull() {
                 return this.IsNull(this.tableUsuario.usua_passwordColumn);
             }
@@ -10730,6 +10786,18 @@ namespace FrbaCrucero {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void Setusua_passwordNull() {
                 this[this.tableUsuario.usua_passwordColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isusua_habilitadoNull() {
+                return this.IsNull(this.tableUsuario.usua_habilitadoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setusua_habilitadoNull() {
+                this[this.tableUsuario.usua_habilitadoColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -13351,16 +13419,16 @@ SELECT esta_id, esta_desc, esta_fechabaja, esta_fechaalta, esta_crucero FROM PEN
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [PENSAMIENTO_LINEAL].[Funcionalidad] ([func_nombre]) VALUES (@func_no" +
-                "mbre);\nSELECT func_id, func_nombre FROM PENSAMIENTO_LINEAL.Funcionalidad WHERE (" +
-                "func_id = SCOPE_IDENTITY())";
+                "mbre);\r\nSELECT func_id, func_nombre FROM PENSAMIENTO_LINEAL.Funcionalidad WHERE " +
+                "(func_id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@func_nombre", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "func_nombre", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = "UPDATE [PENSAMIENTO_LINEAL].[Funcionalidad] SET [func_nombre] = @func_nombre WHER" +
                 "E (([func_id] = @Original_func_id) AND ([func_nombre] = @Original_func_nombre));" +
-                "\nSELECT func_id, func_nombre FROM PENSAMIENTO_LINEAL.Funcionalidad WHERE (func_i" +
-                "d = @func_id)";
+                "\r\nSELECT func_id, func_nombre FROM PENSAMIENTO_LINEAL.Funcionalidad WHERE (func_" +
+                "id = @func_id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@func_nombre", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "func_nombre", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_func_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "func_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -14124,16 +14192,16 @@ SELECT esta_id, esta_desc, esta_fechabaja, esta_fechaalta, esta_crucero FROM PEN
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_marc_nombre", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "marc_nombre", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [PENSAMIENTO_LINEAL].[Marca] ([marc_nombre]) VALUES (@marc_nombre);\nS" +
-                "ELECT marc_id, marc_nombre FROM PENSAMIENTO_LINEAL.Marca WHERE (marc_id = SCOPE_" +
-                "IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [PENSAMIENTO_LINEAL].[Marca] ([marc_nombre]) VALUES (@marc_nombre);\r\n" +
+                "SELECT marc_id, marc_nombre FROM PENSAMIENTO_LINEAL.Marca WHERE (marc_id = SCOPE" +
+                "_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@marc_nombre", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "marc_nombre", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = "UPDATE [PENSAMIENTO_LINEAL].[Marca] SET [marc_nombre] = @marc_nombre WHERE (([mar" +
-                "c_id] = @Original_marc_id) AND ([marc_nombre] = @Original_marc_nombre));\nSELECT " +
-                "marc_id, marc_nombre FROM PENSAMIENTO_LINEAL.Marca WHERE (marc_id = @marc_id)";
+                "c_id] = @Original_marc_id) AND ([marc_nombre] = @Original_marc_nombre));\r\nSELECT" +
+                " marc_id, marc_nombre FROM PENSAMIENTO_LINEAL.Marca WHERE (marc_id = @marc_id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@marc_nombre", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "marc_nombre", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_marc_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "marc_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -14443,16 +14511,17 @@ SELECT esta_id, esta_desc, esta_fechabaja, esta_fechaalta, esta_crucero FROM PEN
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_mode_nombre", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "mode_nombre", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [PENSAMIENTO_LINEAL].[Modelo] ([mode_nombre]) VALUES (@mode_nombre);\n" +
-                "SELECT mode_id, mode_nombre FROM PENSAMIENTO_LINEAL.Modelo WHERE (mode_id = SCOP" +
-                "E_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [PENSAMIENTO_LINEAL].[Modelo] ([mode_nombre]) VALUES (@mode_nombre);\r" +
+                "\nSELECT mode_id, mode_nombre FROM PENSAMIENTO_LINEAL.Modelo WHERE (mode_id = SCO" +
+                "PE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@mode_nombre", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "mode_nombre", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = "UPDATE [PENSAMIENTO_LINEAL].[Modelo] SET [mode_nombre] = @mode_nombre WHERE (([mo" +
-                "de_id] = @Original_mode_id) AND ([mode_nombre] = @Original_mode_nombre));\nSELECT" +
-                " mode_id, mode_nombre FROM PENSAMIENTO_LINEAL.Modelo WHERE (mode_id = @mode_id)";
+                "de_id] = @Original_mode_id) AND ([mode_nombre] = @Original_mode_nombre));\r\nSELEC" +
+                "T mode_id, mode_nombre FROM PENSAMIENTO_LINEAL.Modelo WHERE (mode_id = @mode_id)" +
+                "";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@mode_nombre", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "mode_nombre", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_mode_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "mode_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -14754,54 +14823,49 @@ SELECT esta_id, esta_desc, esta_fechabaja, esta_fechaalta, esta_crucero FROM PEN
             tableMapping.ColumnMappings.Add("pasa_codigo", "pasa_codigo");
             tableMapping.ColumnMappings.Add("pasa_fecha", "pasa_fecha");
             tableMapping.ColumnMappings.Add("pasa_precio", "pasa_precio");
+            tableMapping.ColumnMappings.Add("pasa_viaje", "pasa_viaje");
             tableMapping.ColumnMappings.Add("pasa_cliente", "pasa_cliente");
-            tableMapping.ColumnMappings.Add("pasa_crucero", "pasa_crucero");
-            tableMapping.ColumnMappings.Add("pasa_recorrido", "pasa_recorrido");
             tableMapping.ColumnMappings.Add("pasa_cabina", "pasa_cabina");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [PENSAMIENTO_LINEAL].[Pasaje] WHERE (([pasa_id] = @Original_pasa_id) AND ([pasa_codigo] = @Original_pasa_codigo) AND ([pasa_fecha] = @Original_pasa_fecha) AND ([pasa_precio] = @Original_pasa_precio) AND ([pasa_cliente] = @Original_pasa_cliente) AND ([pasa_crucero] = @Original_pasa_crucero) AND ([pasa_recorrido] = @Original_pasa_recorrido) AND ([pasa_cabina] = @Original_pasa_cabina))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [PENSAMIENTO_LINEAL].[Pasaje] WHERE (([pasa_id] = @Original_pasa_id) AND ([pasa_codigo] = @Original_pasa_codigo) AND ([pasa_fecha] = @Original_pasa_fecha) AND ([pasa_precio] = @Original_pasa_precio) AND ([pasa_viaje] = @Original_pasa_viaje) AND ([pasa_cliente] = @Original_pasa_cliente) AND ([pasa_cabina] = @Original_pasa_cabina))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_pasa_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pasa_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_pasa_codigo", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pasa_codigo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_pasa_fecha", global::System.Data.SqlDbType.SmallDateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pasa_fecha", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_pasa_precio", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 8, 4, "pasa_precio", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_pasa_viaje", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pasa_viaje", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_pasa_cliente", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pasa_cliente", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_pasa_crucero", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pasa_crucero", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_pasa_recorrido", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pasa_recorrido", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_pasa_cabina", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pasa_cabina", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [PENSAMIENTO_LINEAL].[Pasaje] ([pasa_codigo], [pasa_fecha], [pasa_precio], [pasa_cliente], [pasa_crucero], [pasa_recorrido], [pasa_cabina]) VALUES (@pasa_codigo, @pasa_fecha, @pasa_precio, @pasa_cliente, @pasa_crucero, @pasa_recorrido, @pasa_cabina);
-SELECT pasa_id, pasa_codigo, pasa_fecha, pasa_precio, pasa_cliente, pasa_crucero, pasa_recorrido, pasa_cabina FROM PENSAMIENTO_LINEAL.Pasaje WHERE (pasa_id = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [PENSAMIENTO_LINEAL].[Pasaje] ([pasa_codigo], [pasa_fecha], [pasa_precio], [pasa_viaje], [pasa_cliente], [pasa_cabina]) VALUES (@pasa_codigo, @pasa_fecha, @pasa_precio, @pasa_viaje, @pasa_cliente, @pasa_cabina);
+SELECT pasa_id, pasa_codigo, pasa_fecha, pasa_precio, pasa_viaje, pasa_cliente, pasa_cabina FROM PENSAMIENTO_LINEAL.Pasaje WHERE (pasa_id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pasa_codigo", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pasa_codigo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pasa_fecha", global::System.Data.SqlDbType.SmallDateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pasa_fecha", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pasa_precio", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 8, 4, "pasa_precio", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pasa_viaje", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pasa_viaje", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pasa_cliente", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pasa_cliente", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pasa_crucero", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pasa_crucero", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pasa_recorrido", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pasa_recorrido", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pasa_cabina", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pasa_cabina", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [PENSAMIENTO_LINEAL].[Pasaje] SET [pasa_codigo] = @pasa_codigo, [pasa_fecha] = @pasa_fecha, [pasa_precio] = @pasa_precio, [pasa_cliente] = @pasa_cliente, [pasa_crucero] = @pasa_crucero, [pasa_recorrido] = @pasa_recorrido, [pasa_cabina] = @pasa_cabina WHERE (([pasa_id] = @Original_pasa_id) AND ([pasa_codigo] = @Original_pasa_codigo) AND ([pasa_fecha] = @Original_pasa_fecha) AND ([pasa_precio] = @Original_pasa_precio) AND ([pasa_cliente] = @Original_pasa_cliente) AND ([pasa_crucero] = @Original_pasa_crucero) AND ([pasa_recorrido] = @Original_pasa_recorrido) AND ([pasa_cabina] = @Original_pasa_cabina));
-SELECT pasa_id, pasa_codigo, pasa_fecha, pasa_precio, pasa_cliente, pasa_crucero, pasa_recorrido, pasa_cabina FROM PENSAMIENTO_LINEAL.Pasaje WHERE (pasa_id = @pasa_id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [PENSAMIENTO_LINEAL].[Pasaje] SET [pasa_codigo] = @pasa_codigo, [pasa_fecha] = @pasa_fecha, [pasa_precio] = @pasa_precio, [pasa_viaje] = @pasa_viaje, [pasa_cliente] = @pasa_cliente, [pasa_cabina] = @pasa_cabina WHERE (([pasa_id] = @Original_pasa_id) AND ([pasa_codigo] = @Original_pasa_codigo) AND ([pasa_fecha] = @Original_pasa_fecha) AND ([pasa_precio] = @Original_pasa_precio) AND ([pasa_viaje] = @Original_pasa_viaje) AND ([pasa_cliente] = @Original_pasa_cliente) AND ([pasa_cabina] = @Original_pasa_cabina));
+SELECT pasa_id, pasa_codigo, pasa_fecha, pasa_precio, pasa_viaje, pasa_cliente, pasa_cabina FROM PENSAMIENTO_LINEAL.Pasaje WHERE (pasa_id = @pasa_id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pasa_codigo", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pasa_codigo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pasa_fecha", global::System.Data.SqlDbType.SmallDateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pasa_fecha", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pasa_precio", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 8, 4, "pasa_precio", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pasa_viaje", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pasa_viaje", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pasa_cliente", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pasa_cliente", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pasa_crucero", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pasa_crucero", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pasa_recorrido", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pasa_recorrido", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pasa_cabina", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pasa_cabina", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_pasa_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pasa_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_pasa_codigo", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pasa_codigo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_pasa_fecha", global::System.Data.SqlDbType.SmallDateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pasa_fecha", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_pasa_precio", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 8, 4, "pasa_precio", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_pasa_viaje", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pasa_viaje", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_pasa_cliente", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pasa_cliente", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_pasa_crucero", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pasa_crucero", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_pasa_recorrido", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pasa_recorrido", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_pasa_cabina", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pasa_cabina", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pasa_id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "pasa_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
@@ -14819,8 +14883,8 @@ SELECT pasa_id, pasa_codigo, pasa_fecha, pasa_precio, pasa_cliente, pasa_crucero
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT pasa_id, pasa_codigo, pasa_fecha, pasa_precio, pasa_cliente, pasa_crucero," +
-                " pasa_recorrido, pasa_cabina FROM PENSAMIENTO_LINEAL.Pasaje";
+            this._commandCollection[0].CommandText = "SELECT pasa_id, pasa_codigo, pasa_fecha, pasa_precio, pasa_viaje, pasa_cliente, p" +
+                "asa_cabina FROM PENSAMIENTO_LINEAL.Pasaje";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -14881,7 +14945,7 @@ SELECT pasa_id, pasa_codigo, pasa_fecha, pasa_precio, pasa_cliente, pasa_crucero
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_pasa_id, string Original_pasa_codigo, System.DateTime Original_pasa_fecha, decimal Original_pasa_precio, int Original_pasa_cliente, int Original_pasa_crucero, int Original_pasa_recorrido, int Original_pasa_cabina) {
+        public virtual int Delete(int Original_pasa_id, string Original_pasa_codigo, System.DateTime Original_pasa_fecha, decimal Original_pasa_precio, int Original_pasa_viaje, int Original_pasa_cliente, int Original_pasa_cabina) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_pasa_id));
             if ((Original_pasa_codigo == null)) {
                 throw new global::System.ArgumentNullException("Original_pasa_codigo");
@@ -14891,10 +14955,9 @@ SELECT pasa_id, pasa_codigo, pasa_fecha, pasa_precio, pasa_cliente, pasa_crucero
             }
             this.Adapter.DeleteCommand.Parameters[2].Value = ((System.DateTime)(Original_pasa_fecha));
             this.Adapter.DeleteCommand.Parameters[3].Value = ((decimal)(Original_pasa_precio));
-            this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_pasa_cliente));
-            this.Adapter.DeleteCommand.Parameters[5].Value = ((int)(Original_pasa_crucero));
-            this.Adapter.DeleteCommand.Parameters[6].Value = ((int)(Original_pasa_recorrido));
-            this.Adapter.DeleteCommand.Parameters[7].Value = ((int)(Original_pasa_cabina));
+            this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_pasa_viaje));
+            this.Adapter.DeleteCommand.Parameters[5].Value = ((int)(Original_pasa_cliente));
+            this.Adapter.DeleteCommand.Parameters[6].Value = ((int)(Original_pasa_cabina));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -14915,7 +14978,7 @@ SELECT pasa_id, pasa_codigo, pasa_fecha, pasa_precio, pasa_cliente, pasa_crucero
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string pasa_codigo, System.DateTime pasa_fecha, decimal pasa_precio, int pasa_cliente, int pasa_crucero, int pasa_recorrido, int pasa_cabina) {
+        public virtual int Insert(string pasa_codigo, System.DateTime pasa_fecha, decimal pasa_precio, int pasa_viaje, int pasa_cliente, int pasa_cabina) {
             if ((pasa_codigo == null)) {
                 throw new global::System.ArgumentNullException("pasa_codigo");
             }
@@ -14924,10 +14987,9 @@ SELECT pasa_id, pasa_codigo, pasa_fecha, pasa_precio, pasa_cliente, pasa_crucero
             }
             this.Adapter.InsertCommand.Parameters[1].Value = ((System.DateTime)(pasa_fecha));
             this.Adapter.InsertCommand.Parameters[2].Value = ((decimal)(pasa_precio));
-            this.Adapter.InsertCommand.Parameters[3].Value = ((int)(pasa_cliente));
-            this.Adapter.InsertCommand.Parameters[4].Value = ((int)(pasa_crucero));
-            this.Adapter.InsertCommand.Parameters[5].Value = ((int)(pasa_recorrido));
-            this.Adapter.InsertCommand.Parameters[6].Value = ((int)(pasa_cabina));
+            this.Adapter.InsertCommand.Parameters[3].Value = ((int)(pasa_viaje));
+            this.Adapter.InsertCommand.Parameters[4].Value = ((int)(pasa_cliente));
+            this.Adapter.InsertCommand.Parameters[5].Value = ((int)(pasa_cabina));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -14948,23 +15010,7 @@ SELECT pasa_id, pasa_codigo, pasa_fecha, pasa_precio, pasa_cliente, pasa_crucero
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(
-                    string pasa_codigo, 
-                    System.DateTime pasa_fecha, 
-                    decimal pasa_precio, 
-                    int pasa_cliente, 
-                    int pasa_crucero, 
-                    int pasa_recorrido, 
-                    int pasa_cabina, 
-                    int Original_pasa_id, 
-                    string Original_pasa_codigo, 
-                    System.DateTime Original_pasa_fecha, 
-                    decimal Original_pasa_precio, 
-                    int Original_pasa_cliente, 
-                    int Original_pasa_crucero, 
-                    int Original_pasa_recorrido, 
-                    int Original_pasa_cabina, 
-                    int pasa_id) {
+        public virtual int Update(string pasa_codigo, System.DateTime pasa_fecha, decimal pasa_precio, int pasa_viaje, int pasa_cliente, int pasa_cabina, int Original_pasa_id, string Original_pasa_codigo, System.DateTime Original_pasa_fecha, decimal Original_pasa_precio, int Original_pasa_viaje, int Original_pasa_cliente, int Original_pasa_cabina, int pasa_id) {
             if ((pasa_codigo == null)) {
                 throw new global::System.ArgumentNullException("pasa_codigo");
             }
@@ -14973,24 +15019,22 @@ SELECT pasa_id, pasa_codigo, pasa_fecha, pasa_precio, pasa_cliente, pasa_crucero
             }
             this.Adapter.UpdateCommand.Parameters[1].Value = ((System.DateTime)(pasa_fecha));
             this.Adapter.UpdateCommand.Parameters[2].Value = ((decimal)(pasa_precio));
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(pasa_cliente));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(pasa_crucero));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(pasa_recorrido));
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(pasa_cabina));
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_pasa_id));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(pasa_viaje));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(pasa_cliente));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(pasa_cabina));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_pasa_id));
             if ((Original_pasa_codigo == null)) {
                 throw new global::System.ArgumentNullException("Original_pasa_codigo");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_pasa_codigo));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_pasa_codigo));
             }
-            this.Adapter.UpdateCommand.Parameters[9].Value = ((System.DateTime)(Original_pasa_fecha));
-            this.Adapter.UpdateCommand.Parameters[10].Value = ((decimal)(Original_pasa_precio));
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((System.DateTime)(Original_pasa_fecha));
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((decimal)(Original_pasa_precio));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_pasa_viaje));
             this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(Original_pasa_cliente));
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_pasa_crucero));
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_pasa_recorrido));
-            this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(Original_pasa_cabina));
-            this.Adapter.UpdateCommand.Parameters[15].Value = ((int)(pasa_id));
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_pasa_cabina));
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(pasa_id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -15011,8 +15055,8 @@ SELECT pasa_id, pasa_codigo, pasa_fecha, pasa_precio, pasa_cliente, pasa_crucero
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string pasa_codigo, System.DateTime pasa_fecha, decimal pasa_precio, int pasa_cliente, int pasa_crucero, int pasa_recorrido, int pasa_cabina, int Original_pasa_id, string Original_pasa_codigo, System.DateTime Original_pasa_fecha, decimal Original_pasa_precio, int Original_pasa_cliente, int Original_pasa_crucero, int Original_pasa_recorrido, int Original_pasa_cabina) {
-            return this.Update(pasa_codigo, pasa_fecha, pasa_precio, pasa_cliente, pasa_crucero, pasa_recorrido, pasa_cabina, Original_pasa_id, Original_pasa_codigo, Original_pasa_fecha, Original_pasa_precio, Original_pasa_cliente, Original_pasa_crucero, Original_pasa_recorrido, Original_pasa_cabina, Original_pasa_id);
+        public virtual int Update(string pasa_codigo, System.DateTime pasa_fecha, decimal pasa_precio, int pasa_viaje, int pasa_cliente, int pasa_cabina, int Original_pasa_id, string Original_pasa_codigo, System.DateTime Original_pasa_fecha, decimal Original_pasa_precio, int Original_pasa_viaje, int Original_pasa_cliente, int Original_pasa_cabina) {
+            return this.Update(pasa_codigo, pasa_fecha, pasa_precio, pasa_viaje, pasa_cliente, pasa_cabina, Original_pasa_id, Original_pasa_codigo, Original_pasa_fecha, Original_pasa_precio, Original_pasa_viaje, Original_pasa_cliente, Original_pasa_cabina, Original_pasa_id);
         }
     }
     
@@ -15149,16 +15193,17 @@ SELECT pasa_id, pasa_codigo, pasa_fecha, pasa_precio, pasa_cliente, pasa_crucero
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_puer_nombre", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "puer_nombre", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [PENSAMIENTO_LINEAL].[Puerto] ([puer_nombre]) VALUES (@puer_nombre);\n" +
-                "SELECT puer_id, puer_nombre FROM PENSAMIENTO_LINEAL.Puerto WHERE (puer_id = SCOP" +
-                "E_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [PENSAMIENTO_LINEAL].[Puerto] ([puer_nombre]) VALUES (@puer_nombre);\r" +
+                "\nSELECT puer_id, puer_nombre FROM PENSAMIENTO_LINEAL.Puerto WHERE (puer_id = SCO" +
+                "PE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@puer_nombre", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "puer_nombre", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = "UPDATE [PENSAMIENTO_LINEAL].[Puerto] SET [puer_nombre] = @puer_nombre WHERE (([pu" +
-                "er_id] = @Original_puer_id) AND ([puer_nombre] = @Original_puer_nombre));\nSELECT" +
-                " puer_id, puer_nombre FROM PENSAMIENTO_LINEAL.Puerto WHERE (puer_id = @puer_id)";
+                "er_id] = @Original_puer_id) AND ([puer_nombre] = @Original_puer_nombre));\r\nSELEC" +
+                "T puer_id, puer_nombre FROM PENSAMIENTO_LINEAL.Puerto WHERE (puer_id = @puer_id)" +
+                "";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@puer_nombre", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "puer_nombre", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_puer_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "puer_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -15459,34 +15504,38 @@ SELECT pasa_id, pasa_codigo, pasa_fecha, pasa_precio, pasa_cliente, pasa_crucero
             tableMapping.ColumnMappings.Add("reco_id", "reco_id");
             tableMapping.ColumnMappings.Add("reco_codigo", "reco_codigo");
             tableMapping.ColumnMappings.Add("reco_primertramo", "reco_primertramo");
+            tableMapping.ColumnMappings.Add("reco_habilitado", "reco_habilitado");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [PENSAMIENTO_LINEAL].[Recorrido] WHERE (([reco_id] = @Original_reco_i" +
-                "d) AND ([reco_codigo] = @Original_reco_codigo) AND ([reco_primertramo] = @Origin" +
-                "al_reco_primertramo))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [PENSAMIENTO_LINEAL].[Recorrido] WHERE (([reco_id] = @Original_reco_id) AND ([reco_codigo] = @Original_reco_codigo) AND ([reco_primertramo] = @Original_reco_primertramo) AND ((@IsNull_reco_habilitado = 1 AND [reco_habilitado] IS NULL) OR ([reco_habilitado] = @Original_reco_habilitado)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_reco_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reco_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_reco_codigo", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reco_codigo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_reco_primertramo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reco_primertramo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_reco_habilitado", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reco_habilitado", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_reco_habilitado", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reco_habilitado", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [PENSAMIENTO_LINEAL].[Recorrido] ([reco_codigo], [reco_primertramo]) " +
-                "VALUES (@reco_codigo, @reco_primertramo);\nSELECT reco_id, reco_codigo, reco_prim" +
-                "ertramo FROM PENSAMIENTO_LINEAL.Recorrido WHERE (reco_id = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [PENSAMIENTO_LINEAL].[Recorrido] ([reco_codigo], [reco_primertramo], [reco_habilitado]) VALUES (@reco_codigo, @reco_primertramo, @reco_habilitado);
+SELECT reco_id, reco_codigo, reco_primertramo, reco_habilitado FROM PENSAMIENTO_LINEAL.Recorrido WHERE (reco_id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@reco_codigo", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reco_codigo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@reco_primertramo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reco_primertramo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@reco_habilitado", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reco_habilitado", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [PENSAMIENTO_LINEAL].[Recorrido] SET [reco_codigo] = @reco_codigo, [reco_primertramo] = @reco_primertramo WHERE (([reco_id] = @Original_reco_id) AND ([reco_codigo] = @Original_reco_codigo) AND ([reco_primertramo] = @Original_reco_primertramo));
-SELECT reco_id, reco_codigo, reco_primertramo FROM PENSAMIENTO_LINEAL.Recorrido WHERE (reco_id = @reco_id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [PENSAMIENTO_LINEAL].[Recorrido] SET [reco_codigo] = @reco_codigo, [reco_primertramo] = @reco_primertramo, [reco_habilitado] = @reco_habilitado WHERE (([reco_id] = @Original_reco_id) AND ([reco_codigo] = @Original_reco_codigo) AND ([reco_primertramo] = @Original_reco_primertramo) AND ((@IsNull_reco_habilitado = 1 AND [reco_habilitado] IS NULL) OR ([reco_habilitado] = @Original_reco_habilitado)));
+SELECT reco_id, reco_codigo, reco_primertramo, reco_habilitado FROM PENSAMIENTO_LINEAL.Recorrido WHERE (reco_id = @reco_id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@reco_codigo", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reco_codigo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@reco_primertramo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reco_primertramo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@reco_habilitado", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reco_habilitado", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_reco_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reco_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_reco_codigo", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reco_codigo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_reco_primertramo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reco_primertramo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_reco_habilitado", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reco_habilitado", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_reco_habilitado", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reco_habilitado", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@reco_id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "reco_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -15503,7 +15552,8 @@ SELECT reco_id, reco_codigo, reco_primertramo FROM PENSAMIENTO_LINEAL.Recorrido 
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT reco_id, reco_codigo, reco_primertramo FROM PENSAMIENTO_LINEAL.Recorrido";
+            this._commandCollection[0].CommandText = "SELECT reco_id, reco_codigo, reco_primertramo, reco_habilitado FROM PENSAMIENTO_L" +
+                "INEAL.Recorrido";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -15564,7 +15614,7 @@ SELECT reco_id, reco_codigo, reco_primertramo FROM PENSAMIENTO_LINEAL.Recorrido 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_reco_id, string Original_reco_codigo, int Original_reco_primertramo) {
+        public virtual int Delete(int Original_reco_id, string Original_reco_codigo, int Original_reco_primertramo, global::System.Nullable<bool> Original_reco_habilitado) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_reco_id));
             if ((Original_reco_codigo == null)) {
                 throw new global::System.ArgumentNullException("Original_reco_codigo");
@@ -15573,6 +15623,14 @@ SELECT reco_id, reco_codigo, reco_primertramo FROM PENSAMIENTO_LINEAL.Recorrido 
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_reco_codigo));
             }
             this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_reco_primertramo));
+            if ((Original_reco_habilitado.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((bool)(Original_reco_habilitado.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -15593,7 +15651,7 @@ SELECT reco_id, reco_codigo, reco_primertramo FROM PENSAMIENTO_LINEAL.Recorrido 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string reco_codigo, int reco_primertramo) {
+        public virtual int Insert(string reco_codigo, int reco_primertramo, global::System.Nullable<bool> reco_habilitado) {
             if ((reco_codigo == null)) {
                 throw new global::System.ArgumentNullException("reco_codigo");
             }
@@ -15601,6 +15659,12 @@ SELECT reco_id, reco_codigo, reco_primertramo FROM PENSAMIENTO_LINEAL.Recorrido 
                 this.Adapter.InsertCommand.Parameters[0].Value = ((string)(reco_codigo));
             }
             this.Adapter.InsertCommand.Parameters[1].Value = ((int)(reco_primertramo));
+            if ((reco_habilitado.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((bool)(reco_habilitado.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -15621,7 +15685,7 @@ SELECT reco_id, reco_codigo, reco_primertramo FROM PENSAMIENTO_LINEAL.Recorrido 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string reco_codigo, int reco_primertramo, int Original_reco_id, string Original_reco_codigo, int Original_reco_primertramo, int reco_id) {
+        public virtual int Update(string reco_codigo, int reco_primertramo, global::System.Nullable<bool> reco_habilitado, int Original_reco_id, string Original_reco_codigo, int Original_reco_primertramo, global::System.Nullable<bool> Original_reco_habilitado, int reco_id) {
             if ((reco_codigo == null)) {
                 throw new global::System.ArgumentNullException("reco_codigo");
             }
@@ -15629,15 +15693,29 @@ SELECT reco_id, reco_codigo, reco_primertramo FROM PENSAMIENTO_LINEAL.Recorrido 
                 this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(reco_codigo));
             }
             this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(reco_primertramo));
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Original_reco_id));
+            if ((reco_habilitado.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((bool)(reco_habilitado.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_reco_id));
             if ((Original_reco_codigo == null)) {
                 throw new global::System.ArgumentNullException("Original_reco_codigo");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Original_reco_codigo));
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Original_reco_codigo));
             }
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_reco_primertramo));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(reco_id));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_reco_primertramo));
+            if ((Original_reco_habilitado.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((bool)(Original_reco_habilitado.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(reco_id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -15658,8 +15736,8 @@ SELECT reco_id, reco_codigo, reco_primertramo FROM PENSAMIENTO_LINEAL.Recorrido 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string reco_codigo, int reco_primertramo, int Original_reco_id, string Original_reco_codigo, int Original_reco_primertramo) {
-            return this.Update(reco_codigo, reco_primertramo, Original_reco_id, Original_reco_codigo, Original_reco_primertramo, Original_reco_id);
+        public virtual int Update(string reco_codigo, int reco_primertramo, global::System.Nullable<bool> reco_habilitado, int Original_reco_id, string Original_reco_codigo, int Original_reco_primertramo, global::System.Nullable<bool> Original_reco_habilitado) {
+            return this.Update(reco_codigo, reco_primertramo, reco_habilitado, Original_reco_id, Original_reco_codigo, Original_reco_primertramo, Original_reco_habilitado, Original_reco_id);
         }
     }
     
@@ -15784,21 +15862,47 @@ SELECT reco_id, reco_codigo, reco_primertramo FROM PENSAMIENTO_LINEAL.Recorrido 
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "Recorrido_crucero";
+            tableMapping.ColumnMappings.Add("reco_cruc_id", "reco_cruc_id");
             tableMapping.ColumnMappings.Add("reco_cruc_recoid", "reco_cruc_recoid");
             tableMapping.ColumnMappings.Add("reco_cruc_crucid", "reco_cruc_crucid");
             tableMapping.ColumnMappings.Add("reco_cruc_salida", "reco_cruc_salida");
             tableMapping.ColumnMappings.Add("reco_cruc_llegada_real", "reco_cruc_llegada_real");
             this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [PENSAMIENTO_LINEAL].[Recorrido_crucero] WHERE (([reco_cruc_id] = @Original_reco_cruc_id) AND ([reco_cruc_recoid] = @Original_reco_cruc_recoid) AND ([reco_cruc_crucid] = @Original_reco_cruc_crucid) AND ([reco_cruc_salida] = @Original_reco_cruc_salida) AND ((@IsNull_reco_cruc_llegada_real = 1 AND [reco_cruc_llegada_real] IS NULL) OR ([reco_cruc_llegada_real] = @Original_reco_cruc_llegada_real)))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_reco_cruc_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reco_cruc_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_reco_cruc_recoid", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reco_cruc_recoid", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_reco_cruc_crucid", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reco_cruc_crucid", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_reco_cruc_salida", global::System.Data.SqlDbType.SmallDateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reco_cruc_salida", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_reco_cruc_llegada_real", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reco_cruc_llegada_real", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_reco_cruc_llegada_real", global::System.Data.SqlDbType.SmallDateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reco_cruc_llegada_real", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [PENSAMIENTO_LINEAL].[Recorrido_crucero] ([reco_cruc_recoid], [reco_c" +
-                "ruc_crucid], [reco_cruc_salida], [reco_cruc_llegada_real]) VALUES (@reco_cruc_re" +
-                "coid, @reco_cruc_crucid, @reco_cruc_salida, @reco_cruc_llegada_real)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [PENSAMIENTO_LINEAL].[Recorrido_crucero] ([reco_cruc_recoid], [reco_cruc_crucid], [reco_cruc_salida], [reco_cruc_llegada_real]) VALUES (@reco_cruc_recoid, @reco_cruc_crucid, @reco_cruc_salida, @reco_cruc_llegada_real);
+SELECT reco_cruc_id, reco_cruc_recoid, reco_cruc_crucid, reco_cruc_salida, reco_cruc_llegada_real FROM PENSAMIENTO_LINEAL.Recorrido_crucero WHERE (reco_cruc_id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@reco_cruc_recoid", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reco_cruc_recoid", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@reco_cruc_crucid", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reco_cruc_crucid", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@reco_cruc_salida", global::System.Data.SqlDbType.SmallDateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reco_cruc_salida", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@reco_cruc_llegada_real", global::System.Data.SqlDbType.SmallDateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reco_cruc_llegada_real", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [PENSAMIENTO_LINEAL].[Recorrido_crucero] SET [reco_cruc_recoid] = @reco_cruc_recoid, [reco_cruc_crucid] = @reco_cruc_crucid, [reco_cruc_salida] = @reco_cruc_salida, [reco_cruc_llegada_real] = @reco_cruc_llegada_real WHERE (([reco_cruc_id] = @Original_reco_cruc_id) AND ([reco_cruc_recoid] = @Original_reco_cruc_recoid) AND ([reco_cruc_crucid] = @Original_reco_cruc_crucid) AND ([reco_cruc_salida] = @Original_reco_cruc_salida) AND ((@IsNull_reco_cruc_llegada_real = 1 AND [reco_cruc_llegada_real] IS NULL) OR ([reco_cruc_llegada_real] = @Original_reco_cruc_llegada_real)));
+SELECT reco_cruc_id, reco_cruc_recoid, reco_cruc_crucid, reco_cruc_salida, reco_cruc_llegada_real FROM PENSAMIENTO_LINEAL.Recorrido_crucero WHERE (reco_cruc_id = @reco_cruc_id)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@reco_cruc_recoid", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reco_cruc_recoid", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@reco_cruc_crucid", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reco_cruc_crucid", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@reco_cruc_salida", global::System.Data.SqlDbType.SmallDateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reco_cruc_salida", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@reco_cruc_llegada_real", global::System.Data.SqlDbType.SmallDateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reco_cruc_llegada_real", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_reco_cruc_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reco_cruc_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_reco_cruc_recoid", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reco_cruc_recoid", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_reco_cruc_crucid", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reco_cruc_crucid", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_reco_cruc_salida", global::System.Data.SqlDbType.SmallDateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reco_cruc_salida", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_reco_cruc_llegada_real", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reco_cruc_llegada_real", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_reco_cruc_llegada_real", global::System.Data.SqlDbType.SmallDateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reco_cruc_llegada_real", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@reco_cruc_id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "reco_cruc_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -15814,8 +15918,8 @@ SELECT reco_id, reco_codigo, reco_primertramo FROM PENSAMIENTO_LINEAL.Recorrido 
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT reco_cruc_recoid, reco_cruc_crucid, reco_cruc_salida, reco_cruc_llegada_re" +
-                "al FROM PENSAMIENTO_LINEAL.Recorrido_crucero";
+            this._commandCollection[0].CommandText = "SELECT reco_cruc_id, reco_cruc_recoid, reco_cruc_crucid, reco_cruc_salida, reco_c" +
+                "ruc_llegada_real FROM PENSAMIENTO_LINEAL.Recorrido_crucero";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -15875,12 +15979,50 @@ SELECT reco_id, reco_codigo, reco_primertramo FROM PENSAMIENTO_LINEAL.Recorrido 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(int Original_reco_cruc_id, int Original_reco_cruc_recoid, int Original_reco_cruc_crucid, System.DateTime Original_reco_cruc_salida, global::System.Nullable<global::System.DateTime> Original_reco_cruc_llegada_real) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_reco_cruc_id));
+            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_reco_cruc_recoid));
+            this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_reco_cruc_crucid));
+            this.Adapter.DeleteCommand.Parameters[3].Value = ((System.DateTime)(Original_reco_cruc_salida));
+            if ((Original_reco_cruc_llegada_real.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((System.DateTime)(Original_reco_cruc_llegada_real.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int reco_cruc_recoid, int reco_cruc_crucid, System.DateTime reco_cruc_salida, System.DateTime reco_cruc_llegada_real) {
+        public virtual int Insert(int reco_cruc_recoid, int reco_cruc_crucid, System.DateTime reco_cruc_salida, global::System.Nullable<global::System.DateTime> reco_cruc_llegada_real) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(reco_cruc_recoid));
             this.Adapter.InsertCommand.Parameters[1].Value = ((int)(reco_cruc_crucid));
             this.Adapter.InsertCommand.Parameters[2].Value = ((System.DateTime)(reco_cruc_salida));
-            this.Adapter.InsertCommand.Parameters[3].Value = ((System.DateTime)(reco_cruc_llegada_real));
+            if ((reco_cruc_llegada_real.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((System.DateTime)(reco_cruc_llegada_real.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -15895,6 +16037,57 @@ SELECT reco_id, reco_codigo, reco_primertramo FROM PENSAMIENTO_LINEAL.Recorrido 
                     this.Adapter.InsertCommand.Connection.Close();
                 }
             }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(int reco_cruc_recoid, int reco_cruc_crucid, System.DateTime reco_cruc_salida, global::System.Nullable<global::System.DateTime> reco_cruc_llegada_real, int Original_reco_cruc_id, int Original_reco_cruc_recoid, int Original_reco_cruc_crucid, System.DateTime Original_reco_cruc_salida, global::System.Nullable<global::System.DateTime> Original_reco_cruc_llegada_real, int reco_cruc_id) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(reco_cruc_recoid));
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(reco_cruc_crucid));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((System.DateTime)(reco_cruc_salida));
+            if ((reco_cruc_llegada_real.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((System.DateTime)(reco_cruc_llegada_real.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_reco_cruc_id));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_reco_cruc_recoid));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_reco_cruc_crucid));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((System.DateTime)(Original_reco_cruc_salida));
+            if ((Original_reco_cruc_llegada_real.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((System.DateTime)(Original_reco_cruc_llegada_real.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(reco_cruc_id));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(int reco_cruc_recoid, int reco_cruc_crucid, System.DateTime reco_cruc_salida, global::System.Nullable<global::System.DateTime> reco_cruc_llegada_real, int Original_reco_cruc_id, int Original_reco_cruc_recoid, int Original_reco_cruc_crucid, System.DateTime Original_reco_cruc_salida, global::System.Nullable<global::System.DateTime> Original_reco_cruc_llegada_real) {
+            return this.Update(reco_cruc_recoid, reco_cruc_crucid, reco_cruc_salida, reco_cruc_llegada_real, Original_reco_cruc_id, Original_reco_cruc_recoid, Original_reco_cruc_crucid, Original_reco_cruc_salida, Original_reco_cruc_llegada_real, Original_reco_cruc_id);
         }
     }
     
@@ -16251,49 +16444,44 @@ SELECT reco_id, reco_codigo, reco_primertramo FROM PENSAMIENTO_LINEAL.Recorrido 
             tableMapping.ColumnMappings.Add("rese_codigo", "rese_codigo");
             tableMapping.ColumnMappings.Add("rese_fecha", "rese_fecha");
             tableMapping.ColumnMappings.Add("rese_cliente", "rese_cliente");
-            tableMapping.ColumnMappings.Add("rese_crucero", "rese_crucero");
-            tableMapping.ColumnMappings.Add("rese_recorrido", "rese_recorrido");
+            tableMapping.ColumnMappings.Add("rese_viaje", "rese_viaje");
             tableMapping.ColumnMappings.Add("rese_cabina", "rese_cabina");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [PENSAMIENTO_LINEAL].[Reserva] WHERE (([rese_id] = @Original_rese_id) AND ([rese_codigo] = @Original_rese_codigo) AND ([rese_fecha] = @Original_rese_fecha) AND ([rese_cliente] = @Original_rese_cliente) AND ([rese_crucero] = @Original_rese_crucero) AND ([rese_recorrido] = @Original_rese_recorrido) AND ([rese_cabina] = @Original_rese_cabina))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [PENSAMIENTO_LINEAL].[Reserva] WHERE (([rese_id] = @Original_rese_id) AND ([rese_codigo] = @Original_rese_codigo) AND ([rese_fecha] = @Original_rese_fecha) AND ([rese_cliente] = @Original_rese_cliente) AND ([rese_viaje] = @Original_rese_viaje) AND ([rese_cabina] = @Original_rese_cabina))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_rese_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "rese_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_rese_codigo", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "rese_codigo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_rese_fecha", global::System.Data.SqlDbType.SmallDateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "rese_fecha", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_rese_cliente", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "rese_cliente", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_rese_crucero", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "rese_crucero", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_rese_recorrido", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "rese_recorrido", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_rese_viaje", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "rese_viaje", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_rese_cabina", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "rese_cabina", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [PENSAMIENTO_LINEAL].[Reserva] ([rese_codigo], [rese_fecha], [rese_cliente], [rese_crucero], [rese_recorrido], [rese_cabina]) VALUES (@rese_codigo, @rese_fecha, @rese_cliente, @rese_crucero, @rese_recorrido, @rese_cabina);
-SELECT rese_id, rese_codigo, rese_fecha, rese_cliente, rese_crucero, rese_recorrido, rese_cabina FROM PENSAMIENTO_LINEAL.Reserva WHERE (rese_id = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [PENSAMIENTO_LINEAL].[Reserva] ([rese_codigo], [rese_fecha], [rese_cliente], [rese_viaje], [rese_cabina]) VALUES (@rese_codigo, @rese_fecha, @rese_cliente, @rese_viaje, @rese_cabina);
+SELECT rese_id, rese_codigo, rese_fecha, rese_cliente, rese_viaje, rese_cabina FROM PENSAMIENTO_LINEAL.Reserva WHERE (rese_id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@rese_codigo", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "rese_codigo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@rese_fecha", global::System.Data.SqlDbType.SmallDateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "rese_fecha", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@rese_cliente", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "rese_cliente", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@rese_crucero", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "rese_crucero", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@rese_recorrido", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "rese_recorrido", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@rese_viaje", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "rese_viaje", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@rese_cabina", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "rese_cabina", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [PENSAMIENTO_LINEAL].[Reserva] SET [rese_codigo] = @rese_codigo, [rese_fecha] = @rese_fecha, [rese_cliente] = @rese_cliente, [rese_crucero] = @rese_crucero, [rese_recorrido] = @rese_recorrido, [rese_cabina] = @rese_cabina WHERE (([rese_id] = @Original_rese_id) AND ([rese_codigo] = @Original_rese_codigo) AND ([rese_fecha] = @Original_rese_fecha) AND ([rese_cliente] = @Original_rese_cliente) AND ([rese_crucero] = @Original_rese_crucero) AND ([rese_recorrido] = @Original_rese_recorrido) AND ([rese_cabina] = @Original_rese_cabina));
-SELECT rese_id, rese_codigo, rese_fecha, rese_cliente, rese_crucero, rese_recorrido, rese_cabina FROM PENSAMIENTO_LINEAL.Reserva WHERE (rese_id = @rese_id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [PENSAMIENTO_LINEAL].[Reserva] SET [rese_codigo] = @rese_codigo, [rese_fecha] = @rese_fecha, [rese_cliente] = @rese_cliente, [rese_viaje] = @rese_viaje, [rese_cabina] = @rese_cabina WHERE (([rese_id] = @Original_rese_id) AND ([rese_codigo] = @Original_rese_codigo) AND ([rese_fecha] = @Original_rese_fecha) AND ([rese_cliente] = @Original_rese_cliente) AND ([rese_viaje] = @Original_rese_viaje) AND ([rese_cabina] = @Original_rese_cabina));
+SELECT rese_id, rese_codigo, rese_fecha, rese_cliente, rese_viaje, rese_cabina FROM PENSAMIENTO_LINEAL.Reserva WHERE (rese_id = @rese_id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@rese_codigo", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "rese_codigo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@rese_fecha", global::System.Data.SqlDbType.SmallDateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "rese_fecha", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@rese_cliente", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "rese_cliente", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@rese_crucero", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "rese_crucero", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@rese_recorrido", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "rese_recorrido", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@rese_viaje", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "rese_viaje", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@rese_cabina", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "rese_cabina", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_rese_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "rese_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_rese_codigo", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "rese_codigo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_rese_fecha", global::System.Data.SqlDbType.SmallDateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "rese_fecha", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_rese_cliente", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "rese_cliente", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_rese_crucero", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "rese_crucero", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_rese_recorrido", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "rese_recorrido", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_rese_viaje", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "rese_viaje", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_rese_cabina", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "rese_cabina", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@rese_id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "rese_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
@@ -16311,8 +16499,8 @@ SELECT rese_id, rese_codigo, rese_fecha, rese_cliente, rese_crucero, rese_recorr
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT rese_id, rese_codigo, rese_fecha, rese_cliente, rese_crucero, rese_recorri" +
-                "do, rese_cabina FROM PENSAMIENTO_LINEAL.Reserva";
+            this._commandCollection[0].CommandText = "SELECT rese_id, rese_codigo, rese_fecha, rese_cliente, rese_viaje, rese_cabina FR" +
+                "OM PENSAMIENTO_LINEAL.Reserva";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -16373,7 +16561,7 @@ SELECT rese_id, rese_codigo, rese_fecha, rese_cliente, rese_crucero, rese_recorr
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_rese_id, string Original_rese_codigo, System.DateTime Original_rese_fecha, int Original_rese_cliente, int Original_rese_crucero, int Original_rese_recorrido, int Original_rese_cabina) {
+        public virtual int Delete(int Original_rese_id, string Original_rese_codigo, System.DateTime Original_rese_fecha, int Original_rese_cliente, int Original_rese_viaje, int Original_rese_cabina) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_rese_id));
             if ((Original_rese_codigo == null)) {
                 throw new global::System.ArgumentNullException("Original_rese_codigo");
@@ -16383,9 +16571,8 @@ SELECT rese_id, rese_codigo, rese_fecha, rese_cliente, rese_crucero, rese_recorr
             }
             this.Adapter.DeleteCommand.Parameters[2].Value = ((System.DateTime)(Original_rese_fecha));
             this.Adapter.DeleteCommand.Parameters[3].Value = ((int)(Original_rese_cliente));
-            this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_rese_crucero));
-            this.Adapter.DeleteCommand.Parameters[5].Value = ((int)(Original_rese_recorrido));
-            this.Adapter.DeleteCommand.Parameters[6].Value = ((int)(Original_rese_cabina));
+            this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_rese_viaje));
+            this.Adapter.DeleteCommand.Parameters[5].Value = ((int)(Original_rese_cabina));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -16406,7 +16593,7 @@ SELECT rese_id, rese_codigo, rese_fecha, rese_cliente, rese_crucero, rese_recorr
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string rese_codigo, System.DateTime rese_fecha, int rese_cliente, int rese_crucero, int rese_recorrido, int rese_cabina) {
+        public virtual int Insert(string rese_codigo, System.DateTime rese_fecha, int rese_cliente, int rese_viaje, int rese_cabina) {
             if ((rese_codigo == null)) {
                 throw new global::System.ArgumentNullException("rese_codigo");
             }
@@ -16415,9 +16602,8 @@ SELECT rese_id, rese_codigo, rese_fecha, rese_cliente, rese_crucero, rese_recorr
             }
             this.Adapter.InsertCommand.Parameters[1].Value = ((System.DateTime)(rese_fecha));
             this.Adapter.InsertCommand.Parameters[2].Value = ((int)(rese_cliente));
-            this.Adapter.InsertCommand.Parameters[3].Value = ((int)(rese_crucero));
-            this.Adapter.InsertCommand.Parameters[4].Value = ((int)(rese_recorrido));
-            this.Adapter.InsertCommand.Parameters[5].Value = ((int)(rese_cabina));
+            this.Adapter.InsertCommand.Parameters[3].Value = ((int)(rese_viaje));
+            this.Adapter.InsertCommand.Parameters[4].Value = ((int)(rese_cabina));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -16438,7 +16624,7 @@ SELECT rese_id, rese_codigo, rese_fecha, rese_cliente, rese_crucero, rese_recorr
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string rese_codigo, System.DateTime rese_fecha, int rese_cliente, int rese_crucero, int rese_recorrido, int rese_cabina, int Original_rese_id, string Original_rese_codigo, System.DateTime Original_rese_fecha, int Original_rese_cliente, int Original_rese_crucero, int Original_rese_recorrido, int Original_rese_cabina, int rese_id) {
+        public virtual int Update(string rese_codigo, System.DateTime rese_fecha, int rese_cliente, int rese_viaje, int rese_cabina, int Original_rese_id, string Original_rese_codigo, System.DateTime Original_rese_fecha, int Original_rese_cliente, int Original_rese_viaje, int Original_rese_cabina, int rese_id) {
             if ((rese_codigo == null)) {
                 throw new global::System.ArgumentNullException("rese_codigo");
             }
@@ -16447,22 +16633,20 @@ SELECT rese_id, rese_codigo, rese_fecha, rese_cliente, rese_crucero, rese_recorr
             }
             this.Adapter.UpdateCommand.Parameters[1].Value = ((System.DateTime)(rese_fecha));
             this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(rese_cliente));
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(rese_crucero));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(rese_recorrido));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(rese_cabina));
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_rese_id));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(rese_viaje));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(rese_cabina));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_rese_id));
             if ((Original_rese_codigo == null)) {
                 throw new global::System.ArgumentNullException("Original_rese_codigo");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_rese_codigo));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_rese_codigo));
             }
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((System.DateTime)(Original_rese_fecha));
-            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_rese_cliente));
-            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_rese_crucero));
-            this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(Original_rese_recorrido));
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_rese_cabina));
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(rese_id));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((System.DateTime)(Original_rese_fecha));
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_rese_cliente));
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_rese_viaje));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_rese_cabina));
+            this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(rese_id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -16483,8 +16667,8 @@ SELECT rese_id, rese_codigo, rese_fecha, rese_cliente, rese_crucero, rese_recorr
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string rese_codigo, System.DateTime rese_fecha, int rese_cliente, int rese_crucero, int rese_recorrido, int rese_cabina, int Original_rese_id, string Original_rese_codigo, System.DateTime Original_rese_fecha, int Original_rese_cliente, int Original_rese_crucero, int Original_rese_recorrido, int Original_rese_cabina) {
-            return this.Update(rese_codigo, rese_fecha, rese_cliente, rese_crucero, rese_recorrido, rese_cabina, Original_rese_id, Original_rese_codigo, Original_rese_fecha, Original_rese_cliente, Original_rese_crucero, Original_rese_recorrido, Original_rese_cabina, Original_rese_id);
+        public virtual int Update(string rese_codigo, System.DateTime rese_fecha, int rese_cliente, int rese_viaje, int rese_cabina, int Original_rese_id, string Original_rese_codigo, System.DateTime Original_rese_fecha, int Original_rese_cliente, int Original_rese_viaje, int Original_rese_cabina) {
+            return this.Update(rese_codigo, rese_fecha, rese_cliente, rese_viaje, rese_cabina, Original_rese_id, Original_rese_codigo, Original_rese_fecha, Original_rese_cliente, Original_rese_viaje, Original_rese_cabina, Original_rese_id);
         }
     }
     
@@ -16625,8 +16809,8 @@ SELECT rese_id, rese_codigo, rese_fecha, rese_cliente, rese_crucero, rese_recorr
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [PENSAMIENTO_LINEAL].[Rol] ([rol_nombre], [rol_habilitado]) VALUES (@" +
-                "rol_nombre, @rol_habilitado);\nSELECT rol_id, rol_nombre, rol_habilitado FROM PEN" +
-                "SAMIENTO_LINEAL.Rol WHERE (rol_id = SCOPE_IDENTITY())";
+                "rol_nombre, @rol_habilitado);\r\nSELECT rol_id, rol_nombre, rol_habilitado FROM PE" +
+                "NSAMIENTO_LINEAL.Rol WHERE (rol_id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@rol_nombre", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "rol_nombre", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@rol_habilitado", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "rol_habilitado", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -17404,16 +17588,16 @@ SELECT rol_id, rol_nombre, rol_habilitado FROM PENSAMIENTO_LINEAL.Rol WHERE (rol
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_serv_desc", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "serv_desc", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [PENSAMIENTO_LINEAL].[Servicio] ([serv_desc]) VALUES (@serv_desc);\nSE" +
-                "LECT serv_id, serv_desc FROM PENSAMIENTO_LINEAL.Servicio WHERE (serv_id = SCOPE_" +
-                "IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [PENSAMIENTO_LINEAL].[Servicio] ([serv_desc]) VALUES (@serv_desc);\r\nS" +
+                "ELECT serv_id, serv_desc FROM PENSAMIENTO_LINEAL.Servicio WHERE (serv_id = SCOPE" +
+                "_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@serv_desc", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "serv_desc", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = "UPDATE [PENSAMIENTO_LINEAL].[Servicio] SET [serv_desc] = @serv_desc WHERE (([serv" +
-                "_id] = @Original_serv_id) AND ([serv_desc] = @Original_serv_desc));\nSELECT serv_" +
-                "id, serv_desc FROM PENSAMIENTO_LINEAL.Servicio WHERE (serv_id = @serv_id)";
+                "_id] = @Original_serv_id) AND ([serv_desc] = @Original_serv_desc));\r\nSELECT serv" +
+                "_id, serv_desc FROM PENSAMIENTO_LINEAL.Servicio WHERE (serv_id = @serv_id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@serv_desc", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "serv_desc", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_serv_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "serv_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -17727,8 +17911,8 @@ SELECT rol_id, rol_nombre, rol_habilitado FROM PENSAMIENTO_LINEAL.Rol WHERE (rol
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [PENSAMIENTO_LINEAL].[Tipo_cabina] ([tipo_nombre], [tipo_porc_rec]) V" +
-                "ALUES (@tipo_nombre, @tipo_porc_rec);\nSELECT tipo_id, tipo_nombre, tipo_porc_rec" +
-                " FROM PENSAMIENTO_LINEAL.Tipo_cabina WHERE (tipo_id = SCOPE_IDENTITY())";
+                "ALUES (@tipo_nombre, @tipo_porc_rec);\r\nSELECT tipo_id, tipo_nombre, tipo_porc_re" +
+                "c FROM PENSAMIENTO_LINEAL.Tipo_cabina WHERE (tipo_id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@tipo_nombre", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "tipo_nombre", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@tipo_porc_rec", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 4, 2, "tipo_porc_rec", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -18368,61 +18552,75 @@ SELECT tram_id, tram_precio, tram_duracion, tram_origen, tram_destino FROM PENSA
             tableMapping.ColumnMappings.Add("usua_apellido", "usua_apellido");
             tableMapping.ColumnMappings.Add("usua_direccion", "usua_direccion");
             tableMapping.ColumnMappings.Add("usua_mail", "usua_mail");
+            tableMapping.ColumnMappings.Add("usua_username", "usua_username");
             tableMapping.ColumnMappings.Add("usua_password", "usua_password");
             tableMapping.ColumnMappings.Add("usua_telefono", "usua_telefono");
             tableMapping.ColumnMappings.Add("usua_documento", "usua_documento");
             tableMapping.ColumnMappings.Add("usua_fechanac", "usua_fechanac");
+            tableMapping.ColumnMappings.Add("usua_habilitado", "usua_habilitado");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [PENSAMIENTO_LINEAL].[Usuario] WHERE (([usua_id] = @Original_usua_id) AND ([usua_nombre] = @Original_usua_nombre) AND ([usua_apellido] = @Original_usua_apellido) AND ([usua_direccion] = @Original_usua_direccion) AND ([usua_mail] = @Original_usua_mail) AND ((@IsNull_usua_password = 1 AND [usua_password] IS NULL) OR ([usua_password] = @Original_usua_password)) AND ([usua_telefono] = @Original_usua_telefono) AND ([usua_documento] = @Original_usua_documento) AND ([usua_fechanac] = @Original_usua_fechanac))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [PENSAMIENTO_LINEAL].[Usuario] WHERE (([usua_id] = @Original_usua_id) AND ([usua_nombre] = @Original_usua_nombre) AND ([usua_apellido] = @Original_usua_apellido) AND ([usua_direccion] = @Original_usua_direccion) AND ([usua_mail] = @Original_usua_mail) AND ((@IsNull_usua_username = 1 AND [usua_username] IS NULL) OR ([usua_username] = @Original_usua_username)) AND ((@IsNull_usua_password = 1 AND [usua_password] IS NULL) OR ([usua_password] = @Original_usua_password)) AND ([usua_telefono] = @Original_usua_telefono) AND ([usua_documento] = @Original_usua_documento) AND ([usua_fechanac] = @Original_usua_fechanac) AND ((@IsNull_usua_habilitado = 1 AND [usua_habilitado] IS NULL) OR ([usua_habilitado] = @Original_usua_habilitado)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_usua_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_usua_nombre", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_nombre", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_usua_apellido", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_apellido", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_usua_direccion", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_direccion", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_usua_mail", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_mail", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_usua_username", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_username", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_usua_username", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_username", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_usua_password", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_password", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_usua_password", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_password", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_usua_telefono", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_telefono", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_usua_documento", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_documento", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_usua_fechanac", global::System.Data.SqlDbType.SmallDateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_fechanac", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_usua_habilitado", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_habilitado", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_usua_habilitado", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_habilitado", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [PENSAMIENTO_LINEAL].[Usuario] ([usua_nombre], [usua_apellido], [usua_direccion], [usua_mail], [usua_password], [usua_telefono], [usua_documento], [usua_fechanac]) VALUES (@usua_nombre, @usua_apellido, @usua_direccion, @usua_mail, @usua_password, @usua_telefono, @usua_documento, @usua_fechanac);
-SELECT usua_id, usua_nombre, usua_apellido, usua_direccion, usua_mail, usua_password, usua_telefono, usua_documento, usua_fechanac FROM PENSAMIENTO_LINEAL.Usuario WHERE (usua_id = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [PENSAMIENTO_LINEAL].[Usuario] ([usua_nombre], [usua_apellido], [usua_direccion], [usua_mail], [usua_username], [usua_password], [usua_telefono], [usua_documento], [usua_fechanac], [usua_habilitado]) VALUES (@usua_nombre, @usua_apellido, @usua_direccion, @usua_mail, @usua_username, @usua_password, @usua_telefono, @usua_documento, @usua_fechanac, @usua_habilitado);
+SELECT usua_id, usua_nombre, usua_apellido, usua_direccion, usua_mail, usua_username, usua_password, usua_telefono, usua_documento, usua_fechanac, usua_habilitado FROM PENSAMIENTO_LINEAL.Usuario WHERE (usua_id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@usua_nombre", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_nombre", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@usua_apellido", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_apellido", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@usua_direccion", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_direccion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@usua_mail", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_mail", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@usua_username", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_username", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@usua_password", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_password", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@usua_telefono", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_telefono", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@usua_documento", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_documento", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@usua_fechanac", global::System.Data.SqlDbType.SmallDateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_fechanac", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@usua_habilitado", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_habilitado", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [PENSAMIENTO_LINEAL].[Usuario] SET [usua_nombre] = @usua_nombre, [usua_apellido] = @usua_apellido, [usua_direccion] = @usua_direccion, [usua_mail] = @usua_mail, [usua_password] = @usua_password, [usua_telefono] = @usua_telefono, [usua_documento] = @usua_documento, [usua_fechanac] = @usua_fechanac WHERE (([usua_id] = @Original_usua_id) AND ([usua_nombre] = @Original_usua_nombre) AND ([usua_apellido] = @Original_usua_apellido) AND ([usua_direccion] = @Original_usua_direccion) AND ([usua_mail] = @Original_usua_mail) AND ((@IsNull_usua_password = 1 AND [usua_password] IS NULL) OR ([usua_password] = @Original_usua_password)) AND ([usua_telefono] = @Original_usua_telefono) AND ([usua_documento] = @Original_usua_documento) AND ([usua_fechanac] = @Original_usua_fechanac));
-SELECT usua_id, usua_nombre, usua_apellido, usua_direccion, usua_mail, usua_password, usua_telefono, usua_documento, usua_fechanac FROM PENSAMIENTO_LINEAL.Usuario WHERE (usua_id = @usua_id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [PENSAMIENTO_LINEAL].[Usuario] SET [usua_nombre] = @usua_nombre, [usua_apellido] = @usua_apellido, [usua_direccion] = @usua_direccion, [usua_mail] = @usua_mail, [usua_username] = @usua_username, [usua_password] = @usua_password, [usua_telefono] = @usua_telefono, [usua_documento] = @usua_documento, [usua_fechanac] = @usua_fechanac, [usua_habilitado] = @usua_habilitado WHERE (([usua_id] = @Original_usua_id) AND ([usua_nombre] = @Original_usua_nombre) AND ([usua_apellido] = @Original_usua_apellido) AND ([usua_direccion] = @Original_usua_direccion) AND ([usua_mail] = @Original_usua_mail) AND ((@IsNull_usua_username = 1 AND [usua_username] IS NULL) OR ([usua_username] = @Original_usua_username)) AND ((@IsNull_usua_password = 1 AND [usua_password] IS NULL) OR ([usua_password] = @Original_usua_password)) AND ([usua_telefono] = @Original_usua_telefono) AND ([usua_documento] = @Original_usua_documento) AND ([usua_fechanac] = @Original_usua_fechanac) AND ((@IsNull_usua_habilitado = 1 AND [usua_habilitado] IS NULL) OR ([usua_habilitado] = @Original_usua_habilitado)));
+SELECT usua_id, usua_nombre, usua_apellido, usua_direccion, usua_mail, usua_username, usua_password, usua_telefono, usua_documento, usua_fechanac, usua_habilitado FROM PENSAMIENTO_LINEAL.Usuario WHERE (usua_id = @usua_id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@usua_nombre", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_nombre", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@usua_apellido", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_apellido", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@usua_direccion", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_direccion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@usua_mail", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_mail", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@usua_username", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_username", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@usua_password", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_password", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@usua_telefono", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_telefono", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@usua_documento", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_documento", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@usua_fechanac", global::System.Data.SqlDbType.SmallDateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_fechanac", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@usua_habilitado", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_habilitado", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_usua_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_usua_nombre", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_nombre", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_usua_apellido", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_apellido", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_usua_direccion", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_direccion", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_usua_mail", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_mail", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_usua_username", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_username", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_usua_username", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_username", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_usua_password", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_password", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_usua_password", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_password", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_usua_telefono", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_telefono", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_usua_documento", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_documento", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_usua_fechanac", global::System.Data.SqlDbType.SmallDateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_fechanac", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_usua_habilitado", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_habilitado", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_usua_habilitado", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "usua_habilitado", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@usua_id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "usua_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -18439,9 +18637,9 @@ SELECT usua_id, usua_nombre, usua_apellido, usua_direccion, usua_mail, usua_pass
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT usua_id, usua_nombre, usua_apellido, usua_direccion, usua_mail, usua_passw" +
-                "ord, usua_telefono, usua_documento, usua_fechanac FROM PENSAMIENTO_LINEAL.Usuari" +
-                "o";
+            this._commandCollection[0].CommandText = "SELECT usua_id, usua_nombre, usua_apellido, usua_direccion, usua_mail, usua_usern" +
+                "ame, usua_password, usua_telefono, usua_documento, usua_fechanac, usua_habilitad" +
+                "o FROM PENSAMIENTO_LINEAL.Usuario";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -18502,7 +18700,7 @@ SELECT usua_id, usua_nombre, usua_apellido, usua_direccion, usua_mail, usua_pass
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_usua_id, string Original_usua_nombre, string Original_usua_apellido, string Original_usua_direccion, string Original_usua_mail, string Original_usua_password, string Original_usua_telefono, string Original_usua_documento, System.DateTime Original_usua_fechanac) {
+        public virtual int Delete(int Original_usua_id, string Original_usua_nombre, string Original_usua_apellido, string Original_usua_direccion, string Original_usua_mail, string Original_usua_username, string Original_usua_password, string Original_usua_telefono, string Original_usua_documento, System.DateTime Original_usua_fechanac, global::System.Nullable<bool> Original_usua_habilitado) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_usua_id));
             if ((Original_usua_nombre == null)) {
                 throw new global::System.ArgumentNullException("Original_usua_nombre");
@@ -18528,27 +18726,43 @@ SELECT usua_id, usua_nombre, usua_apellido, usua_direccion, usua_mail, usua_pass
             else {
                 this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_usua_mail));
             }
-            if ((Original_usua_password == null)) {
+            if ((Original_usua_username == null)) {
                 this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(Original_usua_password));
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(Original_usua_username));
+            }
+            if ((Original_usua_password == null)) {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((string)(Original_usua_password));
             }
             if ((Original_usua_telefono == null)) {
                 throw new global::System.ArgumentNullException("Original_usua_telefono");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((string)(Original_usua_telefono));
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((string)(Original_usua_telefono));
             }
             if ((Original_usua_documento == null)) {
                 throw new global::System.ArgumentNullException("Original_usua_documento");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[8].Value = ((string)(Original_usua_documento));
+                this.Adapter.DeleteCommand.Parameters[10].Value = ((string)(Original_usua_documento));
             }
-            this.Adapter.DeleteCommand.Parameters[9].Value = ((System.DateTime)(Original_usua_fechanac));
+            this.Adapter.DeleteCommand.Parameters[11].Value = ((System.DateTime)(Original_usua_fechanac));
+            if ((Original_usua_habilitado.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[12].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[13].Value = ((bool)(Original_usua_habilitado.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[12].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -18569,7 +18783,7 @@ SELECT usua_id, usua_nombre, usua_apellido, usua_direccion, usua_mail, usua_pass
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string usua_nombre, string usua_apellido, string usua_direccion, string usua_mail, string usua_password, string usua_telefono, string usua_documento, System.DateTime usua_fechanac) {
+        public virtual int Insert(string usua_nombre, string usua_apellido, string usua_direccion, string usua_mail, string usua_username, string usua_password, string usua_telefono, string usua_documento, System.DateTime usua_fechanac, global::System.Nullable<bool> usua_habilitado) {
             if ((usua_nombre == null)) {
                 throw new global::System.ArgumentNullException("usua_nombre");
             }
@@ -18594,25 +18808,37 @@ SELECT usua_id, usua_nombre, usua_apellido, usua_direccion, usua_mail, usua_pass
             else {
                 this.Adapter.InsertCommand.Parameters[3].Value = ((string)(usua_mail));
             }
-            if ((usua_password == null)) {
+            if ((usua_username == null)) {
                 this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(usua_password));
+                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(usua_username));
+            }
+            if ((usua_password == null)) {
+                this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(usua_password));
             }
             if ((usua_telefono == null)) {
                 throw new global::System.ArgumentNullException("usua_telefono");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(usua_telefono));
+                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(usua_telefono));
             }
             if ((usua_documento == null)) {
                 throw new global::System.ArgumentNullException("usua_documento");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(usua_documento));
+                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(usua_documento));
             }
-            this.Adapter.InsertCommand.Parameters[7].Value = ((System.DateTime)(usua_fechanac));
+            this.Adapter.InsertCommand.Parameters[8].Value = ((System.DateTime)(usua_fechanac));
+            if ((usua_habilitado.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[9].Value = ((bool)(usua_habilitado.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -18638,19 +18864,23 @@ SELECT usua_id, usua_nombre, usua_apellido, usua_direccion, usua_mail, usua_pass
                     string usua_apellido, 
                     string usua_direccion, 
                     string usua_mail, 
+                    string usua_username, 
                     string usua_password, 
                     string usua_telefono, 
                     string usua_documento, 
                     System.DateTime usua_fechanac, 
+                    global::System.Nullable<bool> usua_habilitado, 
                     int Original_usua_id, 
                     string Original_usua_nombre, 
                     string Original_usua_apellido, 
                     string Original_usua_direccion, 
                     string Original_usua_mail, 
+                    string Original_usua_username, 
                     string Original_usua_password, 
                     string Original_usua_telefono, 
                     string Original_usua_documento, 
                     System.DateTime Original_usua_fechanac, 
+                    global::System.Nullable<bool> Original_usua_habilitado, 
                     int usua_id) {
             if ((usua_nombre == null)) {
                 throw new global::System.ArgumentNullException("usua_nombre");
@@ -18676,72 +18906,100 @@ SELECT usua_id, usua_nombre, usua_apellido, usua_direccion, usua_mail, usua_pass
             else {
                 this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(usua_mail));
             }
-            if ((usua_password == null)) {
+            if ((usua_username == null)) {
                 this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(usua_password));
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(usua_username));
+            }
+            if ((usua_password == null)) {
+                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(usua_password));
             }
             if ((usua_telefono == null)) {
                 throw new global::System.ArgumentNullException("usua_telefono");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(usua_telefono));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(usua_telefono));
             }
             if ((usua_documento == null)) {
                 throw new global::System.ArgumentNullException("usua_documento");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(usua_documento));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(usua_documento));
             }
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((System.DateTime)(usua_fechanac));
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_usua_id));
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((System.DateTime)(usua_fechanac));
+            if ((usua_habilitado.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((bool)(usua_habilitado.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_usua_id));
             if ((Original_usua_nombre == null)) {
                 throw new global::System.ArgumentNullException("Original_usua_nombre");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_usua_nombre));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_usua_nombre));
             }
             if ((Original_usua_apellido == null)) {
                 throw new global::System.ArgumentNullException("Original_usua_apellido");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_usua_apellido));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_usua_apellido));
             }
             if ((Original_usua_direccion == null)) {
                 throw new global::System.ArgumentNullException("Original_usua_direccion");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_usua_direccion));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Original_usua_direccion));
             }
             if ((Original_usua_mail == null)) {
                 throw new global::System.ArgumentNullException("Original_usua_mail");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_usua_mail));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Original_usua_mail));
             }
-            if ((Original_usua_password == null)) {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
+            if ((Original_usua_username == null)) {
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Original_usua_password));
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(Original_usua_username));
+            }
+            if ((Original_usua_password == null)) {
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(Original_usua_password));
             }
             if ((Original_usua_telefono == null)) {
                 throw new global::System.ArgumentNullException("Original_usua_telefono");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_usua_telefono));
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(Original_usua_telefono));
             }
             if ((Original_usua_documento == null)) {
                 throw new global::System.ArgumentNullException("Original_usua_documento");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(Original_usua_documento));
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((string)(Original_usua_documento));
             }
-            this.Adapter.UpdateCommand.Parameters[17].Value = ((System.DateTime)(Original_usua_fechanac));
-            this.Adapter.UpdateCommand.Parameters[18].Value = ((int)(usua_id));
+            this.Adapter.UpdateCommand.Parameters[21].Value = ((System.DateTime)(Original_usua_fechanac));
+            if ((Original_usua_habilitado.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((bool)(Original_usua_habilitado.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[23].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[24].Value = ((int)(usua_id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -18767,20 +19025,24 @@ SELECT usua_id, usua_nombre, usua_apellido, usua_direccion, usua_mail, usua_pass
                     string usua_apellido, 
                     string usua_direccion, 
                     string usua_mail, 
+                    string usua_username, 
                     string usua_password, 
                     string usua_telefono, 
                     string usua_documento, 
                     System.DateTime usua_fechanac, 
+                    global::System.Nullable<bool> usua_habilitado, 
                     int Original_usua_id, 
                     string Original_usua_nombre, 
                     string Original_usua_apellido, 
                     string Original_usua_direccion, 
                     string Original_usua_mail, 
+                    string Original_usua_username, 
                     string Original_usua_password, 
                     string Original_usua_telefono, 
                     string Original_usua_documento, 
-                    System.DateTime Original_usua_fechanac) {
-            return this.Update(usua_nombre, usua_apellido, usua_direccion, usua_mail, usua_password, usua_telefono, usua_documento, usua_fechanac, Original_usua_id, Original_usua_nombre, Original_usua_apellido, Original_usua_direccion, Original_usua_mail, Original_usua_password, Original_usua_telefono, Original_usua_documento, Original_usua_fechanac, Original_usua_id);
+                    System.DateTime Original_usua_fechanac, 
+                    global::System.Nullable<bool> Original_usua_habilitado) {
+            return this.Update(usua_nombre, usua_apellido, usua_direccion, usua_mail, usua_username, usua_password, usua_telefono, usua_documento, usua_fechanac, usua_habilitado, Original_usua_id, Original_usua_nombre, Original_usua_apellido, Original_usua_direccion, Original_usua_mail, Original_usua_username, Original_usua_password, Original_usua_telefono, Original_usua_documento, Original_usua_fechanac, Original_usua_habilitado, Original_usua_id);
         }
     }
     
@@ -18811,12 +19073,18 @@ SELECT usua_id, usua_nombre, usua_apellido, usua_direccion, usua_mail, usua_pass
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.IDbCommand[1];
+            this._commandCollection = new global::System.Data.IDbCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Connection = new global::System.Data.SqlClient.SqlConnection(global::FrbaCrucero.Properties.Settings.Default.GD1C2019ConnectionString);
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).CommandText = "PENSAMIENTO_LINEAL.MigrarDB";
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).CommandType = global::System.Data.CommandType.StoredProcedure;
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[1])).Connection = new global::System.Data.SqlClient.SqlConnection(global::FrbaCrucero.Properties.Settings.Default.GD1C2019ConnectionString);
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[1])).CommandText = "dbo.CodificarSha256";
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[1])).CommandType = global::System.Data.CommandType.StoredProcedure;
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[1])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Binary, 32, global::System.Data.ParameterDirection.ReturnValue, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[1])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@contra", global::System.Data.SqlDbType.VarChar, 1, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -18839,6 +19107,39 @@ SELECT usua_id, usua_nombre, usua_apellido, usua_direccion, usua_mail, usua_pass
                 }
             }
             return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual byte[] CodificarSha256(string contra) {
+            global::System.Data.SqlClient.SqlCommand command = ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[1]));
+            if ((contra == null)) {
+                command.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[1].Value = ((string)(contra));
+            }
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            try {
+                command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            if (((command.Parameters[0].Value == null) 
+                        || (command.Parameters[0].Value.GetType() == typeof(global::System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((byte[])(command.Parameters[0].Value));
+            }
         }
     }
     
@@ -19427,21 +19728,12 @@ SELECT usua_id, usua_nombre, usua_apellido, usua_direccion, usua_mail, usua_pass
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._tipo_cabinaTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Tipo_cabina.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._marcaTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Marca.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._tipo_cabinaTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._tramoTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Tramo.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._tramoTableAdapter.Update(updatedRows));
+                    result = (result + this._marcaTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -19454,12 +19746,39 @@ SELECT usua_id, usua_nombre, usua_apellido, usua_direccion, usua_mail, usua_pass
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._marcaTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Marca.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._tramoTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Tramo.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._marcaTableAdapter.Update(updatedRows));
+                    result = (result + this._tramoTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._tipo_cabinaTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Tipo_cabina.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._tipo_cabinaTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._cruceroTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Crucero.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._cruceroTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._recorridoTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Recorrido.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._recorridoTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -19481,12 +19800,12 @@ SELECT usua_id, usua_nombre, usua_apellido, usua_direccion, usua_mail, usua_pass
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._recorridoTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Recorrido.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._recorrido_cruceroTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Recorrido_crucero.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._recorridoTableAdapter.Update(updatedRows));
+                    result = (result + this._recorrido_cruceroTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -19508,15 +19827,6 @@ SELECT usua_id, usua_nombre, usua_apellido, usua_direccion, usua_mail, usua_pass
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._cruceroTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Crucero.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._cruceroTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._usuarioTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.Usuario.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -19526,30 +19836,12 @@ SELECT usua_id, usua_nombre, usua_apellido, usua_direccion, usua_mail, usua_pass
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._pasajeTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Pasaje.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._maestraTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Maestra.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._pasajeTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._estado_cruceroTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Estado_crucero.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._estado_cruceroTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._recorrido_cruceroTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Recorrido_crucero.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._recorrido_cruceroTableAdapter.Update(updatedRows));
+                    result = (result + this._maestraTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -19571,12 +19863,12 @@ SELECT usua_id, usua_nombre, usua_apellido, usua_direccion, usua_mail, usua_pass
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._crucero_ServicioTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Crucero_Servicio.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._estado_cruceroTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Estado_crucero.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._crucero_ServicioTableAdapter.Update(updatedRows));
+                    result = (result + this._estado_cruceroTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -19598,6 +19890,15 @@ SELECT usua_id, usua_nombre, usua_apellido, usua_direccion, usua_mail, usua_pass
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._crucero_ServicioTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Crucero_Servicio.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._crucero_ServicioTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             if ((this._cancelaciones_logTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.Cancelaciones_log.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -19607,12 +19908,12 @@ SELECT usua_id, usua_nombre, usua_apellido, usua_direccion, usua_mail, usua_pass
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._maestraTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Maestra.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._pasajeTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Pasaje.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._maestraTableAdapter.Update(updatedRows));
+                    result = (result + this._pasajeTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -19634,19 +19935,11 @@ SELECT usua_id, usua_nombre, usua_apellido, usua_direccion, usua_mail, usua_pass
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._tipo_cabinaTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Tipo_cabina.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._marcaTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Marca.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._tipo_cabinaTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._tramoTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Tramo.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._tramoTableAdapter.Update(addedRows));
+                    result = (result + this._marcaTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -19658,11 +19951,35 @@ SELECT usua_id, usua_nombre, usua_apellido, usua_direccion, usua_mail, usua_pass
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._marcaTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Marca.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._tramoTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Tramo.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._marcaTableAdapter.Update(addedRows));
+                    result = (result + this._tramoTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._tipo_cabinaTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Tipo_cabina.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._tipo_cabinaTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._cruceroTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Crucero.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._cruceroTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._recorridoTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Recorrido.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._recorridoTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -19682,11 +19999,11 @@ SELECT usua_id, usua_nombre, usua_apellido, usua_direccion, usua_mail, usua_pass
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._recorridoTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Recorrido.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._recorrido_cruceroTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Recorrido_crucero.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._recorridoTableAdapter.Update(addedRows));
+                    result = (result + this._recorrido_cruceroTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -19706,14 +20023,6 @@ SELECT usua_id, usua_nombre, usua_apellido, usua_direccion, usua_mail, usua_pass
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._cruceroTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Crucero.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._cruceroTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._usuarioTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.Usuario.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -19722,27 +20031,11 @@ SELECT usua_id, usua_nombre, usua_apellido, usua_direccion, usua_mail, usua_pass
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._pasajeTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Pasaje.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._maestraTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Maestra.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._pasajeTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._estado_cruceroTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Estado_crucero.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._estado_cruceroTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._recorrido_cruceroTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Recorrido_crucero.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._recorrido_cruceroTableAdapter.Update(addedRows));
+                    result = (result + this._maestraTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -19762,11 +20055,11 @@ SELECT usua_id, usua_nombre, usua_apellido, usua_direccion, usua_mail, usua_pass
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._crucero_ServicioTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Crucero_Servicio.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._estado_cruceroTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Estado_crucero.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._crucero_ServicioTableAdapter.Update(addedRows));
+                    result = (result + this._estado_cruceroTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -19786,6 +20079,14 @@ SELECT usua_id, usua_nombre, usua_apellido, usua_direccion, usua_mail, usua_pass
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._crucero_ServicioTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Crucero_Servicio.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._crucero_ServicioTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             if ((this._cancelaciones_logTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.Cancelaciones_log.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -19794,11 +20095,11 @@ SELECT usua_id, usua_nombre, usua_apellido, usua_direccion, usua_mail, usua_pass
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._maestraTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Maestra.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._pasajeTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Pasaje.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._maestraTableAdapter.Update(addedRows));
+                    result = (result + this._pasajeTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -19812,11 +20113,11 @@ SELECT usua_id, usua_nombre, usua_apellido, usua_direccion, usua_mail, usua_pass
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateDeletedRows(GD1C2019DataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._maestraTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Maestra.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._pasajeTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Pasaje.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._maestraTableAdapter.Update(deletedRows));
+                    result = (result + this._pasajeTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -19825,6 +20126,14 @@ SELECT usua_id, usua_nombre, usua_apellido, usua_direccion, usua_mail, usua_pass
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._cancelaciones_logTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._crucero_ServicioTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Crucero_Servicio.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._crucero_ServicioTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -19844,11 +20153,11 @@ SELECT usua_id, usua_nombre, usua_apellido, usua_direccion, usua_mail, usua_pass
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._crucero_ServicioTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Crucero_Servicio.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._estado_cruceroTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Estado_crucero.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._crucero_ServicioTableAdapter.Update(deletedRows));
+                    result = (result + this._estado_cruceroTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -19868,27 +20177,11 @@ SELECT usua_id, usua_nombre, usua_apellido, usua_direccion, usua_mail, usua_pass
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._recorrido_cruceroTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Recorrido_crucero.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._maestraTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Maestra.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._recorrido_cruceroTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._estado_cruceroTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Estado_crucero.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._estado_cruceroTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._pasajeTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Pasaje.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._pasajeTableAdapter.Update(deletedRows));
+                    result = (result + this._maestraTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -19897,14 +20190,6 @@ SELECT usua_id, usua_nombre, usua_apellido, usua_direccion, usua_mail, usua_pass
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._usuarioTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._cruceroTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Crucero.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._cruceroTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -19924,11 +20209,11 @@ SELECT usua_id, usua_nombre, usua_apellido, usua_direccion, usua_mail, usua_pass
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._recorridoTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Recorrido.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._recorrido_cruceroTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Recorrido_crucero.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._recorridoTableAdapter.Update(deletedRows));
+                    result = (result + this._recorrido_cruceroTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -19948,19 +20233,27 @@ SELECT usua_id, usua_nombre, usua_apellido, usua_direccion, usua_mail, usua_pass
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._marcaTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Marca.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._recorridoTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Recorrido.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._marcaTableAdapter.Update(deletedRows));
+                    result = (result + this._recorridoTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._modeloTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Modelo.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._cruceroTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Crucero.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._modeloTableAdapter.Update(deletedRows));
+                    result = (result + this._cruceroTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._tipo_cabinaTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Tipo_cabina.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._tipo_cabinaTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -19972,11 +20265,19 @@ SELECT usua_id, usua_nombre, usua_apellido, usua_direccion, usua_mail, usua_pass
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._tipo_cabinaTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Tipo_cabina.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._modeloTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Modelo.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._tipo_cabinaTableAdapter.Update(deletedRows));
+                    result = (result + this._modeloTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._marcaTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Marca.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._marcaTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }

@@ -159,7 +159,7 @@
             this.textBoxDuracion.Name = "textBoxDuracion";
             this.textBoxDuracion.Size = new System.Drawing.Size(232, 26);
             this.textBoxDuracion.TabIndex = 14;
-            this.textBoxDuracion.WordWrap = false;
+            this.textBoxDuracion.Visible = false;
             // 
             // duracionLB
             // 

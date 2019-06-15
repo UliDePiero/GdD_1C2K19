@@ -284,13 +284,12 @@ namespace FrbaCrucero.BD_y_Querys
             SqlCommand cmd = new SqlCommand(query, conn);
             cmd.Parameters.AddWithValue("@usua_username", UsuarioLogeado.Username);
             SqlDataReader reader = cmd.ExecuteReader();
-            reader.Read();
             while (reader.Read())
             {
                 int id = int.Parse(reader["rol_id"].ToString());
                 string nombre = reader["rol_nombre"].ToString();
                 bool habilitado = reader.GetBoolean(reader.GetOrdinal("rol_habilitado"));
-
+                
                 ROL rol = new ROL(id, nombre, habilitado);
                 if (rol.habilitado == true)
                     roles.Add(rol);

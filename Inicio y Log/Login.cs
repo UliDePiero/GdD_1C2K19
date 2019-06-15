@@ -18,6 +18,9 @@ namespace FrbaCrucero
         private static string server = ConfigurationManager.AppSettings["server"].ToString();
         private static string user = ConfigurationManager.AppSettings["user"].ToString();
         private static string password = ConfigurationManager.AppSettings["password"].ToString();
+        List<String> Usuarios = new List<string>();
+        List<int> Fallas = new List<int>();
+        bool valor = true;
 
         public Login()
         {
@@ -46,7 +49,7 @@ namespace FrbaCrucero
             return conn;
         }
 
-        bool valor = true;
+        
 
         private bool logins(string usua, string contra)
         {
@@ -69,7 +72,7 @@ namespace FrbaCrucero
                         SqlDataReader dr = cmd.ExecuteReader();
                         if (dr.Read())
                         {                            
-                            MessageBox.Show("Inicio de sesión exitoso.", "Login", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //MessageBox.Show("Inicio de sesión exitoso.", "Login", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             UsuarioLogeado.Username = usua;
                             conexion.Close();
                             return true;
@@ -115,8 +118,7 @@ namespace FrbaCrucero
                 MessageBox.Show("Error: " + ex.ToString(), "Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        List<String> Usuarios = new List<string>();
-        List<int> Fallas = new List<int>();
+        
 
         private void Login_Load(object sender, EventArgs e)
         {
@@ -128,17 +130,16 @@ namespace FrbaCrucero
                     string comando = "SELECT distinct(usua_username) FROM PENSAMIENTO_LINEAL.Usuario WHERE usua_habilitado = 1 AND usua_username is Not NULL";
                     using (SqlCommand cmd = new SqlCommand(comando, conexion))
                     {
-                        string usuario = "", temp = "";
+                        string temp = "";
                         SqlDataReader dr = cmd.ExecuteReader();
                         while (dr.Read())
                         {
                             temp = dr.GetString(0);
                             temp = temp.Replace(" ", String.Empty);
                             Usuarios.Add(temp);
-                            Fallas.Add(0);
-                            usuario += temp + " ,";
+                            Fallas.Add(0);                            
                         }
-                        MessageBox.Show("" + Usuarios.Count + usuario);
+                        MessageBox.Show("Usuarios cargados: " + Usuarios.Count + Environment.NewLine + "Usuarios: " + Environment.NewLine + string.Join(Environment.NewLine, Usuarios), "Login");
                         conexion.Close();
 
                     }

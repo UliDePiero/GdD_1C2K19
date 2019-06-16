@@ -14,9 +14,9 @@ namespace FrbaCrucero.Clases
         public abstract DateTime fecha { get; set; }
         public abstract int cliente { get; set; }
         public abstract int viaje { get; set; }
-        public abstract int cabina { get; set; }
+        public abstract List<int> cabina { get; set; }
 
-        public abstract void finalizarTransaccion(int id);
+        public abstract void finalizarTransaccion(int id, int cantidad);
 
     }
 

@@ -16,7 +16,37 @@ namespace FrbaCrucero.CompraReservaPasaje
         public EmitirReserva(string _cod)
         {
             InitializeComponent();
-            codigo = _cod;
+            textBox1.Text = _cod;
+            textBox1.Enabled = false;
         }
+
+        private void identificadorCrucero_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void EmitirReserva_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            ReservaForm ReservaForm = (ReservaForm)Application.OpenForms["ReservaForm"];
+            ReservaForm.Show();
+        }
+
+
     }
 }

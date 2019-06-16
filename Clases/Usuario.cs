@@ -14,9 +14,10 @@ namespace FrbaCrucero.Clases
         public string direccion { get; set; }
         public string mail { get; set; }
         public string documento { get; set; }
-        public DateTime fechaNacimiento { get; set; }
+        public string fechaNacimiento { get; set; }
+        public EstadoUsuario Estado { get; set; }
 
-        public Usuario(string _nombre, string _apellido, string _telefono, string _direccion, string _mail, string _documento, DateTime _fechaNac)
+        public Usuario(string _nombre, string _apellido, string _telefono, string _direccion, string _mail, string _documento, string _fechaNac)
         {
             nombre = _nombre;
             apellido = _apellido;

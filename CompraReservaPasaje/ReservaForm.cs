@@ -16,6 +16,7 @@ namespace FrbaCrucero.CompraReservaPasaje
     {
         private DateTime fecha_salida;
         private string rol_nombre;
+        private int cantidad;
 
         public ReservaForm(string rol)
         {
@@ -23,6 +24,7 @@ namespace FrbaCrucero.CompraReservaPasaje
                 rol_nombre = rol;
                 Reserva_DB.llenar_combox_puertos(comboBoxPuertoO);
                 Reserva_DB.llenar_combox_puertos(comboBoxPuertoD);
+
        }
 
         private void Reserva_Load(object sender, EventArgs e)
@@ -51,22 +53,30 @@ namespace FrbaCrucero.CompraReservaPasaje
             var puertoDestino = comboBoxPuertoD.SelectedItem;
 
 
+            validarCompletos();
+            
+            Reserva_DB.llenar_grilla_reservas_disp(dataGridView1, fecha_salida.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss"), puertoOrigen.ToString(), puertoDestino.ToString());
+
+        }
+
+        private void validarCompletos()
+        {
             if (puertoOrigen == null)
             {
-                MessageBox.Show("Debe seleccionar el puerto origen", "Buscar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Debe seleccionar el puerto origen", "Falta puerto", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
             }
 
             if (puertoDestino == null)
             {
-                MessageBox.Show("Debe seleccionar el puerto destino", "Buscar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Debe seleccionar el puerto destino", "Falta puerto", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
             }
             if (fecha_salida < DateTime.Now)
             {
-                MessageBox.Show("Debe seleccionar una fecha de salida en el futuro", "Buscar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Debe seleccionar una fecha de salida en el futuro", "Fecha incorrecta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
             }
-            
-            Reserva_DB.llenar_grilla_reservas_disp(dataGridView1, fecha_salida, puertoOrigen.ToString(), puertoDestino.ToString());
-
         }
 
         private void cerrar_Click(object sender, EventArgs e)
@@ -83,19 +93,45 @@ namespace FrbaCrucero.CompraReservaPasaje
 
         private void reservar_Click(object sender, EventArgs e)
         {
+            validarCompletos();
+
+            if (comboBox1.SelectedItem == null)
+            {
+                MessageBox.Show("Debe seleccionar la cantidad de pasajes a comprar", "Falta cantidad", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+ 
+            if (dataGridView1.SelectedCells[0] == null || dataGridView1.RowCount == 0)
+            {
+                MessageBox.Show("Debe seleccionar una opcion", "Falta seleccionar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+
+
             this.Hide();
+            cantidad = Int32.Parse(comboBox1.SelectedItem.ToString());
+
+            if (cantidad > Int32.Parse(dataGridView1.SelectedCells[3].Value.ToString()))
+            {
+                MessageBox.Show("Selecciono mas cabinas de las disponibles", "Cabinas ocupadas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
             Reserva r = obtener_reserva_seleccionada();
-            IngresarDatosCliente form = new IngresarDatosCliente(r);
+            IngresarDatosCliente form = new IngresarDatosCliente(r,cantidad);
+
+            dataGridView1.Rows.Clear();
+            dataGridView1.Refresh();
+
             form.Show();
         }
 
         private Reserva obtener_reserva_seleccionada()
         {
-            string rese_cru_identificador = dataGridView1.SelectedCells[0].Value.ToString();
-            DateTime rese_fSalida = DateTime.Parse(dataGridView1.SelectedCells[1].Value.ToString());
-            string rese_cabi_tipo = dataGridView1.SelectedCells[2].Value.ToString();
-            var viaje = Reserva_DB.obtener_viaje(rese_fSalida, rese_cru_identificador);
-            return new Reserva(viaje, Reserva_DB.obtener_cabina_id(rese_cabi_tipo, viaje));
+            string cabi_tipo_nombre = dataGridView1.SelectedCells[2].Value.ToString();
+            int viaje = Int32.Parse(dataGridView1.SelectedCells[5].Value.ToString());
+            return new Reserva(viaje, Reserva_DB.obtener_cabina_id(cabi_tipo_nombre, viaje,cantidad));
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -131,18 +167,32 @@ namespace FrbaCrucero.CompraReservaPasaje
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
+
+            cantidad = Int32.Parse(comboBox1.SelectedItem.ToString());
             Pasaje p = obtener_pasaje_seleccionado();
-            IngresarDatosCliente form = new IngresarDatosCliente(p);
+            IngresarDatosCliente form = new IngresarDatosCliente(p, cantidad);
+
+            dataGridView1.Rows.Clear();
+            dataGridView1.Refresh();
+
             form.Show();
         }
         private Pasaje obtener_pasaje_seleccionado()
         {
-            string rese_cru_identificador = dataGridView1.SelectedCells[0].Value.ToString();
-            DateTime rese_fSalida = DateTime.Parse(dataGridView1.SelectedCells[1].Value.ToString());
-            string rese_cabi_tipo = dataGridView1.SelectedCells[2].Value.ToString();
-            float pasa_precio = float.Parse(dataGridView1.SelectedCells[6].Value.ToString());
-            var viaje = Reserva_DB.obtener_viaje(rese_fSalida, rese_cru_identificador);
-            return new Pasaje(viaje, Reserva_DB.obtener_cabina_id(rese_cabi_tipo, viaje),pasa_precio);
+            string cabi_tipo_nombre = dataGridView1.SelectedCells[2].Value.ToString();
+            int viaje = Int32.Parse(dataGridView1.SelectedCells[5].Value.ToString());
+            float precio = float.Parse(dataGridView1.SelectedCells[4].Value.ToString());
+            return new Pasaje(viaje, Reserva_DB.obtener_cabina_id(cabi_tipo_nombre, viaje, cantidad),precio);
+        }
+
+        private void groupBox2_Enter_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

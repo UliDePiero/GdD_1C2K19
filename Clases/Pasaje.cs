@@ -15,23 +15,34 @@ namespace FrbaCrucero.Clases
         public override DateTime fecha { get; set; }
         public override int cliente { get; set; }
         public override int viaje { get; set; }
-        public override int cabina { get; set; }
+        public override List<int> cabina { get; set; }
         public float precio { get; set; }
+        public int unaCabina;
 
-        public Pasaje(int _viaje, int _cabina, float _precio) 
+        public Pasaje(int _viaje, List<int> _cabina, float _precio) 
         {
             viaje = _viaje;
             cabina = _cabina;
             precio = _precio;
         }
+        public Pasaje(int _cliente, int _viaje,float _precio)
+        {
+            fecha = DateTime.Now;
+            cabina = new List<int>();
+            cliente = _cliente;
+            viaje = _viaje;
+            precio = _precio;
+        }
 
-        public override void finalizarTransaccion(int idCliente)
+        public override void finalizarTransaccion(int idCliente, int cantidad)
         {
             fecha = DateTime.Now;
             codigo = Reserva_DB.ultimoCodigoPasaje();
             cliente = idCliente;
 
-            EmitirPago form = new EmitirPago(this);
+            Reserva_DB.guardarCompra(this);
+
+            EmitirPago form = new EmitirPago(codigo);
             form.Show();
         }
     }

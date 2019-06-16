@@ -104,6 +104,7 @@
     <Compile Include="BD y Querys\Tramo_BD.cs" />
     <Compile Include="Clases\Cabina.cs" />
     <Compile Include="Clases\Datos.cs" />
+    <Compile Include="Clases\EstadoUsuario.cs" />
     <Compile Include="Clases\Pasaje.cs" />
     <Compile Include="Clases\Puerto.cs" />
     <Compile Include="Clases\Crucero.cs" />
@@ -210,11 +211,17 @@
     <EmbeddedResource Include="AbmRol\ModificacionesROL.resx">
       <DependentUpon>ModificacionesROL.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CompraReservaPasaje\EmitirPago.resx">
+      <DependentUpon>EmitirPago.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CompraReservaPasaje\EmitirReserva.resx">
       <DependentUpon>EmitirReserva.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CompraReservaPasaje\IngresarDatosCliente.resx">
       <DependentUpon>IngresarDatosCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CompraReservaPasaje\PagarReserva.resx">
+      <DependentUpon>PagarReserva.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CompraReservaPasaje\ReservaForm.resx">
       <DependentUpon>ReservaForm.cs</DependentUpon>

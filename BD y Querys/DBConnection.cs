@@ -19,7 +19,7 @@ namespace FrbaCrucero.BD_y_Querys
         public static SqlConnection getConnection()
         {
             SqlConnection conn = new SqlConnection();
-            conn.ConnectionString = "SERVER=" + server + "\\SQLSERVER2012; DATABASE = GD1C2019;UID=" + user + ";PASSWORD=" + password + ";";
+            conn.ConnectionString = "SERVER=" + server + "\\SQLSERVER2012; DATABASE = GD1C2019;UID=" + user + ";PASSWORD=" + "lalala231" + ";";
             conn.Open();
             return conn;
         }
@@ -35,7 +35,6 @@ namespace FrbaCrucero.BD_y_Querys
             {
                 dataAdapter = new SqlDataAdapter(consulta, conn);
                 dataTable = new DataTable();
-
                 dataGridView.DataSource = dataTable;
                 dataAdapter.Fill(dataTable);
                 dataAdapter.Dispose();

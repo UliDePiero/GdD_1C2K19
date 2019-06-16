@@ -40,15 +40,18 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.puertoDestino.SuspendLayout();
             this.puertoOrigen.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // buscarPasaje
             // 
-            this.buscarPasaje.Location = new System.Drawing.Point(267, 99);
+            this.buscarPasaje.Location = new System.Drawing.Point(349, 91);
             this.buscarPasaje.Name = "buscarPasaje";
             this.buscarPasaje.Size = new System.Drawing.Size(111, 32);
             this.buscarPasaje.TabIndex = 8;
@@ -79,7 +82,7 @@
             // puertoDestino
             // 
             this.puertoDestino.Controls.Add(this.comboBoxPuertoD);
-            this.puertoDestino.Location = new System.Drawing.Point(222, 12);
+            this.puertoDestino.Location = new System.Drawing.Point(301, 12);
             this.puertoDestino.Name = "puertoDestino";
             this.puertoDestino.Size = new System.Drawing.Size(207, 66);
             this.puertoDestino.TabIndex = 19;
@@ -90,7 +93,7 @@
             // puertoOrigen
             // 
             this.puertoOrigen.Controls.Add(this.comboBoxPuertoO);
-            this.puertoOrigen.Location = new System.Drawing.Point(12, 12);
+            this.puertoOrigen.Location = new System.Drawing.Point(32, 12);
             this.puertoOrigen.Name = "puertoOrigen";
             this.puertoOrigen.Size = new System.Drawing.Size(204, 66);
             this.puertoOrigen.TabIndex = 20;
@@ -100,17 +103,17 @@
             // 
             // cerrar
             // 
-            this.cerrar.Location = new System.Drawing.Point(170, 418);
+            this.cerrar.Location = new System.Drawing.Point(413, 420);
             this.cerrar.Name = "cerrar";
             this.cerrar.Size = new System.Drawing.Size(95, 31);
             this.cerrar.TabIndex = 21;
-            this.cerrar.Text = "Atras";
+            this.cerrar.Text = "Cerrar";
             this.cerrar.UseVisualStyleBackColor = true;
             this.cerrar.Click += new System.EventHandler(this.cerrar_Click);
             // 
             // reservarBtn
             // 
-            this.reservarBtn.Location = new System.Drawing.Point(115, 378);
+            this.reservarBtn.Location = new System.Drawing.Point(6, 58);
             this.reservarBtn.Name = "reservarBtn";
             this.reservarBtn.Size = new System.Drawing.Size(95, 31);
             this.reservarBtn.TabIndex = 23;
@@ -129,7 +132,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.dateTimePicker2);
-            this.groupBox1.Location = new System.Drawing.Point(12, 84);
+            this.groupBox1.Location = new System.Drawing.Point(32, 84);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(204, 52);
             this.groupBox1.TabIndex = 21;
@@ -139,7 +142,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(228, 378);
+            this.button1.Location = new System.Drawing.Point(107, 58);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(95, 31);
             this.button1.TabIndex = 24;
@@ -155,22 +158,52 @@
             this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 142);
+            this.dataGridView1.Location = new System.Drawing.Point(10, 142);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(417, 214);
+            this.dataGridView1.Size = new System.Drawing.Size(517, 214);
             this.dataGridView1.TabIndex = 22;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.comboBox1);
+            this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Controls.Add(this.reservarBtn);
+            this.groupBox2.Location = new System.Drawing.Point(12, 362);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(224, 99);
+            this.groupBox2.TabIndex = 20;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter_1);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"});
+            this.comboBox1.Location = new System.Drawing.Point(6, 19);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(95, 33);
+            this.comboBox1.TabIndex = 15;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // ReservaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(441, 461);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(539, 467);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.reservarBtn);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.cerrar);
             this.Controls.Add(this.puertoDestino);
@@ -183,6 +216,7 @@
             this.puertoOrigen.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -200,5 +234,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

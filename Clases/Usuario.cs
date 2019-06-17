@@ -8,6 +8,7 @@ namespace FrbaCrucero.Clases
 {
     class Usuario
     {
+        public int id { get; set; }
         public string nombre { get; set; }
         public string apellido { get; set; }
         public string telefono { get; set; }
@@ -15,7 +16,6 @@ namespace FrbaCrucero.Clases
         public string mail { get; set; }
         public string documento { get; set; }
         public string fechaNacimiento { get; set; }
-        public EstadoUsuario Estado { get; set; }
 
         public Usuario(string _nombre, string _apellido, string _telefono, string _direccion, string _mail, string _documento, string _fechaNac)
         {

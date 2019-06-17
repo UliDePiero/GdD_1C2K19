@@ -12,7 +12,7 @@ using FrbaCrucero.Clases;
 
 namespace FrbaCrucero.CompraReservaPasaje
 {
-    public partial class ReservaForm : Form
+    public partial class    ReservaForm : Form
     {
         private DateTime fecha_salida;
         private string rol_nombre;
@@ -101,7 +101,7 @@ namespace FrbaCrucero.CompraReservaPasaje
                 return;
             }
  
-            if (dataGridView1.SelectedCells[0] == null || dataGridView1.RowCount == 0)
+            if (dataGridView1.RowCount == 0)
             {
                 MessageBox.Show("Debe seleccionar una opcion", "Falta seleccionar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
@@ -120,9 +120,6 @@ namespace FrbaCrucero.CompraReservaPasaje
 
             Reserva r = obtener_reserva_seleccionada();
             IngresarDatosCliente form = new IngresarDatosCliente(r,cantidad);
-
-            dataGridView1.Rows.Clear();
-            dataGridView1.Refresh();
 
             form.Show();
         }
@@ -171,9 +168,6 @@ namespace FrbaCrucero.CompraReservaPasaje
             cantidad = Int32.Parse(comboBox1.SelectedItem.ToString());
             Pasaje p = obtener_pasaje_seleccionado();
             IngresarDatosCliente form = new IngresarDatosCliente(p, cantidad);
-
-            dataGridView1.Rows.Clear();
-            dataGridView1.Refresh();
 
             form.Show();
         }

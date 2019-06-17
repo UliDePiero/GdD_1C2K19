@@ -12,7 +12,6 @@ namespace FrbaCrucero.CompraReservaPasaje
 {
     public partial class EmitirReserva : Form
     {
-        string codigo;
         public EmitirReserva(string _cod)
         {
             InitializeComponent();
@@ -43,8 +42,9 @@ namespace FrbaCrucero.CompraReservaPasaje
         private void cerrar_Click(object sender, EventArgs e)
         {
             this.Close();
-            ReservaForm ReservaForm = (ReservaForm)Application.OpenForms["ReservaForm"];
-            ReservaForm.Show();
+            INICIO inicio = (INICIO)Application.OpenForms["INICIO"];
+            inicio.Show();
+
         }
 
 

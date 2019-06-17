@@ -18,7 +18,7 @@ namespace FrbaCrucero.CompraReservaPasaje
         private Usuario usuario;
         private string ident;
         private int cantPasajes;
-        private int registrado;
+        private int registrado=0;
         private string doc;
 
         public IngresarDatosCliente(Datos d, int _cantidad)
@@ -56,6 +56,7 @@ namespace FrbaCrucero.CompraReservaPasaje
             DatosCliente_BD.llenar_grilla_clientes(dataGridView1, textBox.Text);
             if (dataGridView1.RowCount == 0)
             {
+                registrado = 0;
                 MessageBox.Show("No existen datos para el documento indicado. Ingrese sus datos", "Sin registros", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -72,8 +73,11 @@ namespace FrbaCrucero.CompraReservaPasaje
             string usua_direccion = dataGridView1.SelectedCells[3].Value.ToString();
             string usua_mail = dataGridView1.SelectedCells[4].Value.ToString();
             string usua_fechaNac = dataGridView1.SelectedCells[5].Value.ToString();
+            int usua_id = Int32.Parse(dataGridView1.SelectedCells[6].Value.ToString());
 
-            return new Usuario(usua_nombre, usua_apellido,usua_telefono, usua_direccion, usua_mail, doc, usua_fechaNac);
+            var new_user = new Usuario(usua_nombre, usua_apellido,usua_telefono, usua_direccion, usua_mail, doc, usua_fechaNac);
+            new_user.id = usua_id;
+            return new_user;
         }
 
         private void textBox_TextChanged(object sender, EventArgs e)
@@ -102,7 +106,7 @@ namespace FrbaCrucero.CompraReservaPasaje
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedCells[0] == null || dataGridView1.RowCount == 0)
+            if (dataGridView1.RowCount == 0)
             {
                 registrado = 0;
             }
@@ -115,12 +119,22 @@ namespace FrbaCrucero.CompraReservaPasaje
                 return;
             }
 
-            if (textBox1.Text != usuario.nombre || textBox2.Text != usuario.apellido || textBox3.Text != usuario.telefono || textBox4.Text != usuario.direccion || textBox5.Text != usuario.mail || dateTimePicker2.Value != DateTime.Parse(usuario.fechaNacimiento))
-                DatosCliente_BD.actualizarCliente(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, dateTimePicker2.Value.ToString());
-            
-            if(registrado == 0)
+            if (registrado == 0)
             {
-                DatosCliente_BD.registrarCliente(textBox.Text,textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, dateTimePicker2.Value.ToString());
+                usuario = new Usuario(textBox1.Text.ToString(), textBox2.Text.ToString() , textBox3.Text.ToString() , textBox4.Text.ToString() , textBox5.Text.ToString() , textBox.Text.ToString() , dateTimePicker2.Value.ToString());
+                DatosCliente_BD.registrarCliente(textBox.Text, textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, dateTimePicker2.Value.ToString("yyyy'-'MM'-'dd"));
+            }
+            else
+            {
+                if (textBox1.Text != usuario.nombre || textBox2.Text != usuario.apellido || textBox3.Text != usuario.telefono || textBox4.Text != usuario.direccion || textBox5.Text != usuario.mail || dateTimePicker2.Value != DateTime.Parse(usuario.fechaNacimiento))
+                    usuario.nombre = textBox1.Text;
+                    usuario.apellido=textBox2.Text; 
+                    usuario.telefono=textBox3.Text;
+                    usuario.direccion=textBox4.Text;
+                    usuario.mail=textBox5.Text;
+                    usuario.fechaNacimiento = dateTimePicker2.Value.ToString();
+                    DatosCliente_BD.actualizarCliente(usuario.id,textBox1.Text,textBox.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, dateTimePicker2.Value.ToString("yyyy'-'MM'-'dd"));
+            
             }
             this.Close();
 

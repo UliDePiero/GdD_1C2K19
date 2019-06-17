@@ -14,7 +14,7 @@ namespace FrbaCrucero.BD_y_Querys
     {
         public static void llenar_grilla_clientes(DataGridView dataGridView1, string Text)
         {
-            string query = string.Format(@"select usua_nombre as Nombre, usua_apellido as Apellido, usua_telefono as Telefono, usua_direccion as Direccion, usua_mail as Mail, usua_fechanac as 'Fecha de nacimiento' 
+            string query = string.Format(@"select usua_nombre as Nombre, usua_apellido as Apellido, usua_telefono as Telefono, usua_direccion as Direccion, usua_mail as Mail, usua_fechanac as 'Fecha de nacimiento', usua_id as ID
                                           from PENSAMIENTO_LINEAL.Usuario 
                                           where usua_documento = '" + Text + @"'");
 
@@ -22,38 +22,41 @@ namespace FrbaCrucero.BD_y_Querys
 
         }
 
-        public static void actualizarCliente(string nombre, string apellido, string telefono, string direccion, string mail, string fechaNacimiento)
+        public static void actualizarCliente(int id, string nombre, string documento, string apellido, string telefono, string direccion, string mail, string fechaNacimiento)
         {
-            string query = string.Format(@"UPDATE PENSAMIENTO_LINEAL.Usuario SET usua_nombre=$usua_nombre, usua_apellido=$usua_apellido, usua_telefono=$usua_telefono,usua_direccion=$usua_direccion,usua_mail=$usua_mail,usua_documento=$usua_documento,usua_fechanac=$usua_fechanac where usua_id = (select usua_id from PENSAMIENTO_LINEAL.Usuario where usua_nombre=$usua_nombre and usua_apellido=$usua_apellido and usua_telefono=$usua_telefono and usua_direccion=$usua_direccion and usua_mail=$usua_maila and usua_documento=$usua_documento and usua_fechanac=$usua_fechanac)");
+            string query = string.Format(@"UPDATE PENSAMIENTO_LINEAL.Usuario SET usua_nombre=@usua_nombre, usua_apellido=@usua_apellido, usua_telefono=@usua_telefono,usua_direccion=@usua_direccion,usua_mail=@usua_mail,usua_fechanac=@usua_fechanac where usua_id = @usua_id");
            
             SqlConnection conn = DBConnection.getConnection();
             SqlCommand cmd = new SqlCommand(query, conn);
 
-            cmd.Parameters.AddWithValue("$usua_nombre", nombre);
-            cmd.Parameters.AddWithValue("$usua_apellido", apellido);
-            cmd.Parameters.AddWithValue("$usua_telefono", telefono);
-            cmd.Parameters.AddWithValue("$usua_direccion", direccion);
-            cmd.Parameters.AddWithValue("$usua_mail", mail);
-            cmd.Parameters.AddWithValue("$usua_fechanac", fechaNacimiento);
+            cmd.Parameters.AddWithValue("@usua_nombre", nombre);
+            cmd.Parameters.AddWithValue("@usua_documento", documento);
+            cmd.Parameters.AddWithValue("@usua_apellido", apellido);
+            cmd.Parameters.AddWithValue("@usua_telefono", telefono);
+            cmd.Parameters.AddWithValue("@usua_direccion", direccion);
+            cmd.Parameters.AddWithValue("@usua_mail", mail);
+            cmd.Parameters.AddWithValue("@usua_id", id);
+            cmd.Parameters.AddWithValue("@usua_fechanac", DateTime.Parse(String.Concat(fechaNacimiento, " 00:00:00")));
 
             cmd.ExecuteNonQuery();
         }
 
         public static void registrarCliente(string doc, string nombre, string apellido, string telefono, string direccion, string mail, string fechaNacimiento)
         {
-            string query = string.Format(@"INSERT INTO PENSAMIENTO_LINEAL.Usuario(usua_nombre, usua_apellido, usua_telefono,usua_direccion,usua_mail,usua_documento,usua_fechanac) VALUES ($usua_nombre,$usua_apellido,$usua_telefono,$usua_direccion,$usua_mail,$usua_documento,$usua_fechanac)");
+            string query = string.Format(@"INSERT INTO PENSAMIENTO_LINEAL.Usuario(usua_nombre, usua_apellido, usua_telefono,usua_direccion,usua_mail,usua_documento,usua_fechanac) VALUES (@usua_nombre,@usua_apellido,@usua_telefono,@usua_direccion,@usua_mail,@usua_documento,@usua_fechanac)");
             SqlConnection conn = DBConnection.getConnection();
             SqlCommand cmd = new SqlCommand(query, conn);
 
-            cmd.Parameters.AddWithValue("$usua_nombre", nombre);
-            cmd.Parameters.AddWithValue("$usua_apellido", apellido);
-            cmd.Parameters.AddWithValue("$usua_telefono", telefono);
-            cmd.Parameters.AddWithValue("$usua_direccion", direccion);
-            cmd.Parameters.AddWithValue("$usua_mail", mail);
-            cmd.Parameters.AddWithValue("$usua_documento", doc);
-            cmd.Parameters.AddWithValue("$usua_fechanac", fechaNacimiento);
+            cmd.Parameters.AddWithValue("@usua_nombre", nombre);
+            cmd.Parameters.AddWithValue("@usua_apellido", apellido);
+            cmd.Parameters.AddWithValue("@usua_telefono", telefono);
+            cmd.Parameters.AddWithValue("@usua_direccion", direccion);
+            cmd.Parameters.AddWithValue("@usua_mail", mail);
+            cmd.Parameters.AddWithValue("@usua_documento", doc);
+            cmd.Parameters.AddWithValue("@usua_fechanac", DateTime.Parse(String.Concat(fechaNacimiento," 00:00:00")));
 
             cmd.ExecuteNonQuery();
+            cmd.Dispose();
         }
 
         public static int clienteId(Usuario u)
@@ -68,6 +71,7 @@ namespace FrbaCrucero.BD_y_Querys
                 id = (Int32)cmd.ExecuteScalar();
 
             }
+
             return (int)id;
 
             /* int id = (Int32)cmd.ExecuteScalar();

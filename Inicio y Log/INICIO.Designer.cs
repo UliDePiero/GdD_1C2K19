@@ -102,7 +102,7 @@
             this.pagoReserva.Name = "pagoReserva";
             this.pagoReserva.Size = new System.Drawing.Size(173, 38);
             this.pagoReserva.TabIndex = 2;
-            this.pagoReserva.Text = "Pagar reserva de pasaje";
+            this.pagoReserva.Text = "Pagar reserva";
             this.pagoReserva.UseVisualStyleBackColor = true;
             this.pagoReserva.Click += new System.EventHandler(this.pagoReserva_Click);
             // 
@@ -113,7 +113,7 @@
             this.compraReserva.Name = "compraReserva";
             this.compraReserva.Size = new System.Drawing.Size(198, 38);
             this.compraReserva.TabIndex = 1;
-            this.compraReserva.Text = "Comprar o Reservar pasaje";
+            this.compraReserva.Text = "Buscar pasaje";
             this.compraReserva.UseVisualStyleBackColor = true;
             this.compraReserva.Click += new System.EventHandler(this.compraReserva_Click);
             // 

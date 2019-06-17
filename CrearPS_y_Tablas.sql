@@ -278,7 +278,7 @@ CREATE TABLE [PENSAMIENTO_LINEAL].[Recorrido](
 	[reco_id] [int] IDENTITY(1,1) NOT NULL,
 	[reco_codigo] [char](20) NOT NULL,
 	[reco_primertramo] [int] NOT NULL,
-	[reco_habilitado] [bit] NULL,
+	[reco_habilitado] [bit] NOT NULL,
  CONSTRAINT [PK_Recorrido] PRIMARY KEY CLUSTERED 
 (
 	[reco_id] ASC

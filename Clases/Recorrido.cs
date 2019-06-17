@@ -13,7 +13,7 @@ namespace FrbaCrucero.Clases
         public Tramo primerTramo { get; set; }
         public List<Tramo> tramosSiguientes;
         public List<Tramo> tramos;
-        private bool habilitado;
+        public bool habilitado;
 
         public Recorrido(int _id, string _codigo, Tramo _primerTramo)
         {

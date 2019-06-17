@@ -15,7 +15,7 @@ namespace FrbaCrucero.BD_y_Querys
     {
         public static void cargar_grilla_recorridos(DataGridView grillaRecorridos)
         {
-            string query = string.Format(@"SELECT reco_id as ID, reco_codigo as Codigo, p1.puer_nombre as Puerto_origen, p2.puer_nombre as Puerto_destino
+            string query = string.Format(@"SELECT reco_id as ID, reco_codigo as Codigo, p1.puer_nombre as Puerto_origen, p2.puer_nombre as Puerto_destino, reco_habilitado as Habilitado
                                             FROM PENSAMIENTO_LINEAL.Recorrido JOIN PENSAMIENTO_LINEAL.Recorrido_tramo ON(reco_tram_recoid=reco_id) JOIN PENSAMIENTO_LINEAL.Tramo ON(tram_id=reco_tram_tramid) JOIN PENSAMIENTO_LINEAL.Puerto p1 ON(p1.puer_id=tram_origen) JOIN PENSAMIENTO_LINEAL.Puerto p2 ON(p2.puer_id=tram_destino)
                                             ORDER BY 1");
             DBConnection.llenar_grilla(grillaRecorridos, query);
@@ -256,6 +256,59 @@ namespace FrbaCrucero.BD_y_Querys
             return false;
         }
 
+        public static void agregar_tramo(Tramo tramo)
+        {
+            try
+            {
+                string query = string.Format(@"INSERT INTO PENSAMIENTO_LINEAL.Tramo(tram_precio, tram_duracion, tram_origen, tram_destino) VALUES (@tram_precio, @tram_duracion, @tram_origen, @tram_destino)");
+                SqlConnection conn = DBConnection.getConnection();
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@tram_precio", tramo.precio);
+                cmd.Parameters.AddWithValue("@tram_duracion", tramo.duracion);
+                cmd.Parameters.AddWithValue("@tram_origen", tramo.origen.id);
+                cmd.Parameters.AddWithValue("@tram_destino", tramo.destino.id);
+
+                cmd.ExecuteNonQuery();
+
+                cmd.Dispose();
+                conn.Close();
+                conn.Dispose();
+                return;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error al agregar tramo.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return;
+        }
+
+        public static void modificar_tramo(Tramo tramo)
+        {
+            try
+            {
+                string query = string.Format(@"UPDATE PENSAMIENTO_LINEAL.Tramo SET tram_precio=@tram_precio, tram_duracion=@tram_duracion, tram_origen=@tram_origen, tram_destino=@tram_destino WHERE tram_id=@tram_id");
+                SqlConnection conn = DBConnection.getConnection();
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@tram_id", tramo.id);
+                cmd.Parameters.AddWithValue("@tram_precio", tramo.precio);
+                cmd.Parameters.AddWithValue("@tram_duracion", tramo.duracion);
+                cmd.Parameters.AddWithValue("@tram_origen", tramo.origen.id);
+                cmd.Parameters.AddWithValue("@tram_destino", tramo.destino.id);
+
+                cmd.ExecuteNonQuery();
+
+                cmd.Dispose();
+                conn.Close();
+                conn.Dispose();
+                return;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error al modificar tramo.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return;
+        }
+
         public static void cargar_grilla_tramos(DataGridView grillaTramos, int id)
         {
             string query = string.Format(@"SELECT tram_id as ID, tram_precio as Precio, tram_duracion as Duracion, p1.puer_nombre as Puerto_Origen, p2.puer_nombre as Puerto_Destino
@@ -298,7 +351,7 @@ namespace FrbaCrucero.BD_y_Querys
                 mostrar = 1;
             else
                 mostrar = 0;
-            string query = string.Format(@"SELECT reco_id as ID, reco_codigo as Codigo, p1.puer_nombre as Puerto_origen, p2.puer_nombre as Puerto_destino
+            string query = string.Format(@"SELECT reco_id as ID, reco_codigo as Codigo, p1.puer_nombre as Puerto_origen, p2.puer_nombre as Puerto_destino, reco_habilitado as Habilitado
                                             FROM PENSAMIENTO_LINEAL.Recorrido JOIN PENSAMIENTO_LINEAL.Recorrido_tramo ON(reco_tram_recoid=reco_id) JOIN PENSAMIENTO_LINEAL.Tramo ON(tram_id=reco_tram_tramid) JOIN PENSAMIENTO_LINEAL.Puerto p1 ON(p1.puer_id=tram_origen) JOIN PENSAMIENTO_LINEAL.Puerto p2 ON(p2.puer_id=tram_destino)
                                             WHERE reco_habilitado = " + mostrar +
                                             "ORDER BY 1");
@@ -313,7 +366,7 @@ namespace FrbaCrucero.BD_y_Querys
                 mostrar = 1;
             else
                 mostrar = 0;
-            string query = string.Format(@"SELECT reco_id as ID, reco_codigo as Codigo, p1.puer_nombre as Puerto_origen, p2.puer_nombre as Puerto_destino
+            string query = string.Format(@"SELECT reco_id as ID, reco_codigo as Codigo, p1.puer_nombre as Puerto_origen, p2.puer_nombre as Puerto_destino, reco_habilitado as Habilitado
                                             FROM PENSAMIENTO_LINEAL.Recorrido JOIN PENSAMIENTO_LINEAL.Recorrido_tramo ON(reco_tram_recoid=reco_id) JOIN PENSAMIENTO_LINEAL.Tramo ON(tram_id=reco_tram_tramid) JOIN PENSAMIENTO_LINEAL.Puerto p1 ON(p1.puer_id=tram_origen) JOIN PENSAMIENTO_LINEAL.Puerto p2 ON(p2.puer_id=tram_destino)
                                             WHERE p1.puer_nombre='" + puerto + "'" + "AND reco_habilitado = " + mostrar +
                                             "ORDER BY 1");
@@ -327,7 +380,7 @@ namespace FrbaCrucero.BD_y_Querys
                 mostrar = 1;
             else
                 mostrar = 0;
-            string query = string.Format(@"SELECT reco_id as ID, reco_codigo as Codigo, p1.puer_nombre as Puerto_origen, p2.puer_nombre as Puerto_destino
+            string query = string.Format(@"SELECT reco_id as ID, reco_codigo as Codigo, p1.puer_nombre as Puerto_origen, p2.puer_nombre as Puerto_destino, reco_habilitado as Habilitado
                                             FROM PENSAMIENTO_LINEAL.Recorrido JOIN PENSAMIENTO_LINEAL.Recorrido_tramo ON(reco_tram_recoid=reco_id) JOIN PENSAMIENTO_LINEAL.Tramo ON(tram_id=reco_tram_tramid) JOIN PENSAMIENTO_LINEAL.Puerto p1 ON(p1.puer_id=tram_origen) JOIN PENSAMIENTO_LINEAL.Puerto p2 ON(p2.puer_id=tram_destino)
                                             WHERE p2.puer_nombre='" + puerto + "'" + "AND reco_habilitado = " + mostrar +
                                             "ORDER BY 1");
@@ -341,11 +394,12 @@ namespace FrbaCrucero.BD_y_Querys
                 mostrar = 1;
             else
                 mostrar = 0;
-            string query = string.Format(@"SELECT reco_id as ID, reco_codigo as Codigo, p1.puer_nombre as Puerto_origen, p2.puer_nombre as Puerto_destino
+            string query = string.Format(@"SELECT reco_id as ID, reco_codigo as Codigo, p1.puer_nombre as Puerto_origen, p2.puer_nombre as Puerto_destino, reco_habilitado as Habilitado
                                             FROM PENSAMIENTO_LINEAL.Recorrido JOIN PENSAMIENTO_LINEAL.Recorrido_tramo ON(reco_tram_recoid=reco_id) JOIN PENSAMIENTO_LINEAL.Tramo ON(tram_id=reco_tram_tramid) JOIN PENSAMIENTO_LINEAL.Puerto p1 ON(p1.puer_id=tram_origen) JOIN PENSAMIENTO_LINEAL.Puerto p2 ON(p2.puer_id=tram_destino)
                                             WHERE p1.puer_nombre='" + puerto_origen + "' AND p2.puer_nombre='" + puerto_destino + "'" + "AND reco_habilitado = " + mostrar +
                                             "ORDER BY 1");
             DBConnection.llenar_grilla(grillaRecorridos, query);
         }
+      
     }
 }

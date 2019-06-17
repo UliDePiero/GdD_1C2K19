@@ -35,6 +35,8 @@ namespace FrbaCrucero
             rolesDelUsuario = new List<ROL>();
             funcionalidadesDelUsuario = new List<Funcionalidad>();
             rolesDelUsuario = ROL_BD.obtener_roles_con_username();
+            if (rolesDelUsuario.Count == 0)
+                MessageBox.Show("No tiene roles asignados.", "MENÚ", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);                
             foreach (ROL r in rolesDelUsuario)
             {
                 comboBoxRoles.Items.Add(r.nombre);

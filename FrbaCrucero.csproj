@@ -11,6 +11,21 @@
     <AssemblyName>FrbaCrucero</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -35,6 +50,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -81,6 +97,12 @@
     <Compile Include="AbmRecorrido\ModificacionesRecorrido.Designer.cs">
       <DependentUpon>ModificacionesRecorrido.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmRecorrido\Tramos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmRecorrido\Tramos.Designer.cs">
+      <DependentUpon>Tramos.cs</DependentUpon>
+    </Compile>
     <Compile Include="AbmRol\ABM_ROL.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +120,7 @@
     <Compile Include="BD y Querys\DBConnection.cs" />
     <Compile Include="BD y Querys\Estadistica_BD.cs" />
     <Compile Include="BD y Querys\Puerto_BD.cs" />
+    <Compile Include="BD y Querys\RecorridoCrucero_BD.cs" />
     <Compile Include="BD y Querys\Recorrido_BD.cs" />
     <Compile Include="BD y Querys\Reserva_DB.cs" />
     <Compile Include="BD y Querys\ROL_BD.cs" />
@@ -113,6 +136,7 @@
     <Compile Include="Clases\MarcaCrucero.cs" />
     <Compile Include="Clases\ModeloCrucero.cs" />
     <Compile Include="Clases\Recorrido.cs" />
+    <Compile Include="Clases\RecorridoCrucero.cs" />
     <Compile Include="Clases\Reserva.cs" />
     <Compile Include="Clases\ROL.cs" />
     <Compile Include="Clases\ServicioCrucero.cs" />
@@ -189,27 +213,38 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AbmCrucero\ABM_Cabina.resx">
       <DependentUpon>ABM_Cabina.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmCrucero\ABM_Crucero.resx">
       <DependentUpon>ABM_Crucero.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmCrucero\ModificacionesCrucero.resx">
       <DependentUpon>ModificacionesCrucero.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmPuerto\ABM_Puerto.resx">
       <DependentUpon>ABM_Puerto.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmRecorrido\ABM_Recorrido.resx">
       <DependentUpon>ABM_Recorrido.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmRecorrido\ModificacionesRecorrido.resx">
       <DependentUpon>ModificacionesRecorrido.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmRecorrido\Tramos.resx">
+      <DependentUpon>Tramos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmRol\ABM_ROL.resx">
       <DependentUpon>ABM_ROL.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmRol\ModificacionesROL.resx">
       <DependentUpon>ModificacionesROL.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="CompraReservaPasaje\EmitirPago.resx">
       <DependentUpon>EmitirPago.cs</DependentUpon>
@@ -219,27 +254,34 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CompraReservaPasaje\IngresarDatosCliente.resx">
       <DependentUpon>IngresarDatosCliente.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="CompraReservaPasaje\PagarReserva.resx">
       <DependentUpon>PagarReserva.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CompraReservaPasaje\ReservaForm.resx">
       <DependentUpon>ReservaForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GeneracionViaje\Generacion_Viaje.resx">
       <DependentUpon>Generacion_Viaje.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Inicio y Log\INICIO.resx">
       <DependentUpon>INICIO.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Inicio y Log\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Inicio y Log\Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ListadoEstadistico\ListadoEstadistico.resx">
       <DependentUpon>ListadoEstadistico.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -279,7 +321,13 @@
     <None Include="Imagenes\INICIO.png" />
     <Content Include="Inicio y Log\INICIO.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

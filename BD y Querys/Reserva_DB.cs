@@ -26,15 +26,15 @@ namespace FrbaCrucero.BD_y_Querys
 										join PENSAMIENTO_LINEAL.Crucero on reco_cruc_crucid = cruc_id
                                         join PENSAMIENTO_LINEAL.Tramo a on a.tram_id = reco_tram_tramid
                                         join PENSAMIENTO_LINEAL.Tramo b on b.tram_id = reco_tram_tramid
-                                        join PENSAMIENTO_LINEAL.Puerto c on c.puer_id = a.tram_origen and c.puer_nombre = 'LUANDA'
-                                        join PENSAMIENTO_LINEAL.Puerto d on d.puer_id = b.tram_destino and d.puer_nombre =  'PRAIA'
+                                        join PENSAMIENTO_LINEAL.Puerto c on c.puer_id = a.tram_origen and c.puer_nombre = '" + puertoOrigen + @"'
+                                        join PENSAMIENTO_LINEAL.Puerto d on d.puer_id = b.tram_destino and d.puer_nombre =  '" + puertoDestino + @"'
                                         join PENSAMIENTO_LINEAL.Cabina on cabi_crucero = reco_cruc_crucid 
                                         join PENSAMIENTO_LINEAL.Tipo_cabina on tipo_id = cabi_tipo 
                                         where cabi_id not in (select cabi_id from PENSAMIENTO_LINEAL.Cabina join PENSAMIENTO_LINEAL.Pasaje on pasa_cabina=cabi_id and pasa_viaje = reco_cruc_id) 
 										  and cabi_id not in (select cabi_id from PENSAMIENTO_LINEAL.Cabina join PENSAMIENTO_LINEAL.Reserva on rese_cabina=cabi_id and rese_viaje = reco_cruc_id)
-										  and year(reco_cruc_salida) = 2020
-                                          and month(reco_cruc_salida) = 1
-                                          and day(reco_cruc_salida) = 1
+										  and year(reco_cruc_salida) = year('" + fechaSalida + @"')
+                                          and month(reco_cruc_salida) = month('" + fechaSalida + @"') 
+                                          and day(reco_cruc_salida) = day('" + fechaSalida + @"')
 									    group by reco_cruc_id,reco_cruc_salida,cruc_identificador, c.puer_nombre, d.puer_nombre, tipo_nombre, tipo_porc_rec, reco_cruc_recoid");
 
 

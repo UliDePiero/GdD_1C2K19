@@ -56,6 +56,11 @@ namespace FrbaCrucero.CompraReservaPasaje
             validarCompletos();
             
             Reserva_DB.llenar_grilla_reservas_disp(dataGridView1, fecha_salida.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss"), puertoOrigen.ToString(), puertoDestino.ToString());
+            if (dataGridView1.RowCount == 0)
+            {
+                MessageBox.Show("No se encontro ningun viaje para esa fecha", "Falta seleccionar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
 
         }
 
@@ -93,6 +98,8 @@ namespace FrbaCrucero.CompraReservaPasaje
 
         private void reservar_Click(object sender, EventArgs e)
         {
+            try
+            {
             validarCompletos();
 
             if (comboBox1.SelectedItem == null)
@@ -107,9 +114,7 @@ namespace FrbaCrucero.CompraReservaPasaje
                 return;
             }
 
-
-
-            this.Hide();
+   
             cantidad = Int32.Parse(comboBox1.SelectedItem.ToString());
 
             if (cantidad > Int32.Parse(dataGridView1.SelectedCells[3].Value.ToString()))
@@ -118,10 +123,17 @@ namespace FrbaCrucero.CompraReservaPasaje
                 return;
             }
 
+            this.Hide();
             Reserva r = obtener_reserva_seleccionada();
             IngresarDatosCliente form = new IngresarDatosCliente(r,cantidad);
 
             form.Show();
+            }
+            catch
+            {
+                MessageBox.Show("Selecciono una opcion", "Sin seleccion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
         }
 
         private Reserva obtener_reserva_seleccionada()
@@ -163,13 +175,43 @@ namespace FrbaCrucero.CompraReservaPasaje
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            try
+            {
+                validarCompletos();
 
-            cantidad = Int32.Parse(comboBox1.SelectedItem.ToString());
-            Pasaje p = obtener_pasaje_seleccionado();
-            IngresarDatosCliente form = new IngresarDatosCliente(p, cantidad);
+                if (comboBox1.SelectedItem == null)
+                {
+                    MessageBox.Show("Debe seleccionar la cantidad de pasajes a comprar", "Falta cantidad", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
 
-            form.Show();
+                if (dataGridView1.RowCount == 0)
+                {
+                    MessageBox.Show("Debe seleccionar una opcion", "Falta seleccionar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+
+                cantidad = Int32.Parse(comboBox1.SelectedItem.ToString());
+
+                if (cantidad > Int32.Parse(dataGridView1.SelectedCells[3].Value.ToString()))
+                {
+                    MessageBox.Show("Selecciono mas cabinas de las disponibles", "Cabinas ocupadas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                this.Hide();
+
+                Pasaje p = obtener_pasaje_seleccionado();
+                IngresarDatosCliente form = new IngresarDatosCliente(p, cantidad);
+
+                form.Show();
+            }
+            catch
+            {
+                MessageBox.Show("Selecciono una opcion", "Sin seleccion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
         }
         private Pasaje obtener_pasaje_seleccionado()
         {

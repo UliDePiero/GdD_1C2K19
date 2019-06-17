@@ -106,6 +106,12 @@ namespace FrbaCrucero.CompraReservaPasaje
 
         private void button2_Click(object sender, EventArgs e)
         {
+            if (textBox.Text == "" || textBox1.Text == "" || textBox2.Text == "" || textBox3.Text == "" || textBox4.Text == "" || textBox5.Text == "")
+            {
+                MessageBox.Show("Faltan completar datos", "Datos faltantes", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
             if (dataGridView1.RowCount == 0)
             {
                 registrado = 0;
@@ -113,11 +119,7 @@ namespace FrbaCrucero.CompraReservaPasaje
             else
                 registrado = 1;
 
-            if (textBox.Text == null || textBox1.Text == null || textBox2.Text == null || textBox3.Text == null || textBox4.Text == null || textBox5.Text == null)
-            {
-                MessageBox.Show("Faltan completar datos", "Datos faltantes", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
+
 
             if (registrado == 0)
             {

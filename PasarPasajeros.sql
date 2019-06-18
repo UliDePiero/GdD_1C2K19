@@ -105,7 +105,7 @@ return (select COUNT(*)
 end
 
 go
-CREATE PROCEDURE pasarPasajeros (@cruc int, @reco int,@fech dateTime)
+CREATE PROCEDURE pasarPasajeros (@cruc int, @reco int,@fech smalldateTime)
 as
 begin
 Declare @pasajeros int
@@ -113,7 +113,7 @@ Declare @ViajeOriginal int = (select Top 1 reco_cruc_id
 							  from PENSAMIENTO_LINEAL.Recorrido_crucero 
 							  where reco_cruc_crucid=@cruc and reco_cruc_recoid=@reco and reco_cruc_salida=@fech)
 SET @pasajeros = dbo.conContarPasajeros(@reco, @cruc, @fech)
-Declare @cruzeros table (Cruc int, Reco int, fech dateTime)
+Declare @cruzeros table (Cruc int, Reco int, fech smalldateTime)
 insert Into @cruzeros
 SELECT A1.reco_cruc_recoid,A1.reco_cruc_crucid,A1.reco_cruc_salida from BuscarCruzeroReco(@fech,@reco,@cruc) as A1 where dbo.Estado(A1.reco_cruc_crucid)=1
 

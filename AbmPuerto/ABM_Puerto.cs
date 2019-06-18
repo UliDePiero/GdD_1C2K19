@@ -92,6 +92,8 @@ namespace FrbaCrucero.AbmPuerto
             nombrePuerto.Visible = true;
             aceptar.Visible = true;
             cancelar.Visible = true;
+            Puerto puerto = obtener_puerto_seleccionado();
+            nombrePuerto.Text = puerto.nombre;
             operacion = "Modificar";
         }
 
@@ -119,7 +121,12 @@ namespace FrbaCrucero.AbmPuerto
             cancelar.Visible = false;
             if(operacion == "Nuevo")
             {
-                Puerto_BD.nuevo_puerto(nombrePuerto.Text);
+                if(nombrePuerto.Text != "")
+                    Puerto_BD.nuevo_puerto(nombrePuerto.Text);
+                else
+                {
+                    MessageBox.Show("Le faltan ingresar campos.", "Puerto", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
             }
             else
             {

@@ -75,14 +75,21 @@ namespace FrbaCrucero.AbmRecorrido
 
         private void aceptar_Click(object sender, EventArgs e)
         {
-            if (recorrido_modificar == null)
+            if (textBoxCodigoRec.Text != null && tramosRecorrido.Count > 0)
             {
-                nuevo_recorrido();
-            }
-            else
-            {
-                modificar_recorrido();
-            }            
+                if (recorrido_modificar == null)
+                {
+                    nuevo_recorrido();
+                }
+                else
+                {
+                    modificar_recorrido();
+                }            
+           }
+           else
+           {
+               MessageBox.Show("Le faltan completar campos.", "Recorrido", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+           }
         }
 
         private void modificar_recorrido()

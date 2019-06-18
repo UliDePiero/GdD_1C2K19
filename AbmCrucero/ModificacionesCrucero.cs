@@ -116,15 +116,22 @@ namespace FrbaCrucero.AbmCrucero
 
         private void aceptar_Click(object sender, EventArgs e)
         {
-            if (cruc_modificar == null)
+            if(textBoxCrucero.Text != "" && comboBoxMarcas.SelectedItem != null && textBoxModelo.Text != "" )
             {
-                nuevo_crucero();
+                if (cruc_modificar == null)
+                {
+                    nuevo_crucero();
+                }
+                else
+                {
+                    modificar_crucero();
+                }
             }
             else
             {
-                modificar_crucero();
+                MessageBox.Show("Le faltan ingresar campos.", "Crucero", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-        }       
+        }
 
         private void cancelar_Click(object sender, EventArgs e)
         {

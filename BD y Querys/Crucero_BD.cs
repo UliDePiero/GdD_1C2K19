@@ -463,7 +463,7 @@ namespace FrbaCrucero.BD_y_Querys
         public static bool baja_definitiva(Crucero crucero, DateTime fecha_operacion)
         {
             try{
-                string query = string.Format(@"UPDATE PENSAMIENTO_LINEAL.Crucero SET cruc_bajadef=@cruc_bajadef WHERE cruc_id=@cruc_id");
+                string query = string.Format(@"UPDATE PENSAMIENTO_LINEAL.Crucero SET cruc_bajadef=CONVERT(smalldatetime,@cruc_bajadef,121) WHERE cruc_id=@cruc_id");
                 SqlConnection conn = DBConnection.getConnection();
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@cruc_bajadef", fecha_operacion);
@@ -486,7 +486,7 @@ namespace FrbaCrucero.BD_y_Querys
         {
             try
             {
-                string query = string.Format(@"INSERT INTO PENSAMIENTO_LINEAL.Estado_crucero (esta_desc,esta_fechabaja,esta_crucero) VALUES (@esta_desc,@esta_fechabaja,@esta_crucero)");
+                string query = string.Format(@"INSERT INTO PENSAMIENTO_LINEAL.Estado_crucero (esta_desc,esta_fechabaja,esta_crucero) VALUES (@esta_desc,CONVERT(smalldatetime,@esta_fechabaja,121),@esta_crucero)");
                 SqlConnection conn = DBConnection.getConnection();
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@esta_desc", "BAJA");
@@ -510,7 +510,7 @@ namespace FrbaCrucero.BD_y_Querys
         {
             try
             {
-                string query = string.Format(@"INSERT INTO PENSAMIENTO_LINEAL.Estado_crucero (esta_desc,esta_fechaalta,esta_crucero) VALUES (@esta_desc,@esta_fechaalta,@esta_crucero)");
+                string query = string.Format(@"UPDATE PENSAMIENTO_LINEAL.Estado_crucero SET esta_desc=@esta_desc,esta_fechaalta=CONVERT(smalldatetime,@esta_fechaalta,121) WHERE esta_crucero=@esta_crucero AND esta_fechaalta IS NULL");
                 SqlConnection conn = DBConnection.getConnection();
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@esta_desc", "ALTA");
@@ -724,7 +724,7 @@ namespace FrbaCrucero.BD_y_Querys
 	                                            join PENSAMIENTO_LINEAL.Modelo on (cruc_modelo = mode_id)
 	                                            left join PENSAMIENTO_LINEAL.Estado_crucero on (cruc_id = esta_crucero)
 	                                            join PENSAMIENTO_LINEAL.Cabina on (cruc_id = cabi_crucero)
-                                             where esta_fechaalta = '" + alta + "'" +
+                                             where YEAR(esta_fechaalta) = YEAR('" + alta + "') AND MONTH(esta_fechaalta) = MONTH('" + alta + "') AND DAY(esta_fechaalta) = DAY('" + alta + "')" +
                                             "group by cruc_id, cruc_identificador, marc_nombre, mode_nombre, cruc_bajadef, esta_fechabaja, esta_fechaalta");
             DBConnection.llenar_grilla(grillaCruceros, query);
         }
@@ -736,8 +736,8 @@ namespace FrbaCrucero.BD_y_Querys
 	                                            join PENSAMIENTO_LINEAL.Marca on (cruc_marca = marc_id) 
 	                                            join PENSAMIENTO_LINEAL.Modelo on (cruc_modelo = mode_id)
 	                                            left join PENSAMIENTO_LINEAL.Estado_crucero on (cruc_id = esta_crucero)
-	                                            join PENSAMIENTO_LINEAL.Cabina on (cruc_id = cabi_crucero)
-                                             where esta_fechabaja = '" + baja + "'" + 
+	                                            join PENSAMIENTO_LINEAL.Cabina on (cruc_id = cabi_crucero)                                             
+                                             where YEAR(esta_fechabaja) = YEAR('" + baja + "') AND MONTH(esta_fechabaja) = MONTH('" + baja + "') AND DAY(esta_fechabaja) = DAY('" + baja + "')" +
                                             "group by cruc_id, cruc_identificador, marc_nombre, mode_nombre, cruc_bajadef, esta_fechabaja, esta_fechaalta");
             DBConnection.llenar_grilla(grillaCruceros, query);
         }
@@ -749,8 +749,8 @@ namespace FrbaCrucero.BD_y_Querys
 	                                            join PENSAMIENTO_LINEAL.Marca on (cruc_marca = marc_id) 
 	                                            join PENSAMIENTO_LINEAL.Modelo on (cruc_modelo = mode_id)
 	                                            left join PENSAMIENTO_LINEAL.Estado_crucero on (cruc_id = esta_crucero)
-	                                            join PENSAMIENTO_LINEAL.Cabina on (cruc_id = cabi_crucero)
-                                             where cruc_bajadef = '" + baja + "'" +
+	                                            join PENSAMIENTO_LINEAL.Cabina on (cruc_id = cabi_crucero)                                             
+                                             where YEAR(cruc_bajadef) = YEAR('" + baja + "') AND MONTH(cruc_bajadef) = MONTH('" + baja + "') AND DAY(cruc_bajadef) = DAY('" + baja + "')" +
                                             "group by cruc_id, cruc_identificador, marc_nombre, mode_nombre, cruc_bajadef, esta_fechabaja, esta_fechaalta");
             DBConnection.llenar_grilla(grillaCruceros, query);
         }

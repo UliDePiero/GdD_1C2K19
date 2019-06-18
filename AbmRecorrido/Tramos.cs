@@ -69,6 +69,9 @@ namespace FrbaCrucero.AbmRecorrido
             duracionLB.Visible = true;
             textBoxPrecio.Visible = true;
             textBoxDuracion.Visible = true;
+            Tramo tramo = obtener_tramo_seleccionado();
+            textBoxPrecio.Text = tramo.precio.ToString();
+            textBoxDuracion.Text = tramo.duracion.ToString();
             operacion = "Modificar";
         }
 
@@ -76,12 +79,20 @@ namespace FrbaCrucero.AbmRecorrido
         {
             if(operacion == "Nuevo")
             {
-                comboBoxOrigen.Visible = false;
-                comboBoxDestino.Visible = false;
-                puertoOrigen.Visible = false;
-                puertoDestino.Visible = false;
-                Tramo tramo = new Tramo(decimal.Parse(textBoxPrecio.Text), decimal.Parse(textBoxDuracion.Text), Puerto_BD.obtener_puerto_con_nombre(comboBoxOrigen.SelectedItem.ToString()), Puerto_BD.obtener_puerto_con_nombre(comboBoxDestino.SelectedItem.ToString()));
-                Recorrido_BD.agregar_tramo(tramo);
+                if(comboBoxOrigen.SelectedItem != null && comboBoxDestino.SelectedItem != null && textBoxPrecio.Text != "" && textBoxDuracion.Text != "")
+                {
+                    comboBoxOrigen.Visible = false;
+                    comboBoxDestino.Visible = false;
+                    puertoOrigen.Visible = false;
+                    puertoDestino.Visible = false;
+                    Tramo tramo = new Tramo(decimal.Parse(textBoxPrecio.Text), decimal.Parse(textBoxDuracion.Text), Puerto_BD.obtener_puerto_con_nombre(comboBoxOrigen.SelectedItem.ToString()), Puerto_BD.obtener_puerto_con_nombre(comboBoxDestino.SelectedItem.ToString()));
+                    Recorrido_BD.agregar_tramo(tramo);
+                }
+                else
+                {
+                    MessageBox.Show("Le faltan ingresar campos.", "Tramos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
             }
             else
             {

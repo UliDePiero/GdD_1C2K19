@@ -101,13 +101,19 @@ namespace FrbaCrucero.AbmRol
 
         private void aceptar_Click(object sender, EventArgs e)
         {
-            if (rol_modificar == null)
-            {
-                nuevo_rol();
+            if(textBoxNombreROL.Text != ""){
+                if (rol_modificar == null)
+                {
+                    nuevo_rol();
+                }
+                else
+                {
+                    modificar_rol();
+                }
             }
             else
             {
-                modificar_rol();
+                MessageBox.Show("Le faltan ingresar campos.", "ROL", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 

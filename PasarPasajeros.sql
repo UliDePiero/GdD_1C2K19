@@ -1,6 +1,20 @@
 USE [GD1C2019]
+
 go
-create trigger DeleteServiciosCruzero
+create function Estado(@crucero int)
+returns bit
+as
+begin
+declare @mayorAlta smallDateTime = (select Top 1 esta_fechaalta from PENSAMIENTO_LINEAL.Estado_crucero where @crucero = esta_crucero order by esta_fechaalta DESC)
+declare @mayorBaja smallDateTime = (select Top 1 esta_desc from PENSAMIENTO_LINEAL.Estado_crucero where @crucero = esta_crucero order by esta_desc DESC)
+
+	if(@mayorAlta > @mayorBaja)
+	return 1
+return 0
+end
+/*
+go
+CREATE trigger DeleteServiciosCruzero
 ON PENSAMIENTO_LINEAL.Servicio
 after delete
 as
@@ -8,9 +22,9 @@ begin
 	delete PENSAMIENTO_LINEAL.Crucero_Servicio
 	from PENSAMIENTO_LINEAL.Crucero_Servicio
 	join deleted on (cruc_serv_servid=serv_id)
-end
+end*/
 go
-create function buscarCruzeroRecoridoConLugar(@fecha dateTime, @origen int, @destino int)
+CREATE function buscarCruzeroRecoridoConLugar(@fecha dateTime, @origen int, @destino int)
 returns int
 begin
 return (select reco_cruc_crucid
@@ -18,10 +32,10 @@ from PENSAMIENTO_LINEAL.Recorrido_crucero join
 	 PENSAMIENTO_LINEAL.Recorrido on (reco_cruc_recoid = reco_codigo AND reco_primertramo = @origen) join
 	 PENSAMIENTO_LINEAL.Recorrido_tramo on (reco_tram_recoid = reco_codigo) join
 	 PENSAMIENTO_LINEAL.Tramo on (reco_tram_tramid = tram_id)
-	 where tram_destino = @destino AND DATEDIFF(DAY,reco_cruc_salida,@fecha)<20 AND dbo.ContarPasajeros(reco_cruc_crucid,reco_cruc_recoid,reco_cruc_salida)>0)
+	 where tram_destino = @destino AND ABS(DATEDIFF(DAY,reco_cruc_salida,@fecha))<20 AND dbo.ContarPasajeros(reco_cruc_crucid,reco_cruc_recoid,reco_cruc_salida)>0)
 end
 go
-create function buscar1CruzeroRecoridoConLugar(@fecha dateTime, @origen int, @destino int)
+CREATE function buscar1CruzeroRecoridoConLugar(@fecha dateTime, @origen int, @destino int)
 returns int
 begin
 return (select TOP 1 reco_cruc_crucid
@@ -29,17 +43,17 @@ from PENSAMIENTO_LINEAL.Recorrido_crucero join
 	 PENSAMIENTO_LINEAL.Recorrido on (reco_cruc_recoid = reco_codigo AND reco_primertramo = @origen) join
 	 PENSAMIENTO_LINEAL.Recorrido_tramo on (reco_tram_recoid = reco_codigo) join
 	 PENSAMIENTO_LINEAL.Tramo on (reco_tram_tramid = tram_id)
-	 where tram_destino = @destino AND DATEDIFF(DAY,reco_cruc_salida,@fecha)<2/* AND ContarPasajeros(reco_cruc_crucid,reco_cruc_recoid,reco_cruc_salida)>0*/)
+	 where tram_destino = @destino AND abs(DATEDIFF(DAY,reco_cruc_salida,@fecha))<2/* AND ContarPasajeros(reco_cruc_crucid,reco_cruc_recoid,reco_cruc_salida)>0*/)
 end
 
 go
 
-Create function BuscarCruzeroReco (@fecha dateTime, @reco int, @crucero int)
+CREATE function BuscarCruzeroReco (@fecha dateTime, @reco int, @crucero int)
 returns table as
 
 return select reco_cruc_crucid, reco_cruc_recoid, reco_cruc_salida
 from PENSAMIENTO_LINEAL.Recorrido_crucero
-where reco_cruc_recoid=@reco and DATEDIFF(DAY,reco_cruc_salida,@fecha)<20 and reco_cruc_crucid <> @crucero and -DATEDIFF(DAY,reco_cruc_salida,@fecha)<20
+where reco_cruc_recoid=@reco and abs(DATEDIFF(DAY,reco_cruc_salida,@fecha))<20 and reco_cruc_crucid <> @crucero and -DATEDIFF(DAY,reco_cruc_salida,@fecha)<20
 	 /*
 Create function BuscarCruzeroReco (@fecha dateTime, @reco int, @crucero)
 returns table as
@@ -49,7 +63,7 @@ from PENSAMIENTO_LINEAL.Recorrido_crucero
 where reco_cruc_recoid=@reco and DATEDIFF(DAY,reco_cruc_salida,@fecha)<20 and reco_cruc_crucid <> @crucero)
 end*/
 go
-create function ContarPasajeros(@reco int, @crucero int, @fecha dateTime)
+CREATE function ContarPasajeros(@reco int, @crucero int, @fecha dateTime)
 returns int
 as
 begin
@@ -63,7 +77,7 @@ end
 
 
 go
-create function buscar1CruzeroRecorido(@fecha dateTime, @origen int, @destino int)
+CREATE function buscar1CruzeroRecorido(@fecha dateTime, @origen int, @destino int)
 returns int
 begin
 return (select TOP 1 reco_cruc_crucid
@@ -71,11 +85,11 @@ from PENSAMIENTO_LINEAL.Recorrido_crucero join
 	 PENSAMIENTO_LINEAL.Recorrido on (reco_cruc_recoid = reco_codigo AND reco_primertramo = @origen) join
 	 PENSAMIENTO_LINEAL.Recorrido_tramo on (reco_tram_recoid = reco_codigo) join
 	 PENSAMIENTO_LINEAL.Tramo on (reco_tram_tramid = tram_id)
-	 where tram_destino = @destino AND DATEDIFF(DAY,reco_cruc_salida,@fecha)<2)
+	 where tram_destino = @destino AND ABS(DATEDIFF(DAY,reco_cruc_salida,@fecha))<2)
 end
 
 go
-create function LugaresLibres(@reco int, @crucero int, @fecha dateTime)
+CREATE function LugaresLibres(@reco int, @crucero int, @fecha dateTime)
 returns int
 as
 begin
@@ -91,7 +105,7 @@ return (select COUNT(*)
 end
 
 go
-Create PROCEDURE pasarPasajeros (@cruc int, @reco int,@fech dateTime)
+CREATE PROCEDURE pasarPasajeros (@cruc int, @reco int,@fech dateTime)
 as
 begin
 Declare @pasajeros int
@@ -101,10 +115,9 @@ Declare @ViajeOriginal int = (select Top 1 reco_cruc_id
 SET @pasajeros = dbo.conContarPasajeros(@reco, @cruc, @fech)
 Declare @cruzeros table (Cruc int, Reco int, fech dateTime)
 insert Into @cruzeros
-SELECT A1.reco_cruc_recoid,A1.reco_cruc_crucid,A1.reco_cruc_salida from BuscarCruzeroReco(@fech,@reco,@cruc) as A1
+SELECT A1.reco_cruc_recoid,A1.reco_cruc_crucid,A1.reco_cruc_salida from BuscarCruzeroReco(@fech,@reco,@cruc) as A1 where dbo.Estado(A1.reco_cruc_crucid)=1
 
-Declare db_cursor CURSOR FOR
-(Select reco_cruc_crucid, reco_cruc_recoid, reco_cruc_salida
+Declare db_cursor CURSOR FOR (Select reco_cruc_crucid, reco_cruc_recoid, reco_cruc_salida
 from PENSAMIENTO_LINEAL.Recorrido_crucero C1 join @cruzeros C2 on (C1.reco_cruc_crucid = C2.Cruc AND C1.reco_cruc_recoid = C2.Reco AND C1.reco_cruc_salida = C2.fech))
 
 Declare @crucero int
@@ -140,10 +153,12 @@ begin
 			where pasa_viaje=@ViajeOriginal
 	
 			fetch NEXT from CabinasCursor INTO @Cab_ID, @Tip_ID
-		end
+		
+	close CabinaCursor
 	fetch NEXT from db_cursor INTO @crucero, @recorrido, @fecha
 	end
+	close db_cursor
 end
-go
+end
 /**/
 

@@ -31,7 +31,6 @@
             this.funciones = new System.Windows.Forms.GroupBox();
             this.modificarCabinas = new System.Windows.Forms.Button();
             this.bajaMomCrucero = new System.Windows.Forms.Button();
-            this.altaCrucero = new System.Windows.Forms.Button();
             this.nuevoCrucero = new System.Windows.Forms.Button();
             this.bajaDefCrucero = new System.Windows.Forms.Button();
             this.modificarCrucero = new System.Windows.Forms.Button();
@@ -66,13 +65,12 @@
             // 
             this.funciones.Controls.Add(this.modificarCabinas);
             this.funciones.Controls.Add(this.bajaMomCrucero);
-            this.funciones.Controls.Add(this.altaCrucero);
             this.funciones.Controls.Add(this.nuevoCrucero);
             this.funciones.Controls.Add(this.bajaDefCrucero);
             this.funciones.Controls.Add(this.modificarCrucero);
             this.funciones.Location = new System.Drawing.Point(18, 509);
             this.funciones.Name = "funciones";
-            this.funciones.Size = new System.Drawing.Size(330, 153);
+            this.funciones.Size = new System.Drawing.Size(330, 144);
             this.funciones.TabIndex = 12;
             this.funciones.TabStop = false;
             this.funciones.Text = "Funciones";
@@ -81,7 +79,7 @@
             // 
             this.modificarCabinas.Location = new System.Drawing.Point(214, 33);
             this.modificarCabinas.Name = "modificarCabinas";
-            this.modificarCabinas.Size = new System.Drawing.Size(110, 39);
+            this.modificarCabinas.Size = new System.Drawing.Size(109, 39);
             this.modificarCabinas.TabIndex = 9;
             this.modificarCabinas.Text = "Modificar Cabinas";
             this.modificarCabinas.UseVisualStyleBackColor = true;
@@ -89,23 +87,13 @@
             // 
             // bajaMomCrucero
             // 
-            this.bajaMomCrucero.Location = new System.Drawing.Point(110, 85);
+            this.bajaMomCrucero.Location = new System.Drawing.Point(6, 85);
             this.bajaMomCrucero.Name = "bajaMomCrucero";
-            this.bajaMomCrucero.Size = new System.Drawing.Size(98, 59);
+            this.bajaMomCrucero.Size = new System.Drawing.Size(134, 43);
             this.bajaMomCrucero.TabIndex = 7;
             this.bajaMomCrucero.Text = "Dar de baja momentanea Crucero";
             this.bajaMomCrucero.UseVisualStyleBackColor = true;
             this.bajaMomCrucero.Click += new System.EventHandler(this.bajaMomCrucero_Click);
-            // 
-            // altaCrucero
-            // 
-            this.altaCrucero.Location = new System.Drawing.Point(6, 85);
-            this.altaCrucero.Name = "altaCrucero";
-            this.altaCrucero.Size = new System.Drawing.Size(98, 59);
-            this.altaCrucero.TabIndex = 8;
-            this.altaCrucero.Text = "Dar de alta Crucero";
-            this.altaCrucero.UseVisualStyleBackColor = true;
-            this.altaCrucero.Click += new System.EventHandler(this.altaCrucero_Click);
             // 
             // nuevoCrucero
             // 
@@ -119,9 +107,9 @@
             // 
             // bajaDefCrucero
             // 
-            this.bajaDefCrucero.Location = new System.Drawing.Point(214, 85);
+            this.bajaDefCrucero.Location = new System.Drawing.Point(179, 85);
             this.bajaDefCrucero.Name = "bajaDefCrucero";
-            this.bajaDefCrucero.Size = new System.Drawing.Size(110, 59);
+            this.bajaDefCrucero.Size = new System.Drawing.Size(144, 43);
             this.bajaDefCrucero.TabIndex = 7;
             this.bajaDefCrucero.Text = "Dar de baja definitiva Crucero";
             this.bajaDefCrucero.UseVisualStyleBackColor = true;
@@ -139,7 +127,7 @@
             // 
             // atras
             // 
-            this.atras.Location = new System.Drawing.Point(598, 614);
+            this.atras.Location = new System.Drawing.Point(592, 596);
             this.atras.Name = "atras";
             this.atras.Size = new System.Drawing.Size(98, 39);
             this.atras.TabIndex = 11;
@@ -195,7 +183,7 @@
             // 
             // aceptar
             // 
-            this.aceptar.Location = new System.Drawing.Point(369, 614);
+            this.aceptar.Location = new System.Drawing.Point(369, 598);
             this.aceptar.Name = "aceptar";
             this.aceptar.Size = new System.Drawing.Size(98, 39);
             this.aceptar.TabIndex = 11;
@@ -206,7 +194,7 @@
             // 
             // cancelar
             // 
-            this.cancelar.Location = new System.Drawing.Point(473, 614);
+            this.cancelar.Location = new System.Drawing.Point(473, 598);
             this.cancelar.Name = "cancelar";
             this.cancelar.Size = new System.Drawing.Size(98, 39);
             this.cancelar.TabIndex = 11;
@@ -362,7 +350,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(716, 674);
+            this.ClientSize = new System.Drawing.Size(716, 672);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.fecha);
@@ -401,7 +389,6 @@
         private System.Windows.Forms.Label fecha;
         private System.Windows.Forms.Button aceptar;
         private System.Windows.Forms.Button cancelar;
-        private System.Windows.Forms.Button altaCrucero;
         private System.Windows.Forms.Button modificarCabinas;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label2;

@@ -486,34 +486,11 @@ namespace FrbaCrucero.BD_y_Querys
         {
             try
             {
-                string query = string.Format(@"INSERT INTO PENSAMIENTO_LINEAL.Estado_crucero (esta_desc,esta_fechabaja,esta_crucero) VALUES (@esta_desc,CONVERT(smalldatetime,@esta_fechabaja,121),@esta_crucero)");
+                string query = string.Format(@"INSERT INTO PENSAMIENTO_LINEAL.Estado_crucero (esta_desc,esta_fechabaja,esta_fechaalta,esta_crucero) VALUES (@esta_desc,CONVERT(smalldatetime,@esta_fechabaja,121),CONVERT(smalldatetime,@esta_fechaalta,121),@esta_crucero)");
                 SqlConnection conn = DBConnection.getConnection();
                 SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@esta_desc", "BAJA");
-                cmd.Parameters.AddWithValue("@esta_fechabaja", fecha_operacion);
-                cmd.Parameters.AddWithValue("@esta_crucero", crucero.id);
-
-                cmd.ExecuteNonQuery();
-
-                cmd.Dispose();
-                conn.Close();
-                conn.Dispose();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        public static bool alta(Crucero crucero, DateTime fecha_operacion)
-        {
-            try
-            {
-                string query = string.Format(@"UPDATE PENSAMIENTO_LINEAL.Estado_crucero SET esta_desc=@esta_desc,esta_fechaalta=CONVERT(smalldatetime,@esta_fechaalta,121) WHERE esta_crucero=@esta_crucero AND esta_fechaalta IS NULL");
-                SqlConnection conn = DBConnection.getConnection();
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@esta_desc", "ALTA");
+                cmd.Parameters.AddWithValue("@esta_desc", "Fuera de servicio");                                
+                cmd.Parameters.AddWithValue("@esta_fechabaja", DateTime.Parse(ConfigurationManager.AppSettings["fecha"].ToString()));
                 cmd.Parameters.AddWithValue("@esta_fechaalta", fecha_operacion);
                 cmd.Parameters.AddWithValue("@esta_crucero", crucero.id);
 

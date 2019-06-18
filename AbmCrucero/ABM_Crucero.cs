@@ -33,8 +33,7 @@ namespace FrbaCrucero.AbmCrucero
             comboBoxMarca.SelectedIndex = 0;
              if (dataGridView1.RowCount == 0){
                  modificarCrucero.Enabled = false;
-                 bajaDefCrucero.Enabled = false;
-                 altaCrucero.Enabled = false;
+                 bajaDefCrucero.Enabled = false;                 
                  bajaMomCrucero.Enabled = false;
              }
              List<MarcaCrucero> marcas = Crucero_BD.obtener_todos_marcas();
@@ -92,14 +91,6 @@ namespace FrbaCrucero.AbmCrucero
             operacion_fecha = "Baja definitiva";
         }
 
-        private void altaCrucero_Click(object sender, EventArgs e)
-        {
-            dateTimePicker1.Visible = true;
-            aceptar.Visible = true;
-            cancelar.Visible = true;
-            operacion_fecha = "Alta";
-        }
-
         private void bajaMomCrucero_Click(object sender, EventArgs e)
         {
             dateTimePicker1.Visible = true;
@@ -121,7 +112,7 @@ namespace FrbaCrucero.AbmCrucero
             }
             else
             {
-                MessageBox.Show("Hubo un error en la operacion " + operacion_fecha, " del crucero", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Hubo un error en la operacion " + operacion_fecha + " del crucero", "Crucero", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -133,40 +124,30 @@ namespace FrbaCrucero.AbmCrucero
             }
             else
             {
-                MessageBox.Show("Hubo un error en la operacion " + operacion_fecha, " del crucero", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void alta(Crucero crucero, string operacion_fecha)
-        {
-            if (Crucero_BD.alta(crucero, fecha_operacion))
-            {
-                MessageBox.Show("Crucero programado a dar de alta.", operacion_fecha, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("Hubo un error en la operacion " + operacion_fecha, " del crucero", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Hubo un error en la operacion " + operacion_fecha + " del crucero", "Crucero", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         
         private void aceptar_Click(object sender, EventArgs e)
         {
-            Crucero cruc_modif = obtener_crucero_seleccionado();
-            switch(operacion_fecha){
-                case "Baja definitiva":
-                    bajaDefinitiva(cruc_modif, operacion_fecha);
-                    break;
-                case "Baja momentanea":
-                    bajaMomentanea(cruc_modif, operacion_fecha);
-                    break;
-                case "Alta":
-                    alta(cruc_modif, operacion_fecha);
-                    break;           
+            if(fecha_operacion != null)
+            {
+                Crucero cruc_modif = obtener_crucero_seleccionado();
+                switch(operacion_fecha){
+                    case "Baja definitiva":
+                        bajaDefinitiva(cruc_modif, operacion_fecha);
+                        break;
+                    case "Baja momentanea":
+                        bajaMomentanea(cruc_modif, operacion_fecha);
+                        break;          
+                }
+                Crucero_BD.cargar_grilla_cruceros(dataGridView1);
+                dateTimePicker1.Visible = false;
+                aceptar.Visible = false;
+                cancelar.Visible = false;
             }
-            Crucero_BD.cargar_grilla_cruceros(dataGridView1);
-            dateTimePicker1.Visible = false;
-            aceptar.Visible = false;
-            cancelar.Visible = false;
+            else
+                MessageBox.Show("Debe seleccionar una fecha", "Crucero", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
         private void cancelar_Click(object sender, EventArgs e)
@@ -208,17 +189,17 @@ namespace FrbaCrucero.AbmCrucero
 
         private void dateTimePickerAlta_ValueChanged(object sender, EventArgs e)
         {
-            Crucero_BD.cargar_grilla_cruceros_con_alta(dataGridView1, dateTimePickerAlta.Value);//SIN TERMINAR//SIN TERMINAR//SIN TERMINAR
+            Crucero_BD.cargar_grilla_cruceros_con_alta(dataGridView1, dateTimePickerAlta.Value);
         }
 
         private void dateTimePickerBajaM_ValueChanged(object sender, EventArgs e)
         {
-            Crucero_BD.cargar_grilla_cruceros_con_bajaM(dataGridView1, dateTimePickerBajaM.Value);//SIN TERMINAR//SIN TERMINAR//SIN TERMINAR
+            Crucero_BD.cargar_grilla_cruceros_con_bajaM(dataGridView1, dateTimePickerBajaM.Value);
         }
 
         private void dateTimePickerBajaD_ValueChanged(object sender, EventArgs e)
         {
-            Crucero_BD.cargar_grilla_cruceros_con_bajaD(dataGridView1, dateTimePickerBajaD.Value);//SIN TERMINAR//SIN TERMINAR//SIN TERMINAR
+            Crucero_BD.cargar_grilla_cruceros_con_bajaD(dataGridView1, dateTimePickerBajaD.Value);
         }
 
         private void mostrarBajaDef_Click(object sender, EventArgs e)

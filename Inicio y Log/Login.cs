@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
 using System.Data.SqlClient;
+using FrbaCrucero.BD_y_Querys;
 using FrbaCrucero.Clases;
 
 namespace FrbaCrucero
@@ -39,17 +40,7 @@ namespace FrbaCrucero
             else
                 if(valor)
                 invalidarUsuarios(textBoxUsuario.Text);
-        }
-
-        public static SqlConnection getConnection()
-        {
-            SqlConnection conn = new SqlConnection();
-            conn.ConnectionString = "SERVER=" + server + "\\SQLSERVER2012; DATABASE = GD1C2019;UID=" + user + ";PASSWORD=" + password + ";";
-            conn.Open();
-            return conn;
-        }
-
-        
+        }        
 
         private bool logins(string usua, string contra)
         {
@@ -62,7 +53,7 @@ namespace FrbaCrucero
             }
             try
             {
-                using (SqlConnection conexion = getConnection())
+                using (SqlConnection conexion = DBConnection.getConnection())
                 {
                     string comando = "SELECT usua_username, usua_password FROM PENSAMIENTO_LINEAL.Usuario WHERE usua_username = @usua AND usua_password = dbo.codificarSHA256(@contra) AND  usua_habilitado = 1";
                     using (SqlCommand cmd = new SqlCommand(comando, conexion))
@@ -97,7 +88,7 @@ namespace FrbaCrucero
         {
             try
             {
-                using (SqlConnection conexion = getConnection())
+                using (SqlConnection conexion = DBConnection.getConnection())
                 {
                     int idUsu = Usuarios.IndexOf(usuario);
                     if (Fallas[idUsu] >= 3)
@@ -125,7 +116,7 @@ namespace FrbaCrucero
 
             try
             {
-                using (SqlConnection conexion = getConnection())
+                using (SqlConnection conexion = DBConnection.getConnection())
                 {
                     string comando = "SELECT distinct(usua_username) FROM PENSAMIENTO_LINEAL.Usuario WHERE usua_habilitado = 1 AND usua_username is Not NULL";
                     using (SqlCommand cmd = new SqlCommand(comando, conexion))

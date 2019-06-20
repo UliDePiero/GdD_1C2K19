@@ -24,7 +24,8 @@ namespace FrbaCrucero.BD_y_Querys
 
         public static void actualizarCliente(int id, string nombre, string documento, string apellido, string telefono, string direccion, string mail, string fechaNacimiento)
         {
-            string query = string.Format(@"UPDATE PENSAMIENTO_LINEAL.Usuario SET usua_nombre=@usua_nombre, usua_apellido=@usua_apellido, usua_telefono=@usua_telefono,usua_direccion=@usua_direccion,usua_mail=@usua_mail,usua_fechanac=@usua_fechanac where usua_id = @usua_id");
+
+            string query = string.Format(@"UPDATE PENSAMIENTO_LINEAL.Usuario SET usua_nombre=@usua_nombre, usua_apellido=@usua_apellido, usua_telefono=@usua_telefono,usua_direccion=@usua_direccion,usua_mail=@usua_mail,usua_fechanac=CONVERT(smalldatetime,@usua_fechanac,121) where usua_id = @usua_id");
            
             SqlConnection conn = DBConnection.getConnection();
             SqlCommand cmd = new SqlCommand(query, conn);
@@ -43,7 +44,7 @@ namespace FrbaCrucero.BD_y_Querys
 
         public static void registrarCliente(string doc, string nombre, string apellido, string telefono, string direccion, string mail, string fechaNacimiento)
         {
-            string query = string.Format(@"INSERT INTO PENSAMIENTO_LINEAL.Usuario(usua_nombre, usua_apellido, usua_telefono,usua_direccion,usua_mail,usua_documento,usua_fechanac) VALUES (@usua_nombre,@usua_apellido,@usua_telefono,@usua_direccion,@usua_mail,@usua_documento,@usua_fechanac)");
+            string query = string.Format(@"INSERT INTO PENSAMIENTO_LINEAL.Usuario(usua_nombre, usua_apellido, usua_telefono,usua_direccion,usua_mail,usua_documento,usua_fechanac) VALUES (@usua_nombre,@usua_apellido,@usua_telefono,@usua_direccion,@usua_mail,@usua_documento,CONVERT(smalldatetime,@usua_fechanac,121))");
             SqlConnection conn = DBConnection.getConnection();
             SqlCommand cmd = new SqlCommand(query, conn);
 
@@ -90,10 +91,10 @@ namespace FrbaCrucero.BD_y_Querys
         
         public static bool buscarCliente(string Text)
         {
-            string query = string.Format(@"select usua_documento from PENSAMIENTO_LINEAL.Usuario where usua_documento = $documento");
+            string query = string.Format(@"select usua_documento from PENSAMIENTO_LINEAL.Usuario where usua_documento =@documento");
             SqlConnection conn = DBConnection.getConnection();
             SqlCommand cmd = new SqlCommand(query, conn);
-            cmd.Parameters.AddWithValue("$documento", Text);
+            cmd.Parameters.AddWithValue("@documento", Text);
             SqlDataReader reader = cmd.ExecuteReader();
             if (reader.GetByte(0) != 0)
                 return true;

@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Windows.Forms;
 using FrbaCrucero.Clases;
+using System.Configuration;
 
 namespace FrbaCrucero.BD_y_Querys
 {
@@ -76,9 +77,15 @@ namespace FrbaCrucero.BD_y_Querys
                 foreach (int cabina in r.cabina)
                 {
                     string query = string.Format(@"INSERT INTO PENSAMIENTO_LINEAL.Reserva(rese_codigo, rese_cliente, rese_cabina,rese_fecha,rese_viaje) 
-                                                  VALUES ('" + r.codigo + "'," + r.cliente + "," + cabina + ",'" + r.fecha + "'," + r.viaje + ")");
+                                                                                  VALUES (@rese_codigo, @rese_cliente, @rese_cabina,CONVERT(smalldatetime,@rese_fecha,121), @rese_viaje)");
 
                     SqlCommand cmd = new SqlCommand(query, conn);
+
+                    cmd.Parameters.AddWithValue("@rese_codigo", r.codigo);
+                    cmd.Parameters.AddWithValue("@rese_fecha", DateTime.Parse(ConfigurationManager.AppSettings["fecha"].ToString()));
+                    cmd.Parameters.AddWithValue("@rese_cliente", r.cliente);
+                    cmd.Parameters.AddWithValue("@rese_cabina", cabina);
+                    cmd.Parameters.AddWithValue("@rese_viaje", r.viaje);
 
 
                     cmd.ExecuteNonQuery();
@@ -107,10 +114,15 @@ namespace FrbaCrucero.BD_y_Querys
                 foreach (int cabina in p.cabina)
                 {
                     string query = string.Format(@"INSERT INTO PENSAMIENTO_LINEAL.Pasaje(pasa_codigo, pasa_cliente, pasa_cabina, pasa_fecha, pasa_viaje, pasa_precio) 
-                                        VALUES ('" + p.codigo + "'," + p.cliente + "," + cabina + ",'" + p.fecha + "'," + p.viaje + "," + precio + ")");
+                                                                                 VALUES (@pasa_codigo,@pasa_cliente, @pasa_cabina, CONVERT(smalldatetime,@pasa_fecha,121), @pasa_viaje, @pasa_precio)");
 
                     SqlCommand cmd = new SqlCommand(query, conn);
-
+                    cmd.Parameters.AddWithValue("@pasa_codigo", p.codigo);
+                    cmd.Parameters.AddWithValue("@pasa_fecha", DateTime.Parse(ConfigurationManager.AppSettings["fecha"].ToString()));
+                    cmd.Parameters.AddWithValue("@pasa_cliente", p.cliente);
+                    cmd.Parameters.AddWithValue("@pasa_cabina", cabina);
+                    cmd.Parameters.AddWithValue("@pasa_viaje", p.viaje);
+                    cmd.Parameters.AddWithValue("@pasa_precio", precio);
 
                     cmd.ExecuteNonQuery();
                 }
@@ -216,21 +228,19 @@ namespace FrbaCrucero.BD_y_Querys
         {
             try
             {
-                string query = string.Format(@"INSERT INTO PENSAMIENTO_LINEAL.Reserva(rese_codigo, rese_fecha, rese_cliente, rese_viaje, rese_cabina) VALUES (@rese_codigo, @rese_fecha, @rese_cliente, @rese_viaje, @rese_cabina); SELECT SCOPE_IDENTITY()");
+                string query = string.Format(@"INSERT INTO PENSAMIENTO_LINEAL.Reserva(rese_codigo, rese_fecha, rese_cliente, rese_viaje, rese_cabina) 
+                                                                              VALUES (@rese_codigo, CONVERT(smalldatetime,@rese_fecha,121), @rese_cliente, @rese_viaje, @rese_cabina)");
                 SqlConnection conn = DBConnection.getConnection();
                 SqlCommand cmd = new SqlCommand(query, conn);
                 var ultimo = ultimoCodigoReserva();
                 cmd.Parameters.AddWithValue("@rese_codigo", ultimo);
-                cmd.Parameters.AddWithValue("@rese_fecha", r.fecha);
+                cmd.Parameters.AddWithValue("@rese_fecha", DateTime.Parse(ConfigurationManager.AppSettings["fecha"].ToString()));
                 cmd.Parameters.AddWithValue("@rese_cliente", r.cliente);
                 cmd.Parameters.AddWithValue("@rese_cabina", r.cabina);
                 cmd.Parameters.AddWithValue("@rese_viaje", r.viaje);
 
                 SqlDataReader reader = cmd.ExecuteReader();
 
-                cmd.Dispose();
-                conn.Close();
-                conn.Dispose();
                 return reader.GetValue(1).ToString();
             }
             catch (Exception ex)

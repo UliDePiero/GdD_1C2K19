@@ -95,6 +95,7 @@ namespace FrbaCrucero.CompraReservaPasaje
             textBox5.Text = usuario.mail;
             dateTimePicker2.Value = DateTime.Parse(usuario.fechaNacimiento);
 
+
         }
 
         private void button1_Click(object sender, EventArgs e)

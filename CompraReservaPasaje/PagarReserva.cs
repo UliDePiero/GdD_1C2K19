@@ -15,6 +15,9 @@ namespace FrbaCrucero.CompraReservaPasaje
     public partial class PagarReserva : Form
     {
         private string rol_nombre;
+        private Pasaje pasaje;
+        private string codigo;
+
 
         public PagarReserva(string rol)
         {
@@ -36,12 +39,10 @@ namespace FrbaCrucero.CompraReservaPasaje
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var codigo = textBox1.Text.ToString();
 
-            Pasaje pasaje = Reserva_DB.buscarReservas(codigo);
-            if (pasaje == null)
+            if (dataGridView1.RowCount == 0)
             {
-                MessageBox.Show("No existe ninguna reserva para el codigo indicado", "Reserva no encontrada", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Debe buscar un pasaje", "Falta busqueda", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -56,6 +57,43 @@ namespace FrbaCrucero.CompraReservaPasaje
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void identificadorCrucero_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            codigo = textBox.Text.ToString();
+            if (Reserva_DB.existeReserva(codigo))
+            {
+                pasaje = Reserva_DB.buscarReservas(codigo);
+
+
+                Reserva_DB.llenar_grilla_reservasapagar(codigo, dataGridView1);
+            }
+            else
+            {
+                    MessageBox.Show("No existe reserva para el codigo indicado.", "Sin registros", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+            }
+        }
+
+        private void textBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
         {
 
         }

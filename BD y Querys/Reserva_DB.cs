@@ -167,11 +167,47 @@ namespace FrbaCrucero.BD_y_Querys
                 }
              }
             string nuevo_codigo = Reserva_DB.ultimoCodigoPasaje();
+            if(nuevo_pasaje != null)
             nuevo_pasaje.codigo = nuevo_codigo;
                 return nuevo_pasaje;
 
         }
 
+        public static void llenar_grilla_reservasapagar(string codigo, DataGridView dataGrid1)
+        {
+            string query = string.Format(@"select count(rese_cabina) as 'Cantidad de cabinas' , sum(tram_precio) as 'Precio del viaje' 
+                                            from PENSAMIENTO_LINEAL.Reserva
+                                            join PENSAMIENTO_LINEAL.Recorrido_crucero on rese_viaje = reco_cruc_id
+                                            join PENSAMIENTO_LINEAL.Recorrido_tramo on reco_tram_recoid = reco_cruc_recoid
+                                            join PENSAMIENTO_LINEAL.Tramo on tram_id = reco_tram_tramid
+                                            where rese_codigo = @rese_codigo");
+
+            SqlConnection conn = DBConnection.getConnection();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@rese_codigo", codigo);
+            DBConnection.llenar_grilla_command(dataGrid1, cmd);
+        }
+
+        public static bool existeReserva(string codigo)
+        {
+            try
+            {
+                string query = string.Format(@"select rese_id from PENSAMIENTO_LINEAL.Reserva where rese_codigo = @rese_codigo");
+                int id;
+                using (SqlConnection conn = DBConnection.getConnection())
+                {
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@rese_codigo", codigo);
+                    id = (Int32)cmd.ExecuteScalar();
+                }
+                return true;
+            }
+            catch
+            { 
+                return false;
+            }
+
+        }
 
         public static List<int> obtener_cabina_id(string cabi_tipo_nombre, int viajeId, int cantidad)
         {

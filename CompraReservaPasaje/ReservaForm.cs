@@ -24,7 +24,8 @@ namespace FrbaCrucero.CompraReservaPasaje
                 rol_nombre = rol;
                 Reserva_DB.llenar_combox_puertos(comboBoxPuertoO);
                 Reserva_DB.llenar_combox_puertos(comboBoxPuertoD);
-
+                textBox.Enabled = false;
+                comboBox1.SelectedItem = "1";
        }
 
         private void Reserva_Load(object sender, EventArgs e)
@@ -144,8 +145,11 @@ namespace FrbaCrucero.CompraReservaPasaje
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
+        {   
+            float precio = float.Parse(dataGridView1.SelectedCells[4].Value.ToString());
+            cantidad = Int32.Parse(comboBox1.SelectedItem.ToString());
+            float total = precio * cantidad;
+            textBox.Text = total.ToString();
         }
 
         private void comboBoxPuertoO_SelectedIndexChanged(object sender, EventArgs e)
@@ -218,6 +222,7 @@ namespace FrbaCrucero.CompraReservaPasaje
             string cabi_tipo_nombre = dataGridView1.SelectedCells[2].Value.ToString();
             int viaje = Int32.Parse(dataGridView1.SelectedCells[5].Value.ToString());
             float precio = float.Parse(dataGridView1.SelectedCells[4].Value.ToString());
+
             return new Pasaje(viaje, Reserva_DB.obtener_cabina_id(cabi_tipo_nombre, viaje, cantidad),precio);
         }
 
@@ -227,6 +232,16 @@ namespace FrbaCrucero.CompraReservaPasaje
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox_TextChanged(object sender, EventArgs e)
         {
 
         }

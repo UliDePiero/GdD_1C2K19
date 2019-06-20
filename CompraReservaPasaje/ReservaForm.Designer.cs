@@ -42,11 +42,14 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.textBox = new System.Windows.Forms.TextBox();
             this.puertoDestino.SuspendLayout();
             this.puertoOrigen.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // buscarPasaje
@@ -103,7 +106,7 @@
             // 
             // cerrar
             // 
-            this.cerrar.Location = new System.Drawing.Point(413, 420);
+            this.cerrar.Location = new System.Drawing.Point(432, 420);
             this.cerrar.Name = "cerrar";
             this.cerrar.Size = new System.Drawing.Size(95, 31);
             this.cerrar.TabIndex = 21;
@@ -113,9 +116,9 @@
             // 
             // reservarBtn
             // 
-            this.reservarBtn.Location = new System.Drawing.Point(6, 58);
+            this.reservarBtn.Location = new System.Drawing.Point(6, 19);
             this.reservarBtn.Name = "reservarBtn";
-            this.reservarBtn.Size = new System.Drawing.Size(95, 31);
+            this.reservarBtn.Size = new System.Drawing.Size(95, 33);
             this.reservarBtn.TabIndex = 23;
             this.reservarBtn.Text = "Reservar";
             this.reservarBtn.UseVisualStyleBackColor = true;
@@ -142,7 +145,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(107, 58);
+            this.button1.Location = new System.Drawing.Point(6, 71);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(95, 31);
             this.button1.TabIndex = 24;
@@ -162,18 +165,19 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(517, 214);
+            this.dataGridView1.Size = new System.Drawing.Size(517, 201);
             this.dataGridView1.TabIndex = 22;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.groupBox3);
             this.groupBox2.Controls.Add(this.comboBox1);
             this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.reservarBtn);
-            this.groupBox2.Location = new System.Drawing.Point(12, 362);
+            this.groupBox2.Location = new System.Drawing.Point(12, 344);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(224, 99);
+            this.groupBox2.Size = new System.Drawing.Size(224, 121);
             this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
             this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter_1);
@@ -191,11 +195,31 @@
             "6",
             "7",
             "8"});
-            this.comboBox1.Location = new System.Drawing.Point(6, 19);
+            this.comboBox1.Location = new System.Drawing.Point(123, 19);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(95, 33);
             this.comboBox1.TabIndex = 15;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.textBox);
+            this.groupBox3.Location = new System.Drawing.Point(117, 61);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(101, 51);
+            this.groupBox3.TabIndex = 21;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Precio del viaje";
+            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
+            // 
+            // textBox
+            // 
+            this.textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox.Location = new System.Drawing.Point(6, 19);
+            this.textBox.Name = "textBox";
+            this.textBox.Size = new System.Drawing.Size(89, 23);
+            this.textBox.TabIndex = 30;
+            this.textBox.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             // 
             // ReservaForm
             // 
@@ -217,6 +241,8 @@
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox2.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -236,5 +262,7 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TextBox textBox;
     }
 }

@@ -25,6 +25,14 @@ namespace FrbaCrucero.Clases
             this.crucero = _crucero;
         }
 
+        public Cabina(int _id, int _piso, int _numero, TipoCabina _tipo)
+        {
+            this.id = _id;
+            this.piso = _piso;
+            this.numero = _numero;
+            this.tipo = _tipo;
+        }
+
         public Cabina(TipoCabina tCab, int cruc_id)
         {
             this.tCab = tCab;

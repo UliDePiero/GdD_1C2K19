@@ -81,8 +81,10 @@ namespace FrbaCrucero.AbmCrucero
                 {
                     MessageBox.Show("Nuevo crucero creado.", tipo_ingreso, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
-                    ABM_Crucero form = new ABM_Crucero(rol_nombre);
+                    crucero_nuevo.Cabinas = Crucero_BD.obtener_Cabinas_con_crucero(crucero_nuevo.id);
+                    ABM_Cabina form = new ABM_Cabina(crucero_nuevo, rol_nombre);
                     form.Show();
+                    this.Close();
                 }
                 else
                 {

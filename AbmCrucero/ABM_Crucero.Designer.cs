@@ -127,7 +127,7 @@
             // 
             // atras
             // 
-            this.atras.Location = new System.Drawing.Point(592, 596);
+            this.atras.Location = new System.Drawing.Point(592, 598);
             this.atras.Name = "atras";
             this.atras.Size = new System.Drawing.Size(98, 39);
             this.atras.TabIndex = 11;

@@ -19,8 +19,7 @@ namespace FrbaCrucero.AbmCrucero
         {
             InitializeComponent();
             rol_nombre = rol;
-            this.cruc_modificar = cruc_modif;
-            List<Cabina> cabinas = Crucero_BD.obtener_Cabinas_con_crucero(cruc_modificar.id);
+            this.cruc_modificar = cruc_modif;            
             List<TipoCabina> tipoCabinas = Crucero_BD.obtener_todas_tipoCabinas();
             foreach (TipoCabina tcab in tipoCabinas)
             {
@@ -55,7 +54,11 @@ namespace FrbaCrucero.AbmCrucero
             {
                 if (Crucero_BD.validar_numero_cabina((int)numericUpDownNumero.Value, (int)numericUpDownPiso.Value, cruc_modificar))                
                     if(Crucero_BD.insertar_cabina(cruc_modificar, (int)numericUpDownNumero.Value, (int)numericUpDownPiso.Value, Crucero_BD.obtener_tipoCabina_con_nombre(comboBoxCabinas.SelectedItem.ToString())))
-                        MessageBox.Show("Se agregó correctamente la cabina.", " Cabina", MessageBoxButtons.OK, MessageBoxIcon.Information);                    
+                    {
+                        MessageBox.Show("Se agregó correctamente la cabina.", " Cabina", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        cruc_modificar.Cabinas = Crucero_BD.obtener_Cabinas_con_crucero(cruc_modificar.id);
+                        cargarGrilla();
+                    }
                     else
                         MessageBox.Show("Hubo un error en el agregado de la cabina.", " Cabina", MessageBoxButtons.OK, MessageBoxIcon.Error);                    
                 else
@@ -67,9 +70,13 @@ namespace FrbaCrucero.AbmCrucero
         {
             Cabina cabina = obtener_cabina_seleccionada();
             if (Crucero_BD.sacar_cabina(cruc_modificar, cabina))
-                MessageBox.Show("Se agregó correctamente la cabina.", " Cabina", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            {
+                MessageBox.Show("Se quitó correctamente la cabina.", "Cabina", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                cruc_modificar.Cabinas = Crucero_BD.obtener_Cabinas_con_crucero(cruc_modificar.id);
+                cargarGrilla();
+            }
             else
-                MessageBox.Show("Hubo un error en el agregado de la cabina.", " Cabina", MessageBoxButtons.OK, MessageBoxIcon.Error);             
+                MessageBox.Show("Hubo un error en al sacar la cabina.", "Cabina", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void cancelar_Click(object sender, EventArgs e)

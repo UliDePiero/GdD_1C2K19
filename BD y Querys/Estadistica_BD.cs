@@ -29,9 +29,8 @@ namespace FrbaCrucero.BD_y_Querys
                                             order by 5 desc");
                     break;
                 case Estadistica.RECORRIDOS_CON_MAS_CABINAS_LIBRES:
-                    query = string.Format(@"select TOP 5 reco_cruc_recoid as RECORRIDO, reco_codigo as RECO_CODIGO, puer_nombre as ORIGEN,
-                                            PENSAMIENTO_LINEAL.ultimoDestino(reco_id) as ULTIMO_DESTINO, reco_cruc_crucid as CRUCERO,
-                                            marc_nombre as MARCA, mode_nombre as MODELO,
+                    query = string.Format(@"select TOP 5 reco_cruc_recoid as RECORRIDO, reco_codigo as RECO_CODIGO, puer_nombre as ORIGEN, 
+                                            reco_cruc_crucid as CRUCERO, marc_nombre as MARCA, mode_nombre as MODELO,
                                             ((select count(*) as CABINAS_DISPONIBLES
                                             from PENSAMIENTO_LINEAL.Crucero as c2
                                             	join PENSAMIENTO_LINEAL.Cabina on (c2.cruc_id = cabi_crucero)
@@ -46,13 +45,11 @@ namespace FrbaCrucero.BD_y_Querys
                                             	join PENSAMIENTO_LINEAL.Marca on (c1.cruc_marca = marc_id)
                                             	join PENSAMIENTO_LINEAL.Modelo on (c1.cruc_modelo = mode_id)
                                             where month(reco_Cruc_salida) "+ semestre +@" AND year(reco_cruc_salida) = "+ anio +@" 
-                                            group by reco_cruc_recoid, reco_codigo, puer_nombre, PENSAMIENTO_LINEAL.ultimoDestino(reco_id),
-                                            reco_cruc_crucid, marc_nombre, mode_nombre
-                                            order by 8 desc");
+                                            group by reco_cruc_recoid, reco_codigo, puer_nombre, reco_cruc_crucid, marc_nombre, mode_nombre
+                                            order by 7 desc");
                     break;
                 case Estadistica.RECORRIDOS_CON_MAS_PASAJES:
                     query = string.Format(@"select TOP 5 reco_cruc_recoid as ID, reco_codigo as CODIGO, puer_nombre as ORIGEN,
-                                            PENSAMIENTO_LINEAL.ultimoDestino(reco_id) as ULTIMO_DESTINO,
                                             count(pasa_id) as CANTIDAD_VENDIDOS, sum(pasa_precio) as GANANCIA
                                             from PENSAMIENTO_LINEAL.Recorrido_crucero
                                             	join PENSAMIENTO_LINEAL.Pasaje on (reco_cruc_id = pasa_viaje)
@@ -60,8 +57,8 @@ namespace FrbaCrucero.BD_y_Querys
                                             	join PENSAMIENTO_LINEAL.Tramo on (reco_primertramo = tram_id)
                                             	join PENSAMIENTO_LINEAL.Puerto on (tram_origen = puer_id)
                                             where month(pasa_fecha) " + semestre + @" AND year(pasa_fecha) = "+ anio +@"
-                                            group by reco_cruc_recoid, reco_codigo, puer_nombre, PENSAMIENTO_LINEAL.ultimoDestino(reco_id)
-                                            order by 5 desc");
+                                            group by reco_cruc_recoid, reco_codigo, puer_nombre
+                                            order by 4 desc");
                     break;
             }
 

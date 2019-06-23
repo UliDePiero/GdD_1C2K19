@@ -9,7 +9,7 @@ insert into PENSAMIENTO_LINEAL.Funcionalidad(func_nombre)
 values ('Pago de pasajes')
 
 insert into PENSAMIENTO_LINEAL.Rol(rol_nombre,rol_habilitado)
-values ('Administrador',1)
+values ('Administrador General',1)
 
 insert into PENSAMIENTO_LINEAL.Funcionalidad(func_nombre)
 values ('ABM Crucero')
@@ -59,3 +59,20 @@ values(2,7)
 insert into PENSAMIENTO_LINEAL.Rol_Funcion(rol_func_rolid,rol_func_funcid)
 values(2,8)
 
+insert into PENSAMIENTO_LINEAL.Servicio(serv_desc)
+values('Pileta')
+
+insert into PENSAMIENTO_LINEAL.Servicio(serv_desc)
+values('Teatro')
+
+insert into PENSAMIENTO_LINEAL.Servicio(serv_desc)
+values('Cine')
+
+insert into PENSAMIENTO_LINEAL.Servicio(serv_desc)
+values('Restaurant tematico')
+
+insert into PENSAMIENTO_LINEAL.Servicio(serv_desc)
+values('Tobogan de agua')
+
+insert into PENSAMIENTO_LINEAL.Servicio(serv_desc)
+values('Spa')

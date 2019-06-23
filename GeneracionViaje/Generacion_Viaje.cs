@@ -47,7 +47,8 @@ namespace FrbaCrucero.GeneracionViaje
 
             crucero = cru;
             recorrido = rec;
-            RecorridoCrucero_BD.cargar_Crucero_Recorrido_Fecha(crucero, recorrido, dateTimePicker1.Value.ToString(), RecorridosInvalidos);
+            string fech = dateTimePicker1.Value.Year + "-" + dateTimePicker1.Value.Month + "-" + dateTimePicker1.Value.Day;
+            RecorridoCrucero_BD.cargar_Crucero_Recorrido_Fecha(crucero, recorrido, fech, RecorridosInvalidos);
 
             valido = RecorridosInvalidos.RowCount == 0;
             if (valido)

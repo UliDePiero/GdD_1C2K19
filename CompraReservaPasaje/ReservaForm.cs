@@ -63,6 +63,10 @@ namespace FrbaCrucero.CompraReservaPasaje
                 return;
             }
 
+            float precio = float.Parse(dataGridView1.SelectedCells[4].Value.ToString());
+            cantidad = Int32.Parse(comboBox1.SelectedItem.ToString());
+            float total = precio * cantidad;
+            textBox.Text = total.ToString();
         }
 
         private void validarCompletos()
@@ -233,7 +237,13 @@ namespace FrbaCrucero.CompraReservaPasaje
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (dataGridView1.RowCount != 0)
+            {
+                float precio = float.Parse(dataGridView1.SelectedCells[4].Value.ToString());
+                cantidad = Int32.Parse(comboBox1.SelectedItem.ToString());
+                float total = precio * cantidad;
+                textBox.Text = total.ToString();
+            }
         }
 
         private void groupBox3_Enter(object sender, EventArgs e)

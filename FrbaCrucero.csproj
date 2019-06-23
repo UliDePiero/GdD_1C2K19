@@ -127,7 +127,6 @@
     <Compile Include="BD y Querys\Tramo_BD.cs" />
     <Compile Include="Clases\Cabina.cs" />
     <Compile Include="Clases\Datos.cs" />
-    <Compile Include="Clases\EstadoUsuario.cs" />
     <Compile Include="Clases\Pasaje.cs" />
     <Compile Include="Clases\Puerto.cs" />
     <Compile Include="Clases\Crucero.cs" />
@@ -315,7 +314,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Imagenes\INICIO.png" />

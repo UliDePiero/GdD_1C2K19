@@ -71,17 +71,28 @@ namespace FrbaCrucero.AbmCrucero
 
         private void nuevo_crucero()
         {
-            Crucero crucero_nuevo = new Crucero(textBoxCrucero.Text, Crucero_BD.obtener_marca_con_nombre(comboBoxMarcas.SelectedItem.ToString()), Crucero_BD.obtener_modelo_con_nombre(textBoxModelo.Text), obtener_servicios_checkList());
+            ModeloCrucero modelo;
+            if (!Crucero_BD.existe_modelo(textBoxModelo.Text))
+            {
+                if (Crucero_BD.agregar_modelo(textBoxModelo.Text))
+                    modelo = Crucero_BD.obtener_modelo_con_nombre(textBoxModelo.Text);
+                else
+                    return;
+            }
+            else
+                modelo = Crucero_BD.obtener_modelo_con_nombre(textBoxModelo.Text);
+            Crucero crucero_nuevo = new Crucero(textBoxCrucero.Text, Crucero_BD.obtener_marca_con_nombre(comboBoxMarcas.SelectedItem.ToString()), modelo, obtener_servicios_checkList());
             if (!Crucero_BD.validar_identificador(crucero_nuevo.identificador))
             {
                 MessageBox.Show("El identificador ya existe.", " Crucero", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else{
-                if (Crucero_BD.agregar_crucero(crucero_nuevo))
+                int id = Crucero_BD.agregar_crucero(crucero_nuevo);
+                if (id > -1)
                 {
                     MessageBox.Show("Nuevo crucero creado.", tipo_ingreso, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
-                    crucero_nuevo.Cabinas = Crucero_BD.obtener_Cabinas_con_crucero(crucero_nuevo.id);
+                    crucero_nuevo.id = id;
                     ABM_Cabina form = new ABM_Cabina(crucero_nuevo, rol_nombre);
                     form.Show();
                     this.Close();
@@ -95,7 +106,17 @@ namespace FrbaCrucero.AbmCrucero
 
         private void modificar_crucero()
         {
-            Crucero crucero_nuevo = new Crucero(textBoxCrucero.Text, Crucero_BD.obtener_marca_con_nombre(comboBoxMarcas.SelectedItem.ToString()), Crucero_BD.obtener_modelo_con_nombre(textBoxModelo.Text), obtener_servicios_checkList());
+            ModeloCrucero modelo;
+            if (!Crucero_BD.existe_modelo(textBoxModelo.Text))
+            {
+                if(Crucero_BD.agregar_modelo(textBoxModelo.Text))
+                    modelo = Crucero_BD.obtener_modelo_con_nombre(textBoxModelo.Text);
+                else                                    
+                    return;                
+            }
+            else
+                modelo = Crucero_BD.obtener_modelo_con_nombre(textBoxModelo.Text);
+            Crucero crucero_nuevo = new Crucero(textBoxCrucero.Text, Crucero_BD.obtener_marca_con_nombre(comboBoxMarcas.SelectedItem.ToString()), modelo, obtener_servicios_checkList());
             crucero_nuevo.id = cruc_modificar.id;
             if (cruc_modificar.identificador != crucero_nuevo.identificador && !Crucero_BD.validar_identificador(crucero_nuevo.identificador))
             {

@@ -35,13 +35,13 @@
             this.modificarRecorrido = new System.Windows.Forms.Button();
             this.eliminarRecorridos = new System.Windows.Forms.Button();
             this.funciones = new System.Windows.Forms.GroupBox();
+            this.editarTramos = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBoxDestino = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBoxOrigen = new System.Windows.Forms.ComboBox();
-            this.editarTramos = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.funciones.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -126,6 +126,16 @@
             this.funciones.TabStop = false;
             this.funciones.Text = "Funciones";
             // 
+            // editarTramos
+            // 
+            this.editarTramos.Location = new System.Drawing.Point(337, 33);
+            this.editarTramos.Name = "editarTramos";
+            this.editarTramos.Size = new System.Drawing.Size(98, 39);
+            this.editarTramos.TabIndex = 8;
+            this.editarTramos.Text = "Editar Tramos";
+            this.editarTramos.UseVisualStyleBackColor = true;
+            this.editarTramos.Click += new System.EventHandler(this.editarTramos_Click);
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.checkBox1);
@@ -144,11 +154,11 @@
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBox1.Location = new System.Drawing.Point(268, 19);
+            this.checkBox1.Location = new System.Drawing.Point(305, 19);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(170, 17);
+            this.checkBox1.Size = new System.Drawing.Size(130, 17);
             this.checkBox1.TabIndex = 10;
-            this.checkBox1.Text = "Mostrar/Ocultar deshabilitados";
+            this.checkBox1.Text = "Ocultar deshabilitados";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
@@ -193,16 +203,6 @@
             this.comboBoxOrigen.Size = new System.Drawing.Size(280, 28);
             this.comboBoxOrigen.TabIndex = 6;
             this.comboBoxOrigen.SelectedIndexChanged += new System.EventHandler(this.comboBoxOrigen_SelectedIndexChanged);
-            // 
-            // editarTramos
-            // 
-            this.editarTramos.Location = new System.Drawing.Point(337, 33);
-            this.editarTramos.Name = "editarTramos";
-            this.editarTramos.Size = new System.Drawing.Size(98, 39);
-            this.editarTramos.TabIndex = 8;
-            this.editarTramos.Text = "Editar Tramos";
-            this.editarTramos.UseVisualStyleBackColor = true;
-            this.editarTramos.Click += new System.EventHandler(this.editarTramos_Click);
             // 
             // ABM_Recorrido
             // 

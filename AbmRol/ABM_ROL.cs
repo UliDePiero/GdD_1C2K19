@@ -94,7 +94,7 @@ namespace FrbaCrucero.AbmRol
             ROL rol=obtener_rol_seleccionado();
             if (rol.habilitado == true){
                 if(rol_nombre == rol.nombre){
-                    DialogResult dialogResult = MessageBox.Show("Se dehabilitará su rol actual y será cerrarán las ventanas abiertas, pudiendo perder acceso a ciertas funcionalidades del sistema, está seguro?", "Deshabilitar Rol", MessageBoxButtons.YesNo);
+                    DialogResult dialogResult = MessageBox.Show("Se dehabilitará su rol actual y se cerrarán las ventanas abiertas, pudiendo perder acceso a ciertas funcionalidades del sistema, está seguro ?", "Deshabilitar Rol", MessageBoxButtons.YesNo);
                     if (dialogResult == DialogResult.Yes)
                     {
                         ROL_BD.inhabilitar_rol(rol);

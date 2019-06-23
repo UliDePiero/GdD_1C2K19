@@ -23,7 +23,7 @@ namespace FrbaCrucero.AbmRecorrido
             InitializeComponent();
             rol_nombre = rol;
             inicio = true;
-            mostrar = true;
+            mostrar = false;            
         }
 
         private void ABM_Recorrido_Load(object sender, EventArgs e)
@@ -69,9 +69,23 @@ namespace FrbaCrucero.AbmRecorrido
         {
             Recorrido recorrido_modif = obtener_recorrido_seleccionado();
             if(recorrido_modif.habilitado == true)
-                Recorrido_BD.inhabilitar_recorrido(recorrido_modif);
+            {
+                if(Recorrido_BD.tiene_pasajes_vendidos(recorrido_modif))
+                {
+                    MessageBox.Show("Existen viajes sin realizar con pasajes vendidos para el recorrido seleccionado. No se puede inhabilitar.", "Recorrido", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else
+                    Recorrido_BD.inhabilitar_recorrido(recorrido_modif);
+            }
             else
-                Recorrido_BD.habilitar_recorrido(recorrido_modif);
+                Recorrido_BD.habilitar_recorrido(recorrido_modif);            
+            if (mostrar == true)            
+                Recorrido_BD.cargar_grilla_recorridos(dataGridView1, mostrar);            
+            else            
+                Recorrido_BD.cargar_grilla_recorridos(dataGridView1);
+            comboBoxOrigen.SelectedIndex = 0;
+            comboBoxDestino.SelectedIndex = 0;
         }
 
         private void editarTramos_Click(object sender, EventArgs e)
@@ -84,39 +98,79 @@ namespace FrbaCrucero.AbmRecorrido
         private void comboBoxOrigen_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(!inicio)
-            if(comboBoxOrigen.SelectedIndex == 0 && comboBoxDestino.SelectedIndex == 0)
-                Recorrido_BD.cargar_grilla_recorridos(dataGridView1, mostrar);
-            else
-                if (comboBoxOrigen.SelectedIndex == 0)
-                    Recorrido_BD.cargar_grilla_recorridos_destino(dataGridView1, comboBoxDestino.SelectedItem.ToString(), mostrar);
-                else
-                    if (comboBoxDestino.SelectedIndex == 0)
-                        Recorrido_BD.cargar_grilla_recorridos_origen(dataGridView1, comboBoxOrigen.SelectedItem.ToString(), mostrar);
+                if (mostrar == true)
+                {
+                    if(comboBoxOrigen.SelectedIndex == 0 && comboBoxDestino.SelectedIndex == 0)
+                        Recorrido_BD.cargar_grilla_recorridos(dataGridView1, mostrar);
                     else
-                        Recorrido_BD.cargar_grilla_recorridos(dataGridView1, comboBoxOrigen.SelectedItem.ToString(), comboBoxDestino.SelectedItem.ToString(), mostrar);
+                    if (comboBoxOrigen.SelectedIndex == 0)
+                        Recorrido_BD.cargar_grilla_recorridos_destino(dataGridView1, comboBoxDestino.SelectedItem.ToString(), mostrar);
+                    else
+                        if (comboBoxDestino.SelectedIndex == 0)
+                            Recorrido_BD.cargar_grilla_recorridos_origen(dataGridView1, comboBoxOrigen.SelectedItem.ToString(), mostrar);
+                        else
+                            Recorrido_BD.cargar_grilla_recorridos(dataGridView1, comboBoxOrigen.SelectedItem.ToString(), comboBoxDestino.SelectedItem.ToString(), mostrar);
+                }
+                else
+                {
+                 if(comboBoxOrigen.SelectedIndex == 0 && comboBoxDestino.SelectedIndex == 0)
+                        Recorrido_BD.cargar_grilla_recorridos(dataGridView1);
+                    else
+                    if (comboBoxOrigen.SelectedIndex == 0)
+                        Recorrido_BD.cargar_grilla_recorridos_destino(dataGridView1, comboBoxDestino.SelectedItem.ToString());
+                    else
+                        if (comboBoxDestino.SelectedIndex == 0)
+                            Recorrido_BD.cargar_grilla_recorridos_origen(dataGridView1, comboBoxOrigen.SelectedItem.ToString());
+                        else
+                            Recorrido_BD.cargar_grilla_recorridos(dataGridView1, comboBoxOrigen.SelectedItem.ToString(), comboBoxDestino.SelectedItem.ToString());
+                }
         }
 
         private void comboBoxDestino_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!inicio)
-            if (comboBoxOrigen.SelectedIndex == 0 && comboBoxDestino.SelectedIndex == 0)
-                Recorrido_BD.cargar_grilla_recorridos(dataGridView1, mostrar);
-            else
-                if (comboBoxDestino.SelectedIndex == 0)
-                    Recorrido_BD.cargar_grilla_recorridos_origen(dataGridView1, comboBoxOrigen.SelectedItem.ToString(), mostrar);
-                else
-                    if (comboBoxOrigen.SelectedIndex == 0)
-                        Recorrido_BD.cargar_grilla_recorridos_destino(dataGridView1, comboBoxDestino.SelectedItem.ToString(), mostrar);
+                if (mostrar == true)
+                {
+                    if (comboBoxOrigen.SelectedIndex == 0 && comboBoxDestino.SelectedIndex == 0)
+                        Recorrido_BD.cargar_grilla_recorridos(dataGridView1, mostrar);
                     else
-                        Recorrido_BD.cargar_grilla_recorridos(dataGridView1, comboBoxOrigen.SelectedItem.ToString(), comboBoxDestino.SelectedItem.ToString(), mostrar);
+                        if (comboBoxDestino.SelectedIndex == 0)
+                            Recorrido_BD.cargar_grilla_recorridos_origen(dataGridView1, comboBoxOrigen.SelectedItem.ToString(), mostrar);
+                        else
+                            if (comboBoxOrigen.SelectedIndex == 0)
+                                Recorrido_BD.cargar_grilla_recorridos_destino(dataGridView1, comboBoxDestino.SelectedItem.ToString(), mostrar);
+                            else
+                                Recorrido_BD.cargar_grilla_recorridos(dataGridView1, comboBoxOrigen.SelectedItem.ToString(), comboBoxDestino.SelectedItem.ToString(), mostrar);
+                }
+                else
+                {
+                    if (comboBoxOrigen.SelectedIndex == 0 && comboBoxDestino.SelectedIndex == 0)
+                        Recorrido_BD.cargar_grilla_recorridos(dataGridView1);
+                    else
+                        if (comboBoxDestino.SelectedIndex == 0)
+                            Recorrido_BD.cargar_grilla_recorridos_origen(dataGridView1, comboBoxOrigen.SelectedItem.ToString());
+                        else
+                            if (comboBoxOrigen.SelectedIndex == 0)
+                                Recorrido_BD.cargar_grilla_recorridos_destino(dataGridView1, comboBoxDestino.SelectedItem.ToString());
+                            else
+                                Recorrido_BD.cargar_grilla_recorridos(dataGridView1, comboBoxOrigen.SelectedItem.ToString(), comboBoxDestino.SelectedItem.ToString());
+                }
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             if (mostrar == true)
-                mostrar = false;
+            {
+                Recorrido_BD.cargar_grilla_recorridos(dataGridView1);
+                mostrar = false;                
+            }
             else
+            {                
                 mostrar = true;
+                Recorrido_BD.cargar_grilla_recorridos(dataGridView1, mostrar);
+            }
+            comboBoxOrigen.SelectedIndex = 0;
+            comboBoxDestino.SelectedIndex = 0;
         }
 
         private void atras_Click(object sender, EventArgs e)

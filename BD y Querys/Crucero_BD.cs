@@ -381,7 +381,43 @@ namespace FrbaCrucero.BD_y_Querys
         }
 
 
-        public static bool agregar_crucero(Crucero crucero_nuevo)
+        public static bool existe_modelo(string mod)
+        {
+            string query = string.Format(@"SELECT * FROM PENSAMIENTO_LINEAL.Modelo WHERE mode_nombre=@mode_nombre");
+            SqlConnection conn = DBConnection.getConnection();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@mode_nombre", mod);
+            bool rta = cmd.ExecuteScalar() != null;
+            cmd.Dispose();
+            conn.Close();
+            conn.Dispose();
+            return rta;
+        }
+
+        public static bool agregar_modelo(string mod)
+        {
+            try
+            {
+                string query = string.Format(@"INSERT INTO PENSAMIENTO_LINEAL.Modelo(mode_nombre) VALUES (@mode_nombre)");
+                SqlConnection conn = DBConnection.getConnection();
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@mode_nombre", mod);                
+
+                cmd.ExecuteNonQuery();
+                
+                cmd.Dispose();
+                conn.Close();
+                conn.Dispose();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error al agregar modelo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return false;
+        }
+
+        public static int agregar_crucero(Crucero crucero_nuevo)
         {
             try
             {
@@ -406,13 +442,13 @@ namespace FrbaCrucero.BD_y_Querys
                 cmd.Dispose();
                 conn.Close();
                 conn.Dispose();
-                return true;
+                return cruc_cod_generado;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error al agregar crucero", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            return false;
+            return -1;
         }
 
         public static bool modificar_crucero(Crucero crucero_nuevo, List<ServicioCrucero> servicios_anteriores)
@@ -489,7 +525,7 @@ namespace FrbaCrucero.BD_y_Querys
                 string query = string.Format(@"INSERT INTO PENSAMIENTO_LINEAL.Estado_crucero (esta_desc,esta_fechabaja,esta_fechaalta,esta_crucero) VALUES (@esta_desc,CONVERT(smalldatetime,@esta_fechabaja,121),CONVERT(smalldatetime,@esta_fechaalta,121),@esta_crucero)");
                 SqlConnection conn = DBConnection.getConnection();
                 SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@esta_desc", "Fuera de servicio");                                
+                cmd.Parameters.AddWithValue("@esta_desc", "BAJA");
                 cmd.Parameters.AddWithValue("@esta_fechabaja", DateTime.Parse(ConfigurationManager.AppSettings["fecha"].ToString()));
                 cmd.Parameters.AddWithValue("@esta_fechaalta", fecha_operacion);
                 cmd.Parameters.AddWithValue("@esta_crucero", crucero.id);
@@ -501,8 +537,9 @@ namespace FrbaCrucero.BD_y_Querys
                 conn.Dispose();
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.Message, "Error en baja momentanea del crucero", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }

@@ -103,7 +103,8 @@ namespace FrbaCrucero.AbmPuerto
             DialogResult dialogResult = MessageBox.Show("Seguro que desea eliminar definitivamente el puerto: "+puerto.nombre+" ?", "Eliminar Puerto", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                Puerto_BD.eliminar_puerto(puerto);
+                Puerto_BD.eliminar_puerto(puerto);                
+                Puerto_BD.cargar_grilla_puertos(dataGridView1);
                 comboBoxPuertos.SelectedIndex = 0;
             }
             else if (dialogResult == DialogResult.No)
@@ -133,6 +134,8 @@ namespace FrbaCrucero.AbmPuerto
                 Puerto puerto = obtener_puerto_seleccionado();
                 Puerto_BD.modificar_puerto(nombrePuerto.Text, puerto);
             }
+            Puerto_BD.cargar_grilla_puertos(dataGridView1);
+            comboBoxPuertos.SelectedIndex = 0;
         }
 
         private void cancelar_Click(object sender, EventArgs e)

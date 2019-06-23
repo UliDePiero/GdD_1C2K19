@@ -211,7 +211,7 @@ namespace FrbaCrucero.BD_y_Querys
         {
             try
             {
-                string query = string.Format(@"chasquearDedos (@puer_id)");
+                string query = string.Format(@"EXECUTE PENSAMIENTO_LINEAL.chasquearDedos @puerto = @puer_id");
                 SqlConnection conn = DBConnection.getConnection();
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@puer_id", puerto.id);                

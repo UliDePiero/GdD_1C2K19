@@ -43,7 +43,8 @@ namespace FrbaCrucero
             }
         }
         private void ejecutar_Click(object sender, EventArgs e)
-        {            
+        {
+            if(comboBoxFuncionalidades.SelectedItem != null)            
             if(comboBoxFuncionalidades.SelectedItem.ToString().StartsWith("ABM Crucero")){
                 ABM_Crucero form = new ABM_Crucero(comboBoxRoles.SelectedItem.ToString());
                 form.Show();

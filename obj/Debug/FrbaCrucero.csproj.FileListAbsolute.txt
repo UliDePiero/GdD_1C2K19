@@ -51,3 +51,6 @@ C:\Users\juanb\Desktop\MisProyectos\SQL\GDD\GdD_1C2K19\obj\Debug\FrbaCrucero.Abm
 C:\Users\juanb\Desktop\MisProyectos\SQL\GDD\GdD_1C2K19\obj\Debug\FrbaCrucero.CompraReservaPasaje.EmitirReserva.resources
 C:\Users\Tomas\Documents\GitHub\GdD_1C2K19\obj\Debug\FrbaCrucero.AbmCrucero.ABM_Cabina.resources
 C:\Users\Tomas\Documents\GitHub\GdD_1C2K19\obj\Debug\FrbaCrucero.CompraReservaPasaje.EmitirReserva.resources
+C:\Users\juanb\Desktop\MisProyectos\SQL\GDD\GdD_1C2K19\obj\Debug\FrbaCrucero.AbmRecorrido.Tramos.resources
+C:\Users\juanb\Desktop\MisProyectos\SQL\GDD\GdD_1C2K19\obj\Debug\FrbaCrucero.CompraReservaPasaje.EmitirPago.resources
+C:\Users\juanb\Desktop\MisProyectos\SQL\GDD\GdD_1C2K19\obj\Debug\FrbaCrucero.CompraReservaPasaje.PagarReserva.resources

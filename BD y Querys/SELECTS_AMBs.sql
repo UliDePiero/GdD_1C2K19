@@ -82,7 +82,6 @@ order by r1.reco_id
 ----------- ESTADISTICAS ------------
 -- TOP 5 de los recorridos con mas pasajes comprados
 select TOP 5 reco_cruc_recoid as ID, reco_codigo as CODIGO, puer_nombre as ORIGEN,
-PENSAMIENTO_LINEAL.ultimoDestino(reco_id) as ULTIMO_DESTINO,
 count(pasa_id) as CANTIDAD_VENDIDOS, sum(pasa_precio) as GANANCIA
 from PENSAMIENTO_LINEAL.Recorrido_crucero
 	join PENSAMIENTO_LINEAL.Pasaje on (reco_cruc_id = pasa_viaje)
@@ -90,8 +89,8 @@ from PENSAMIENTO_LINEAL.Recorrido_crucero
 	join PENSAMIENTO_LINEAL.Tramo on (reco_primertramo = tram_id)
 	join PENSAMIENTO_LINEAL.Puerto on (tram_origen = puer_id)
 where month(pasa_fecha) <= 6 AND year(pasa_fecha) = 2018
-group by reco_cruc_recoid, reco_codigo, puer_nombre, PENSAMIENTO_LINEAL.ultimoDestino(reco_id)
-order by 5 desc
+group by reco_cruc_recoid, reco_codigo, puer_nombre
+order by 4 desc
 
 -- TOP 5 de los cruceros con mayor cantidad de dias fuera de servicio
 select TOP 5 cruc_id as ID, cruc_identificador as IDENTIFICADOR, 
@@ -112,13 +111,15 @@ returns numeric(10)
 as
 begin
 	declare @retorno numeric(10)
+	declare @cambioDeSemestre DateTime
 
 	set @retorno = DATEDIFF(day, @fechabaja, @fechaalta)
+	set @cambioDeSemestre = DATEFROMPARTS(@anio, 6, 30)
 
-	if (@semestre = '<= 6' AND (@fechaalta > concat(@anio, '-06-30 00:00:00')))
-		set @retorno = DATEDIFF(day, @fechabaja, concat(@anio, '-06-30 00:00:00'))
-	else if (@semestre = '> 6' and (@fechabaja < concat(@anio, '-06-30 00:00:00')))
-		set @retorno = DATEDIFF(day, concat(@anio, '-06-30 00:00:00'), @fechaalta)
+	if (@semestre = '<= 6' AND (@fechaalta > @cambioDeSemestre))
+		set @retorno = DATEDIFF(day, @fechabaja, @cambioDeSemestre)
+	else if (@semestre = '> 6' and (@fechabaja < @cambioDeSemestre))
+		set @retorno = DATEDIFF(day, @cambioDeSemestre, @fechaalta)
 
 	return @retorno
 end
@@ -127,8 +128,7 @@ end
 
 -- TOP 5 de los recorridos con mayor cantidad de cabinas libres en cada viaje
 select TOP 5 reco_cruc_recoid as RECORRIDO, reco_codigo as RECO_CODIGO, puer_nombre as ORIGEN,
-PENSAMIENTO_LINEAL.ultimoDestino(reco_id) as ULTIMO_DESTINO, reco_cruc_crucid as CRUCERO,
-marc_nombre as MARCA, mode_nombre as MODELO,
+reco_cruc_crucid as CRUCERO, marc_nombre as MARCA, mode_nombre as MODELO,
 ((select count(*) as CABINAS_DISPONIBLES
 from PENSAMIENTO_LINEAL.Crucero as c2
 	join PENSAMIENTO_LINEAL.Cabina on (c2.cruc_id = cabi_crucero)
@@ -143,29 +143,6 @@ from PENSAMIENTO_LINEAL.Recorrido_crucero
 	join PENSAMIENTO_LINEAL.Marca on (c1.cruc_marca = marc_id)
 	join PENSAMIENTO_LINEAL.Modelo on (c1.cruc_modelo = mode_id)
 where month(reco_cruc_salida) <= 6 AND year(reco_cruc_salida) = 2018 
-group by reco_cruc_recoid, reco_codigo, puer_nombre, PENSAMIENTO_LINEAL.ultimoDestino(reco_id),
-reco_cruc_crucid, marc_nombre, mode_nombre
-order by 8 desc
+group by reco_cruc_recoid, reco_codigo, puer_nombre, reco_cruc_crucid, marc_nombre, mode_nombre
+order by 7 desc
 
--- Donde
-
-/*
-create function PENSAMIENTO_LINEAL.ultimoDestino(@id_recorrido int)
-returns char(20)
-as
-begin
-
-	return (select p2.puer_nombre as ULTIMO_DESTINO
-			from PENSAMIENTO_LINEAL.Recorrido as r1
-				join PENSAMIENTO_LINEAL.Recorrido_tramo as rt on (r1.reco_id = rt.reco_tram_recoid)
-				join PENSAMIENTO_LINEAL.Tramo as t2 on (rt.reco_tram_tramid = t2.tram_id)
-				join PENSAMIENTO_LINEAL.Puerto as p2 on (t2.tram_destino = p2.puer_id)
-			where t2.tram_destino NOT IN (
-								  select t3.tram_origen
-								  from PENSAMIENTO_LINEAL.Recorrido as r2
-								  	join PENSAMIENTO_LINEAL.Recorrido_tramo as rt2 on (r2.reco_id = rt2.reco_tram_recoid)
-								  	join PENSAMIENTO_LINEAL.Tramo as t3 on (rt2.reco_tram_tramid = t3.tram_id)
-								  where r1.reco_id = r2.reco_id
-								 ) and r1.reco_id = @id_recorrido)
-end      
-*/

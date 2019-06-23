@@ -48,7 +48,7 @@ from PENSAMIENTO_LINEAL.Recorrido_crucero"
         }
         public static void cargar_Crucero_Recorrido_Fecha(int CruceroID,int RecorridoId, string Salida, DataGridView grilla)
         {
-             Salida = "2019-02-05";                                                            
+             //Salida = "2019-02-05";                                                            
             //Salida = DateTime.Today;
          //   string query = string.Format(@"select * from PENSAMIENTO_LINEAL.Recorrido_crucero where '"+Salida+"' between reco_cruc_salida and DATEADD(HOUR, dbo.calcularDuracion(reco_cruc_recoid), reco_cruc_salida) OR DATEADD(HOUR, dbo.calcularDuracion(9), GETDATE()) between  reco_cruc_salida and DATEADD(HOUR, dbo.calcularDuracion(reco_cruc_recoid), reco_cruc_salida) OR(reco_cruc_salida between GETDATE() and DATEADD(HOUR, dbo.calcularDuracion('9'), GETDATE()))"
           //      );
@@ -84,7 +84,8 @@ from PENSAMIENTO_LINEAL.Recorrido_crucero"
         {
             try
             {
-                string query = string.Format(@"insert into PENSAMIENTO_LINEAL.Recorrido_crucero (reco_cruc_crucid, reco_cruc_recoid, reco_cruc_salida) Values('" + CruceroID + "','" + RecoridoID + "','"+Salida.ToString()+"')");
+                string sal = Salida.Year + "-" + Salida.Month + "-" + Salida.Day;
+                string query = string.Format(@"insert into PENSAMIENTO_LINEAL.Recorrido_crucero (reco_cruc_crucid, reco_cruc_recoid, reco_cruc_salida) Values('" + CruceroID + "','" + RecoridoID + "','"+sal+"')");
                 SqlConnection conn = DBConnection.getConnection();
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.ExecuteNonQuery();

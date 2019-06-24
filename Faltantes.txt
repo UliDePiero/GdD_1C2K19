@@ -1,3 +1,15 @@
-Procedure eliminar puerto
-Baja de un crucero
 Generar viaje
+Grid de servicios ABM Crucero
+Grid de tramos ABM Recorrido
+Procedure eliminar puerto
+Baja de un crucero:
+	Message YESNO desea cancelar los pasajes vendidos para ese rango de inactividad del crucero?
+	YES: Algo para completar? O hardcodeo el motivo - Cancelar viajes (cancelaciones_log)
+	NO: 
+		DEFI: Reemplazo de crucero: PROCEDURE
+			- No hay crucero disponible: Message Debe dar de alta un nuevo crucero con las mismas caracteristicas que el seleccionado para realizar el pasaje de viajes
+				- Return
+		MOME: Ingresar dias de corrimiento: PROCEDURE
+	Realizar la baja
+
+PDF Estrategia

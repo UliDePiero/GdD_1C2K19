@@ -130,7 +130,7 @@ namespace FrbaCrucero
                             Usuarios.Add(temp);
                             Fallas.Add(0);                            
                         }
-                        MessageBox.Show("Usuarios cargados: " + Usuarios.Count + Environment.NewLine + "Usuarios: " + Environment.NewLine + string.Join(Environment.NewLine, Usuarios), "Login");
+                        //MessageBox.Show("Usuarios cargados: " + Usuarios.Count + Environment.NewLine + "Usuarios: " + Environment.NewLine + string.Join(Environment.NewLine, Usuarios), "Login");
                         conexion.Close();
 
                     }

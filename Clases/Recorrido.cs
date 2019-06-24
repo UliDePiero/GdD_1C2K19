@@ -40,5 +40,9 @@ namespace FrbaCrucero.Clases
             this.habilitado = recorrido_habilitado;
         }
 
+        public Recorrido(int recorrido_id)
+        {
+            this.id = recorrido_id;
+        }
     }
 }

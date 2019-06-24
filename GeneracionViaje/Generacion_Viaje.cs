@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Configuration;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FrbaCrucero.BD_y_Querys;
@@ -15,6 +16,8 @@ namespace FrbaCrucero.GeneracionViaje
     public partial class Generacion_Viaje : Form
     {
         private string rol_nombre;
+        int crucero;
+        Recorrido recorrido;
         public Generacion_Viaje(string rol)
         {
             InitializeComponent();
@@ -22,52 +25,85 @@ namespace FrbaCrucero.GeneracionViaje
         }
 
         private void Generacion_Viaje_Load(object sender, EventArgs e)
+        {            
+            Recorrido_BD.cargar_grilla_recorridos(dataGridView2,true);
+            DateTime date = DateTime.Parse(ConfigurationManager.AppSettings["fecha"].ToString());
+            date.AddDays(1);
+            dateTimePicker1.MinDate = date;
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {            
+            recorrido = new Recorrido(int.Parse(dataGridView2.SelectedCells[0].Value.ToString()));
+            buscarCruceros.Enabled = true;
+            groupBox1.Enabled = true;
+            textBoxHoras.Text = "00";
+            textBoxMinutos.Text = "00";
+        }
+
+        private void textBoxHoras_TextChanged(object sender, EventArgs e)
         {
-            Crucero_BD.cargar_grilla_cruceros(dataGridView1);
-            RecorridoCrucero_BD.cargar_grilla_recorridos(dataGridView2);
-            if (dataGridView1.RowCount == 0 || dataGridView2.RowCount == 0)            
-                generarViaje.Enabled = false; 
+            if (textBoxMinutos.Text != "" && textBoxHoras.Text != "" && dateTimePicker1.Value != null) textBoxFinalizacion.Text = calcular_fecha_finalizacion(dateTimePicker1.Value);
+        }
+
+        private void textBoxMinutos_TextChanged(object sender, EventArgs e)
+        {
+            if (textBoxMinutos.Text != "" && textBoxHoras.Text != "" && dateTimePicker1.Value != null) textBoxFinalizacion.Text = calcular_fecha_finalizacion(dateTimePicker1.Value);
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-            //textBoxFinalizacion.Text = calcular_fecha_finalizacion();
+            textBoxFinalizacion.Text = calcular_fecha_finalizacion(dateTimePicker1.Value);            
         }
-        int crucero, recorrido;
-        bool valido;
+
+        private string calcular_fecha_finalizacion(DateTime dateTime)
+        {
+            double duracionTotal = 0;
+            DateTime fechaLlegada = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, int.Parse(textBoxHoras.Text), int.Parse(textBoxMinutos.Text), 0);
+
+            foreach (Tramo t in Recorrido_BD.obtener_tramos_recorrido(recorrido))
+                duracionTotal += (double)t.duracion;
+            DateTime nuevaFechaLlegada = fechaLlegada.AddHours(duracionTotal);
+
+            return nuevaFechaLlegada.ToString();
+        }
+
+        private void buscarCruceros_Click(object sender, EventArgs e)
+        {
+            cargar_grilla_cruceros();
+        }
+
+        private void cargar_grilla_cruceros()
+        {
+            DateTime salida = new DateTime(dateTimePicker1.Value.Year, dateTimePicker1.Value.Month, dateTimePicker1.Value.Day, int.Parse(textBoxHoras.Text), int.Parse(textBoxMinutos.Text),0);
+            RecorridoCrucero_BD.cargar_grilla_cruceros(dataGridView1, salida, DateTime.Parse(textBoxFinalizacion.Text));
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            crucero = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());
+            generarViaje.Enabled = true;
+        }
+
         private void generarViaje_Click(object sender, EventArgs e)
         {
-            int cru = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());
-            int rec = int.Parse(dataGridView2.SelectedCells[0].Value.ToString());
-
-            if (cru == crucero && rec == recorrido && valido)
+            if(RecorridoCrucero_BD.InsertarViaje(crucero, recorrido.id, dateTimePicker1.Value, DateTime.Parse(textBoxFinalizacion.Text)))
             {
-                MessageBox.Show("" + RecorridoCrucero_BD.InsertarViaje(crucero, recorrido, dateTimePicker1.Value));
-            }
-
-            crucero = cru;
-            recorrido = rec;
-            string fech = dateTimePicker1.Value.Year + "-" + dateTimePicker1.Value.Month + "-" + dateTimePicker1.Value.Day;
-            RecorridoCrucero_BD.cargar_Crucero_Recorrido_Fecha(crucero, recorrido, fech, RecorridosInvalidos);
-
-            valido = RecorridosInvalidos.RowCount == 0;
-            if (valido)
-            {
-
-                generarViaje.Enabled = true;
-                RecorridoCrucero_BD.CalcularTiempoRecorrido(Tiempos, recorrido);
-                if (Tiempos.RowCount != 0)
-                    textBoxFinalizacion.Text = Tiempos.Rows[0].Cells[0].Value.ToString();
+                MessageBox.Show("Nuevo viaje creado.", "Generar Viaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                generarViaje.Enabled = false;
+                groupBox1.Enabled = false;
+                buscarCruceros.Enabled = false;
+                textBoxFinalizacion.Text = "";
+                textBoxHoras.Text = "";
+                textBoxMinutos.Text = "";
+                dataGridView1.DataSource = null;
             }
         }
-
+        
         private void atras_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void CargarRecorrdos_Click(object sender, EventArgs e)
-        {
-        }
     }
 }

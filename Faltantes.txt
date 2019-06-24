@@ -1,5 +1,3 @@
-Editar cabinas sacar
-Cambiar nombre boton cabinas
 Procedure eliminar puerto
 Baja de un crucero
 Generar viaje

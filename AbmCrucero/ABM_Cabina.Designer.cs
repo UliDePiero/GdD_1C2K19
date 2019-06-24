@@ -34,7 +34,7 @@
             this.agregarCabina = new System.Windows.Forms.Button();
             this.comboBoxCabinas = new System.Windows.Forms.ComboBox();
             this.tipoDeCabina = new System.Windows.Forms.Label();
-            this.cancelar = new System.Windows.Forms.Button();
+            this.finalizar = new System.Windows.Forms.Button();
             this.numero = new System.Windows.Forms.Label();
             this.numericUpDownNumero = new System.Windows.Forms.NumericUpDown();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -102,16 +102,16 @@
             this.tipoDeCabina.TabIndex = 31;
             this.tipoDeCabina.Text = "Tipo de cabina";
             // 
-            // cancelar
+            // finalizar
             // 
-            this.cancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cancelar.Location = new System.Drawing.Point(403, 440);
-            this.cancelar.Name = "cancelar";
-            this.cancelar.Size = new System.Drawing.Size(128, 53);
-            this.cancelar.TabIndex = 38;
-            this.cancelar.Text = "Atrás";
-            this.cancelar.UseVisualStyleBackColor = true;
-            this.cancelar.Click += new System.EventHandler(this.cancelar_Click);
+            this.finalizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.finalizar.Location = new System.Drawing.Point(403, 440);
+            this.finalizar.Name = "finalizar";
+            this.finalizar.Size = new System.Drawing.Size(128, 53);
+            this.finalizar.TabIndex = 38;
+            this.finalizar.Text = "Finalizar";
+            this.finalizar.UseVisualStyleBackColor = true;
+            this.finalizar.Click += new System.EventHandler(this.finalizar_Click);
             // 
             // numero
             // 
@@ -165,7 +165,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.numero);
             this.Controls.Add(this.numericUpDownNumero);
-            this.Controls.Add(this.cancelar);
+            this.Controls.Add(this.finalizar);
             this.Controls.Add(this.piso);
             this.Controls.Add(this.numericUpDownPiso);
             this.Controls.Add(this.sacarCabina);
@@ -190,7 +190,7 @@
         private System.Windows.Forms.Button agregarCabina;
         private System.Windows.Forms.ComboBox comboBoxCabinas;
         private System.Windows.Forms.Label tipoDeCabina;
-        private System.Windows.Forms.Button cancelar;
+        private System.Windows.Forms.Button finalizar;
         private System.Windows.Forms.Label numero;
         private System.Windows.Forms.NumericUpDown numericUpDownNumero;
         private System.Windows.Forms.DataGridView dataGridView1;

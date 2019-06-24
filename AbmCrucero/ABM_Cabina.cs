@@ -79,7 +79,7 @@ namespace FrbaCrucero.AbmCrucero
                 MessageBox.Show("Hubo un error en al sacar la cabina.", "Cabina", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        private void cancelar_Click(object sender, EventArgs e)
+        private void finalizar_Click(object sender, EventArgs e)
         {
             this.Close();
             ABM_Crucero form = new ABM_Crucero(rol_nombre);

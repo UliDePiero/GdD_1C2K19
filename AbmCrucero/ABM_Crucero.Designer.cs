@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.funciones = new System.Windows.Forms.GroupBox();
-            this.modificarCabinas = new System.Windows.Forms.Button();
             this.bajaMomCrucero = new System.Windows.Forms.Button();
             this.nuevoCrucero = new System.Windows.Forms.Button();
             this.bajaDefCrucero = new System.Windows.Forms.Button();
@@ -63,33 +62,22 @@
             // 
             // funciones
             // 
-            this.funciones.Controls.Add(this.modificarCabinas);
             this.funciones.Controls.Add(this.bajaMomCrucero);
             this.funciones.Controls.Add(this.nuevoCrucero);
             this.funciones.Controls.Add(this.bajaDefCrucero);
             this.funciones.Controls.Add(this.modificarCrucero);
             this.funciones.Location = new System.Drawing.Point(18, 509);
             this.funciones.Name = "funciones";
-            this.funciones.Size = new System.Drawing.Size(330, 144);
+            this.funciones.Size = new System.Drawing.Size(296, 151);
             this.funciones.TabIndex = 12;
             this.funciones.TabStop = false;
             this.funciones.Text = "Funciones";
             // 
-            // modificarCabinas
-            // 
-            this.modificarCabinas.Location = new System.Drawing.Point(214, 33);
-            this.modificarCabinas.Name = "modificarCabinas";
-            this.modificarCabinas.Size = new System.Drawing.Size(109, 39);
-            this.modificarCabinas.TabIndex = 9;
-            this.modificarCabinas.Text = "Modificar Cabinas";
-            this.modificarCabinas.UseVisualStyleBackColor = true;
-            this.modificarCabinas.Click += new System.EventHandler(this.modificarCabinas_Click);
-            // 
             // bajaMomCrucero
             // 
-            this.bajaMomCrucero.Location = new System.Drawing.Point(6, 85);
+            this.bajaMomCrucero.Location = new System.Drawing.Point(12, 85);
             this.bajaMomCrucero.Name = "bajaMomCrucero";
-            this.bajaMomCrucero.Size = new System.Drawing.Size(134, 43);
+            this.bajaMomCrucero.Size = new System.Drawing.Size(98, 53);
             this.bajaMomCrucero.TabIndex = 7;
             this.bajaMomCrucero.Text = "Dar de baja momentanea Crucero";
             this.bajaMomCrucero.UseVisualStyleBackColor = true;
@@ -97,7 +85,7 @@
             // 
             // nuevoCrucero
             // 
-            this.nuevoCrucero.Location = new System.Drawing.Point(6, 33);
+            this.nuevoCrucero.Location = new System.Drawing.Point(12, 33);
             this.nuevoCrucero.Name = "nuevoCrucero";
             this.nuevoCrucero.Size = new System.Drawing.Size(98, 39);
             this.nuevoCrucero.TabIndex = 7;
@@ -107,9 +95,9 @@
             // 
             // bajaDefCrucero
             // 
-            this.bajaDefCrucero.Location = new System.Drawing.Point(179, 85);
+            this.bajaDefCrucero.Location = new System.Drawing.Point(131, 85);
             this.bajaDefCrucero.Name = "bajaDefCrucero";
-            this.bajaDefCrucero.Size = new System.Drawing.Size(144, 43);
+            this.bajaDefCrucero.Size = new System.Drawing.Size(98, 53);
             this.bajaDefCrucero.TabIndex = 7;
             this.bajaDefCrucero.Text = "Dar de baja definitiva Crucero";
             this.bajaDefCrucero.UseVisualStyleBackColor = true;
@@ -117,7 +105,7 @@
             // 
             // modificarCrucero
             // 
-            this.modificarCrucero.Location = new System.Drawing.Point(110, 33);
+            this.modificarCrucero.Location = new System.Drawing.Point(131, 33);
             this.modificarCrucero.Name = "modificarCrucero";
             this.modificarCrucero.Size = new System.Drawing.Size(98, 39);
             this.modificarCrucero.TabIndex = 7;
@@ -211,7 +199,7 @@
             this.groupBox2.Controls.Add(this.comboBoxIdentificador);
             this.groupBox2.Location = new System.Drawing.Point(18, 338);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(330, 165);
+            this.groupBox2.Size = new System.Drawing.Size(296, 165);
             this.groupBox2.TabIndex = 15;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Filtros de búsqueda 1";
@@ -389,7 +377,6 @@
         private System.Windows.Forms.Label fecha;
         private System.Windows.Forms.Button aceptar;
         private System.Windows.Forms.Button cancelar;
-        private System.Windows.Forms.Button modificarCabinas;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboBoxMarca;

@@ -54,3 +54,4 @@ C:\Users\Tomas\Documents\GitHub\GdD_1C2K19\obj\Debug\FrbaCrucero.CompraReservaPa
 C:\Users\juanb\Desktop\MisProyectos\SQL\GDD\GdD_1C2K19\obj\Debug\FrbaCrucero.AbmRecorrido.Tramos.resources
 C:\Users\juanb\Desktop\MisProyectos\SQL\GDD\GdD_1C2K19\obj\Debug\FrbaCrucero.CompraReservaPasaje.EmitirPago.resources
 C:\Users\juanb\Desktop\MisProyectos\SQL\GDD\GdD_1C2K19\obj\Debug\FrbaCrucero.CompraReservaPasaje.PagarReserva.resources
+C:\Users\GGM\Documents\TP Frba Crucero 1.0 - 1C 2019\GdD_1C2K19\bin\Debug\FrbaCrucero.exe.config

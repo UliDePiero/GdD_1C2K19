@@ -74,14 +74,14 @@ namespace FrbaCrucero.AbmCrucero
             this.Close();
         }
 
-        private void modificarCabinas_Click(object sender, EventArgs e)
+        /*private void modificarCabinas_Click(object sender, EventArgs e)
         {
             Crucero cruc_modif = obtener_crucero_seleccionado();
             cruc_modif.Cabinas = Crucero_BD.obtener_Cabinas_con_crucero(cruc_modif.id);
             ABM_Cabina form = new ABM_Cabina(cruc_modif, rol_nombre);
             form.Show();
             this.Close();
-        }
+        }*/
 
         private void bajaDefCrucero_Click(object sender, EventArgs e)
         {

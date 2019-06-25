@@ -38,15 +38,17 @@
             this.fechaInicio = new System.Windows.Forms.Label();
             this.fechaFinalizacion = new System.Windows.Forms.Label();
             this.textBoxFinalizacion = new System.Windows.Forms.TextBox();
-            this.textBoxHoras = new System.Windows.Forms.TextBox();
             this.horaInicio = new System.Windows.Forms.Label();
-            this.textBoxMinutos = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.buscarCruceros = new System.Windows.Forms.Button();
+            this.numericUpDownMinutos = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownHoras = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMinutos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHoras)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -105,7 +107,7 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(110, 85);
+            this.dateTimePicker1.Location = new System.Drawing.Point(154, 80);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(202, 20);
             this.dateTimePicker1.TabIndex = 15;
@@ -126,7 +128,7 @@
             // atras
             // 
             this.atras.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.atras.Location = new System.Drawing.Point(737, 631);
+            this.atras.Location = new System.Drawing.Point(781, 631);
             this.atras.Name = "atras";
             this.atras.Size = new System.Drawing.Size(100, 42);
             this.atras.TabIndex = 27;
@@ -138,7 +140,7 @@
             // 
             this.fechaInicio.AutoSize = true;
             this.fechaInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fechaInicio.Location = new System.Drawing.Point(7, 68);
+            this.fechaInicio.Location = new System.Drawing.Point(7, 80);
             this.fechaInicio.Name = "fechaInicio";
             this.fechaInicio.Size = new System.Drawing.Size(111, 17);
             this.fechaInicio.TabIndex = 28;
@@ -148,7 +150,7 @@
             // 
             this.fechaFinalizacion.AutoSize = true;
             this.fechaFinalizacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fechaFinalizacion.Location = new System.Drawing.Point(6, 108);
+            this.fechaFinalizacion.Location = new System.Drawing.Point(7, 131);
             this.fechaFinalizacion.Name = "fechaFinalizacion";
             this.fechaFinalizacion.Size = new System.Drawing.Size(149, 17);
             this.fechaFinalizacion.TabIndex = 29;
@@ -156,43 +158,27 @@
             // 
             // textBoxFinalizacion
             // 
-            this.textBoxFinalizacion.Location = new System.Drawing.Point(110, 128);
+            this.textBoxFinalizacion.Location = new System.Drawing.Point(154, 131);
             this.textBoxFinalizacion.Name = "textBoxFinalizacion";
             this.textBoxFinalizacion.ReadOnly = true;
             this.textBoxFinalizacion.Size = new System.Drawing.Size(202, 20);
             this.textBoxFinalizacion.TabIndex = 30;
             // 
-            // textBoxHoras
-            // 
-            this.textBoxHoras.Location = new System.Drawing.Point(188, 39);
-            this.textBoxHoras.Name = "textBoxHoras";
-            this.textBoxHoras.Size = new System.Drawing.Size(48, 20);
-            this.textBoxHoras.TabIndex = 31;
-            this.textBoxHoras.TextChanged += new System.EventHandler(this.textBoxHoras_TextChanged);
-            // 
             // horaInicio
             // 
             this.horaInicio.AutoSize = true;
             this.horaInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.horaInicio.Location = new System.Drawing.Point(7, 38);
+            this.horaInicio.Location = new System.Drawing.Point(7, 35);
             this.horaInicio.Name = "horaInicio";
             this.horaInicio.Size = new System.Drawing.Size(148, 17);
             this.horaInicio.TabIndex = 32;
             this.horaInicio.Text = "Hora de inicio (24hs) :";
             // 
-            // textBoxMinutos
-            // 
-            this.textBoxMinutos.Location = new System.Drawing.Point(264, 38);
-            this.textBoxMinutos.Name = "textBoxMinutos";
-            this.textBoxMinutos.Size = new System.Drawing.Size(48, 20);
-            this.textBoxMinutos.TabIndex = 33;
-            this.textBoxMinutos.TextChanged += new System.EventHandler(this.textBoxMinutos_TextChanged);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(242, 39);
+            this.label2.Location = new System.Drawing.Point(286, 35);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(16, 17);
             this.label2.TabIndex = 34;
@@ -200,18 +186,18 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.numericUpDownHoras);
+            this.groupBox1.Controls.Add(this.numericUpDownMinutos);
             this.groupBox1.Controls.Add(this.fechaInicio);
             this.groupBox1.Controls.Add(this.dateTimePicker1);
             this.groupBox1.Controls.Add(this.textBoxFinalizacion);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.fechaFinalizacion);
             this.groupBox1.Controls.Add(this.horaInicio);
-            this.groupBox1.Controls.Add(this.textBoxMinutos);
-            this.groupBox1.Controls.Add(this.textBoxHoras);
             this.groupBox1.Enabled = false;
             this.groupBox1.Location = new System.Drawing.Point(519, 373);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(318, 167);
+            this.groupBox1.Size = new System.Drawing.Size(362, 167);
             this.groupBox1.TabIndex = 36;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Fecha del viaje";
@@ -220,7 +206,7 @@
             // 
             this.buscarCruceros.Enabled = false;
             this.buscarCruceros.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buscarCruceros.Location = new System.Drawing.Point(519, 561);
+            this.buscarCruceros.Location = new System.Drawing.Point(519, 546);
             this.buscarCruceros.Name = "buscarCruceros";
             this.buscarCruceros.Size = new System.Drawing.Size(202, 53);
             this.buscarCruceros.TabIndex = 37;
@@ -228,11 +214,37 @@
             this.buscarCruceros.UseVisualStyleBackColor = true;
             this.buscarCruceros.Click += new System.EventHandler(this.buscarCruceros_Click);
             // 
+            // numericUpDownMinutos
+            // 
+            this.numericUpDownMinutos.Location = new System.Drawing.Point(307, 35);
+            this.numericUpDownMinutos.Maximum = new decimal(new int[] {
+            59,
+            0,
+            0,
+            0});
+            this.numericUpDownMinutos.Name = "numericUpDownMinutos";
+            this.numericUpDownMinutos.Size = new System.Drawing.Size(49, 20);
+            this.numericUpDownMinutos.TabIndex = 35;
+            this.numericUpDownMinutos.ValueChanged += new System.EventHandler(this.numericUpDownMinutos_ValueChanged);
+            // 
+            // numericUpDownHoras
+            // 
+            this.numericUpDownHoras.Location = new System.Drawing.Point(231, 35);
+            this.numericUpDownHoras.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            this.numericUpDownHoras.Name = "numericUpDownHoras";
+            this.numericUpDownHoras.Size = new System.Drawing.Size(49, 20);
+            this.numericUpDownHoras.TabIndex = 36;
+            this.numericUpDownHoras.ValueChanged += new System.EventHandler(this.numericUpDownHoras_ValueChanged);
+            // 
             // Generacion_Viaje
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(852, 689);
+            this.ClientSize = new System.Drawing.Size(895, 689);
             this.Controls.Add(this.buscarCruceros);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.generarViaje);
@@ -248,6 +260,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMinutos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHoras)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -265,11 +279,11 @@
         private System.Windows.Forms.Label fechaInicio;
         private System.Windows.Forms.Label fechaFinalizacion;
         private System.Windows.Forms.TextBox textBoxFinalizacion;
-        private System.Windows.Forms.TextBox textBoxHoras;
         private System.Windows.Forms.Label horaInicio;
-        private System.Windows.Forms.TextBox textBoxMinutos;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button buscarCruceros;
+        private System.Windows.Forms.NumericUpDown numericUpDownHoras;
+        private System.Windows.Forms.NumericUpDown numericUpDownMinutos;
     }
 }

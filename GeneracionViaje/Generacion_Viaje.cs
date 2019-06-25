@@ -36,19 +36,17 @@ namespace FrbaCrucero.GeneracionViaje
         {            
             recorrido = new Recorrido(int.Parse(dataGridView2.SelectedCells[0].Value.ToString()));
             buscarCruceros.Enabled = true;
-            groupBox1.Enabled = true;
-            textBoxHoras.Text = "00";
-            textBoxMinutos.Text = "00";
+            groupBox1.Enabled = true;            
+        }        
+
+        private void numericUpDownHoras_ValueChanged(object sender, EventArgs e)
+        {
+            if (dateTimePicker1.Value != null) textBoxFinalizacion.Text = calcular_fecha_finalizacion(dateTimePicker1.Value);
         }
 
-        private void textBoxHoras_TextChanged(object sender, EventArgs e)
+        private void numericUpDownMinutos_ValueChanged(object sender, EventArgs e)
         {
-            if (textBoxMinutos.Text != "" && textBoxHoras.Text != "" && dateTimePicker1.Value != null) textBoxFinalizacion.Text = calcular_fecha_finalizacion(dateTimePicker1.Value);
-        }
-
-        private void textBoxMinutos_TextChanged(object sender, EventArgs e)
-        {
-            if (textBoxMinutos.Text != "" && textBoxHoras.Text != "" && dateTimePicker1.Value != null) textBoxFinalizacion.Text = calcular_fecha_finalizacion(dateTimePicker1.Value);
+            if (dateTimePicker1.Value != null) textBoxFinalizacion.Text = calcular_fecha_finalizacion(dateTimePicker1.Value);
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -59,7 +57,7 @@ namespace FrbaCrucero.GeneracionViaje
         private string calcular_fecha_finalizacion(DateTime dateTime)
         {
             double duracionTotal = 0;
-            DateTime fechaLlegada = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, int.Parse(textBoxHoras.Text), int.Parse(textBoxMinutos.Text), 0);
+            DateTime fechaLlegada = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, (int)numericUpDownHoras.Value, (int)numericUpDownMinutos.Value, 0);
 
             foreach (Tramo t in Recorrido_BD.obtener_tramos_recorrido(recorrido))
                 duracionTotal += (double)t.duracion;
@@ -75,7 +73,7 @@ namespace FrbaCrucero.GeneracionViaje
 
         private void cargar_grilla_cruceros()
         {
-            DateTime salida = new DateTime(dateTimePicker1.Value.Year, dateTimePicker1.Value.Month, dateTimePicker1.Value.Day, int.Parse(textBoxHoras.Text), int.Parse(textBoxMinutos.Text),0);
+            DateTime salida = new DateTime(dateTimePicker1.Value.Year, dateTimePicker1.Value.Month, dateTimePicker1.Value.Day, (int)numericUpDownHoras.Value, (int)numericUpDownMinutos.Value, 0);
             RecorridoCrucero_BD.cargar_grilla_cruceros(dataGridView1, salida, DateTime.Parse(textBoxFinalizacion.Text));
         }
 
@@ -92,10 +90,10 @@ namespace FrbaCrucero.GeneracionViaje
                 MessageBox.Show("Nuevo viaje creado.", "Generar Viaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 generarViaje.Enabled = false;
                 groupBox1.Enabled = false;
-                buscarCruceros.Enabled = false;
+                buscarCruceros.Enabled = false;                
+                numericUpDownHoras.Value = 0;
+                numericUpDownMinutos.Value = 0;
                 textBoxFinalizacion.Text = "";
-                textBoxHoras.Text = "";
-                textBoxMinutos.Text = "";
                 dataGridView1.DataSource = null;
             }
         }

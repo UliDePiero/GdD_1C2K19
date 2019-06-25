@@ -21,7 +21,7 @@ namespace FrbaCrucero.BD_y_Querys
 	                                            join PENSAMIENTO_LINEAL.Marca on (cruc_marca = marc_id) 
 	                                            join PENSAMIENTO_LINEAL.Modelo on (cruc_modelo = mode_id)
 	                                            left join PENSAMIENTO_LINEAL.Estado_crucero on (cruc_id = esta_crucero)	                                                                                      
-                                            where cruc_id NOT IN (SELECT DISTINCT(reco_cruc_crucid) FROM PENSAMIENTO_LINEAL.Recorrido_crucero WHERE CONVERT(datetime, '" + llegada.ToString() + "', 131)>  reco_cruc_salida AND CONVERT(datetime, '" +salida.ToString() + "', 131) < reco_cruc_llegada_real )" +
+                                            where cruc_id NOT IN (SELECT DISTINCT(reco_cruc_crucid) FROM PENSAMIENTO_LINEAL.Recorrido_crucero WHERE CONVERT(datetime, '" + llegada.ToString("yyyy-MM-dd HH:mm:ss") + "', 121)>  reco_cruc_salida AND CONVERT(datetime, '" +salida.ToString("yyyy-MM-dd HH:mm:ss") + "', 121) < reco_cruc_llegada_real )" +
                                             "group by cruc_id, cruc_identificador, marc_nombre, mode_nombre");
             DBConnection.llenar_grilla(grillaCruceros, query);
         }

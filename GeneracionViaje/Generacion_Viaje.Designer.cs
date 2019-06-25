@@ -41,14 +41,13 @@
             this.horaInicio = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.buscarCruceros = new System.Windows.Forms.Button();
-            this.numericUpDownMinutos = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownHoras = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownMinutos = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMinutos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHoras)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMinutos)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -60,7 +59,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dataGridView1.Location = new System.Drawing.Point(18, 373);
+            this.dataGridView1.Location = new System.Drawing.Point(593, 53);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -81,7 +80,7 @@
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(495, 274);
+            this.dataGridView2.Size = new System.Drawing.Size(569, 490);
             this.dataGridView2.TabIndex = 11;
             this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
@@ -99,7 +98,7 @@
             // 
             this.crucerosDisponibles.AutoSize = true;
             this.crucerosDisponibles.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.crucerosDisponibles.Location = new System.Drawing.Point(12, 330);
+            this.crucerosDisponibles.Location = new System.Drawing.Point(587, 9);
             this.crucerosDisponibles.Name = "crucerosDisponibles";
             this.crucerosDisponibles.Size = new System.Drawing.Size(268, 31);
             this.crucerosDisponibles.TabIndex = 14;
@@ -117,9 +116,9 @@
             // 
             this.generarViaje.Enabled = false;
             this.generarViaje.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.generarViaje.Location = new System.Drawing.Point(519, 620);
+            this.generarViaje.Location = new System.Drawing.Point(961, 411);
             this.generarViaje.Name = "generarViaje";
-            this.generarViaje.Size = new System.Drawing.Size(202, 53);
+            this.generarViaje.Size = new System.Drawing.Size(127, 53);
             this.generarViaje.TabIndex = 26;
             this.generarViaje.Text = "Generar Viaje";
             this.generarViaje.UseVisualStyleBackColor = true;
@@ -128,9 +127,9 @@
             // atras
             // 
             this.atras.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.atras.Location = new System.Drawing.Point(781, 631);
+            this.atras.Location = new System.Drawing.Point(961, 493);
             this.atras.Name = "atras";
-            this.atras.Size = new System.Drawing.Size(100, 42);
+            this.atras.Size = new System.Drawing.Size(127, 42);
             this.atras.TabIndex = 27;
             this.atras.Text = "Atrás";
             this.atras.UseVisualStyleBackColor = true;
@@ -195,37 +194,12 @@
             this.groupBox1.Controls.Add(this.fechaFinalizacion);
             this.groupBox1.Controls.Add(this.horaInicio);
             this.groupBox1.Enabled = false;
-            this.groupBox1.Location = new System.Drawing.Point(519, 373);
+            this.groupBox1.Location = new System.Drawing.Point(593, 376);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(362, 167);
             this.groupBox1.TabIndex = 36;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Fecha del viaje";
-            // 
-            // buscarCruceros
-            // 
-            this.buscarCruceros.Enabled = false;
-            this.buscarCruceros.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buscarCruceros.Location = new System.Drawing.Point(519, 546);
-            this.buscarCruceros.Name = "buscarCruceros";
-            this.buscarCruceros.Size = new System.Drawing.Size(202, 53);
-            this.buscarCruceros.TabIndex = 37;
-            this.buscarCruceros.Text = "Buscar Cruceros disponibles";
-            this.buscarCruceros.UseVisualStyleBackColor = true;
-            this.buscarCruceros.Click += new System.EventHandler(this.buscarCruceros_Click);
-            // 
-            // numericUpDownMinutos
-            // 
-            this.numericUpDownMinutos.Location = new System.Drawing.Point(307, 35);
-            this.numericUpDownMinutos.Maximum = new decimal(new int[] {
-            59,
-            0,
-            0,
-            0});
-            this.numericUpDownMinutos.Name = "numericUpDownMinutos";
-            this.numericUpDownMinutos.Size = new System.Drawing.Size(49, 20);
-            this.numericUpDownMinutos.TabIndex = 35;
-            this.numericUpDownMinutos.ValueChanged += new System.EventHandler(this.numericUpDownMinutos_ValueChanged);
             // 
             // numericUpDownHoras
             // 
@@ -240,12 +214,24 @@
             this.numericUpDownHoras.TabIndex = 36;
             this.numericUpDownHoras.ValueChanged += new System.EventHandler(this.numericUpDownHoras_ValueChanged);
             // 
+            // numericUpDownMinutos
+            // 
+            this.numericUpDownMinutos.Location = new System.Drawing.Point(307, 35);
+            this.numericUpDownMinutos.Maximum = new decimal(new int[] {
+            59,
+            0,
+            0,
+            0});
+            this.numericUpDownMinutos.Name = "numericUpDownMinutos";
+            this.numericUpDownMinutos.Size = new System.Drawing.Size(49, 20);
+            this.numericUpDownMinutos.TabIndex = 35;
+            this.numericUpDownMinutos.ValueChanged += new System.EventHandler(this.numericUpDownMinutos_ValueChanged);
+            // 
             // Generacion_Viaje
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(895, 689);
-            this.Controls.Add(this.buscarCruceros);
+            this.ClientSize = new System.Drawing.Size(1106, 555);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.generarViaje);
             this.Controls.Add(this.atras);
@@ -260,8 +246,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMinutos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHoras)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMinutos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -282,7 +268,6 @@
         private System.Windows.Forms.Label horaInicio;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button buscarCruceros;
         private System.Windows.Forms.NumericUpDown numericUpDownHoras;
         private System.Windows.Forms.NumericUpDown numericUpDownMinutos;
     }

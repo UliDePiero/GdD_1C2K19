@@ -34,24 +34,32 @@ namespace FrbaCrucero.GeneracionViaje
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {            
-            recorrido = new Recorrido(int.Parse(dataGridView2.SelectedCells[0].Value.ToString()));
-            buscarCruceros.Enabled = true;
+            recorrido = new Recorrido(int.Parse(dataGridView2.SelectedCells[0].Value.ToString()));            
             groupBox1.Enabled = true;            
         }        
 
         private void numericUpDownHoras_ValueChanged(object sender, EventArgs e)
         {
-            if (dateTimePicker1.Value != null) textBoxFinalizacion.Text = calcular_fecha_finalizacion(dateTimePicker1.Value);
+            if (dateTimePicker1.Value != null)
+            { 
+                textBoxFinalizacion.Text = calcular_fecha_finalizacion(dateTimePicker1.Value);
+                cargar_grilla_cruceros();
+            }
         }
 
         private void numericUpDownMinutos_ValueChanged(object sender, EventArgs e)
         {
-            if (dateTimePicker1.Value != null) textBoxFinalizacion.Text = calcular_fecha_finalizacion(dateTimePicker1.Value);
+            if (dateTimePicker1.Value != null)
+            {
+                textBoxFinalizacion.Text = calcular_fecha_finalizacion(dateTimePicker1.Value);
+                cargar_grilla_cruceros();
+            }
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-            textBoxFinalizacion.Text = calcular_fecha_finalizacion(dateTimePicker1.Value);            
+            textBoxFinalizacion.Text = calcular_fecha_finalizacion(dateTimePicker1.Value);
+            cargar_grilla_cruceros();
         }
 
         private string calcular_fecha_finalizacion(DateTime dateTime)
@@ -64,11 +72,6 @@ namespace FrbaCrucero.GeneracionViaje
             DateTime nuevaFechaLlegada = fechaLlegada.AddHours(duracionTotal);
 
             return nuevaFechaLlegada.ToString();
-        }
-
-        private void buscarCruceros_Click(object sender, EventArgs e)
-        {
-            cargar_grilla_cruceros();
         }
 
         private void cargar_grilla_cruceros()
@@ -89,8 +92,7 @@ namespace FrbaCrucero.GeneracionViaje
             {
                 MessageBox.Show("Nuevo viaje creado.", "Generar Viaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 generarViaje.Enabled = false;
-                groupBox1.Enabled = false;
-                buscarCruceros.Enabled = false;                
+                groupBox1.Enabled = false;                            
                 numericUpDownHoras.Value = 0;
                 numericUpDownMinutos.Value = 0;
                 textBoxFinalizacion.Text = "";

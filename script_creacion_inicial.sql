@@ -450,3 +450,298 @@ begin
 
 	return @retorno
 end
+
+
+CREATE function PENSAMIENTO_LINEAL.Estado(@crucero int,@fecha smallDateTime)
+returns bit
+as
+begin
+
+if (Not Exists(select * from PENSAMIENTO_LINEAL.Estado_crucero where @crucero = esta_crucero) and NOT EXISTS (select cruc_bajadef from PENSAMIENTO_LINEAL.Crucero where @crucero = cruc_id and cruc_bajadef = NULL))
+	return 1
+if (Not Exists(select * from PENSAMIENTO_LINEAL.Estado_crucero where @crucero = esta_crucero and esta_fechabaja<@fecha) and NOT EXISTS (select cruc_bajadef from PENSAMIENTO_LINEAL.Crucero where @crucero = cruc_id and cruc_bajadef = NULL))
+	return 1
+Declare @fecha2 smallDateTime = (select Top 1 esta_fechaalta from PENSAMIENTO_LINEAL.Estado_crucero where esta_crucero= @crucero order by esta_fechaalta DESC)
+if(@fecha2<@fecha)
+	return 1
+return 0
+end
+go
+CREATE Procedure PENSAMIENTO_LINEAL.PasarViajesCruceros (@crucero int)
+as
+begin
+Declare @Marca int = (select Top 1 cruc_marca from PENSAMIENTO_LINEAL.Crucero where cruc_id=@crucero)
+Declare @Modelo int = (select Top 1 cruc_modelo from PENSAMIENTO_LINEAL.Crucero where cruc_id=@crucero)
+Declare @cabinas table (TipoCab int, Cant int)
+insert Into @cabinas
+select cabi_tipo, COUNT(cabi_id) from PENSAMIENTO_LINEAL.Cabina where cabi_crucero=@crucero group by cabi_tipo
+
+
+
+declare @prueba int = (select Top 1 Cant from @cabinas)
+print @prueba
+
+declare viajes cursor LOCAL for select reco_cruc_crucid, reco_cruc_recoid, reco_cruc_salida, reco_cruc_id from PENSAMIENTO_LINEAL.Recorrido_crucero where reco_cruc_crucid=@crucero
+declare @Cruc_ID int
+declare @Reco_ID int
+declare @Viaje_ID int
+declare @Salida smallDateTime
+
+open viajes
+fetch Next from viajes Into @cruc_ID,@Reco_ID,@Salida,@Viaje_ID
+while (@@FETCH_STATUS = 0)
+begin
+	declare @Tiempo int = (select Count(tram_duracion) from PENSAMIENTO_LINEAL.Recorrido_tramo join PENSAMIENTO_LINEAL.Tramo on (reco_tram_tramid = tram_id) where reco_tram_recoid = @Reco_ID)
+	declare @Llegada smallDateTime = DateAdd(HOUR,@Tiempo,@Salida)
+
+	declare Cruceros cursor for select DISTINCT(cruc_id)
+	from PENSAMIENTO_LINEAL.Crucero                                                                                      
+	where cruc_id <> @crucero and (cruc_marca = @Marca and cruc_modelo = @Modelo and 
+	cruc_id NOT IN (SELECT reco_cruc_crucid FROM PENSAMIENTO_LINEAL.Recorrido_crucero) OR 
+	cruc_id NOT IN (SELECT DISTINCT(reco_cruc_crucid) FROM PENSAMIENTO_LINEAL.Recorrido_crucero WHERE CONVERT(datetime,@Llegada,131) > reco_cruc_salida AND CONVERT(datetime, @Salida, 131) < reco_cruc_llegada_real))
+	open Cruceros
+	Declare @cruz int
+	fetch Next from Cruceros into @cruz
+	while (@@FETCH_STATUS = 0)
+	begin
+		Declare @cabinas2 table (TipoCab2 int, Cant2 int)
+		insert Into @cabinas2
+		select cabi_tipo, COUNT(cabi_id) from PENSAMIENTO_LINEAL.Cabina where cabi_crucero=@cruz group by cabi_tipo
+		Declare @diff table (diff int)
+		insert @diff
+		select (Cant2 - Cant) from @cabinas2 Join @cabinas on (TipoCab = TipoCab2)
+		delete @cabinas2
+		if(Not Exists(select * from @diff where diff <> 0))
+		begin
+			declare @Pasajes table (IDPasaje int, IDCabina int, TipoCabina int)
+			insert into @Pasajes
+			select pasa_id, cabi_id, cabi_tipo from PENSAMIENTO_LINEAL.Pasaje join PENSAMIENTO_LINEAL.Cabina on (pasa_cabina=cabi_id) where @Viaje_ID = pasa_viaje
+			declare @pasaCant int = (select COUNT(*) from @Pasajes)
+			print @pasaCant
+			declare cabinas cursor for (select cabi_id, cabi_tipo from PENSAMIENTO_LINEAL.Cabina where cabi_crucero = @cruz)
+			declare @cab int
+			declare @Tipe int
+			open cabinas
+			fetch Next from cabinas Into @cab, @Tipe
+			while (@@FETCH_STATUS = 0 or not Exists(select * from @Pasajes))
+				begin
+					declare @pas int = (select Top 1 IDPAsaje from @Pasajes where @Tipe = TIpoCabina)
+					declare @cabin int = (select Top 1 IDCabina from @Pasajes where @Tipe = TIpoCabina)
+					update PENSAMIENTO_LINEAL.Pasaje
+					Set pasa_cabina = @cabin
+					where pasa_id = @pas
+					delete @Pasajes
+					where IDPasaje = @pas
+					fetch Next from cabinas into @cab, @Tipe
+				end
+				close cabinas
+				deallocate cabinas
+				
+			update PENSAMIENTO_LINEAL.Recorrido_crucero
+			Set reco_cruc_crucid = @cruz
+			where @Viaje_ID = reco_cruc_id
+			
+		end
+		fetch Next from Cruceros into @cruz
+	end
+	close Cruceros
+	deallocate Cruceros
+	fetch Next from viajes Into @cruc_ID,@Reco_ID,@Salida,@Viaje_ID
+end
+close viajes
+deallocate viajes
+end
+go
+CREATE procedure PENSAMIENTO_LINEAL.BorrarReservasViejas
+as
+begin
+	delete PENSAMIENTO_LINEAL.Reserva
+	where abs(DateDiff(Day,rese_fecha,GetDate()))>3
+end
+go
+CREATE Procedure PENSAMIENTO_LINEAL.RetrasarCrucero (@crucero int, @Baja smallDateTime, @Alta smallDateTime)
+as
+begin
+	Declare @diff int = abs(DateDiff(DAY,@Baja,@Alta))
+	update PENSAMIENTO_LINEAL.Recorrido_crucero
+	Set reco_cruc_salida= DATEADD(DAY,@diff,reco_cruc_salida),reco_cruc_llegada_real=DATEADD(DAY,@diff,reco_cruc_llegada_real)
+	where reco_cruc_crucid=@crucero and reco_cruc_salida>@Baja
+end
+GO
+CREATE function PENSAMIENTO_LINEAL.CodificarSha256(@contra varchar)
+returns binary(32)
+as
+begin
+return (HASHBYTES('SHA2_256',@contra))
+end
+
+GO
+CREATE trigger PENSAMIENTO_LINEAL.CodificarContrasenia
+on PENSAMIENTO_LINEAL.Usuario
+instead of insert
+as
+begin
+insert into PENSAMIENTO_LINEAL.Usuario
+select usua_nombre,usua_apellido,usua_direccion,usua_mail,usua_username,PENSAMIENTO_LINEAL.CodificarSha256(usua_password),usua_telefono,usua_documento,usua_fechanac, usua_habilitado
+from inserted
+where usua_username IS NOT NULL
+end
+
+go
+CREATE Procedure PENSAMIENTO_LINEAL.chasquearDedos (@puerto int)
+as
+begin
+Declare @Todo table (tramo int,reco int,recoCruc int) 
+Insert into @Todo
+select tram_id, reco_id, reco_cruc_id
+from PENSAMIENTO_LINEAL.Tramo LEFT join 
+	 PENSAMIENTO_LINEAL.Recorrido_tramo on (reco_tram_tramid = tram_id) LEFT join
+	 PENSAMIENTO_LINEAL.Recorrido on (reco_tram_recoid= reco_id or reco_primertramo = tram_id) LEFT join
+	 PENSAMIENTO_LINEAL.Recorrido_crucero on (reco_cruc_recoid = reco_id)
+	 where @puerto = tram_destino OR @puerto = tram_origen
+	 
+Declare @tramos table (tramo int)
+insert @tramos select distinct tramo from @Todo
+Declare @recorridos table (reco int)
+insert @recorridos select distinct reco from @Todo
+Declare @viaje table (recoCruc int)
+insert @viaje select distinct recoCruc from @Todo
+
+
+
+delete PENSAMIENTO_LINEAL.Reserva
+from @viaje
+where rese_viaje = recoCruc
+delete PENSAMIENTO_LINEAL.Pasaje
+from @viaje
+where pasa_viaje = recoCruc
+delete PENSAMIENTO_LINEAL.Recorrido_crucero
+from @viaje
+where reco_cruc_id = recoCruc
+delete PENSAMIENTO_LINEAL.Recorrido
+from @recorridos
+where reco_id = reco
+delete PENSAMIENTO_LINEAL.Recorrido_tramo
+from @tramos
+where reco_tram_tramid = tramo
+delete PENSAMIENTO_LINEAL.Tramo
+from @tramos
+where tram_id = tramo
+delete PENSAMIENTO_LINEAL.Puerto
+where @puerto = puer_id
+end
+
+
+
+
+
+CREATE PROCEDURE PENSAMIENTO_LINEAL.MigrarDB
+AS
+
+INSERT INTO PENSAMIENTO_LINEAL.Marca (marc_nombre)
+SELECT  CRU_FABRICANTE 
+from gd_esquema.Maestra 
+group by CRU_FABRICANTE
+
+INSERT INTO PENSAMIENTO_LINEAL.Modelo (mode_nombre)
+select CRUCERO_MODELO 
+from gd_esquema.Maestra 
+group by crucero_modelo 
+order by CRUCERO_MODELO;
+
+INSERT INTO PENSAMIENTO_LINEAL.Tipo_Cabina (tipo_nombre, tipo_porc_rec)
+select cabina_tipo, cabina_tipo_porc_recargo 
+from gd_esquema.Maestra 
+group by CABINA_TIPO, CABINA_TIPO_PORC_RECARGO
+
+INSERT INTO PENSAMIENTO_LINEAL.Puerto (puer_nombre)
+select puerto_desde 
+from gd_esquema.Maestra 
+group by puerto_desde
+
+INSERT INTO PENSAMIENTO_LINEAL.Usuario (usua_nombre,usua_apellido,usua_documento,usua_direccion,usua_telefono,usua_mail,usua_fechanac,usua_habilitado)
+select cli_nombre, cli_apellido, cli_dni, cli_direccion, cli_telefono, cli_mail, cli_fecha_nac, 1
+from gd_esquema.Maestra 
+group by cli_nombre, cli_apellido, cli_dni, cli_direccion, cli_telefono, cli_mail, cli_fecha_nac 
+
+INSERT INTO PENSAMIENTO_LINEAL.Crucero (cruc_identificador,cruc_marca,cruc_modelo)
+select a.crucero_identificador, b.marc_id, c.mode_id 
+from gd_esquema.Maestra a 
+join PENSAMIENTO_LINEAL.Marca b on a.CRU_FABRICANTE=b.marc_nombre 
+join PENSAMIENTO_LINEAL.Modelo c on a.CRUCERO_MODELO=c.mode_nombre 
+group by a.crucero_identificador,b.marc_id, c.mode_id
+
+INSERT INTO PENSAMIENTO_LINEAL.Cabina (cabi_piso,cabi_numero,cabi_crucero,cabi_tipo)
+select a.cabina_piso, a.CABINA_NRO, b.cruc_id, c.tipo_id 
+from gd_esquema.Maestra a 
+join PENSAMIENTO_LINEAL.Marca d on d.marc_nombre = a.CRU_FABRICANTE
+join PENSAMIENTO_LINEAL.Crucero b on b.cruc_marca = d.marc_id and b.cruc_identificador=a.CRUCERO_IDENTIFICADOR
+join PENSAMIENTO_LINEAL.Tipo_cabina c on c.tipo_nombre = a.CABINA_TIPO
+group by a.cabina_piso, a.CABINA_NRO, b.cruc_id, c.tipo_id 
+order by b.cruc_id, a.cabina_piso, a.CABINA_NRO
+
+INSERT INTO PENSAMIENTO_LINEAL.Tramo (tram_origen,tram_destino,tram_precio,tram_duracion)
+select distinct a.puer_id, b.puer_id, c.recorrido_precio_base, DATEDIFF(hour, c.FECHA_SALIDA, c.FECHA_LLEGADA_ESTIMADA) 
+from pensamiento_lineal.puerto a 
+join gd_esquema.maestra c on a.puer_nombre=c.puerto_desde 
+join pensamiento_lineal.puerto b on b.puer_nombre=c.puerto_hasta 
+group by a.puer_id, b.puer_id, c.recorrido_precio_base, c.FECHA_SALIDA, c.FECHA_LLEGADA_ESTIMADA, c.RECORRIDO_PRECIO_BASE, c.recorrido_precio_base
+order by a.puer_id, b.puer_id
+
+INSERT INTO PENSAMIENTO_LINEAL.Recorrido (reco_codigo,reco_primertramo,reco_habilitado)
+select a.recorrido_codigo,b.tram_id,1
+from gd_esquema.Maestra a 
+join pensamiento_lineal.puerto c on c.puer_nombre=a.puerto_desde
+join pensamiento_lineal.puerto d on d.puer_nombre=a.puerto_hasta
+join PENSAMIENTO_LINEAL.Tramo b on c.puer_id=b.tram_origen and d.puer_id=b.tram_destino
+group by a.recorrido_codigo, b.tram_id, a.recorrido_precio_base
+
+INSERT INTO PENSAMIENTO_LINEAL.Recorrido_tramo (reco_tram_recoid,reco_tram_tramid)
+select e.reco_id,b.tram_id
+from gd_esquema.Maestra a 
+join pensamiento_lineal.puerto c on c.puer_nombre=a.puerto_desde
+join pensamiento_lineal.puerto d on d.puer_nombre=a.puerto_hasta
+join PENSAMIENTO_LINEAL.Tramo b on c.puer_id=b.tram_origen and d.puer_id=b.tram_destino
+join PENSAMIENTO_LINEAL.Recorrido e on e.reco_primertramo=b.tram_id
+group by e.reco_id, b.tram_id
+
+INSERT INTO PENSAMIENTO_LINEAL.Recorrido_crucero (reco_cruc_recoid,reco_cruc_crucid,reco_cruc_salida,reco_cruc_llegada_real)
+select b.reco_id, c.cruc_id, a.FECHA_SALIDA, a.FECHA_LLEGADA
+from PENSAMIENTO_LINEAL.recorrido b
+join PENSAMIENTO_LINEAL.tramo d on b.reco_primertramo=d.tram_id
+join PENSAMIENTO_LINEAL.puerto e on d.tram_origen=e.puer_id
+join PENSAMIENTO_LINEAL.puerto f on d.tram_destino=f.puer_id
+join gd_esquema.Maestra a on e.puer_nombre=a.PUERTO_DESDE and f.puer_nombre=a.PUERTO_HASTA
+join PENSAMIENTO_LINEAL.Crucero c on c.cruc_identificador=a.CRUCERO_IDENTIFICADOR
+group by b.reco_id, c.cruc_id, a.FECHA_SALIDA,a.FECHA_LLEGADA_ESTIMADA, a.FECHA_LLEGADA
+
+INSERT INTO PENSAMIENTO_LINEAL.Pasaje (pasa_codigo,pasa_fecha,pasa_precio,pasa_cliente,pasa_viaje,pasa_cabina)
+select a.PASAJE_CODIGO,a.PASAJE_FECHA_COMPRA,a.PASAJE_PRECIO, c.usua_id,j.reco_cruc_id,h.cabi_id
+from gd_esquema.Maestra a
+join PENSAMIENTO_LINEAL.Crucero d on d.cruc_identificador=CRUCERO_IDENTIFICADOR
+join PENSAMIENTO_LINEAL.Usuario c on c.usua_apellido=a.CLI_APELLIDO and c.usua_nombre=a.CLI_NOMBRE and c.usua_documento=a.CLI_DNI
+join PENSAMIENTO_LINEAL.Recorrido e on e.reco_codigo=a.RECORRIDO_CODIGO
+join PENSAMIENTO_LINEAL.Tramo f on f.tram_id=e.reco_primertramo
+join PENSAMIENTO_LINEAL.Puerto i on i.puer_id=f.tram_origen and i.puer_nombre=a.PUERTO_DESDE
+join PENSAMIENTO_LINEAL.Cabina h on h.cabi_numero = a.CABINA_NRO and h.cabi_piso=a.CABINA_PISO and h.cabi_crucero=d.cruc_id
+join PENSAMIENTO_LINEAL.Recorrido_crucero j on j.reco_cruc_recoid = e.reco_id and j.reco_cruc_crucid = d.cruc_id and j.reco_cruc_salida=a.FECHA_SALIDA
+where RESERVA_CODIGO is null
+group by a.PASAJE_CODIGO,a.PASAJE_FECHA_COMPRA,a.PASAJE_PRECIO,c.usua_id,d.cruc_id,e.reco_id,j.reco_cruc_id,h.cabi_id
+
+INSERT INTO PENSAMIENTO_LINEAL.Reserva (rese_codigo,rese_fecha,rese_cliente,rese_viaje,rese_cabina)
+select a.RESERVA_CODIGO,a.RESERVA_FECHA, c.usua_id,j.reco_cruc_crucid,h.cabi_id
+from gd_esquema.Maestra a
+join PENSAMIENTO_LINEAL.Crucero d on d.cruc_identificador=CRUCERO_IDENTIFICADOR
+join PENSAMIENTO_LINEAL.Usuario c on c.usua_apellido=a.CLI_APELLIDO and c.usua_nombre=a.CLI_NOMBRE and c.usua_documento=a.CLI_DNI
+join PENSAMIENTO_LINEAL.Recorrido e on e.reco_codigo=a.RECORRIDO_CODIGO
+join PENSAMIENTO_LINEAL.Tramo f on f.tram_id=e.reco_primertramo
+join PENSAMIENTO_LINEAL.Puerto i on i.puer_id=f.tram_origen and i.puer_nombre=a.PUERTO_DESDE
+join PENSAMIENTO_LINEAL.Cabina h on h.cabi_numero = a.CABINA_NRO and h.cabi_piso=a.CABINA_PISO and h.cabi_crucero=d.cruc_id
+join PENSAMIENTO_LINEAL.Recorrido_crucero j on j.reco_cruc_recoid = e.reco_id and j.reco_cruc_crucid = d.cruc_id and j.reco_cruc_salida=a.FECHA_SALIDA
+where PASAJE_CODIGO is null
+group by a.RESERVA_CODIGO,a.RESERVA_FECHA, c.usua_id,d.cruc_id,e.reco_id,h.cabi_id,j.reco_cruc_crucid
+
+GO
+
+exec PENSAMIENTO_LINEAL.MigrarDB
+

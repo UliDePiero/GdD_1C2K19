@@ -105,19 +105,6 @@ namespace FrbaCrucero.BD_y_Querys
             DBConnection.llenar_grilla(grillaPuertos, query);
         }
 
-        public static void cargar_grilla_puertos_pasajes(DataGridView grillaPuertos) //TARDA MUCHO //TARDA MUCHO //TARDA MUCHO 
-        {
-            string query = string.Format(@"SELECT DISTINCT(puer_id) as ID, puer_nombre as Puerto
-                                           FROM PENSAMIENTO_LINEAL.Puerto 
-										   JOIN PENSAMIENTO_LINEAL.Tramo t1 ON(puer_id=t1.tram_origen)
-										   JOIN PENSAMIENTO_LINEAL.Tramo t2 ON(puer_id=t2.tram_destino)
-										   JOIN PENSAMIENTO_LINEAL.Recorrido_tramo ON(t1.tram_id=reco_tram_tramid OR t2.tram_id=reco_tram_tramid)
-										   JOIN PENSAMIENTO_LINEAL.Recorrido_crucero ON(reco_cruc_recoid=reco_tram_recoid)
-										   JOIN PENSAMIENTO_LINEAL.Pasaje ON(pasa_viaje=reco_cruc_id)
-                                           ORDER BY 2 ASC");
-            DBConnection.llenar_grilla(grillaPuertos, query);
-        }
-
         public static void cargar_grilla_puertos_no_recorridos(DataGridView grillaPuertos)
         {
             string query = string.Format(@"SELECT DISTINCT(puer_id) as ID, puer_nombre as Puerto
@@ -141,21 +128,6 @@ namespace FrbaCrucero.BD_y_Querys
 										                        JOIN PENSAMIENTO_LINEAL.Tramo t2 ON(puer_id=t2.tram_destino)
 										                        JOIN PENSAMIENTO_LINEAL.Recorrido_tramo ON(t1.tram_id=reco_tram_tramid OR t2.tram_id=reco_tram_tramid)
 										                        JOIN PENSAMIENTO_LINEAL.Recorrido_crucero ON(reco_cruc_recoid=reco_tram_recoid))
-                                           ORDER BY 2 ASC");
-            DBConnection.llenar_grilla(grillaPuertos, query);
-        }
-
-        public static void cargar_grilla_puertos_no_pasajes(DataGridView grillaPuertos) //TARDA MUCHO //TARDA MUCHO //TARDA MUCHO 
-        {
-            string query = string.Format(@"SELECT DISTINCT(puer_id) as ID, puer_nombre as Puerto
-                                           FROM PENSAMIENTO_LINEAL.Puerto
-										   WHERE puer_id NOT IN (SELECT puer_id
-                                                                FROM PENSAMIENTO_LINEAL.Puerto 
-										                        JOIN PENSAMIENTO_LINEAL.Tramo t1 ON(puer_id=t1.tram_origen)
-										                        JOIN PENSAMIENTO_LINEAL.Tramo t2 ON(puer_id=t2.tram_destino)
-										                        JOIN PENSAMIENTO_LINEAL.Recorrido_tramo ON(t1.tram_id=reco_tram_tramid OR t2.tram_id=reco_tram_tramid)
-										                        JOIN PENSAMIENTO_LINEAL.Recorrido_crucero ON(reco_cruc_recoid=reco_tram_recoid)
-										                        JOIN PENSAMIENTO_LINEAL.Pasaje ON(pasa_viaje=reco_cruc_id))
                                            ORDER BY 2 ASC");
             DBConnection.llenar_grilla(grillaPuertos, query);
         }
@@ -187,7 +159,7 @@ namespace FrbaCrucero.BD_y_Querys
         {
             try
             {
-                string query = string.Format(@"UPDATE INTO PENSAMIENTO_LINEAL.Puerto SET puer_nombre=@puer_nombre WHERE puer_id=@puer_id");
+                string query = string.Format(@"UPDATE PENSAMIENTO_LINEAL.Puerto SET puer_nombre=@puer_nombre WHERE puer_id=@puer_id");
                 SqlConnection conn = DBConnection.getConnection();
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@puer_id", puerto.id);
@@ -230,5 +202,17 @@ namespace FrbaCrucero.BD_y_Querys
             return false;
         }
 
+        public static bool validar_nombre(string nombre)
+        {
+            string query = string.Format(@"SELECT * FROM PENSAMIENTO_LINEAL.Puerto WHERE puer_nombre=@puer_nombre");
+            SqlConnection conn = DBConnection.getConnection();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@puer_nombre", nombre);
+            bool rta = cmd.ExecuteScalar() == null;
+            cmd.Dispose();
+            conn.Close();
+            conn.Dispose();
+            return rta;
+        }
     }
 }

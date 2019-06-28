@@ -45,16 +45,10 @@ namespace FrbaCrucero.AbmPuerto
                         Puerto_BD.cargar_grilla_puertos_viajes(dataGridView1);
                         break;
                     case 3:
-                        Puerto_BD.cargar_grilla_puertos_pasajes(dataGridView1); //TARDA MUCHO //TARDA MUCHO //TARDA MUCHO 
-                        break;
-                    case 4:
                         Puerto_BD.cargar_grilla_puertos_no_recorridos(dataGridView1);
                         break;
-                    case 5:
+                    case 4:
                         Puerto_BD.cargar_grilla_puertos_no_viajes(dataGridView1);
-                        break;
-                    case 6:
-                        Puerto_BD.cargar_grilla_puertos_no_pasajes(dataGridView1); //TARDA MUCHO //TARDA MUCHO //TARDA MUCHO 
                         break;
                 }
             if (dataGridView1.RowCount == 0)
@@ -74,7 +68,7 @@ namespace FrbaCrucero.AbmPuerto
             int puer_id = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());
             string puer_nombre = dataGridView1.SelectedCells[1].Value.ToString();
 
-            return new Puerto(puer_id, puer_nombre);
+            return new Puerto(puer_id, puer_nombre.Trim());
         }
 
         private void nuevoPuerto_Click(object sender, EventArgs e)
@@ -115,25 +109,42 @@ namespace FrbaCrucero.AbmPuerto
         }
 
         private void aceptar_Click(object sender, EventArgs e)
-        {
-            nombre.Visible = false;
-            nombrePuerto.Visible = false;
-            aceptar.Visible = false;
-            cancelar.Visible = false;
+        {            
             if(operacion == "Nuevo")
             {
                 if(nombrePuerto.Text != "")
-                    Puerto_BD.nuevo_puerto(nombrePuerto.Text);
+                {
+                    if(Puerto_BD.validar_nombre(nombrePuerto.Text))
+                        Puerto_BD.nuevo_puerto(nombrePuerto.Text);
+                    else
+                    {
+                        MessageBox.Show("Ya existe un puerto con ese nombre.", "Puerto", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
+                    }
+                }
                 else
                 {
                     MessageBox.Show("Le faltan ingresar campos.", "Puerto", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
                 }
             }
             else
             {
-                Puerto puerto = obtener_puerto_seleccionado();
-                Puerto_BD.modificar_puerto(nombrePuerto.Text, puerto);
+                if(Puerto_BD.validar_nombre(nombrePuerto.Text))
+                {
+                    Puerto puerto = obtener_puerto_seleccionado();
+                    Puerto_BD.modificar_puerto(nombrePuerto.Text, puerto);
+                }
+                else
+                {
+                    MessageBox.Show("Ya existe un puerto con ese nombre.", "Puerto", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
             }
+            nombre.Visible = false;
+            nombrePuerto.Visible = false;
+            aceptar.Visible = false;
+            cancelar.Visible = false;
             Puerto_BD.cargar_grilla_puertos(dataGridView1);
             comboBoxPuertos.SelectedIndex = 0;
         }

@@ -142,40 +142,6 @@ namespace FrbaCrucero.BD_y_Querys
             return false;
         }
 
-        public static bool borrar_rol(ROL rol)
-        {
-            throw new NotImplementedException();
-         /*
-            try
-            {
-                string query = string.Format(@"UPDATE PENSAMIENTO_LINEAL.Rol SET Rol_habilitado = @rol_hab WHERE Rol_codigo=@rol_id");
-                SqlConnection conn = DBConnection.getConnection();
-                SqlCommand cmd = new SqlCommand(query, conn);
-
-                cmd.Parameters.AddWithValue("@rol_hab", Convert.ToInt32(!rol.habilitado));
-                cmd.Parameters.AddWithValue("@rol_id", rol.id);
-
-                cmd.ExecuteNonQuery();
-                
-                if (rol.habilitado)
-                {
-                    cmd = new SqlCommand("DELETE FROM PENSAMIENTO_LINEAL.Rol_Usuario WHERE RolUsua_rol=@rol_id", conn);
-                    cmd.Parameters.AddWithValue("@rol_id", rol.id);
-                    
-                    cmd.ExecuteNonQuery();
-                }
-                cmd.Dispose();
-                conn.Close();
-                conn.Dispose();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error al borrar Rol", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return false;
-        */
-        }
         public static bool modificar_rol(ROL rol, List<Funcionalidad> funcionalidades_anteriores)
         {
             try

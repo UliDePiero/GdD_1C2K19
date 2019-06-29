@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FrbaCrucero.BD_y_Querys;
 using FrbaCrucero.Clases;
+using System.Configuration;
 
 namespace FrbaCrucero.AbmCrucero
 {
@@ -86,6 +87,8 @@ namespace FrbaCrucero.AbmCrucero
         private void bajaDefCrucero_Click(object sender, EventArgs e)
         {
             dateTimePicker1.Visible = true;
+            fecha.Visible = true;
+            fecha.Text = "Fecha baja";
             aceptar.Visible = true;
             cancelar.Visible = true;
             operacion_fecha = "Baja definitiva";
@@ -94,6 +97,8 @@ namespace FrbaCrucero.AbmCrucero
         private void bajaMomCrucero_Click(object sender, EventArgs e)
         {
             dateTimePicker1.Visible = true;
+            fecha.Visible = true;
+            fecha.Text = "Fecha alta";
             aceptar.Visible = true;
             cancelar.Visible = true;
             operacion_fecha = "Baja momentanea";
@@ -135,15 +140,18 @@ namespace FrbaCrucero.AbmCrucero
                 Crucero cruc_modif = obtener_crucero_seleccionado();
                 DialogResult dialogResult = MessageBox.Show("¿ Desea cancelar los pasajes vendidos para ese rango de inactividad del crucero ?", "Baja Crucero", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
-                {
-                    Cancelaciones form = new Cancelaciones(cruc_modif);
-                    form.Show();
+                {                    
                     switch (operacion_fecha)
                     {
                         case "Baja definitiva":
+                                Cancelaciones form = new Cancelaciones(cruc_modif, fecha_operacion);
+                                form.Show();
                                 bajaDefinitiva(cruc_modif, operacion_fecha);
                             break;
                         case "Baja momentanea":
+                                DateTime fecha_alta = DateTime.Parse(ConfigurationManager.AppSettings["fecha"].ToString());
+                                Cancelaciones form2 = new Cancelaciones(cruc_modif, fecha_alta);
+                                form2.Show();
                                 bajaMomentanea(cruc_modif, operacion_fecha);
                             break;
                     }
@@ -171,6 +179,7 @@ namespace FrbaCrucero.AbmCrucero
                 }
                 Crucero_BD.cargar_grilla_cruceros(dataGridView1);
                 dateTimePicker1.Visible = false;
+                fecha.Visible = false;
                 aceptar.Visible = false;
                 cancelar.Visible = false;
             }
@@ -181,6 +190,7 @@ namespace FrbaCrucero.AbmCrucero
         private void cancelar_Click(object sender, EventArgs e)
         {
             dateTimePicker1.Visible = false;
+            fecha.Visible = false;
             aceptar.Visible = false;
             cancelar.Visible = false;
         }

@@ -546,7 +546,7 @@ namespace FrbaCrucero.BD_y_Querys
             return false;
         }
 
-        public static void cancelar_viajes(Crucero crucero, string descripcion)
+        public static void cancelar_viajes(Crucero crucero, string descripcion, DateTime fecha)
         {
             string query = string.Format(@"SELECT usua_documento FROM PENSAMIENTO_LINEAL.Usuario WHERE usua_nombre=@nombre");
             SqlConnection conn = DBConnection.getConnection();
@@ -555,8 +555,7 @@ namespace FrbaCrucero.BD_y_Querys
             SqlDataReader reader = cmd.ExecuteReader();
             reader.Read();
             string documento = reader["usua_documento"].ToString();
-
-            DateTime fecha = DateTime.Parse(ConfigurationManager.AppSettings["fecha"].ToString());
+            
             List<string> codigos = new List<string>();
             query = string.Format(@"SELECT reco_cruc_id FROM PENSAMIENTO_LINEAL.Recorrido_crucero WHERE reco_cruc_crucid = @reco_cruc_crucid AND reco_cruc_salida > CONVERT(datetime, '" + fecha.ToString("yyyy-MM-dd HH:mm:ss") + "', 121)");
             cmd = new SqlCommand(query, conn);

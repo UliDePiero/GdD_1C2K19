@@ -818,3 +818,10 @@ values('Tobogan de agua')
 insert into PENSAMIENTO_LINEAL.Servicio(serv_desc)
 values('Spa')
 
+insert into PENSAMIENTO_LINEAL.Usuario (usua_nombre,usua_apellido,usua_direccion,usua_mail,usua_username,usua_password,usua_telefono,usua_documento,usua_fechanac,usua_habilitado)
+Values ('Admin','Admin','casa Admin','admin@admin.com','Admin','w23e','1511111111','40404404','1999-12-12 23:59:59',1);
+
+insert into PENSAMIENTO_LINEAL.Rol_Usuario(rol_usuario_usuarioid,rol_usuario_rolid)
+select usua_id,2
+from PENSAMIENTO_LINEAL.Usuario
+where usua_username = 'admin'

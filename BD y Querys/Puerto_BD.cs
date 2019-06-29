@@ -132,6 +132,19 @@ namespace FrbaCrucero.BD_y_Querys
             DBConnection.llenar_grilla(grillaPuertos, query);
         }
 
+        public static bool validar_nombre(string nombre)
+        {
+            string query = string.Format(@"SELECT * FROM PENSAMIENTO_LINEAL.Puerto WHERE puer_nombre=@puer_nombre");
+            SqlConnection conn = DBConnection.getConnection();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@puer_nombre", nombre);
+            bool rta = cmd.ExecuteScalar() == null;
+            cmd.Dispose();
+            conn.Close();
+            conn.Dispose();
+            return rta;
+        }
+
         public static bool nuevo_puerto(string puerto)
         {
             try
@@ -200,19 +213,6 @@ namespace FrbaCrucero.BD_y_Querys
                 MessageBox.Show(ex.Message, "Error al eliminar puerto", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return false;
-        }
-
-        public static bool validar_nombre(string nombre)
-        {
-            string query = string.Format(@"SELECT * FROM PENSAMIENTO_LINEAL.Puerto WHERE puer_nombre=@puer_nombre");
-            SqlConnection conn = DBConnection.getConnection();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            cmd.Parameters.AddWithValue("@puer_nombre", nombre);
-            bool rta = cmd.ExecuteScalar() == null;
-            cmd.Dispose();
-            conn.Close();
-            conn.Dispose();
-            return rta;
-        }
+        }        
     }
 }

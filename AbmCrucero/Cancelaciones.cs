@@ -23,13 +23,13 @@ namespace FrbaCrucero.AbmCrucero
 
         private void aceptar_Click(object sender, EventArgs e)
         {
-            if (codigo.Text != "" && descripcion.Text != "")
+            if (descripcion.Text != "")
             {
-                Crucero_BD.cancelar_viajes(crucero, codigo.Text, descripcion.Text);
+                Crucero_BD.cancelar_viajes(crucero, descripcion.Text);
                 this.Close();
             }
             else
-                MessageBox.Show("Le faltan campos por completar.", "Registro baja", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Le falta completar el motivo.", "Registro baja", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
     }
 }

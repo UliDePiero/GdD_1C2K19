@@ -116,7 +116,7 @@ begin
 	where reco_cruc_crucid=@crucero and reco_cruc_salida>@Baja
 end
 GO
-CREATE function dbo.CodificarSha256(@contra varchar)
+CREATE function CodificarSha256(@contra varchar)
 returns binary(32)
 as
 begin
@@ -130,7 +130,7 @@ instead of insert
 as
 begin
 insert into PENSAMIENTO_LINEAL.Usuario
-select usua_nombre,usua_apellido,usua_direccion,usua_mail,usua_username,dbo.CodificarSha256(usua_password),usua_telefono,usua_documento,usua_fechanac, usua_habilitado
+select usua_nombre,usua_apellido,usua_direccion,usua_mail,usua_username,PENSAMIENTO_LINEAL.CodificarSha256(usua_password),usua_telefono,usua_documento,usua_fechanac, usua_habilitado
 from inserted
 where usua_username IS NOT NULL
 end

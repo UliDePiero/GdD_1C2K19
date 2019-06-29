@@ -554,54 +554,90 @@ namespace FrbaCrucero.BD_y_Querys
             cmd.Parameters.AddWithValue("@nombre", UsuarioLogeado.Username);
             SqlDataReader reader = cmd.ExecuteReader();
             reader.Read();
+            
             string documento = reader["usua_documento"].ToString();
             
+            reader.Close();
+            reader.Dispose();
+            cmd.Dispose();
+
+            List<int> viajes = new List<int>();
+            List<int> reservas = new List<int>();
+            List<int> pasajes = new List<int>();
             List<string> codigos = new List<string>();
+            //Alternativa no contemplada
+            //En caso de baja momentanea tambien recibir la fecha de alta
+            //SELECT reco_cruc_id FROM PENSAMIENTO_LINEAL.Recorrido_crucero WHERE reco_cruc_crucid = @reco_cruc_crucid AND reco_cruc_salida > CONVERT(datetime, '" + fecha.ToString("yyyy-MM-dd HH:mm:ss") + "', 121) AND CONVERT(datetime, '" + fecha2.ToString("yyyy-MM-dd HH:mm:ss") + "', 121) > reco_cruc_salida            
             query = string.Format(@"SELECT reco_cruc_id FROM PENSAMIENTO_LINEAL.Recorrido_crucero WHERE reco_cruc_crucid = @reco_cruc_crucid AND reco_cruc_salida > CONVERT(datetime, '" + fecha.ToString("yyyy-MM-dd HH:mm:ss") + "', 121)");
-            cmd = new SqlCommand(query, conn);
+            cmd = new SqlCommand(query, conn);            
             cmd.Parameters.AddWithValue("@reco_cruc_crucid", crucero.id);
             reader = cmd.ExecuteReader();
 
             while (reader.Read())
             {
                 int viaje = int.Parse(reader["reco_cruc_id"].ToString());
+                viajes.Add(viaje);                
+            }
 
+            reader.Close();
+            reader.Dispose();
+            cmd.Dispose();
+
+            foreach(int viaje in viajes)
+            {
                 query = string.Format(@"SELECT rese_id, rese_codigo FROM PENSAMIENTO_LINEAL.Reserva WHERE rese_viaje = @rese_viaje");
                 cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@rese_viaje", viaje);
-                SqlDataReader reader2 = cmd.ExecuteReader();
-                while (reader2.Read())
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
                 {
                     string codigo = reader["rese_codigo"].ToString();
-                    int id = int.Parse(reader["rese_id"].ToString());
-                    
-                    query = string.Format(@"DELETE PENSAMIENTO_LINEAL.Reserva WHERE rese_id=@rese_id");
-                    cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@rese_id", id);                    
-                    cmd.ExecuteNonQuery();
+                    int id = int.Parse(reader["rese_id"].ToString());                    
 
                     codigos.Add(codigo);
+                    reservas.Add(id);
                 }
+
+                reader.Close();
+                reader.Dispose();
+                cmd.Dispose();
+
+                foreach(int id in reservas)
+                {
+                    query = string.Format(@"DELETE PENSAMIENTO_LINEAL.Reserva WHERE rese_id=@rese_id");
+                    cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@rese_id", id);
+                    cmd.ExecuteNonQuery();
+                    cmd.Dispose();
+                }
+                
                 query = string.Format(@"SELECT pasa_id, pasa_codigo FROM PENSAMIENTO_LINEAL.Pasaje WHERE pasa_viaje = @pasa_viaje");
                 cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@pasa_viaje", viaje);
-                reader2 = cmd.ExecuteReader();
-                while (reader2.Read())
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
                 {
                     string codigo = reader["pasa_codigo"].ToString();
                     int id = int.Parse(reader["pasa_id"].ToString());
+                    
+                    codigos.Add(codigo);
+                    pasajes.Add(id);
+                }
+                reader.Close();
+                reader.Dispose();
+                cmd.Dispose();
 
+                foreach(int id in pasajes)
+                {
                     query = string.Format(@"DELETE PENSAMIENTO_LINEAL.Pasaje WHERE pasa_id=@pasa_id");
                     cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@pasa_id", id);
                     cmd.ExecuteNonQuery();
-
-                    codigos.Add(codigo);
+                    cmd.Dispose();
                 }
-                reader2.Close();
-                reader2.Dispose();
             }
-
+                        
             foreach (string codigo in codigos)
             {
                 query = string.Format(@"INSERT INTO PENSAMIENTO_LINEAL.Cancelaciones_log (canc_log_desc,canc_log_codigo,canc_log_usuario_nombre,canc_log_usuario_doc) VALUES (@canc_log_desc,@canc_log_codigo,@canc_log_usuario_nombre,@canc_log_usuario_doc)");
@@ -612,10 +648,9 @@ namespace FrbaCrucero.BD_y_Querys
                 cmd.Parameters.AddWithValue("@canc_log_codigo", codigo);
 
                 cmd.ExecuteNonQuery();
+                cmd.Dispose();
             }
-            reader.Close();
-            reader.Dispose();
-            cmd.Dispose();
+                        
             conn.Close();
             conn.Dispose();
         }

@@ -567,22 +567,36 @@ namespace FrbaCrucero.BD_y_Querys
             {
                 int viaje = int.Parse(reader["reco_cruc_id"].ToString());
 
-                query = string.Format(@"SELECT rese_codigo FROM PENSAMIENTO_LINEAL.Reserva WHERE rese_viaje = @rese_viaje");
+                query = string.Format(@"SELECT rese_id, rese_codigo FROM PENSAMIENTO_LINEAL.Reserva WHERE rese_viaje = @rese_viaje");
                 cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@rese_viaje", viaje);
                 SqlDataReader reader2 = cmd.ExecuteReader();
                 while (reader2.Read())
                 {
                     string codigo = reader["rese_codigo"].ToString();
+                    int id = int.Parse(reader["rese_id"].ToString());
+                    
+                    query = string.Format(@"DELETE PENSAMIENTO_LINEAL.Reserva WHERE rese_id=@rese_id");
+                    cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@rese_id", id);                    
+                    cmd.ExecuteNonQuery();
+
                     codigos.Add(codigo);
                 }
-                query = string.Format(@"SELECT pasa_codigo FROM PENSAMIENTO_LINEAL.Pasaje WHERE pasa_viaje = @pasa_viaje");
+                query = string.Format(@"SELECT pasa_id, pasa_codigo FROM PENSAMIENTO_LINEAL.Pasaje WHERE pasa_viaje = @pasa_viaje");
                 cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@pasa_viaje", viaje);
                 reader2 = cmd.ExecuteReader();
                 while (reader2.Read())
                 {
                     string codigo = reader["pasa_codigo"].ToString();
+                    int id = int.Parse(reader["pasa_id"].ToString());
+
+                    query = string.Format(@"DELETE PENSAMIENTO_LINEAL.Pasaje WHERE pasa_id=@pasa_id");
+                    cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@pasa_id", id);
+                    cmd.ExecuteNonQuery();
+
                     codigos.Add(codigo);
                 }
                 reader2.Close();

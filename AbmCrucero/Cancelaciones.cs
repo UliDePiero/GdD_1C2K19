@@ -15,17 +15,19 @@ namespace FrbaCrucero.AbmCrucero
     public partial class Cancelaciones : Form
     {
         Crucero crucero;
-        public Cancelaciones(Crucero cruc)
+        DateTime fecha;
+        public Cancelaciones(Crucero cruc, DateTime fec)
         {
             InitializeComponent();
             crucero = cruc;
+            fecha = fec;
         }
 
         private void aceptar_Click(object sender, EventArgs e)
         {
             if (descripcion.Text != "")
-            {
-                Crucero_BD.cancelar_viajes(crucero, descripcion.Text);
+            {                
+                Crucero_BD.cancelar_viajes(crucero, descripcion.Text, fecha);
                 this.Close();
             }
             else

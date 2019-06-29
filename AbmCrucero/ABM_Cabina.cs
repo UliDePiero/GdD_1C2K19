@@ -81,9 +81,14 @@ namespace FrbaCrucero.AbmCrucero
 
         private void finalizar_Click(object sender, EventArgs e)
         {
-            this.Close();
-            ABM_Crucero form = new ABM_Crucero(rol_nombre);
-            form.Show();
+            if(cruc_modificar.Cabinas == null)
+                MessageBox.Show("Su crucero no tiene cabinas.", "Cabina", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            else
+            {
+                this.Close();
+                ABM_Crucero form = new ABM_Crucero(rol_nombre);
+                form.Show();
+            }
         }
     }
 }

@@ -133,13 +133,41 @@ namespace FrbaCrucero.AbmCrucero
             if(fecha_operacion != null)
             {
                 Crucero cruc_modif = obtener_crucero_seleccionado();
-                switch(operacion_fecha){
-                    case "Baja definitiva":
-                        bajaDefinitiva(cruc_modif, operacion_fecha);
-                        break;
-                    case "Baja momentanea":
-                        bajaMomentanea(cruc_modif, operacion_fecha);
-                        break;          
+                DialogResult dialogResult = MessageBox.Show("¿ Desea cancelar los pasajes vendidos para ese rango de inactividad del crucero ?", "Baja Crucero", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    Cancelaciones form = new Cancelaciones(cruc_modif);
+                    form.Show();
+                    switch (operacion_fecha)
+                    {
+                        case "Baja definitiva":
+                                bajaDefinitiva(cruc_modif, operacion_fecha);
+                            break;
+                        case "Baja momentanea":
+                                bajaMomentanea(cruc_modif, operacion_fecha);
+                            break;
+                    }
+                }
+                else if (dialogResult == DialogResult.No)
+                {                                                    
+                    switch(operacion_fecha)
+                    {
+                        case "Baja definitiva":                        
+                            if(!Crucero_BD.reemplazar_crucero(cruc_modif))
+                            {
+                                MessageBox.Show("Debe dar de alta un nuevo crucero con las mismas caracteristicas que el seleccionado para realizar el pasaje de viajes.", "Baja definitiva Crucero", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+                            else
+                                bajaDefinitiva(cruc_modif, operacion_fecha);
+                            break;
+                        case "Baja momentanea":
+                            if (Crucero_BD.postergar_viajes_crucero(cruc_modif, fecha_operacion))
+                            {
+                                bajaMomentanea(cruc_modif, operacion_fecha);
+                            }
+                            break;
+                    }
                 }
                 Crucero_BD.cargar_grilla_cruceros(dataGridView1);
                 dateTimePicker1.Visible = false;

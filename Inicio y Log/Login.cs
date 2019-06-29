@@ -66,6 +66,7 @@ namespace FrbaCrucero
                             //MessageBox.Show("Inicio de sesión exitoso.", "Login", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             UsuarioLogeado.Username = usua;
                             conexion.Close();
+                            eliminar_reservas_antiguas();
                             return true;
                         }
                         else
@@ -140,6 +141,28 @@ namespace FrbaCrucero
             {
                 MessageBox.Show("Error: " + ex.ToString(), "Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        public static void eliminar_reservas_antiguas()
+        {
+            try
+            {
+                string query = string.Format(@"EXECUTE PENSAMIENTO_LINEAL.BorrarReservasViejas");
+                SqlConnection conn = DBConnection.getConnection();
+                SqlCommand cmd = new SqlCommand(query, conn);                
+
+                cmd.ExecuteNonQuery();
+
+                cmd.Dispose();
+                conn.Close();
+                conn.Dispose();
+                return;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error al borrar reservas.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return;
         }
     }
 }

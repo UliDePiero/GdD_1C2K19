@@ -97,10 +97,8 @@
             "Todos los puertos",
             "Puertos con recorridos asignados",
             "Puertos con viajes asignados",
-            "Puertos con pasajes vendidos",
             "Puertos sin recorridos asignados",
-            "Puertos sin viajes asignados",
-            "Puertos sin pasajes vendidos"});
+            "Puertos sin viajes asignados"});
             this.comboBoxPuertos.Location = new System.Drawing.Point(6, 37);
             this.comboBoxPuertos.Name = "comboBoxPuertos";
             this.comboBoxPuertos.Size = new System.Drawing.Size(318, 28);

@@ -496,6 +496,131 @@ namespace FrbaCrucero.BD_y_Querys
             return false;
         }
 
+        public static bool reemplazar_crucero(Crucero cruc_modif)
+        {
+            try
+            {
+                string query = string.Format(@"EXECUTE PENSAMIENTO_LINEAL.PasarViajesCruceros @crucero = @crucero_id");
+                SqlConnection conn = DBConnection.getConnection();
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@crucero_id", cruc_modif.id);
+
+                cmd.ExecuteNonQuery();
+
+                cmd.Dispose();
+                conn.Close();
+                conn.Dispose();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error al cambiar de crucero.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return false;
+        }
+
+        public static bool postergar_viajes_crucero(Crucero cruc_modif, DateTime alta)
+        {
+            try
+            {
+                //CONVERT(datetime, '" + alta.ToString("yyyy-MM-dd HH:mm:ss") + "', 121)
+                //CONVERT(smalldatetime, @alt, 121)
+                string query = string.Format(@"EXECUTE PENSAMIENTO_LINEAL.RetrasarCrucero @crucero = @crucero_id, @Baja = @baj, @Alta = CONVERT(smalldatetime, @alt, 121)");
+                SqlConnection conn = DBConnection.getConnection();
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@crucero_id", cruc_modif.id);
+                cmd.Parameters.AddWithValue("@alt", alta);
+                cmd.Parameters.AddWithValue("@baj", DateTime.Parse(ConfigurationManager.AppSettings["fecha"].ToString()));
+
+                cmd.ExecuteNonQuery();
+
+                cmd.Dispose();
+                conn.Close();
+                conn.Dispose();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error al postergar viajes.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return false;
+        }
+
+        public static void cancelar_viajes(Crucero crucero, string descripcion)
+        {
+            string query = string.Format(@"SELECT usua_documento FROM PENSAMIENTO_LINEAL.Usuario WHERE usua_nombre=@nombre");
+            SqlConnection conn = DBConnection.getConnection();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@nombre", UsuarioLogeado.Username);
+            SqlDataReader reader = cmd.ExecuteReader();
+            reader.Read();
+            string documento = reader["usua_documento"].ToString();
+
+            DateTime fecha = DateTime.Parse(ConfigurationManager.AppSettings["fecha"].ToString());
+            List<string> codigos = new List<string>();
+            query = string.Format(@"SELECT reco_cruc_id FROM PENSAMIENTO_LINEAL.Recorrido_crucero WHERE reco_cruc_crucid = @reco_cruc_crucid AND reco_cruc_salida > CONVERT(datetime, '" + fecha.ToString("yyyy-MM-dd HH:mm:ss") + "', 121)");
+            cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@reco_cruc_crucid", crucero.id);
+            reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                int viaje = int.Parse(reader["reco_cruc_id"].ToString());
+
+                query = string.Format(@"SELECT rese_id, rese_codigo FROM PENSAMIENTO_LINEAL.Reserva WHERE rese_viaje = @rese_viaje");
+                cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@rese_viaje", viaje);
+                SqlDataReader reader2 = cmd.ExecuteReader();
+                while (reader2.Read())
+                {
+                    string codigo = reader["rese_codigo"].ToString();
+                    int id = int.Parse(reader["rese_id"].ToString());
+                    
+                    query = string.Format(@"DELETE PENSAMIENTO_LINEAL.Reserva WHERE rese_id=@rese_id");
+                    cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@rese_id", id);                    
+                    cmd.ExecuteNonQuery();
+
+                    codigos.Add(codigo);
+                }
+                query = string.Format(@"SELECT pasa_id, pasa_codigo FROM PENSAMIENTO_LINEAL.Pasaje WHERE pasa_viaje = @pasa_viaje");
+                cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@pasa_viaje", viaje);
+                reader2 = cmd.ExecuteReader();
+                while (reader2.Read())
+                {
+                    string codigo = reader["pasa_codigo"].ToString();
+                    int id = int.Parse(reader["pasa_id"].ToString());
+
+                    query = string.Format(@"DELETE PENSAMIENTO_LINEAL.Pasaje WHERE pasa_id=@pasa_id");
+                    cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@pasa_id", id);
+                    cmd.ExecuteNonQuery();
+
+                    codigos.Add(codigo);
+                }
+                reader2.Close();
+                reader2.Dispose();
+            }
+
+            foreach (string codigo in codigos)
+            {
+                query = string.Format(@"INSERT INTO PENSAMIENTO_LINEAL.Cancelaciones_log (canc_log_desc,canc_log_codigo,canc_log_usuario_nombre,canc_log_usuario_doc) VALUES (@canc_log_desc,@canc_log_codigo,@canc_log_usuario_nombre,@canc_log_usuario_doc)");
+                cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@canc_log_desc", descripcion);
+                cmd.Parameters.AddWithValue("@canc_log_usuario_nombre", UsuarioLogeado.Username);
+                cmd.Parameters.AddWithValue("@canc_log_usuario_doc", documento);
+                cmd.Parameters.AddWithValue("@canc_log_codigo", codigo);
+
+                cmd.ExecuteNonQuery();
+            }
+            reader.Close();
+            reader.Dispose();
+            cmd.Dispose();
+            conn.Close();
+            conn.Dispose();
+        }
+
         public static bool baja_definitiva(Crucero crucero, DateTime fecha_operacion)
         {
             try{
@@ -730,7 +855,7 @@ namespace FrbaCrucero.BD_y_Querys
         }
 
 
-        public static void cargar_grilla_cruceros_con_alta(DataGridView grillaCruceros, DateTime alta)//SIN TERMINAR//SIN TERMINAR//SIN TERMINAR//SIN TERMINAR
+        public static void cargar_grilla_cruceros_con_alta(DataGridView grillaCruceros, DateTime alta)
         {
             string query = string.Format(@"select cruc_id as ID, cruc_identificador as IDENTIFICADOR, marc_nombre as MARCA, mode_nombre as MODELO, cruc_bajadef as BAJA_DEFINITIVA, esta_fechabaja as FECHA_BAJA_SERVICIO, esta_fechaalta as FECHA_ALTA_SERVICIO, count(cabi_id) as CABINAS
                                             from PENSAMIENTO_LINEAL.Crucero 
@@ -743,7 +868,7 @@ namespace FrbaCrucero.BD_y_Querys
             DBConnection.llenar_grilla(grillaCruceros, query);
         }
 
-        public static void cargar_grilla_cruceros_con_bajaM(DataGridView grillaCruceros, DateTime baja)//SIN TERMINAR//SIN TERMINAR//SIN TERMINAR//SIN TERMINAR
+        public static void cargar_grilla_cruceros_con_bajaM(DataGridView grillaCruceros, DateTime baja)
         {
             string query = string.Format(@"select cruc_id as ID, cruc_identificador as IDENTIFICADOR, marc_nombre as MARCA, mode_nombre as MODELO, cruc_bajadef as BAJA_DEFINITIVA, esta_fechabaja as FECHA_BAJA_SERVICIO, esta_fechaalta as FECHA_ALTA_SERVICIO, count(cabi_id) as CABINAS
                                             from PENSAMIENTO_LINEAL.Crucero 
@@ -756,7 +881,7 @@ namespace FrbaCrucero.BD_y_Querys
             DBConnection.llenar_grilla(grillaCruceros, query);
         }
 
-        public static void cargar_grilla_cruceros_con_bajaD(DataGridView grillaCruceros, DateTime baja)//SIN TERMINAR//SIN TERMINAR//SIN TERMINAR//SIN TERMINAR
+        public static void cargar_grilla_cruceros_con_bajaD(DataGridView grillaCruceros, DateTime baja)
         {
             string query = string.Format(@"select cruc_id as ID, cruc_identificador as IDENTIFICADOR, marc_nombre as MARCA, mode_nombre as MODELO, cruc_bajadef as BAJA_DEFINITIVA, esta_fechabaja as FECHA_BAJA_SERVICIO, esta_fechaalta as FECHA_ALTA_SERVICIO, count(cabi_id) as CABINAS
                                             from PENSAMIENTO_LINEAL.Crucero 
@@ -781,5 +906,6 @@ namespace FrbaCrucero.BD_y_Querys
                                              group by cruc_id, cruc_identificador, marc_nombre, mode_nombre, cruc_bajadef, esta_fechabaja, esta_fechaalta");
             DBConnection.llenar_grilla(grillaCruceros, query);
         }
+
     }
 }

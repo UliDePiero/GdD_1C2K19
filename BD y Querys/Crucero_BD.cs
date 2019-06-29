@@ -780,6 +780,43 @@ namespace FrbaCrucero.BD_y_Querys
                                              where cruc_bajadef IS NOT NULL
                                              group by cruc_id, cruc_identificador, marc_nombre, mode_nombre, cruc_bajadef, esta_fechabaja, esta_fechaalta");
             DBConnection.llenar_grilla(grillaCruceros, query);
+        }        
+
+        public static void cancelar_viajes(Crucero crucero, string codigo, string descripcion)
+        {
+            string query = string.Format(@"SELECT usua_documento FROM PENSAMIENTO_LINEAL.Usuario WHERE usua_nombre=@nombre");
+            SqlConnection conn = DBConnection.getConnection();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@nombre", UsuarioLogeado.Username);
+            SqlDataReader reader = cmd.ExecuteReader();
+            reader.Read();
+            string documento = reader["usua_documento"].ToString();            
+
+            reader.Close();
+            reader.Dispose();           
+
+            string newquery = string.Format(@"INSERT INTO PENSAMIENTO_LINEAL.Cancelaciones_log (canc_log_desc,canc_log_codigo,canc_log_usuario_nombre,canc_log_usuario_doc) VALUES (@canc_log_desc,@canc_log_codigo,@canc_log_usuario_nombre,@canc_log_usuario_doc)");            
+            cmd = new SqlCommand(newquery, conn);
+            cmd.Parameters.AddWithValue("@canc_log_desc", descripcion);
+            cmd.Parameters.AddWithValue("@canc_log_codigo", codigo);
+            cmd.Parameters.AddWithValue("@canc_log_usuario_nombre", UsuarioLogeado.Username);
+            cmd.Parameters.AddWithValue("@canc_log_usuario_doc", documento);
+
+            cmd.ExecuteNonQuery();
+
+            cmd.Dispose();
+            conn.Close();
+            conn.Dispose();
+        }
+
+        public static bool reemplazar_crucero(Crucero cruc_modif)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool postergar_viajes_crucero(Crucero cruc_modif)
+        {
+            throw new NotImplementedException();
         }
     }
 }

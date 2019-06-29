@@ -1,12 +1,7 @@
-Procedure eliminar puerto
 Baja de un crucero:
-	Message YESNO desea cancelar los pasajes vendidos para ese rango de inactividad del crucero?
-	YES: Algo para completar - Cancelar viajes (cancelaciones_log)
-	NO: 
-		DEFI: Reemplazo de crucero: PROCEDURE
-			- No hay crucero disponible: Message Debe dar de alta un nuevo crucero con las mismas caracteristicas que el seleccionado para realizar el pasaje de viajes
-				- Return
-		MOME: Ingresar dias de corrimiento: PROCEDURE
-	Realizar la baja
+- Cancelar viajes
+	DEFI: Reemplazo de crucero: PROCEDURE
+		- No hay crucero disponible
+	MOME: Postergar viajes: PROCEDURE
 
 PDF Estrategia

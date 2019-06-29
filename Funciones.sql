@@ -1,6 +1,6 @@
 Use [GD1C2019]
 go
-CREATE function Estado(@crucero int,@fecha smallDateTime)
+CREATE function PENSAMIENTO_LINEAL.Estado(@crucero int,@fecha smallDateTime)
 returns bit
 as
 begin
@@ -15,7 +15,7 @@ if(@fecha2<@fecha)
 return 0
 end
 go
-CREATE Procedure PasarViajesCruceros (@crucero int)
+CREATE Procedure PENSAMIENTO_LINEAL.PasarViajesCruceros (@crucero int)
 as
 begin
 Declare @Marca int = (select Top 1 cruc_marca from PENSAMIENTO_LINEAL.Crucero where cruc_id=@crucero)
@@ -44,9 +44,10 @@ begin
 
 	declare Cruceros cursor for select DISTINCT(cruc_id)
 	from PENSAMIENTO_LINEAL.Crucero                                                                                      
-	where cruc_id <> @crucero and (cruc_marca = @Marca and cruc_modelo = @Modelo and 
-	cruc_id NOT IN (SELECT reco_cruc_crucid FROM PENSAMIENTO_LINEAL.Recorrido_crucero) OR 
+	where cruc_id <> @crucero and (cruc_marca = @Marca and cruc_modelo = @Modelo 
+	and cruc_id NOT IN (SELECT reco_cruc_crucid FROM PENSAMIENTO_LINEAL.Recorrido_crucero) OR 
 	cruc_id NOT IN (SELECT DISTINCT(reco_cruc_crucid) FROM PENSAMIENTO_LINEAL.Recorrido_crucero WHERE CONVERT(datetime,@Llegada,131) > reco_cruc_salida AND CONVERT(datetime, @Salida, 131) < reco_cruc_llegada_real))
+	and PENSAMIENTO_LINEAL.Estado(cruc_id, @Salida) = 1
 	open Cruceros
 	Declare @cruz int
 	fetch Next from Cruceros into @cruz
@@ -100,7 +101,7 @@ close viajes
 deallocate viajes
 end
 go
-CREATE procedure BorrarReservasViejas
+CREATE procedure PENSAMIENTO_LINEAL.BorrarReservasViejas
 as
 begin
 	delete PENSAMIENTO_LINEAL.Reserva
@@ -116,7 +117,7 @@ begin
 	where reco_cruc_crucid=@crucero and reco_cruc_salida>@Baja
 end
 GO
-CREATE function CodificarSha256(@contra varchar)
+CREATE function PENSAMIENTO_LINEAL.CodificarSha256(@contra varchar)
 returns binary(32)
 as
 begin
@@ -124,7 +125,7 @@ return (HASHBYTES('SHA2_256',@contra))
 end
 
 GO
-CREATE trigger CodificarContrasenia
+CREATE trigger PENSAMIENTO_LINEAL.CodificarContrasenia
 on PENSAMIENTO_LINEAL.Usuario
 instead of insert
 as
@@ -136,7 +137,7 @@ where usua_username IS NOT NULL
 end
 
 go
-CREATE Procedure chasquearDedos (@puerto int)
+CREATE Procedure PENSAMIENTO_LINEAL.chasquearDedos (@puerto int)
 as
 begin
 Declare @Todo table (tramo int,reco int,recoCruc int) 

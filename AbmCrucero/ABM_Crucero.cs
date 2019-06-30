@@ -43,6 +43,9 @@ namespace FrbaCrucero.AbmCrucero
                  comboBoxMarca.Items.Add(m.nombre);
              foreach (Crucero c in cruceros)
                  comboBoxIdentificador.Items.Add(c.identificador);
+             DateTime date = DateTime.Parse(ConfigurationManager.AppSettings["fecha"].ToString());
+             date.AddDays(1);
+             dateTimePicker1.MinDate = date;
              inicio = false;
         }
 

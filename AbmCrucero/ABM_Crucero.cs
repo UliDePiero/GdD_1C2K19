@@ -138,7 +138,7 @@ namespace FrbaCrucero.AbmCrucero
             if(fecha_operacion != null)
             {
                 Crucero cruc_modif = obtener_crucero_seleccionado();
-                DialogResult dialogResult = MessageBox.Show("¿ Desea cancelar todas las reservas y pasajes vendidos del crucero con fecha posterior a la actual ?", "Baja Crucero", MessageBoxButtons.YesNo);
+                DialogResult dialogResult = MessageBox.Show("¿ Desea cancelar los pasajes vendidos para ese rango de inactividad del crucero ?", "Baja Crucero", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {                    
                     switch (operacion_fecha)

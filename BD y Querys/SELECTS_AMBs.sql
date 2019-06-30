@@ -95,33 +95,50 @@ order by 4 desc
 -- TOP 5 de los cruceros con mayor cantidad de dias fuera de servicio
 select TOP 5 cruc_id as ID, cruc_identificador as IDENTIFICADOR, 
 marc_nombre as MARCA, mode_nombre as MODELO,
-sum(PENSAMIENTO_LINEAL.diasFuera(2012, '> 6', esta_fechabaja, esta_fechaalta)) as DIAS_FUERA_DE_SERVICIO
+sum(PENSAMIENTO_LINEAL.diasFuera(2015, 2, esta_fechabaja, esta_fechaalta)) as DIAS_FUERA_DE_SERVICIO
 from PENSAMIENTO_LINEAL.Crucero
 	join PENSAMIENTO_LINEAL.Estado_crucero on (cruc_id = esta_crucero)
 	join PENSAMIENTO_LINEAL.Marca on (cruc_marca = marc_id)
 	join PENSAMIENTO_LINEAL.Modelo on (cruc_modelo = mode_id)
-where month(esta_fechaalta) > 6 AND year(esta_fechaalta) = 2012
 group by cruc_id, cruc_identificador, marc_nombre, mode_nombre
 order by 5 desc
 
 /* donde:
 
-create function PENSAMIENTO_LINEAL.diasFuera (@anio numeric(5), @semestre varchar(8), @fechabaja DateTime, @fechaalta DateTime)
-returns numeric(10)
+create function PENSAMIENTO_LINEAL.diasFuera (@anio numeric(5), @semestre numeric(2), @fechabaja dateTime, @fechaalta dateTime)
+returns numeric(5)
 as
 begin
-	declare @retorno numeric(10)
-	declare @cambioDeSemestre DateTime
+	declare @resultado numeric(5)
+	
+	declare @fechalimite1 dateTime
+	declare @fechalimite2 dateTime
+	declare @fechalimite3 dateTime
+	set @fechalimite1 = DATEFROMPARTS(@anio, 1, 1)
+	set @fechalimite2 = DATEFROMPARTS(@anio, 6, 30)
+	set @fechalimite3 = DATEFROMPARTS(@anio, 12, 31)
 
-	set @retorno = DATEDIFF(day, @fechabaja, @fechaalta)
-	set @cambioDeSemestre = DATEFROMPARTS(@anio, 6, 30)
+	if(@semestre = 1)
+	begin
+		if(@fechabaja < @fechalimite1)
+			set @fechabaja = @fechalimite1
+		if(@fechaalta > @fechalimite2)
+			set @fechaalta = @fechalimite2
+		if(@fechabaja > @fechalimite2 or @fechaalta < @fechalimite1)
+			set @fechabaja = @fechaalta
+	end
+	else
+	begin
+		if(@fechabaja < @fechalimite2)
+			set @fechabaja = @fechalimite2
+		if(@fechaalta > @fechalimite3)
+			set @fechaalta = @fechalimite3
+		if(@fechabaja > @fechalimite3 or @fechaalta < @fechalimite2)
+			set @fechabaja = @fechaalta
+	end
 
-	if (@semestre = '<= 6' AND (@fechaalta > @cambioDeSemestre))
-		set @retorno = DATEDIFF(day, @fechabaja, @cambioDeSemestre)
-	else if (@semestre = '> 6' and (@fechabaja < @cambioDeSemestre))
-		set @retorno = DATEDIFF(day, @cambioDeSemestre, @fechaalta)
-
-	return @retorno
+	set @resultado = DATEDIFF(day, @fechabaja, @fechaalta)
+	return @resultado
 end
 
 */

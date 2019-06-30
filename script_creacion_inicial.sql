@@ -420,7 +420,7 @@ GO
 
 CREATE TABLE [PENSAMIENTO_LINEAL].[Cancelaciones_log](
 	[canc_log_id] [int] IDENTITY(1,1) NOT NULL,
-	[canc_log_desc] [char](20) NOT NULL,
+	[canc_log_desc] [char](200) NOT NULL,
 	[canc_log_codigo] [char](40) NOT NULL,
 	[canc_log_usuario_nombre] [char](50) NOT NULL,
 	[canc_log_usuario_doc] [char](20) NOT NULL,
@@ -820,6 +820,26 @@ values('Spa')
 
 insert into PENSAMIENTO_LINEAL.Usuario (usua_nombre,usua_apellido,usua_direccion,usua_mail,usua_username,usua_password,usua_telefono,usua_documento,usua_fechanac,usua_habilitado)
 Values ('Admin','Admin','casa Admin','admin@admin.com','Admin','w23e','1511111111','40404404','1999-12-12 23:59:59',1);
+
+insert into PENSAMIENTO_LINEAL.Rol_Usuario(rol_usuario_usuarioid,rol_usuario_rolid)
+select usua_id,2
+from PENSAMIENTO_LINEAL.Usuario
+where usua_username = 'admin'
+
+insert into PENSAMIENTO_LINEAL.Usuario (usua_nombre,usua_apellido,usua_direccion,usua_mail,usua_username,usua_password,usua_telefono,usua_documento,usua_fechanac,usua_habilitado)
+Values ('Admin','Admin1','casa Admin','admin@admin.com','Admin1','w23e','1511111111','40404404','1999-12-12 23:59:59',1);
+
+insert into PENSAMIENTO_LINEAL.Usuario (usua_nombre,usua_apellido,usua_direccion,usua_mail,usua_username,usua_password,usua_telefono,usua_documento,usua_fechanac,usua_habilitado)
+Values ('Admin','Admin2','casa Admin','admin@admin.com','Admin2','w23e','1511111111','40404404','1999-12-12 23:59:59',1);
+
+insert into PENSAMIENTO_LINEAL.Usuario (usua_nombre,usua_apellido,usua_direccion,usua_mail,usua_username,usua_password,usua_telefono,usua_documento,usua_fechanac,usua_habilitado)
+Values ('Admin','Admin3','casa Admin','admin@admin.com','Admin3','w23e','1511111111','40404404','1999-12-12 23:59:59',1);
+
+insert into PENSAMIENTO_LINEAL.Usuario (usua_nombre,usua_apellido,usua_direccion,usua_mail,usua_username,usua_password,usua_telefono,usua_documento,usua_fechanac,usua_habilitado)
+Values ('Admin','Admin4','casa Admin','admin@admin.com','Admin4','w23e','1511111111','40404404','1999-12-12 23:59:59',1);
+
+insert into PENSAMIENTO_LINEAL.Usuario (usua_nombre,usua_apellido,usua_direccion,usua_mail,usua_username,usua_password,usua_telefono,usua_documento,usua_fechanac,usua_habilitado)
+Values ('Admin','Admin5','casa Admin','admin@admin.com','Admin5','w23e','1511111111','40404404','1999-12-12 23:59:59',1);
 
 insert into PENSAMIENTO_LINEAL.Rol_Usuario(rol_usuario_usuarioid,rol_usuario_rolid)
 select usua_id,2

@@ -55,7 +55,7 @@ namespace FrbaCrucero
             {
                 using (SqlConnection conexion = DBConnection.getConnection())
                 {
-                    string comando = "SELECT usua_username, usua_password FROM PENSAMIENTO_LINEAL.Usuario WHERE usua_username = @usua AND usua_password = dbo.codificarSHA256(@contra) AND  usua_habilitado = 1";
+                    string comando = "SELECT usua_username, usua_password FROM PENSAMIENTO_LINEAL.Usuario WHERE usua_username = @usua AND usua_password = PENSAMIENTO_LINEAL.codificarSHA256(@contra) AND  usua_habilitado = 1";
                     using (SqlCommand cmd = new SqlCommand(comando, conexion))
                     {
                         cmd.Parameters.AddWithValue("@usua", usua);

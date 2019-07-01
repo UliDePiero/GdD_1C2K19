@@ -840,20 +840,38 @@ end
 
 GO
 
+insert into PENSAMIENTO_LINEAL.Servicio(serv_desc)
+values('Pileta')
+
+insert into PENSAMIENTO_LINEAL.Servicio(serv_desc)
+values('Teatro')
+
+insert into PENSAMIENTO_LINEAL.Servicio(serv_desc)
+values('Cine')
+
+insert into PENSAMIENTO_LINEAL.Servicio(serv_desc)
+values('Restaurant tematico')
+
+insert into PENSAMIENTO_LINEAL.Servicio(serv_desc)
+values('Tobogan de agua')
+
+insert into PENSAMIENTO_LINEAL.Servicio(serv_desc)
+values('Spa')
+
 insert into PENSAMIENTO_LINEAL.Rol(rol_nombre,rol_habilitado)
 values ('Cliente',1)
-
-insert into PENSAMIENTO_LINEAL.Funcionalidad(func_nombre)
-values ('Reserva de pasaje')
-
-insert into PENSAMIENTO_LINEAL.Funcionalidad(func_nombre)
-values ('Pago de pasajes')
 
 insert into PENSAMIENTO_LINEAL.Rol(rol_nombre,rol_habilitado)
 values ('Administrador General',1)
 
+insert into PENSAMIENTO_LINEAL.Rol(rol_nombre,rol_habilitado)
+values ('Administrador de ABM',1)
+
+insert into PENSAMIENTO_LINEAL.Rol(rol_nombre,rol_habilitado)
+values ('Administrador Jr',1)
+
 insert into PENSAMIENTO_LINEAL.Funcionalidad(func_nombre)
-values ('ABM Crucero')
+values ('ABM Rol')
 
 insert into PENSAMIENTO_LINEAL.Funcionalidad(func_nombre)
 values ('ABM Puerto')
@@ -862,19 +880,25 @@ insert into PENSAMIENTO_LINEAL.Funcionalidad(func_nombre)
 values ('ABM Recorrido')
 
 insert into PENSAMIENTO_LINEAL.Funcionalidad(func_nombre)
-values ('ABM Rol')
-
-insert into PENSAMIENTO_LINEAL.Funcionalidad(func_nombre)
-values ('Listado Estadístico')
+values ('ABM Crucero')
 
 insert into PENSAMIENTO_LINEAL.Funcionalidad(func_nombre)
 values ('Generar Viaje')
 
-insert into PENSAMIENTO_LINEAL.Rol_Funcion(rol_func_rolid,rol_func_funcid)
-values(1,1)
+insert into PENSAMIENTO_LINEAL.Funcionalidad(func_nombre)
+values ('Reserva de pasaje')
+
+insert into PENSAMIENTO_LINEAL.Funcionalidad(func_nombre)
+values ('Pago de pasajes')
+
+insert into PENSAMIENTO_LINEAL.Funcionalidad(func_nombre)
+values ('Listado Estadístico')
 
 insert into PENSAMIENTO_LINEAL.Rol_Funcion(rol_func_rolid,rol_func_funcid)
-values(1,2)
+values(1,6)
+
+insert into PENSAMIENTO_LINEAL.Rol_Funcion(rol_func_rolid,rol_func_funcid)
+values(1,7)
 
 insert into PENSAMIENTO_LINEAL.Rol_Funcion(rol_func_rolid,rol_func_funcid)
 values(2,1)
@@ -900,48 +924,42 @@ values(2,7)
 insert into PENSAMIENTO_LINEAL.Rol_Funcion(rol_func_rolid,rol_func_funcid)
 values(2,8)
 
-insert into PENSAMIENTO_LINEAL.Servicio(serv_desc)
-values('Pileta')
+insert into PENSAMIENTO_LINEAL.Rol_Funcion(rol_func_rolid,rol_func_funcid)
+values(3,1)
 
-insert into PENSAMIENTO_LINEAL.Servicio(serv_desc)
-values('Teatro')
+insert into PENSAMIENTO_LINEAL.Rol_Funcion(rol_func_rolid,rol_func_funcid)
+values(3,2)
 
-insert into PENSAMIENTO_LINEAL.Servicio(serv_desc)
-values('Cine')
+insert into PENSAMIENTO_LINEAL.Rol_Funcion(rol_func_rolid,rol_func_funcid)
+values(3,3)
 
-insert into PENSAMIENTO_LINEAL.Servicio(serv_desc)
-values('Restaurant tematico')
+insert into PENSAMIENTO_LINEAL.Rol_Funcion(rol_func_rolid,rol_func_funcid)
+values(3,4)
 
-insert into PENSAMIENTO_LINEAL.Servicio(serv_desc)
-values('Tobogan de agua')
+insert into PENSAMIENTO_LINEAL.Rol_Funcion(rol_func_rolid,rol_func_funcid)
+values(4,5)
 
-insert into PENSAMIENTO_LINEAL.Servicio(serv_desc)
-values('Spa')
+insert into PENSAMIENTO_LINEAL.Rol_Funcion(rol_func_rolid,rol_func_funcid)
+values(4,8)
 
 insert into PENSAMIENTO_LINEAL.Usuario (usua_nombre,usua_apellido,usua_direccion,usua_mail,usua_username,usua_password,usua_telefono,usua_documento,usua_fechanac,usua_habilitado)
-Values ('Admin','Admin','casa Admin','admin@admin.com','Admin','w23e','1511111111','40404404','1999-12-12 23:59:59',1);
+Values ('Admin','Admin','casa Admin','admin@admin.com','admin','w23e','1511111111','40404404','1999-12-12 23:59:59',1);
+
+insert into PENSAMIENTO_LINEAL.Usuario (usua_nombre,usua_apellido,usua_direccion,usua_mail,usua_username,usua_password,usua_telefono,usua_documento,usua_fechanac,usua_habilitado)
+Values ('Admin','Admin1','casa Admin','admin@admin.com','Admin_ABM','w23e','1511111111','40404404','1999-12-12 23:59:59',1);
+
+insert into PENSAMIENTO_LINEAL.Usuario (usua_nombre,usua_apellido,usua_direccion,usua_mail,usua_username,usua_password,usua_telefono,usua_documento,usua_fechanac,usua_habilitado)
+Values ('Admin','Admin2','casa Admin','admin@admin.com','Admin_Jr','w23e','1511111111','40404404','1999-12-12 23:59:59',1);
 
 insert into PENSAMIENTO_LINEAL.Rol_Usuario(rol_usuario_usuarioid,rol_usuario_rolid)
 select usua_id,2
 from PENSAMIENTO_LINEAL.Usuario
 where usua_username = 'admin'
-
-insert into PENSAMIENTO_LINEAL.Usuario (usua_nombre,usua_apellido,usua_direccion,usua_mail,usua_username,usua_password,usua_telefono,usua_documento,usua_fechanac,usua_habilitado)
-Values ('Admin','Admin1','casa Admin','admin@admin.com','Admin1','w23e','1511111111','40404404','1999-12-12 23:59:59',1);
-
-insert into PENSAMIENTO_LINEAL.Usuario (usua_nombre,usua_apellido,usua_direccion,usua_mail,usua_username,usua_password,usua_telefono,usua_documento,usua_fechanac,usua_habilitado)
-Values ('Admin','Admin2','casa Admin','admin@admin.com','Admin2','w23e','1511111111','40404404','1999-12-12 23:59:59',1);
-
-insert into PENSAMIENTO_LINEAL.Usuario (usua_nombre,usua_apellido,usua_direccion,usua_mail,usua_username,usua_password,usua_telefono,usua_documento,usua_fechanac,usua_habilitado)
-Values ('Admin','Admin3','casa Admin','admin@admin.com','Admin3','w23e','1511111111','40404404','1999-12-12 23:59:59',1);
-
-insert into PENSAMIENTO_LINEAL.Usuario (usua_nombre,usua_apellido,usua_direccion,usua_mail,usua_username,usua_password,usua_telefono,usua_documento,usua_fechanac,usua_habilitado)
-Values ('Admin','Admin4','casa Admin','admin@admin.com','Admin4','w23e','1511111111','40404404','1999-12-12 23:59:59',1);
-
-insert into PENSAMIENTO_LINEAL.Usuario (usua_nombre,usua_apellido,usua_direccion,usua_mail,usua_username,usua_password,usua_telefono,usua_documento,usua_fechanac,usua_habilitado)
-Values ('Admin','Admin5','casa Admin','admin@admin.com','Admin5','w23e','1511111111','40404404','1999-12-12 23:59:59',1);
-
 insert into PENSAMIENTO_LINEAL.Rol_Usuario(rol_usuario_usuarioid,rol_usuario_rolid)
-select usua_id,2
+select usua_id,3
 from PENSAMIENTO_LINEAL.Usuario
-where usua_username = 'admin'
+where usua_username = 'admin_abm'
+insert into PENSAMIENTO_LINEAL.Rol_Usuario(rol_usuario_usuarioid,rol_usuario_rolid)
+select usua_id,4
+from PENSAMIENTO_LINEAL.Usuario
+where usua_username = 'admin_jr'

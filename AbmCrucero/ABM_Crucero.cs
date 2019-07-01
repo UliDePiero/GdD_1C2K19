@@ -163,14 +163,11 @@ namespace FrbaCrucero.AbmCrucero
                 {                                                    
                     switch(operacion_fecha)
                     {
-                        case "Baja definitiva":                        
-                            if(!Crucero_BD.reemplazar_crucero(cruc_modif))
-                            {
-                                MessageBox.Show("Debe dar de alta un nuevo crucero con las mismas caracteristicas que el seleccionado para realizar el pasaje de viajes.", "Baja definitiva Crucero", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        case "Baja definitiva":
+                            if (!Crucero_BD.reemplazar_crucero(cruc_modif, fecha_operacion))
                                 return;
-                            }
                             else
-                                bajaDefinitiva(cruc_modif, operacion_fecha);
+                                MessageBox.Show("Crucero dado de baja definitivamente.", operacion_fecha, MessageBoxButtons.OK, MessageBoxIcon.Information);
                             break;
                         case "Baja momentanea":
                             if (Crucero_BD.postergar_viajes_crucero(cruc_modif, fecha_operacion))

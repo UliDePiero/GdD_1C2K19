@@ -496,14 +496,15 @@ namespace FrbaCrucero.BD_y_Querys
             return false;
         }
 
-        public static bool reemplazar_crucero(Crucero cruc_modif)
+        public static bool reemplazar_crucero(Crucero cruc_modif, DateTime fecha)
         {
             try
             {
-                string query = string.Format(@"EXECUTE PENSAMIENTO_LINEAL.PasarViajesCruceros @crucero = @crucero_id");
+                string query = string.Format(@"EXECUTE PENSAMIENTO_LINEAL.DarBajaDefinitiva @cruc_id = @crucero_id, @fecha = @fecha_baja");
                 SqlConnection conn = DBConnection.getConnection();
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@crucero_id", cruc_modif.id);
+                cmd.Parameters.AddWithValue("@fecha_baja", fecha);
 
                 cmd.ExecuteNonQuery();
 
@@ -514,7 +515,7 @@ namespace FrbaCrucero.BD_y_Querys
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error al cambiar de crucero.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Hubo un error en la operacion Baja definitiva del crucero", "Crucero", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return false;
         }

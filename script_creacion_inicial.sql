@@ -592,8 +592,74 @@ if(@fecha2<@fecha)
 	return 1
 return 0
 end
+
 GO
-CREATE Procedure PENSAMIENTO_LINEAL.PasarViajesCruceros (@crucero int)
+CREATE Function PENSAMIENTO_LINEAL.ComprobarPasarViajesCruceros (@crucero int, @fecha smallDateTime)
+returns int
+as
+begin
+declare @resultadoGlobal int = 0
+Declare @Marca int = (select Top 1 cruc_marca from PENSAMIENTO_LINEAL.Crucero where cruc_id=@crucero)
+Declare @Modelo int = (select Top 1 cruc_modelo from PENSAMIENTO_LINEAL.Crucero where cruc_id=@crucero)
+Declare @cabinas table (TipoCab int, Cant int)
+insert Into @cabinas
+select cabi_tipo, COUNT(cabi_id) from PENSAMIENTO_LINEAL.Cabina where cabi_crucero=@crucero group by cabi_tipo
+
+
+declare viajes cursor LOCAL for select reco_cruc_crucid, reco_cruc_recoid, reco_cruc_salida, reco_cruc_id from PENSAMIENTO_LINEAL.Recorrido_crucero where reco_cruc_crucid=@crucero and reco_cruc_salida>@fecha
+declare @Cruc_ID int
+declare @Reco_ID int
+declare @Viaje_ID int
+declare @Salida smallDateTime
+
+open viajes
+fetch Next from viajes Into @cruc_ID,@Reco_ID,@Salida,@Viaje_ID
+while (@@FETCH_STATUS = 0 and @resultadoGlobal = 0)
+begin
+	declare @resultadoCrucero int = 0
+	declare @Tiempo int = (select Count(tram_duracion) from PENSAMIENTO_LINEAL.Recorrido_tramo join PENSAMIENTO_LINEAL.Tramo on (reco_tram_tramid = tram_id) where reco_tram_recoid = @Reco_ID)
+	declare @Llegada smallDateTime = (select Top 1reco_cruc_llegada_real from PENSAMIENTO_LINEAL.Recorrido_crucero where reco_cruc_id=@Viaje_ID) /*DateAdd(HOUR,@Tiempo,@Salida)*/
+
+	declare Cruceros cursor for select DISTINCT(cruc_id)
+	from PENSAMIENTO_LINEAL.Crucero                                                                                      
+	where cruc_id <> @crucero and (cruc_marca = @Marca and cruc_modelo = @Modelo 
+	and cruc_id NOT IN (SELECT reco_cruc_crucid FROM PENSAMIENTO_LINEAL.Recorrido_crucero) OR 
+	cruc_id NOT IN (SELECT DISTINCT(reco_cruc_crucid) FROM PENSAMIENTO_LINEAL.Recorrido_crucero WHERE CONVERT(datetime,@Llegada,131) > reco_cruc_salida AND CONVERT(datetime, @Salida, 131) < reco_cruc_llegada_real))
+	and PENSAMIENTO_LINEAL.Estado(cruc_id, @Salida) = 1 and PENSAMIENTO_LINEAL.Estado(cruc_id, @Llegada) = 1 and cruc_bajadef is not NULL
+	open Cruceros
+	Declare @cruz int 
+	fetch Next from Cruceros into @cruz
+	while (@@FETCH_STATUS = 0 and @resultadoCrucero = 0)
+	begin
+		Declare @cabinas2 table (TipoCab2 int, Cant2 int)
+		insert Into @cabinas2
+		select cabi_tipo, COUNT(cabi_id) from PENSAMIENTO_LINEAL.Cabina where cabi_crucero=@cruz group by cabi_tipo
+		Declare @diff table (diff int)
+		insert @diff
+		select (Cant2 - Cant) from @cabinas2 Join @cabinas on (TipoCab = TipoCab2)
+		delete @cabinas2
+		if(Not Exists(select * from @diff where diff <> 0))
+		begin
+			set @resultadoCrucero = 1			
+		end
+		fetch Next from Cruceros into @cruz
+	end
+	if @resultadoCrucero = 0
+	begin
+	set @resultadoGlobal = 1
+	end
+
+	close Cruceros
+	deallocate Cruceros
+	fetch Next from viajes Into @cruc_ID,@Reco_ID,@Salida,@Viaje_ID
+end
+close viajes
+deallocate viajes
+return @resultadoGlobal
+end
+
+GO
+CREATE Procedure PENSAMIENTO_LINEAL.PasarViajesCruceros (@crucero int, @fecha smallDateTime)
 as
 begin
 Declare @Marca int = (select Top 1 cruc_marca from PENSAMIENTO_LINEAL.Crucero where cruc_id=@crucero)
@@ -603,10 +669,7 @@ insert Into @cabinas
 select cabi_tipo, COUNT(cabi_id) from PENSAMIENTO_LINEAL.Cabina where cabi_crucero=@crucero group by cabi_tipo
 
 
-declare @prueba int = (select Top 1 Cant from @cabinas)
-print @prueba
-
-declare viajes cursor LOCAL for select reco_cruc_crucid, reco_cruc_recoid, reco_cruc_salida, reco_cruc_id from PENSAMIENTO_LINEAL.Recorrido_crucero where reco_cruc_crucid=@crucero
+declare viajes cursor LOCAL for select reco_cruc_crucid, reco_cruc_recoid, reco_cruc_salida, reco_cruc_id from PENSAMIENTO_LINEAL.Recorrido_crucero where reco_cruc_crucid=@crucero and reco_cruc_salida > @fecha
 declare @Cruc_ID int
 declare @Reco_ID int
 declare @Viaje_ID int
@@ -616,18 +679,20 @@ open viajes
 fetch Next from viajes Into @cruc_ID,@Reco_ID,@Salida,@Viaje_ID
 while (@@FETCH_STATUS = 0)
 begin
+	declare @resultadoCrucero int = 0
 	declare @Tiempo int = (select Count(tram_duracion) from PENSAMIENTO_LINEAL.Recorrido_tramo join PENSAMIENTO_LINEAL.Tramo on (reco_tram_tramid = tram_id) where reco_tram_recoid = @Reco_ID)
-	declare @Llegada smallDateTime = DateAdd(HOUR,@Tiempo,@Salida)
+	declare @Llegada smallDateTime = (select Top 1 reco_cruc_llegada_real from PENSAMIENTO_LINEAL.Recorrido_crucero where reco_cruc_id=@Viaje_ID) /*DateAdd(HOUR,@Tiempo,@Salida)*/
 
 	declare Cruceros cursor for select DISTINCT(cruc_id)
 	from PENSAMIENTO_LINEAL.Crucero                                                                                      
-	where cruc_id <> @crucero and (cruc_marca = @Marca and cruc_modelo = @Modelo and 
-	cruc_id NOT IN (SELECT reco_cruc_crucid FROM PENSAMIENTO_LINEAL.Recorrido_crucero) OR 
+	where cruc_id <> @crucero and (cruc_marca = @Marca and cruc_modelo = @Modelo 
+	and cruc_id NOT IN (SELECT reco_cruc_crucid FROM PENSAMIENTO_LINEAL.Recorrido_crucero) OR 
 	cruc_id NOT IN (SELECT DISTINCT(reco_cruc_crucid) FROM PENSAMIENTO_LINEAL.Recorrido_crucero WHERE CONVERT(datetime,@Llegada,131) > reco_cruc_salida AND CONVERT(datetime, @Salida, 131) < reco_cruc_llegada_real))
+	and PENSAMIENTO_LINEAL.Estado(cruc_id, @Salida) = 1 and PENSAMIENTO_LINEAL.Estado(cruc_id, @Llegada) = 1 and cruc_bajadef is not NULL
 	open Cruceros
-	Declare @cruz int
+	Declare @cruz int 
 	fetch Next from Cruceros into @cruz
-	while (@@FETCH_STATUS = 0)
+	while (@@FETCH_STATUS = 0 and @resultadoCrucero = 0)
 	begin
 		Declare @cabinas2 table (TipoCab2 int, Cant2 int)
 		insert Into @cabinas2
@@ -642,7 +707,6 @@ begin
 			insert into @Pasajes
 			select pasa_id, cabi_id, cabi_tipo from PENSAMIENTO_LINEAL.Pasaje join PENSAMIENTO_LINEAL.Cabina on (pasa_cabina=cabi_id) where @Viaje_ID = pasa_viaje
 			declare @pasaCant int = (select COUNT(*) from @Pasajes)
-			print @pasaCant
 			declare cabinas cursor for (select cabi_id, cabi_tipo from PENSAMIENTO_LINEAL.Cabina where cabi_crucero = @cruz)
 			declare @cab int
 			declare @Tipe int
@@ -669,12 +733,30 @@ begin
 		end
 		fetch Next from Cruceros into @cruz
 	end
+
 	close Cruceros
 	deallocate Cruceros
 	fetch Next from viajes Into @cruc_ID,@Reco_ID,@Salida,@Viaje_ID
 end
 close viajes
 deallocate viajes
+end
+
+
+GO
+CREATE Procedure DarBajaDefinitiva(@cruc_id int, @fecha smallDateTime)
+as
+begin
+	declare @fecha2  smallDateTime =CONVERT(smalldatetime,@fecha,121)
+if(PENSAMIENTO_LINEAL.ComprobarPasarViajesCruceros(@cruc_id, @fecha2)=0)
+begin
+	Execute PENSAMIENTO_LINEAL.PasarViajesCruceros @crucero = @cruc_id, @fecha = @fecha2
+	UPDATE PENSAMIENTO_LINEAL.Crucero SET cruc_bajadef= @fecha2 WHERE cruc_id=@cruc_id
+end
+else
+begin
+	raiserror('Se debe dar de alta un crucero de las mismas caracteristicas que pueda realizar los viajes futuros',11,1)
+end
 end
 GO
 CREATE procedure PENSAMIENTO_LINEAL.BorrarReservasViejas
@@ -743,12 +825,12 @@ where pasa_viaje = recoCruc
 delete PENSAMIENTO_LINEAL.Recorrido_crucero
 from @viaje
 where reco_cruc_id = recoCruc
-delete PENSAMIENTO_LINEAL.Recorrido
-from @recorridos
-where reco_id = reco
 delete PENSAMIENTO_LINEAL.Recorrido_tramo
 from @tramos
 where reco_tram_tramid = tramo
+delete PENSAMIENTO_LINEAL.Recorrido
+from @recorridos
+where reco_id = reco
 delete PENSAMIENTO_LINEAL.Tramo
 from @tramos
 where tram_id = tramo

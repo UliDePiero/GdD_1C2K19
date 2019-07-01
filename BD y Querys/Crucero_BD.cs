@@ -522,15 +522,15 @@ namespace FrbaCrucero.BD_y_Querys
         public static bool postergar_viajes_crucero(Crucero cruc_modif, DateTime alta)
         {
             try
-            {
-                //CONVERT(datetime, '" + alta.ToString("yyyy-MM-dd HH:mm:ss") + "', 121)
-                //CONVERT(smalldatetime, @alt, 121)
-                string query = string.Format(@"EXECUTE PENSAMIENTO_LINEAL.RetrasarCrucero @crucero = @crucero_id, @Baja = @baj, @Alta = CONVERT(smalldatetime, @alt, 121)");
+            {               
+                string baja_string = DateTime.Parse(ConfigurationManager.AppSettings["fecha"]).ToString("yyyy-MM-dd HH:mm:ss");
+                string alta_string = alta.ToString("yyyy-MM-dd HH:mm:ss");
+                string query = string.Format(@"EXECUTE PENSAMIENTO_LINEAL.RetrasarCrucero @crucero = @crucero_id, @Baja = @baj, @Alta = @alt");
                 SqlConnection conn = DBConnection.getConnection();
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@crucero_id", cruc_modif.id);
-                cmd.Parameters.AddWithValue("@alt", alta);
-                cmd.Parameters.AddWithValue("@baj", DateTime.Parse(ConfigurationManager.AppSettings["fecha"].ToString()));
+                cmd.Parameters.AddWithValue("@alt", alta_string);
+                cmd.Parameters.AddWithValue("@baj", baja_string);
 
                 cmd.ExecuteNonQuery();
 

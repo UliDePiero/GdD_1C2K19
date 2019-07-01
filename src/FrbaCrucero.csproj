@@ -1,0 +1,349 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{11BD0A38-F064-4794-9845-D4C99E7D45E9}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FrbaCrucero</RootNamespace>
+    <AssemblyName>FrbaCrucero</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AbmCrucero\ABM_Cabina.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmCrucero\ABM_Cabina.Designer.cs">
+      <DependentUpon>ABM_Cabina.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmCrucero\ABM_Crucero.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmCrucero\ABM_Crucero.Designer.cs">
+      <DependentUpon>ABM_Crucero.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmCrucero\Cancelaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmCrucero\Cancelaciones.Designer.cs">
+      <DependentUpon>Cancelaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmCrucero\ModificacionesCrucero.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmCrucero\ModificacionesCrucero.Designer.cs">
+      <DependentUpon>ModificacionesCrucero.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmPuerto\ABM_Puerto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmPuerto\ABM_Puerto.Designer.cs">
+      <DependentUpon>ABM_Puerto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmRecorrido\ABM_Recorrido.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmRecorrido\ABM_Recorrido.Designer.cs">
+      <DependentUpon>ABM_Recorrido.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmRecorrido\ModificacionesRecorrido.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmRecorrido\ModificacionesRecorrido.Designer.cs">
+      <DependentUpon>ModificacionesRecorrido.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmRecorrido\Tramos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmRecorrido\Tramos.Designer.cs">
+      <DependentUpon>Tramos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmRol\ABM_ROL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmRol\ABM_ROL.Designer.cs">
+      <DependentUpon>ABM_ROL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmRol\ModificacionesROL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmRol\ModificacionesROL.Designer.cs">
+      <DependentUpon>ModificacionesROL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BD y Querys\Crucero_BD.cs" />
+    <Compile Include="BD y Querys\DatosCliente_BD.cs" />
+    <Compile Include="BD y Querys\DBConnection.cs" />
+    <Compile Include="BD y Querys\Estadistica_BD.cs" />
+    <Compile Include="BD y Querys\Puerto_BD.cs" />
+    <Compile Include="BD y Querys\RecorridoCrucero_BD.cs" />
+    <Compile Include="BD y Querys\Recorrido_BD.cs" />
+    <Compile Include="BD y Querys\Reserva_DB.cs" />
+    <Compile Include="BD y Querys\ROL_BD.cs" />
+    <Compile Include="BD y Querys\Tramo_BD.cs" />
+    <Compile Include="Clases\Cabina.cs" />
+    <Compile Include="Clases\Datos.cs" />
+    <Compile Include="Clases\Pasaje.cs" />
+    <Compile Include="Clases\Puerto.cs" />
+    <Compile Include="Clases\Crucero.cs" />
+    <Compile Include="Clases\EstadoCrucero.cs" />
+    <Compile Include="Clases\Funcionalidad.cs" />
+    <Compile Include="Clases\MarcaCrucero.cs" />
+    <Compile Include="Clases\ModeloCrucero.cs" />
+    <Compile Include="Clases\Recorrido.cs" />
+    <Compile Include="Clases\RecorridoCrucero.cs" />
+    <Compile Include="Clases\Reserva.cs" />
+    <Compile Include="Clases\ROL.cs" />
+    <Compile Include="Clases\ServicioCrucero.cs" />
+    <Compile Include="Clases\TipoCabina.cs" />
+    <Compile Include="Clases\Tramo.cs" />
+    <Compile Include="Clases\Usuario.cs" />
+    <Compile Include="Clases\UsuarioLogeado.cs" />
+    <Compile Include="CompraReservaPasaje\EmitirPago.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CompraReservaPasaje\EmitirPago.Designer.cs">
+      <DependentUpon>EmitirPago.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CompraReservaPasaje\EmitirReserva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CompraReservaPasaje\EmitirReserva.Designer.cs">
+      <DependentUpon>EmitirReserva.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CompraReservaPasaje\IngresarDatosCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CompraReservaPasaje\IngresarDatosCliente.Designer.cs">
+      <DependentUpon>IngresarDatosCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CompraReservaPasaje\ReservaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CompraReservaPasaje\ReservaForm.Designer.cs">
+      <DependentUpon>ReservaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CompraReservaPasaje\PagarReserva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CompraReservaPasaje\PagarReserva.Designer.cs">
+      <DependentUpon>PagarReserva.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GD1C2019DataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GD1C2019DataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Inicio y Log\INICIO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Inicio y Log\INICIO.Designer.cs">
+      <DependentUpon>INICIO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Inicio y Log\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Inicio y Log\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GeneracionViaje\Generacion_Viaje.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GeneracionViaje\Generacion_Viaje.Designer.cs">
+      <DependentUpon>Generacion_Viaje.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Inicio y Log\Menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Inicio y Log\Menu.Designer.cs">
+      <DependentUpon>Menu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoEstadistico\ListadoEstadistico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListadoEstadistico\ListadoEstadistico.Designer.cs">
+      <DependentUpon>ListadoEstadistico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AbmCrucero\ABM_Cabina.resx">
+      <DependentUpon>ABM_Cabina.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmCrucero\ABM_Crucero.resx">
+      <DependentUpon>ABM_Crucero.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmCrucero\Cancelaciones.resx">
+      <DependentUpon>Cancelaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmCrucero\ModificacionesCrucero.resx">
+      <DependentUpon>ModificacionesCrucero.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmPuerto\ABM_Puerto.resx">
+      <DependentUpon>ABM_Puerto.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmRecorrido\ABM_Recorrido.resx">
+      <DependentUpon>ABM_Recorrido.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmRecorrido\ModificacionesRecorrido.resx">
+      <DependentUpon>ModificacionesRecorrido.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmRecorrido\Tramos.resx">
+      <DependentUpon>Tramos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmRol\ABM_ROL.resx">
+      <DependentUpon>ABM_ROL.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmRol\ModificacionesROL.resx">
+      <DependentUpon>ModificacionesROL.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CompraReservaPasaje\EmitirPago.resx">
+      <DependentUpon>EmitirPago.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CompraReservaPasaje\EmitirReserva.resx">
+      <DependentUpon>EmitirReserva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CompraReservaPasaje\IngresarDatosCliente.resx">
+      <DependentUpon>IngresarDatosCliente.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CompraReservaPasaje\PagarReserva.resx">
+      <DependentUpon>PagarReserva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CompraReservaPasaje\ReservaForm.resx">
+      <DependentUpon>ReservaForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GeneracionViaje\Generacion_Viaje.resx">
+      <DependentUpon>Generacion_Viaje.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inicio y Log\INICIO.resx">
+      <DependentUpon>INICIO.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inicio y Log\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inicio y Log\Menu.resx">
+      <DependentUpon>Menu.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListadoEstadistico\ListadoEstadistico.resx">
+      <DependentUpon>ListadoEstadistico.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="GD1C2019DataSet.xsc">
+      <DependentUpon>GD1C2019DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="GD1C2019DataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GD1C2019DataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GD1C2019DataSet.xss">
+      <DependentUpon>GD1C2019DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Imagenes\INICIO.png" />
+    <Content Include="Inicio y Log\INICIO.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

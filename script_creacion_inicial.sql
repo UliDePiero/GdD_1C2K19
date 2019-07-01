@@ -594,7 +594,7 @@ return 0
 end
 
 GO
-CREATE Function PENSAMIENTO_LINEAL.ComprobarPasarViajesCruceros (@crucero int)
+CREATE Function PENSAMIENTO_LINEAL.ComprobarPasarViajesCruceros (@crucero int, @fecha smallDateTime)
 returns int
 as
 begin
@@ -606,7 +606,7 @@ insert Into @cabinas
 select cabi_tipo, COUNT(cabi_id) from PENSAMIENTO_LINEAL.Cabina where cabi_crucero=@crucero group by cabi_tipo
 
 
-declare viajes cursor LOCAL for select reco_cruc_crucid, reco_cruc_recoid, reco_cruc_salida, reco_cruc_id from PENSAMIENTO_LINEAL.Recorrido_crucero where reco_cruc_crucid=@crucero
+declare viajes cursor LOCAL for select reco_cruc_crucid, reco_cruc_recoid, reco_cruc_salida, reco_cruc_id from PENSAMIENTO_LINEAL.Recorrido_crucero where reco_cruc_crucid=@crucero and reco_cruc_salida>@fecha
 declare @Cruc_ID int
 declare @Reco_ID int
 declare @Viaje_ID int
@@ -625,7 +625,7 @@ begin
 	where cruc_id <> @crucero and (cruc_marca = @Marca and cruc_modelo = @Modelo 
 	and cruc_id NOT IN (SELECT reco_cruc_crucid FROM PENSAMIENTO_LINEAL.Recorrido_crucero) OR 
 	cruc_id NOT IN (SELECT DISTINCT(reco_cruc_crucid) FROM PENSAMIENTO_LINEAL.Recorrido_crucero WHERE CONVERT(datetime,@Llegada,131) > reco_cruc_salida AND CONVERT(datetime, @Salida, 131) < reco_cruc_llegada_real))
-	and PENSAMIENTO_LINEAL.Estado(cruc_id, @Salida) = 1 and PENSAMIENTO_LINEAL.Estado(cruc_id, @Llegada) = 1
+	and PENSAMIENTO_LINEAL.Estado(cruc_id, @Salida) = 1 and PENSAMIENTO_LINEAL.Estado(cruc_id, @Llegada) = 1 and cruc_bajadef is not NULL
 	open Cruceros
 	Declare @cruz int 
 	fetch Next from Cruceros into @cruz
@@ -659,15 +659,9 @@ return @resultadoGlobal
 end
 
 GO
-CREATE Procedure PENSAMIENTO_LINEAL.PasarViajesCruceros (@crucero int)
+CREATE Procedure PENSAMIENTO_LINEAL.PasarViajesCruceros (@crucero int, @fecha smallDateTime)
 as
 begin
-declare @cruzzzz int = @crucero
-declare @result int =  PENSAMIENTO_LINEAL.ComprobarPasarViajesCruceros (@cruzzzz)
-if (@result = 0)
-begin
-
-
 Declare @Marca int = (select Top 1 cruc_marca from PENSAMIENTO_LINEAL.Crucero where cruc_id=@crucero)
 Declare @Modelo int = (select Top 1 cruc_modelo from PENSAMIENTO_LINEAL.Crucero where cruc_id=@crucero)
 Declare @cabinas table (TipoCab int, Cant int)
@@ -675,7 +669,7 @@ insert Into @cabinas
 select cabi_tipo, COUNT(cabi_id) from PENSAMIENTO_LINEAL.Cabina where cabi_crucero=@crucero group by cabi_tipo
 
 
-declare viajes cursor LOCAL for select reco_cruc_crucid, reco_cruc_recoid, reco_cruc_salida, reco_cruc_id from PENSAMIENTO_LINEAL.Recorrido_crucero where reco_cruc_crucid=@crucero
+declare viajes cursor LOCAL for select reco_cruc_crucid, reco_cruc_recoid, reco_cruc_salida, reco_cruc_id from PENSAMIENTO_LINEAL.Recorrido_crucero where reco_cruc_crucid=@crucero and reco_cruc_salida > @fecha
 declare @Cruc_ID int
 declare @Reco_ID int
 declare @Viaje_ID int
@@ -694,7 +688,7 @@ begin
 	where cruc_id <> @crucero and (cruc_marca = @Marca and cruc_modelo = @Modelo 
 	and cruc_id NOT IN (SELECT reco_cruc_crucid FROM PENSAMIENTO_LINEAL.Recorrido_crucero) OR 
 	cruc_id NOT IN (SELECT DISTINCT(reco_cruc_crucid) FROM PENSAMIENTO_LINEAL.Recorrido_crucero WHERE CONVERT(datetime,@Llegada,131) > reco_cruc_salida AND CONVERT(datetime, @Salida, 131) < reco_cruc_llegada_real))
-	and PENSAMIENTO_LINEAL.Estado(cruc_id, @Salida) = 1 and PENSAMIENTO_LINEAL.Estado(cruc_id, @Llegada) = 1
+	and PENSAMIENTO_LINEAL.Estado(cruc_id, @Salida) = 1 and PENSAMIENTO_LINEAL.Estado(cruc_id, @Llegada) = 1 and cruc_bajadef is not NULL
 	open Cruceros
 	Declare @cruz int 
 	fetch Next from Cruceros into @cruz
@@ -746,14 +740,24 @@ begin
 end
 close viajes
 deallocate viajes
+end
 
+
+GO
+CREATE Procedure DarBajaDefinitiva(@cruc_id int, @fecha smallDateTime)
+as
+begin
+	declare @fecha2  smallDateTime =CONVERT(smalldatetime,@fecha,121)
+if(PENSAMIENTO_LINEAL.ComprobarPasarViajesCruceros(@cruc_id, @fecha2)=0)
+begin
+	Execute PENSAMIENTO_LINEAL.PasarViajesCruceros @crucero = @cruc_id, @fecha = @fecha2
+	UPDATE PENSAMIENTO_LINEAL.Crucero SET cruc_bajadef= @fecha2 WHERE cruc_id=@cruc_id
 end
 else
 begin
-print 'Debe dar de alta un crucero de las mismas caracteristicas que pueda realizar los viajes en fecha'
+	raiserror('Se debe dar de alta un crucero de las mismas caracteristicas que pueda realizar los viajes futuros',11,1)
 end
 end
-
 GO
 CREATE procedure PENSAMIENTO_LINEAL.BorrarReservasViejas
 as

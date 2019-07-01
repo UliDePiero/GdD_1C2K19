@@ -26,9 +26,7 @@ C:\Users\Tomas\Documents\GitHub\GdD_1C2K19\obj\Debug\FrbaCrucero.AbmCrucero.ABM_
 C:\Users\Tomas\Documents\GitHub\GdD_1C2K19\obj\Debug\FrbaCrucero.AbmCrucero.ModificacionesCrucero.resources
 C:\Users\Tomas\Documents\GitHub\GdD_1C2K19\obj\Debug\FrbaCrucero.AbmPuerto.ABM_Puerto.resources
 C:\Users\Tomas\Documents\GitHub\GdD_1C2K19\obj\Debug\FrbaCrucero.AbmRecorrido.ABM_Recorrido.resources
-C:\Users\Tomas\Documents\GitHub\GdD_1C2K19\obj\Debug\FrbaCrucero.AbmRecorrido.ABM_Tramo.resources
 C:\Users\Tomas\Documents\GitHub\GdD_1C2K19\obj\Debug\FrbaCrucero.AbmRecorrido.ModificacionesRecorrido.resources
-C:\Users\Tomas\Documents\GitHub\GdD_1C2K19\obj\Debug\FrbaCrucero.AbmRecorrido.ModificacionesTramo.resources
 C:\Users\Tomas\Documents\GitHub\GdD_1C2K19\obj\Debug\FrbaCrucero.AbmRol.ABM_ROL.resources
 C:\Users\Tomas\Documents\GitHub\GdD_1C2K19\obj\Debug\FrbaCrucero.AbmRol.ModificacionesROL.resources
 C:\Users\Tomas\Documents\GitHub\GdD_1C2K19\obj\Debug\FrbaCrucero.INICIO.resources
@@ -54,3 +52,7 @@ C:\Users\Tomas\Documents\GitHub\GdD_1C2K19\obj\Debug\FrbaCrucero.CompraReservaPa
 C:\Users\juanb\Desktop\MisProyectos\SQL\GDD\GdD_1C2K19\obj\Debug\FrbaCrucero.AbmRecorrido.Tramos.resources
 C:\Users\juanb\Desktop\MisProyectos\SQL\GDD\GdD_1C2K19\obj\Debug\FrbaCrucero.CompraReservaPasaje.EmitirPago.resources
 C:\Users\juanb\Desktop\MisProyectos\SQL\GDD\GdD_1C2K19\obj\Debug\FrbaCrucero.CompraReservaPasaje.PagarReserva.resources
+C:\Users\Tomas\Documents\GitHub\GdD_1C2K19\obj\Debug\FrbaCrucero.AbmCrucero.Cancelaciones.resources
+C:\Users\Tomas\Documents\GitHub\GdD_1C2K19\obj\Debug\FrbaCrucero.AbmRecorrido.Tramos.resources
+C:\Users\Tomas\Documents\GitHub\GdD_1C2K19\obj\Debug\FrbaCrucero.CompraReservaPasaje.EmitirPago.resources
+C:\Users\Tomas\Documents\GitHub\GdD_1C2K19\obj\Debug\FrbaCrucero.CompraReservaPasaje.PagarReserva.resources

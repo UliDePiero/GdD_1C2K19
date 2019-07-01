@@ -625,7 +625,7 @@ begin
 	where cruc_id <> @crucero and (cruc_marca = @Marca and cruc_modelo = @Modelo 
 	and cruc_id NOT IN (SELECT reco_cruc_crucid FROM PENSAMIENTO_LINEAL.Recorrido_crucero) OR 
 	cruc_id NOT IN (SELECT DISTINCT(reco_cruc_crucid) FROM PENSAMIENTO_LINEAL.Recorrido_crucero WHERE CONVERT(datetime,@Llegada,131) > reco_cruc_salida AND CONVERT(datetime, @Salida, 131) < reco_cruc_llegada_real))
-	and PENSAMIENTO_LINEAL.Estado(cruc_id, @Salida) = 1 and PENSAMIENTO_LINEAL.Estado(cruc_id, @Llegada) = 1 and cruc_bajadef is not NULL
+	and PENSAMIENTO_LINEAL.Estado(cruc_id, @Salida) = 1 and PENSAMIENTO_LINEAL.Estado(cruc_id, @Llegada) = 1 and cruc_bajadef is NULL
 	open Cruceros
 	Declare @cruz int 
 	fetch Next from Cruceros into @cruz
@@ -688,7 +688,7 @@ begin
 	where cruc_id <> @crucero and (cruc_marca = @Marca and cruc_modelo = @Modelo 
 	and cruc_id NOT IN (SELECT reco_cruc_crucid FROM PENSAMIENTO_LINEAL.Recorrido_crucero) OR 
 	cruc_id NOT IN (SELECT DISTINCT(reco_cruc_crucid) FROM PENSAMIENTO_LINEAL.Recorrido_crucero WHERE CONVERT(datetime,@Llegada,131) > reco_cruc_salida AND CONVERT(datetime, @Salida, 131) < reco_cruc_llegada_real))
-	and PENSAMIENTO_LINEAL.Estado(cruc_id, @Salida) = 1 and PENSAMIENTO_LINEAL.Estado(cruc_id, @Llegada) = 1 and cruc_bajadef is not NULL
+	and PENSAMIENTO_LINEAL.Estado(cruc_id, @Salida) = 1 and PENSAMIENTO_LINEAL.Estado(cruc_id, @Llegada) = 1 and cruc_bajadef is NULL
 	open Cruceros
 	Declare @cruz int 
 	fetch Next from Cruceros into @cruz

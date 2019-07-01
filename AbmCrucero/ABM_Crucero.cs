@@ -93,6 +93,7 @@ namespace FrbaCrucero.AbmCrucero
             fecha.Visible = true;
             fecha.Text = "Fecha baja";
             aceptar.Visible = true;
+            aceptar.Enabled = false;
             cancelar.Visible = true;
             operacion_fecha = "Baja definitiva";
         }
@@ -103,6 +104,7 @@ namespace FrbaCrucero.AbmCrucero
             fecha.Visible = true;
             fecha.Text = "Fecha alta";
             aceptar.Visible = true;
+            aceptar.Enabled = false;
             cancelar.Visible = true;
             operacion_fecha = "Baja momentanea";
         }
@@ -110,6 +112,7 @@ namespace FrbaCrucero.AbmCrucero
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
             fecha_operacion = DateTime.Parse(dateTimePicker1.Value.ToString());
+            aceptar.Enabled = true;
         }
 
         private void bajaDefinitiva(Crucero crucero, string operacion_fecha)

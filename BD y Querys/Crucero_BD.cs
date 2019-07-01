@@ -500,11 +500,12 @@ namespace FrbaCrucero.BD_y_Querys
         {
             try
             {
+                string fecha_string = fecha.ToString("yyyy-MM-dd HH:mm:ss");
                 string query = string.Format(@"EXECUTE PENSAMIENTO_LINEAL.DarBajaDefinitiva @cruc_id = @crucero_id, @fecha = @fecha_baja");
                 SqlConnection conn = DBConnection.getConnection();
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@crucero_id", cruc_modif.id);
-                cmd.Parameters.AddWithValue("@fecha_baja", fecha);
+                cmd.Parameters.AddWithValue("@fecha_baja", fecha_string);
 
                 cmd.ExecuteNonQuery();
 
@@ -515,7 +516,7 @@ namespace FrbaCrucero.BD_y_Querys
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Hubo un error en la operacion Baja definitiva del crucero", "Crucero", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Hubo un error en la operacion Baja definitiva del crucero", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return false;
         }

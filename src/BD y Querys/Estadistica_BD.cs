@@ -25,7 +25,7 @@ namespace FrbaCrucero.BD_y_Querys
 
                     query = string.Format(@"select TOP 5 cruc_id as ID, cruc_identificador as IDENTIFICADOR, 
                                         marc_nombre as MARCA, mode_nombre as MODELO,
-                                        sum(PENSAMIENTO_LINEAL.diasFuera2("+ anio +@", "+ s +@", esta_fechabaja, esta_fechaalta)) as DIAS_FUERA_DE_SERVICIO
+                                        sum(PENSAMIENTO_LINEAL.diasFuera("+ anio +@", "+ s +@", esta_fechabaja, esta_fechaalta)) as DIAS_FUERA_DE_SERVICIO
                                         from PENSAMIENTO_LINEAL.Crucero
                                         	join PENSAMIENTO_LINEAL.Estado_crucero on (cruc_id = esta_crucero)
                                         	join PENSAMIENTO_LINEAL.Marca on (cruc_marca = marc_id)

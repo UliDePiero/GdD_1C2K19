@@ -744,7 +744,7 @@ end
 
 
 GO
-CREATE Procedure DarBajaDefinitiva(@cruc_id int, @fecha smallDateTime)
+CREATE Procedure PENSAMIENTO_LINEAL.DarBajaDefinitiva(@cruc_id int, @fecha smallDateTime)
 as
 begin
 	declare @fecha2  smallDateTime =CONVERT(smalldatetime,@fecha,121)
@@ -755,7 +755,7 @@ begin
 end
 else
 begin
-	raiserror('Se debe dar de alta un crucero de las mismas caracteristicas que pueda realizar los viajes futuros',11,1)
+	RAISERROR('Se debe dar de alta un crucero de las mismas caracteristicas que pueda realizar los viajes futuros',11,1)
 end
 end
 GO
